@@ -1,0 +1,142 @@
+
+.main-filters {
+
+    position: absolute;
+    top: 0;
+    height: 4rem;
+    width: 100%;
+    background-color: #788;
+    z-index: 20;
+    padding-right: $menu_gap;
+
+    @media (min-width: map-get($b-points, "mob")) {
+        //top: 0;
+        border-bottom: 1px solid #ddd;
+        background-color: #fff;
+        padding-right: 0;
+
+    }
+
+    &__list {
+        display: flex;
+        //position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        @extend .outer-pad;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    &__item {
+        color: #ccc;
+        @extend .inline-list-item-margin;
+
+
+
+        &--on {
+        color: #333;
+
+            @media (min-width: map-get($b-points, "mob")) {
+                //color: #ccc;
+                border-bottom: 4px solid #ddd;
+            }
+        }
+
+        &--hamburger {
+            margin-left: auto;
+        }
+    }
+}
+
+.filter-expansion {
+    display: flex;
+    align-items: center;
+    position: absolute;
+
+    &__logo {
+
+    }
+
+    &__wrap {
+        background-color: #fff;
+        top: 4rem;
+        position: absolute;
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 10px;
+        z-index: 10;
+        padding: 2rem;
+        padding-right: $menu_gap  + 2rem;
+        @extend %viewport-wide;
+        transition: top 0.4s ease-out;
+
+        @media (min-width: map-get($b-points, "mob")) {
+
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 0;
+            padding-right: 12rem;
+            padding-left: 12rem;
+
+            &--close {
+                top: -40rem;
+
+            }
+
+            &--open {
+                top: 4rem;
+
+            }
+
+        }
+    }
+
+    &__list {
+        //display: flex;
+    }
+
+    &__item {
+        @extend .inline-list-item-margin
+    }
+
+    &__close-button {
+        width: 100vw;
+        background-color: #fff;
+        border-top: 1px solid #ccc;
+        height: 30px;
+        left: 0;
+        margin-left: -12rem;
+        text-align: center;
+    }
+}
+
+.nav-slide {
+    position: absolute;
+    top: 0;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 10px;
+    height: 100vh;
+    width: 100%;
+    transition: right 0.2s ease-out;
+    right: calc(-100% - 20rem);
+    z-index: 50;
+
+    @media (min-width: map-get($b-points, "mob")) {
+        position: relative;
+        box-shadow: none;
+        right: 0;
+        height: auto;
+        z-index: 8;
+        &--open {
+            right: 0;
+        }
+    }
+
+    &--open {
+        right: calc(0% - #{$menu_gap});
+    }
+
+    &--close {
+        //right: calc(-100%);
+
+    }
+}

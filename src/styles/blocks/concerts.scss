@@ -1,0 +1,36 @@
+.concerts {
+
+
+    &__wrap {
+
+    }
+
+    &__list {
+        margin: 2rem 0 6rem;
+    }
+
+    & __item {
+        /* margin: 0 0.6rem 0.7rem 0; */
+        font-size: 1.2rem;
+        cursor: pointer;
+        padding: 1rem;
+        background-color: #ccc;
+        color: #fff;
+        //background-color: #efefef;
+        transition: color 0.15s ease-in-out;
+
+        &--active {
+
+            &:hover {
+                transition: color 0s ease-in-out;
+
+                color: #777;
+            }
+        }
+
+        &--inactive {
+            opacity: 0.2;
+            cursor: auto;
+        }
+    }
+}

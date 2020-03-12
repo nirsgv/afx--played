@@ -1,0 +1,31 @@
+
+
+.outer-pad {
+
+    padding: 0 2rem;
+
+    @media (min-width: map-get($b-points, "tab")) {
+        padding: 0 4rem;
+    }
+
+    @media (min-width: map-get($b-points, "des")) {
+        padding: 0 8rem;
+    }
+}
+
+.inline-list-item-margin {
+
+    margin-right: 0.4rem;
+
+    @media (min-width: map-get($b-points, "tab")) {
+        margin-right: 1.4rem;
+    }
+
+    @media (min-width: map-get($b-points, "des")) {
+        margin-right: 1.8rem;
+    }
+}
+
+%viewport-wide {
+    width: 100vw;
+}

@@ -1,0 +1,112 @@
+@import 'variables.scss';
+@import 'reset.scss';
+@import 'mixins.scss';
+@import 'elements.scss';
+@import 'generic-modifiers.scss';
+@import 'blocks/main-nav.scss';
+@import 'blocks/filter-expansion.scss';
+@import 'blocks/track.scss';
+@import 'blocks/tags.scss';
+@import 'blocks/links.scss';
+@import 'blocks/inner-page.scss';
+@import 'blocks/bkg-holder.scss';
+@import 'blocks/concerts.scss';
+@import 'blocks/modal-box.scss';
+@import 'blocks/expanded-concert.scss';
+@import 'blocks/splash.scss';
+
+body {
+    background-color: map-get($colors, "grey_bright");
+}
+
+// h1 - h6
+h1 {
+    font-size: map-deep-get($Hs, "h1", "mob");
+
+    @media (min-width: map-get($b-points, "tab")) {
+        font-size: map-deep-get($Hs, "h1", "tab");
+    }
+
+    @media (min-width: map-get($b-points, "des")) {
+        font-size: map-deep-get($Hs, "h1", "des");
+    }
+}
+
+h2 {
+    font-size: map-deep-get($Hs, "h2", "mob");
+
+    @media (min-width: map-get($b-points, "tab")) {
+        font-size: map-deep-get($Hs, "h2", "tab");
+    }
+
+    @media (min-width: map-get($b-points, "des")) {
+        font-size: map-deep-get($Hs, "h2", "des");
+    }
+}
+
+h3 {
+    font-size: map-deep-get($Hs, "h3", "mob");
+
+    @media (min-width: map-get($b-points, "tab")) {
+        font-size: map-deep-get($Hs, "h3", "tab");
+    }
+
+    @media (min-width: map-get($b-points, "des")) {
+        font-size: map-deep-get($Hs, "h3", "des");
+    }
+}
+
+.icon-logo {
+    //font-size: 2em;
+    color: #ccc;
+}
+
+svg {
+    width: 1em;
+    fill: currentColor;
+    font-size: 2em;
+    text-align: center;
+    vertical-align: middle;
+    box-sizing: content-box;
+}
+
+
+.share.wrap {
+    background-color: #ddd;
+    height: 20rem;
+    width: 100%;
+    //position: fixed;
+    transition: bottom 0.1s ease-in;
+    display: flex;
+
+    &.inactive {
+        bottom: -20rem;
+    }
+
+    &.active {
+        bottom: 0;
+    }
+
+    & > div {
+        flex-basis: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #aaa;
+        outline: none;
+
+        &:hover {
+            color: #888;
+        }
+    }
+}
+
+.player {
+    position: fixed;
+    bottom: 0;
+    height: 29rem;
+    width: 100%;
+    outline: 1px dashed #aaa;
+    display: flex;
+    justify-content: center;
+}

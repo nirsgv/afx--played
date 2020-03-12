@@ -1,0 +1,66 @@
+$menu_gap: 10rem;
+
+// mob first state of mind
+$b-points: (
+        "mob": 768px,
+        "tab": 1020px,
+        "des": 1360px
+);
+
+$colors: (
+        "grey_bright": #eee,
+        "grey_mid": #aaa,
+        "grey_dark": #888,
+        "rephlex_green": #138a43,
+        "tag-highlight": #a06
+);
+
+$greys: (
+        "grey_0": darken( #fff, 0% ),w
+        "grey_1": darken( #fff, 10% ),
+        "grey_2": darken( #fff, 20% ),
+        "grey_3": darken( #fff, 30% ),
+        "grey_4": darken( #fff, 40% ),
+        "grey_5": darken( #fff, 50% ),
+        "grey_6": darken( #fff, 60% ),
+        "grey_7": darken( #fff, 70% ),
+        "grey_8": darken( #fff, 80% ),
+        "grey_9": darken( #fff, 90% ),
+        "grey_10": darken( #fff, 100% ),
+);
+
+$z-indexes: (
+        "something": 10,
+        "header": 100,
+        "popup": 30
+);
+
+// example deep map
+$Hs: (
+        "h1": (
+                "mob":  1.4rem,
+                "tab":  4rem,
+                "des":  8rem
+        ),
+        "h2": (
+                "mob":  1rem,
+                "tab":  2rem,
+                "des":  2.6rem
+        ),
+        "h3": (
+                "mob":  2rem,
+                "tab":  1.4rem,
+                "des":  1rem
+        ),
+
+);
+
+h2 {
+        color:  #333
+}
+
+$base-pad: (
+        "mob": 1.6rem,
+        "tab": 1.6rem,
+        "des": 1.6rem
+);

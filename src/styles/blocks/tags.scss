@@ -1,0 +1,31 @@
+.tags {
+
+    color: #444;
+    padding: .8rem;
+
+
+
+    &__item {
+        background-color: #efefef;
+        display: inline-block;
+        border-radius: 5rem;
+        padding: .5rem 1.3rem;
+        margin: 0 0.6rem 1rem 0;
+        font-size: 1.2rem;
+        transition: background-color 0.15s ease-out;
+        white-space: nowrap;
+
+        &--inactive {
+            color: #aaa;
+        }
+
+       &--active {
+            color: #fff;
+            background-color: map-get($colors, "tag-highlight");
+        }
+
+        &:empty {
+            display: none;
+        }
+    }
+}

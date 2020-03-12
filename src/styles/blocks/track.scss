@@ -1,0 +1,103 @@
+.track {
+
+    // track-items
+    &-items {
+        .grid-view & {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            grid-gap: 2rem;
+
+            @media (min-width: map-get($b-points, "mob")) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            @media (min-width: map-get($b-points, "tab")) {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            @media (min-width: map-get($b-points, "des")) {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .list-view & {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &--animated {
+            animation-name: example;
+            animation-duration: .5s;
+            animation-timing-function: ease-out;
+        }
+    }
+
+    // track
+    .grid-view & {
+        background-color: #fff;
+        padding: 1.8rem 1.2rem 0 1.2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .list-view & {
+        outline: 4px dashed green;
+        display: block;
+    }
+
+    &__image-wrap {
+        width: 7rem;
+        height: 7rem;
+        padding: 0.2rem;
+        //background-color: map-get($colors, "rephlex_green");
+        background-color: transparent;
+        float: right;
+
+        .split-hori & {
+            //outline: 4px dashed red;
+
+        }
+    }
+
+    &__text-wrap {
+        //outline: 4px dashed green;
+        flex-grow: 1;
+    }
+
+    &__image {
+        border-radius: 30rem;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        filter: grayscale(1); // blur disfunctioning because of this
+    }
+
+    &__artist-name {
+        font-size: 2rem;
+    }
+
+    &__album-title {
+
+    }
+
+
+    .split-hori {
+        display: flex;
+
+    }
+}
+
+.img {
+
+    &--loading {
+        filter: blur(3rem);
+    }
+
+    &--loaded {
+        filter: blur(0);
+    }
+
+    &__wrap {
+        overflow: hidden;
+    }
+}
