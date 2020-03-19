@@ -3,7 +3,7 @@ ul {
 }
 
 nav.main-nav, section.manage-items {
-    @extend .outer-pad;
+    @extend %outer-pad;
 }
 
 main {
