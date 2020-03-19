@@ -40,7 +40,7 @@ const Main = (props) => {
     return (
         <>
             <ul className="track-items track-items--animated">
-                <Items tracksFiltered={tracksFiltered} isPlayingEmbedded={props.isPlayingEmbedded} setPlayerItem={props.setPlayerItem}/>
+                <Items tracksFiltered={tracksFiltered} isPlayingEmbedded={props.isPlayingEmbedded} setPlayerItem={props.setPlayerItem} />
             </ul>
         </>
     )

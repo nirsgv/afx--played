@@ -24,9 +24,11 @@
         cursor: pointer;
         padding: 1rem;
         background-color: #ccc;
-        color: #fff;
         //background-color: #efefef;
         transition: color 0.15s ease-in-out;
+        color: #fff;
+
+
         &--active{
 
             &:hover {
@@ -57,4 +59,9 @@
             }
         }
     }
+}
+
+a .links__link {
+    color: #777;
+
 }
