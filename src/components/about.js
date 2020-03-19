@@ -10,6 +10,18 @@ function About(props) {
                 <meta name="description" content="This is the main page" />
             </Helmet>
             <h1>About, {props.name}</h1>
+
+            <form>
+                <label>
+                    From:
+                    <input type="text" name="name" />
+                </label>
+                <label>
+                    Name:
+                    <input type="text" name="name" />
+                </label>
+                <input type="submit" value="Submit" />
+            </form>
         </>
 
     );

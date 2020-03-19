@@ -1,5 +1,17 @@
 .track {
 
+    border-radius: 10px;
+    overflow: hidden;
+    //@media (min-width: map-get($b-points, "mob")) {
+    //    grid-template-columns: repeat(2, 1fr);
+    //}
+    //@media (min-width: map-get($b-points, "tab")) {
+    //    grid-template-columns: repeat(3, 1fr);
+    //}
+    //
+    //@media (min-width: map-get($b-points, "des")) {
+    //    grid-template-columns: repeat(4, 1fr);
+    //}
     // track-items
     &-items {
         .grid-view & {
