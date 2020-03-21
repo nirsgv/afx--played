@@ -13,6 +13,7 @@ import {
     toggleDesktopFilters,
     setTracksAsLocal,
     setShowsAsLocal,
+    setSearchValue
 } from './actions';
 
 import Main from './containers/main';
@@ -40,6 +41,7 @@ import './styles/main.scss';
 import { createBrowserHistory } from "history";
 import { Helmet } from 'react-helmet';
 import urlConstants from './data/urlConstants';
+import InputBox from "./components/inputBox";
 const customHistory = createBrowserHistory();
 
 
@@ -75,6 +77,7 @@ const App = (props) => {
                 <Splash isTracksDataLocal={appData.isTracksDataLocal} isShowsDataLocal={appData.isShowsDataLocal}/>
             {appData.isTracksDataLocal && appData.isShowsDataLocal &&
                 (<Router history={customHistory}>
+
                     <header className="App-header">
                         <nav className='main-nav'>
                             <div className='main-nav__logo'>
@@ -91,7 +94,6 @@ const App = (props) => {
                             </ul>
                             <Hamburger menuIsClosed={!appData.isMobileMenuOpen} toggleMobMenu={toggleMobMenu} className={'hamburger'}/>
                         </nav>
-
                         <div className="nav-slide" className={`nav-slide ${appData.isMobileMenuOpen ? 'nav-slide--open' : ''}`} data-test="nav-slide">
                             <nav className="main-filters">
                                 <ul className="main-filters__list">
@@ -119,7 +121,6 @@ const App = (props) => {
                                 </div>
                             </nav>
                         </div>
-
                     </header>
 
 
@@ -141,6 +142,10 @@ const App = (props) => {
                                         <button onClick={() => props.toggleEmbeddedPlay()}>toggleEmbeddedPlay</button>
                                     </li>
                                 </ul>
+                                <InputBox classname={"main-search"} name="noname" placeholder="Search.." cb={(e) => props.setSearchCb(e)}>
+                                    <SvgSprite classes={'main-search__icon'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'SEARCH'} />
+                                </InputBox>
+
                                 <Main name={"something"} ></Main>
                             </Route>
 
@@ -192,7 +197,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     toggleMobMenu,
     toggleDesktopFilters,
     setTracksAsLocal,
-    setShowsAsLocal
+    setShowsAsLocal,
+    setSearchValue
 }, dispatch);
 
 export default connect(

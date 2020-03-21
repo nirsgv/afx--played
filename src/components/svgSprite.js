@@ -15,7 +15,7 @@ class SvgSprite extends React.Component {
 
             return (
                 <svg viewBox={viewBox}>
-                        <use xlinkHref={`${src}#${name}`} />
+                    <use xlinkHref={`${src}#${name}`} />
                 </svg>
             )
     }
