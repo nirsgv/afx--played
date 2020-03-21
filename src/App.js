@@ -142,7 +142,7 @@ const App = (props) => {
                                         <button onClick={() => props.toggleEmbeddedPlay()}>toggleEmbeddedPlay</button>
                                     </li>
                                 </ul>
-                                <InputBox classname={"main-search"} name="noname" placeholder="Search.." cb={(e) => props.setSearchCb(e)}>
+                                <InputBox classname={"main-search"} name="noname" placeholder="Search.." cb={(e) => props.setSearchValue(e)}>
                                     <SvgSprite classes={'main-search__icon'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'SEARCH'} />
                                 </InputBox>
 
