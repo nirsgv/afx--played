@@ -137,8 +137,8 @@ const App = (props) => {
 
                             <Route path="/">
                                 <ul className="main-modifiers__list">
-                                    <li><SwitchButton id={'isGridView'} Text={'isGridView'} cb={props.toggleGridListView} val={appData.isGridView} /></li>
-                                    <li><SwitchButton  id={'isPlayingEmbedded'} Text={'isPlayingEmbedded'} cb={props.toggleEmbeddedPlay} val={props.isPlayingEmbedded} /></li>
+                                    <li><SwitchButton id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={props.toggleGridListView} val={appData.isGridView} /></li>
+                                    <li><SwitchButton  id={'isPlayingEmbedded'} Text={'isPlayingEmbedded'} labelText={"Embed play"} cb={props.toggleEmbeddedPlay} val={props.isPlayingEmbedded} /></li>
                                 </ul>
 
 

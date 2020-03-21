@@ -2,13 +2,15 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 class SwitchButton extends Component {
-    state = {checked: this.props.defaultChecked};
+    //state = {checked: this.props.defaultChecked};
     onChange = e => {
-        this.setState({checked: e.target.checked});
+        //this.setState({checked: e.target.checked});
         if (typeof this.props.cb === "function") this.props.cb();
     };
     render() {
-        return (
+        return (<>
+            <label htmlFor={this.props.id}>{this.props.labelText} </label>
+
             <div
                 className={"toggle-switch" + (this.props.Small ? " small-switch" : "")}
             >
@@ -18,12 +20,13 @@ class SwitchButton extends Component {
                     className="toggle-switch-checkbox"
                     id={this.props.id}
                     checked={this.props.val}
-                    defaultChecked={this.props.val}
+                    //defaultChecked={this.props.val}
                     onChange={this.onChange}
                     disabled={this.props.disabled}
                 />
                 {this.props.id ? (
                     <label className="toggle-switch-label" htmlFor={this.props.id}>
+
             <span
                 className={
                     this.props.disabled
@@ -43,6 +46,7 @@ class SwitchButton extends Component {
                     </label>
                 ) : null}
             </div>
+            </>
         );
     }
     // Set text for rendering.
@@ -51,14 +55,14 @@ class SwitchButton extends Component {
     };
 }
 
-// SwitchButton.propTypes = {
-//     id: PropTypes.string.isRequired,
-//     Text: PropTypes.string.isRequired,
-//     Name: PropTypes.string,
-//     onChange: PropTypes.func,
-//     defaultChecked: PropTypes.bool,
-//     Small: PropTypes.bool,
-//     currentValue: PropTypes.bool,
-//     disabled: PropTypes.bool
-// };
+SwitchButton.propTypes = {
+    id: PropTypes.string.isRequired,
+    Text: PropTypes.string.isRequired,
+    Name: PropTypes.string,
+    onChange: PropTypes.func,
+    defaultChecked: PropTypes.bool,
+    Small: PropTypes.bool,
+    currentValue: PropTypes.bool,
+    disabled: PropTypes.bool
+};
 export default SwitchButton;
