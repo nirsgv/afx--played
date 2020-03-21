@@ -20,6 +20,7 @@ import Main from './containers/main';
 import About from './components/about';
 import Splash from './components/splash';
 import ViewPort from './components/viewport';
+import SwitchButton from './components/switchButton';
 import Filters from './containers/filters';
 import Hamburger from './components/hamburger';
 import ExpandedItem from './containers/expandedItem';
@@ -129,19 +130,18 @@ const App = (props) => {
                             <Route path="/about">
                                 <About name={"something"} />
                             </Route>
-
                             <Route path="/track/:id" component={ExpandedItem} setPlayerItem={props.setPlayerItem}/>
                             <Route path="/concert/:id" component={ExpandedConcert} setPlayerItem={props.setPlayerItem}/>
 
+
+
                             <Route path="/">
                                 <ul className="main-modifiers__list">
-                                    <li>
-                                        <button onClick={() => props.toggleGridListView()}>toggleGridListView</button>
-                                    </li>
-                                    <li>
-                                        <button onClick={() => props.toggleEmbeddedPlay()}>toggleEmbeddedPlay</button>
-                                    </li>
+                                    <li><SwitchButton id={'isGridView'} Text={'isGridView'} cb={props.toggleGridListView} val={appData.isGridView} /></li>
+                                    <li><SwitchButton  id={'isPlayingEmbedded'} Text={'isPlayingEmbedded'} cb={props.toggleEmbeddedPlay} val={appData.isPlayingEmbedded} /></li>
                                 </ul>
+
+
                                 <InputBox classname={"main-search"} name="noname" placeholder="Search.." cb={(e) => props.setSearchValue(e)}>
                                     <SvgSprite classes={'main-search__icon'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'SEARCH'} />
                                 </InputBox>

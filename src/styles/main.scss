@@ -15,6 +15,7 @@
 @import 'blocks/expanded-concert.scss';
 @import 'blocks/splash.scss';
 @import 'blocks/main-search.scss';
+@import 'blocks/switch-button.scss';
 
 body {
     background-color: map-get($colors, "grey_bright");
