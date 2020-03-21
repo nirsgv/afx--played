@@ -7,8 +7,8 @@ import { Link } from "react-router-dom";
 function Awrap({children, value, wrap}) {
     return (
         wrap
-            ? {children}
-            : <a href={value} target="_blank">{children}</a>
+            ? <span>{children}</span>
+            : <a href={value} target="blank">{children}</a>
     )
 }
 

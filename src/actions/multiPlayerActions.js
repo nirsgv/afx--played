@@ -52,6 +52,7 @@ function setPlayerItem(e, val, platform) {
 }
 
 function toggleEmbeddedPlay(val) {
+    console.log(2);
     const action = {
         type: TOGGLE_EMBEDDED_PLAY,
         payload: val

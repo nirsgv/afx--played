@@ -138,7 +138,7 @@ const App = (props) => {
                             <Route path="/">
                                 <ul className="main-modifiers__list">
                                     <li><SwitchButton id={'isGridView'} Text={'isGridView'} cb={props.toggleGridListView} val={appData.isGridView} /></li>
-                                    <li><SwitchButton  id={'isPlayingEmbedded'} Text={'isPlayingEmbedded'} cb={props.toggleEmbeddedPlay} val={appData.isPlayingEmbedded} /></li>
+                                    <li><SwitchButton  id={'isPlayingEmbedded'} Text={'isPlayingEmbedded'} cb={props.toggleEmbeddedPlay} val={props.isPlayingEmbedded} /></li>
                                 </ul>
 
 
@@ -184,6 +184,7 @@ const App = (props) => {
 
 const mapStateToProps = state => ({
     appData: state.appData,
+    isPlayingEmbedded: state.player.isPlayingEmbedded,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

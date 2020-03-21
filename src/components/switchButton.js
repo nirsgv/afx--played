@@ -2,13 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 class SwitchButton extends Component {
-    state = {
-        checked: this.props.defaultChecked
-    };
+    state = {checked: this.props.defaultChecked};
     onChange = e => {
-        this.setState({
-            checked: e.target.checked
-        });
+        this.setState({checked: e.target.checked});
         if (typeof this.props.cb === "function") this.props.cb();
     };
     render() {
@@ -55,14 +51,14 @@ class SwitchButton extends Component {
     };
 }
 
-SwitchButton.propTypes = {
-    id: PropTypes.string.isRequired,
-    Text: PropTypes.string.isRequired,
-    Name: PropTypes.string,
-    onChange: PropTypes.func,
-    defaultChecked: PropTypes.bool,
-    Small: PropTypes.bool,
-    currentValue: PropTypes.bool,
-    disabled: PropTypes.bool
-};
+// SwitchButton.propTypes = {
+//     id: PropTypes.string.isRequired,
+//     Text: PropTypes.string.isRequired,
+//     Name: PropTypes.string,
+//     onChange: PropTypes.func,
+//     defaultChecked: PropTypes.bool,
+//     Small: PropTypes.bool,
+//     currentValue: PropTypes.bool,
+//     disabled: PropTypes.bool
+// };
 export default SwitchButton;
