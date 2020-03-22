@@ -3,6 +3,26 @@ $label-color: #ccc;
 $toggle-color: #f90;
 $white: #fff;
 
+
+
+.switch-modifiers {
+
+  &__wrap{
+
+  }
+  &__list{
+    display: flex;
+    justify-content: flex-end;
+  }
+  &__item{
+    margin-left: 1.6rem;
+  }
+
+}
+
+
+
+
 // Styles
 .toggle-switch {
   position: relative;

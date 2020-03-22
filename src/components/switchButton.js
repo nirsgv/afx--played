@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-
 function SwitchButton ({ Text=["Yes", "No"],  disabled=false, val, id, Name, Small, labelText, cb }) {
     const change = e => typeof cb === "function" && cb();
         return (<>

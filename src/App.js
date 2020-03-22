@@ -19,6 +19,7 @@ import {
 import Main from './containers/main';
 import About from './components/about';
 import Splash from './components/splash';
+import List from './components/list';
 import ViewPort from './components/viewport';
 import SwitchButton from './components/switchButton';
 import Filters from './containers/filters';
@@ -86,13 +87,10 @@ const App = (props) => {
                                     <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'APHEX'} />
                                 </Link>
                             </div>
-                            <ul className='main-nav__list'>
-
-                                <li className='main-nav__item'>
-                                    <Link to="/about">About</Link>
-                                </li>
-
-                            </ul>
+                            <List baseClassName="main-nav">
+                                <Link to="/about">About</Link>
+                                <Link to="/about">About</Link>
+                            </List>
                             <Hamburger menuIsClosed={!appData.isMobileMenuOpen} toggleMobMenu={toggleMobMenu} className={'hamburger'}/>
                         </nav>
                         <div className="nav-slide" className={`nav-slide ${appData.isMobileMenuOpen ? 'nav-slide--open' : ''}`} data-test="nav-slide">
@@ -101,17 +99,9 @@ const App = (props) => {
                                     <li onClick={() => {expandFilter('genres');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${appData.expandedFilter === 'genres' ? '--on' : ''}`}>Genres</li>
                                     <li onClick={() => {expandFilter('years');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${appData.expandedFilter === 'years' ? '--on' : ''}`}>Years</li>
                                     <li onClick={() => {expandFilter('search');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${appData.expandedFilter === 'search' ? '--on' : ''}`}>Search</li>
-                                    <li className={'main-filters__item main-filters__item--hamburger'}>
-                                        <Hamburger menuIsClosed={!appData.isMobileMenuOpen} toggleMobMenu={toggleMobMenu} className={'hamburger'} />
-                                    </li>
-                                    <li className={'main-filters__item main-filters__item--desktop-filters-expansion-toggle'}>
-                                        <button onClick={()=> toggleDesktopFilters()}>
-                                            click
-                                        </button>
-                                    </li>
-
+                                    <li className={'main-filters__item main-filters__item--hamburger'}><Hamburger menuIsClosed={!appData.isMobileMenuOpen} toggleMobMenu={toggleMobMenu} className={'hamburger'} /></li>
+                                    <li className={'main-filters__item main-filters__item--desktop-filters-expansion-toggle'}><button onClick={()=> toggleDesktopFilters()}>click</button></li>
                                 </ul>
-
                             </nav>
 
                             <nav className={`filter-expansion__wrap filter-expansion__wrap${!appData.isDesktopFiltersExpanded ? '--close' : '--open'}`}>
@@ -133,29 +123,23 @@ const App = (props) => {
                             <Route path="/track/:id" component={ExpandedItem} setPlayerItem={props.setPlayerItem}/>
                             <Route path="/concert/:id" component={ExpandedConcert} setPlayerItem={props.setPlayerItem}/>
 
-
-
                             <Route path="/">
-                                <ul className="main-modifiers__list">
-                                    <li><SwitchButton id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={props.toggleGridListView} val={appData.isGridView} /></li>
-                                    <li><SwitchButton  id={'isPlayingEmbedded'} Text={'isPlayingEmbedded'} labelText={"Embed play"} cb={props.toggleEmbeddedPlay} val={props.isPlayingEmbedded} /></li>
-                                </ul>
-
+                                <List baseClassName="switch-modifiers">
+                                    <SwitchButton Small={true} id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={props.toggleGridListView} val={appData.isGridView} />
+                                    <SwitchButton Small={true} id={'isPlayingEmbedded'} Text={'isPlayingEmbedded'} labelText={"Embed play"} cb={props.toggleEmbeddedPlay} val={props.isPlayingEmbedded} />
+                                </List>
 
                                 <InputBox classname={"main-search"} name="noname" placeholder="Search.." cb={(e) => props.setSearchValue(e)}>
                                     <SvgSprite classes={'main-search__icon'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'SEARCH'} />
                                 </InputBox>
-
                                 <Main name={"something"} ></Main>
                             </Route>
-
-
                         </Switch>
                     </main>
 
                     <footer>
                         <nav>
-                            <ul>
+                            <List baseClassName={'footer-nav'}>
                                 <li>
                                     <Link to="/">Home</Link>
                                 </li>
@@ -163,7 +147,7 @@ const App = (props) => {
                                     <Link to="/about">About</Link>
                                 </li>
                                 <button onClick={() => props.toggleGridListView()}>toggleGridListView button</button>
-                            </ul>
+                            </List>
                         </nav>
                     </footer>
 
@@ -172,12 +156,7 @@ const App = (props) => {
                     </ViewPort>
 
                     <MessagesModal />
-
-
-
                 </Router>)}
-
-
         </div>
     );
 };
