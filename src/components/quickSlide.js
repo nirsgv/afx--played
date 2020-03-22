@@ -1,5 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Icon from './icon';
+import SvgSprite from "./svgSprite";
+import {imgData} from "../data/localImgData";
+import InputBox from "./inputBox";
 
 function QuickSlide ({children})  {
     const [translatedX, setTranslatedX] = useState(0),
@@ -34,15 +37,26 @@ function QuickSlide ({children})  {
 
     return (
         <div className="quick-slide__wrap" ref={ref2}>
-            <button className={`quick-slide__button quick-slide__button--left quick-slide__button--${isLeftScrollNeeded(translatedX) ? 'active' : 'disabled'}`}
-                    onClick={()=>clickedLeft(translatedX)}>left</button>
-            <div className="quick-slide__content" style={{transform:`translateX(${translatedX}px)`}} >
+
+            <button
+                className={`quick-slide__button quick-slide__button--left quick-slide__button--${isLeftScrollNeeded(translatedX) ? 'active' : 'disabled'}`}
+                onClick={() => clickedLeft(translatedX)}>
+                <SvgSprite classes={'quick-slide__icon quick-slide__icon--left'} src={imgData.sprite.src}
+                           alt={imgData.sprite.description} name={'ANGLE_LEFT'}/>
+            </button>
+
+            <div className="quick-slide__content" style={{transform: `translateX(${translatedX}px)`}}>
                 <ul className="quick-slide__list" ref={ref}>
                     {children}
                 </ul>
             </div>
-            <button className={`quick-slide__button quick-slide__button--right quick-slide__button--${isRightScrollNeeded(translatedX) ? 'active' : 'disabled'}`}
-                    onClick={()=>clickedRight(translatedX)}>right</button>
+
+            <button
+                className={`quick-slide__button quick-slide__button--right quick-slide__button--${isRightScrollNeeded(translatedX) ? 'active' : 'disabled'}`}
+                onClick={() => clickedRight(translatedX)}>
+                <SvgSprite classes={'quick-slide__icon quick-slide__icon--right'} src={imgData.sprite.src}
+                           alt={imgData.sprite.description} name={'ANGLE_RIGHT'}/>
+            </button>
         </div>
     )
 };
