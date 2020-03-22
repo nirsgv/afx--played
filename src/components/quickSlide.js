@@ -34,13 +34,15 @@ function QuickSlide ({children})  {
 
     return (
         <div className="quick-slide__wrap" ref={ref2}>
-            {isLeftScrollNeeded(translatedX) && <button className="quick-slide__button quick-slide__button--left" onClick={()=>clickedLeft(translatedX)}>left</button>}
+            <button className={`quick-slide__button quick-slide__button--left quick-slide__button--${isLeftScrollNeeded(translatedX) ? 'active' : 'disabled'}`}
+                    onClick={()=>clickedLeft(translatedX)}>left</button>
             <div className="quick-slide__content" style={{transform:`translateX(${translatedX}px)`}} >
                 <ul className="quick-slide__list" ref={ref}>
                     {children}
                 </ul>
             </div>
-            {isRightScrollNeeded(translatedX) && <button className="quick-slide__button quick-slide__button--right" onClick={()=>clickedRight(translatedX)}>right</button>}
+            <button className={`quick-slide__button quick-slide__button--right quick-slide__button--${isRightScrollNeeded(translatedX) ? 'active' : 'disabled'}`}
+                    onClick={()=>clickedRight(translatedX)}>right</button>
         </div>
     )
 };

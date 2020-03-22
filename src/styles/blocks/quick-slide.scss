@@ -33,6 +33,7 @@
         top: 50%;
         transform: translateY(-50%);
         border-radius: 50%;
+        transition: opacity 0.2s ease-out;
 
         &--left {
             left: 0;
@@ -40,6 +41,14 @@
 
         &--right {
             right: 0;
+        }
+
+        &--active {
+            opacity: 1
+        }
+
+        &--disabled {
+            opacity: .2
         }
     }
 }
