@@ -1,0 +1,21 @@
+.quick-slide__wrap {
+    position: relative;
+    min-width: 100%;
+    height: auto;
+    overflow-x: scroll;
+
+}
+
+.quick-slide__list {
+    width: auto;
+    outline: 4px dashed red;
+    flex-wrap: nowrap;
+    display: flex;
+}
+
+.quick-slide__list > li {
+    max-width: 300px;
+    min-width: 300px;
+    display: inline-block;
+    margin-right: 2rem;
+}

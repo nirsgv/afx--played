@@ -1,8 +1,6 @@
 import React from 'react';
 import Tags from './tags';
 import Links from './links';
-import { Link } from "react-router-dom";
-
 import Img from './img';
 
 //const DelayedImg = lazy(() => import('./img'));

@@ -22,6 +22,7 @@ import Splash from './components/splash';
 import List from './components/list';
 import ViewPort from './components/viewport';
 import SwitchButton from './components/switchButton';
+import Editorial from './components/editorial';
 import Filters from './containers/filters';
 import Hamburger from './components/hamburger';
 import ExpandedItem from './containers/expandedItem';
@@ -46,40 +47,29 @@ import urlConstants from './data/urlConstants';
 import InputBox from "./components/inputBox";
 const customHistory = createBrowserHistory();
 
-
 const App = (props) => {
-
     const getScrollItems = debounce(function(){ isBottomOfPage(this) && props.viewMore() }, 100);
-
     useEffect(() => {
         window.addEventListener('scroll', getScrollItems);
         updatedLocalStorageIfNeeded(window.location.origin + urlConstants.TRACKS_URL, 'afx_local_tracks', props.setTracksAsLocal);
         updatedLocalStorageIfNeeded(window.location.origin + urlConstants.SHOWS_URL, 'afx_local_shows', props.setShowsAsLocal);
-
         return () => {
             window.removeEventListener('scroll', getScrollItems);
         }
     }, []);
 
-
     const { expandFilter, toggleDesktopFilters, appData, toggleMobMenu } = props;
-
-
     return (
         <div className={`app ${appData.isGridView ? 'grid' : 'list'}-view`} data-test="component-app">
-
             <Helmet>
                 <title>Put title here...</title>
                 <meta name="description" content="This is the main page" />
                 <meta name="keywords" content="aphex twin, afx, shows, setlist, tracks, performance, electronic, music" />
             </Helmet>
             {/*// render splash screen if no data is apparent yet, otherwise render router*/}
-
-
                 <Splash isTracksDataLocal={appData.isTracksDataLocal} isShowsDataLocal={appData.isShowsDataLocal}/>
             {appData.isTracksDataLocal && appData.isShowsDataLocal &&
                 (<Router history={customHistory}>
-
                     <header className="App-header">
                         <nav className='main-nav'>
                             <div className='main-nav__logo'>
@@ -88,7 +78,7 @@ const App = (props) => {
                                 </Link>
                             </div>
                             <List baseClassName="main-nav">
-                                <Link to="/about">About</Link>
+                                <Link to="/editorial">Editorial</Link>
                                 <Link to="/about">About</Link>
                             </List>
                             <Hamburger menuIsClosed={!appData.isMobileMenuOpen} toggleMobMenu={toggleMobMenu} className={'hamburger'}/>
@@ -113,22 +103,21 @@ const App = (props) => {
                             </nav>
                         </div>
                     </header>
-
-
                     <main className={`a`}>
                         <Switch>
                             <Route path="/about">
-                                <About name={"something"} />
+                                <About name={"about"} />
+                            </Route>
+                            <Route path="/editorial">
+                                <Editorial name={"editorial"} />
                             </Route>
                             <Route path="/track/:id" component={ExpandedItem} setPlayerItem={props.setPlayerItem}/>
                             <Route path="/concert/:id" component={ExpandedConcert} setPlayerItem={props.setPlayerItem}/>
-
                             <Route path="/">
                                 <List baseClassName="switch-modifiers">
                                     <SwitchButton Small={true} id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={props.toggleGridListView} val={appData.isGridView} />
                                     <SwitchButton Small={true} id={'isPlayingEmbedded'} Text={'isPlayingEmbedded'} labelText={"Embed play"} cb={props.toggleEmbeddedPlay} val={props.isPlayingEmbedded} />
                                 </List>
-
                                 <InputBox classname={"main-search"} name="noname" placeholder="Search.." cb={(e) => props.setSearchValue(e)}>
                                     <SvgSprite classes={'main-search__icon'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'SEARCH'} />
                                 </InputBox>
@@ -136,25 +125,18 @@ const App = (props) => {
                             </Route>
                         </Switch>
                     </main>
-
                     <footer>
                         <nav>
                             <List baseClassName={'footer-nav'}>
-                                <li>
-                                    <Link to="/">Home</Link>
-                                </li>
-                                <li>
-                                    <Link to="/about">About</Link>
-                                </li>
+                                <Link to="/">Home</Link>
+                                <Link to="/about">About</Link>
                                 <button onClick={() => props.toggleGridListView()}>toggleGridListView button</button>
                             </List>
                         </nav>
                     </footer>
-
                     <ViewPort>
                         <MultiPlayer />
                     </ViewPort>
-
                     <MessagesModal />
                 </Router>)}
         </div>
