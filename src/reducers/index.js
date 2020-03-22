@@ -26,6 +26,7 @@ const initialAppState = {
     isSharingExpanded: false,
     isMobileMenuOpen: false,
     isDesktopFiltersExpanded: false,
+    isPlayingEmbedded: true,
     itemsBatchAmt: 15,
     batchNum: 1,
     isTracksDataLocal: false,

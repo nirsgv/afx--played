@@ -1,0 +1,38 @@
+.main-search {
+
+
+    &__wrap {
+        display: flex;
+        padding: 1rem 0rem 3rem;
+
+
+        &:hover .main-search__icon{
+            color: #888;
+        }
+    }
+
+    &__icon {
+        position: absolute;
+        font-size: 0.7rem;
+        pointer-events: none;
+        color: #aaa;
+    }
+
+    &__input {
+        outline: none;
+        border: none;
+        background-color: transparent;
+        border-bottom: 1px solid rgba(34,33,41,0.15);
+        flex-grow: 1;
+        padding: 0 0 1rem 2rem;
+
+        &:focus {
+           border-bottom: 1px solid rgba(34,33,41,0.55);
+        }
+    }
+
+
+
+
+}
+

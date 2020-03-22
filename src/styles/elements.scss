@@ -3,7 +3,7 @@ ul {
 }
 
 nav.main-nav, section.manage-items {
-    @extend .outer-pad;
+    @extend %outer-pad;
 }
 
 main {
@@ -15,9 +15,19 @@ main {
     //height: calc(100vh - 8rem);
 
     overflow: scroll;
+    padding: 0 2rem;
 
     @media (min-width: map-get($b-points, "mob")) {
+        padding: 0 2rem;
         top: 14rem;
+    }
+
+    @media (min-width: map-get($b-points, "tab")) {
+        padding: 0 6rem;
+    }
+
+    @media (min-width: map-get($b-points, "des")) {
+        padding: 0 8rem;
     }
 }
 

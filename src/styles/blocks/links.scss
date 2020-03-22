@@ -16,6 +16,16 @@
     &__list {
         display: flex;
         justify-content: space-between;
+        background-color: #ccc;
+        //background-color: #efefef;
+        padding: 0 2rem;
+        @media (min-width: map-get($b-points, "tab")) {
+            padding: 0 3rem;
+        }
+
+        @media (min-width: map-get($b-points, "des")) {
+            padding: 0 5rem;
+        }
     }
 
     &__link {
@@ -23,10 +33,10 @@
         font-size: 1.2rem;
         cursor: pointer;
         padding: 1rem;
-        background-color: #ccc;
-        color: #fff;
-        //background-color: #efefef;
         transition: color 0.15s ease-in-out;
+        color: #fff;
+
+
         &--active{
 
             &:hover {
@@ -54,7 +64,13 @@
                 font-weight: bold;
                 font-size: 1.4rem;
                 cursor: pointer;
+                text-shadow: 1px 3px 6px #55555544;
             }
         }
     }
+}
+
+.track:hover .links__link--expand{
+    color: #888;
+
 }

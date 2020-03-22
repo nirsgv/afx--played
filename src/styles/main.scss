@@ -14,6 +14,9 @@
 @import 'blocks/modal-box.scss';
 @import 'blocks/expanded-concert.scss';
 @import 'blocks/splash.scss';
+@import 'blocks/main-search.scss';
+@import 'blocks/switch-button.scss';
+@import 'blocks/quick-slide.scss';
 
 body {
     background-color: map-get($colors, "grey_bright");
@@ -110,3 +113,4 @@ svg {
     display: flex;
     justify-content: center;
 }
+

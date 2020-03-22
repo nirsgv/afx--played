@@ -1,6 +1,6 @@
 
 
-.outer-pad {
+%outer-pad {
 
     padding: 0 2rem;
 
@@ -28,4 +28,15 @@
 
 %viewport-wide {
     width: 100vw;
+}
+
+%brand-border-radius {
+    border-radius: 6px;
+    @media (min-width: map-get($b-points, "tab")) {
+        border-radius: 10px;
+    }
+
+    @media (min-width: map-get($b-points, "des")) {
+        border-radius: 16px;
+    }
 }

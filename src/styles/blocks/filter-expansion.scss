@@ -23,7 +23,7 @@
         width: 100%;
         top: 0;
         left: 0;
-        @extend .outer-pad;
+        @extend %outer-pad;
         padding-top: 1rem;
         padding-bottom: 1rem;
     }

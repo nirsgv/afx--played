@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import Item from '../components/item';
+import Items from '../components/items';
 import { hasTags, withinPeriod, hasMatchingText, inViewRange } from '../helpers/comparitors';
 import { combineByObjKeysArr } from '../helpers/str';
 import { yearsMap } from '../data/periodMap.js';
@@ -40,32 +40,12 @@ const Main = (props) => {
     return (
         <>
             <ul className="track-items track-items--animated">
-                <Items tracksFiltered={tracksFiltered} isPlayingEmbedded={props.isPlayingEmbedded} setPlayerItem={props.setPlayerItem}/>
+                <Items tracksFiltered={tracksFiltered} isPlayingEmbedded={props.isPlayingEmbedded} setPlayerItem={props.setPlayerItem} />
             </ul>
         </>
     )
 };
 
-class Items extends React.Component {
-
-    shouldComponentUpdate(nextProps, nextState) {
-        // do not rerender unless this specific property changed
-        return nextProps.tracksFiltered !== this.props.tracksFiltered;
-    }
-
-    render(props) {
-        console.log(this.props.tracksFiltered);
-        return (
-            <>
-                {this.props.tracksFiltered.map((item, index) => {
-                    return (
-                        <Item key={index} trackData={item} isPlayingEmbedded={this.props.isPlayingEmbedded} setPlayerItem={this.props.setPlayerItem}/>
-                    )
-                })}
-            </>
-        )
-    }
-}
 
 const mapStateToProps = state => ({
     isPlayingEmbedded: state.player.isPlayingEmbedded,

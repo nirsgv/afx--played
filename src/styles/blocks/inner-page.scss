@@ -13,6 +13,7 @@
 
 
     &__content {
+        @extend %brand-border-radius;
         //outline: 4px dashed green;
         background-color: #fff;
         padding: 2rem;

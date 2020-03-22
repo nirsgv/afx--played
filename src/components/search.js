@@ -1,5 +1,6 @@
 import React from 'react';
 import Checkbox from './checkbox';
+import InputBox from "./inputBox";
 
 function Search(props) {
     const {
@@ -45,7 +46,7 @@ function Search(props) {
             {/*       name="album-title"*/}
             {/*       checked={checkboxActivated.searchAlbumTitles}*/}
             {/*       onChange={toggleSearchOption} />*/}
-            <input type="text" name="noname" placeholder="Search.." onInput={(e) => props.setSearchCb(e)}/>
+            <InputBox name="noname" placeholder="Search.." cb={(e) => props.setSearchCb(e)}/>
         </div>
     )
 }
