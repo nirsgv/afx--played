@@ -1,21 +1,45 @@
-.quick-slide__wrap {
-    position: relative;
-    min-width: 100%;
-    height: auto;
-    overflow-x: scroll;
+.quick-slide {
+    &__wrap {
+        position: relative;
+        min-width: 100%;
+        height: auto;
+        overflow-x: scroll;
+    }
 
-}
+    &__content {
+        transition: all 0.2s ease-out;
+    }
 
-.quick-slide__list {
-    width: auto;
-    outline: 4px dashed red;
-    flex-wrap: nowrap;
-    display: flex;
-}
+    &__list {
+        width: fit-content;
+        outline: 4px dashed red;
+        flex-wrap: nowrap;
+        display: flex;
 
-.quick-slide__list > li {
-    max-width: 300px;
-    min-width: 300px;
-    display: inline-block;
-    margin-right: 2rem;
+        & > li {
+            max-width: 300px;
+            min-width: 300px;
+            display: inline-block;
+            margin-right: 2rem;
+        }
+    }
+
+    &__button {
+        position: absolute;
+        background-color: red;
+        width: 50px;
+        height: 50px;
+        z-index: 1;
+        top: 50%;
+        transform: translateY(-50%);
+        border-radius: 50%;
+
+        &--left {
+            left: 0;
+        }
+
+        &--right {
+            right: 0;
+        }
+    }
 }
