@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Items from '../components/items';
 import { hasTags, withinPeriod, hasMatchingText, inViewRange } from '../helpers/comparitors';
 import { combineByObjKeysArr } from '../helpers/str';
 import { yearsMap } from '../data/periodMap.js';
-import { dispatchMessageToModal, toggleShareExpansion, setPlayerItem , setPlayerType } from "../actions";
+import {dispatchMessageToModal, toggleShareExpansion, setPlayerItem, setPlayerType, setSpaPageName} from "../actions";
 
 
 const Main = (props) => {
+
+    useEffect(() => {
+        console.log(setSpaPageName);
+        props.setSpaPageName && props.setSpaPageName('home');
+        return () => {
+
+        }
+    }, []);
 
     const tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data;
 
@@ -55,7 +63,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
     toggleShareExpansion,
     dispatchMessageToModal,
-    setPlayerItem
+    setPlayerItem,
+    setSpaPageName
 }, dispatch);
 
 export default connect(

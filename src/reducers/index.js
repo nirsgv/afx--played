@@ -10,7 +10,8 @@ import {
     TOGGLE_SHARE_EXPANSION, DISPATCH_MESSAGE_TO_MODAL, REMOVE_MESSAGE_TO_MODAL,
     SET_PLAYER_TYPE, SET_PLAYER_ITEM, TOGGLE_EMBEDDED_PLAY, VIEW_MORE, TOGGLE_MOB_MENU, TOGGLE_DESKTOP_FILTERS_EXPANSION,
     SET_TRACKS_AS_LOCAL,
-    SET_SHOWS_AS_LOCAL
+    SET_SHOWS_AS_LOCAL,
+    SET_SPA_PAGE_NAME
 } from '../actions';
 
 
@@ -31,6 +32,7 @@ const initialAppState = {
     batchNum: 1,
     isTracksDataLocal: false,
     isShowsDataLocal: false,
+    spaPageName: '',
 };
 
 function appData(state = initialAppState, action) {
@@ -134,6 +136,13 @@ function appData(state = initialAppState, action) {
             return {
                 ...state,
                 isShowsDataLocal: action.payload
+            };
+
+        case SET_SPA_PAGE_NAME:
+            console.log(action);
+            return {
+                ...state,
+                spaPageName: action.payload
             };
         default:
             return state;

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import SvgSprite from "./svgSprite";
 import {imgData} from "../data/localImgData";
+import { throttle, debounce } from "../helpers/higherFunctions";
 
 function QuickSlide ({children})  {
     const [translatedX, setTranslatedX] = useState(0),
@@ -9,10 +10,10 @@ function QuickSlide ({children})  {
           listRef = useRef(null),
           wrapperRef= useRef(null);
     useEffect(() => {
-        updateDimensions();
-        window.addEventListener('resize', updateDimensions);
+        debouncedUpdateDimensions();
+        window.addEventListener('resize', debouncedUpdateDimensions);
         return () => {
-            window.removeEventListener('resize', updateDimensions);
+            window.removeEventListener('resize', debouncedUpdateDimensions);
         }
     }, [listRef.current, wrapperRef.current]);
 
@@ -23,6 +24,9 @@ function QuickSlide ({children})  {
         setSlidesWidth(width);
         SetWrapperWidth(wrapperW);
     };
+
+    const debouncedUpdateDimensions = debounce(updateDimensions, 100);
+
 
     const isLeftScrollNeeded = (translatedX) => {
         return translatedX < 0;

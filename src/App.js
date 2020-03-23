@@ -13,7 +13,8 @@ import {
     toggleDesktopFilters,
     setTracksAsLocal,
     setShowsAsLocal,
-    setSearchValue
+    setSearchValue,
+    setSpaPageName,
 } from './actions';
 
 import Main from './containers/main';
@@ -34,12 +35,7 @@ import { isBottomOfPage } from './helpers/dom';
 import { debounce } from './helpers/higherFunctions';
 import { updatedLocalStorageIfNeeded } from './helpers/localStorage';
 import { imgData } from './data/localImgData';
-import {
-    Router,
-    Switch,
-    Route,
-    Link,
-} from "react-router-dom";
+import { Router, Switch, Route, Link } from "react-router-dom";
 import './styles/main.scss';
 import { createBrowserHistory } from "history";
 import { Helmet } from 'react-helmet';
@@ -103,16 +99,16 @@ const App = (props) => {
                             </nav>
                         </div>
                     </header>
-                    <main className={`a`}>
+                    <main className={`${appData.spaPageName}`}>
                         <Switch>
                             <Route path="/about">
-                                <About name={"about"} />
+                                <About name={"about"} setSpaPageName={props.setSpaPageName}/>
                             </Route>
                             <Route path="/editorial">
-                                <Editorial name={"editorial"} />
+                                <Editorial name={"editorial"} setSpaPageName={props.setSpaPageName}/>
                             </Route>
-                            <Route path="/track/:id" component={ExpandedItem} setPlayerItem={props.setPlayerItem}/>
-                            <Route path="/concert/:id" component={ExpandedConcert} setPlayerItem={props.setPlayerItem}/>
+                            <Route path="/track/:id" component={ExpandedItem} setPlayerItem={props.setPlayerItem} />
+                            <Route path="/concert/:id" component={ExpandedConcert} setPlayerItem={props.setPlayerItem} />
                             <Route path="/">
                                 <List baseClassName="switch-modifiers">
                                     <SwitchButton Small={true} id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={props.toggleGridListView} val={appData.isGridView} />
@@ -160,7 +156,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     toggleDesktopFilters,
     setTracksAsLocal,
     setShowsAsLocal,
-    setSearchValue
+    setSearchValue,
+    setSpaPageName
 }, dispatch);
 
 export default connect(

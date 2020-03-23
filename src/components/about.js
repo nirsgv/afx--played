@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {Helmet} from "react-helmet";
 
 function About(props) {
+
+    useEffect(() => {
+        props.setSpaPageName('about');
+        return () => {}
+    }, []);
+
+
 
     return (
         <>

@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { bindActionCreators } from "redux";
-import { toggleShareExpansion, setPlayerItem } from "../actions/index";
+import {toggleShareExpansion, setPlayerItem, setSpaPageName } from "../actions/index";
 import { connect } from "react-redux";
 import { getMonthFromShort, getDurationFromSeconds } from '../helpers/str';
 import {Link} from "react-router-dom";
-const ExpandedConcert = ({match}) => {
+const ExpandedConcert = ({match, setSpaPageName}) => {
+
+    useEffect(() => {
+        setSpaPageName('expanded-concert');
+        return () => {}
+    }, []);
 
     const concertsData = JSON.parse(localStorage.getItem("afx_local_shows")).data,
           tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data,
@@ -53,7 +58,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
     toggleShareExpansion,
-    setPlayerItem
+    setPlayerItem,
+    setSpaPageName
 }, dispatch);
 
 export default connect(
