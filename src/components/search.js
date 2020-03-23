@@ -1,6 +1,7 @@
 import React from 'react';
 import Checkbox from './checkbox';
 import InputBox from "./inputBox";
+import { debounce } from "../helpers/higherFunctions";
 
 function Search(props) {
     const {

@@ -12,7 +12,7 @@
 
     &__list {
         width: fit-content;
-        outline: 4px dashed red;
+        //outline: 4px dashed red;
         flex-wrap: nowrap;
         display: flex;
 
@@ -59,17 +59,14 @@
     }
 
     &__icon {
-
-        svg {
-            color: #ddd;
-        }
-
+        color: #999;
+        font-size: .75rem;
         &--left {
-            left: 0;
+            //left: 0;
         }
 
         &--right {
-            right: 0;
+            //right: 0;
         }
     }
 }

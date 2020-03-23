@@ -1,7 +1,7 @@
 import React from 'react';
 
-function InputBox({ cb, classname, name, placeholder, children }) {
 
+function InputBox({ cb, classname, name, placeholder, children }) {
     return (
         <div className={`${classname}__wrap`}>
 

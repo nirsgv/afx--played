@@ -24,11 +24,9 @@ export {
     toggleMobMenu,
     toggleDesktopFilters,
     setTracksAsLocal,
-    setShowsAsLocal
+    setShowsAsLocal,
+    setSpaPageName
 } from './uiToggle';
-
-
-
 
 export const TOGGLE_GRID_LIST_VIEW = 'TOGGLE_GRID_LIST_VIEW';
 export const EXPAND_FILTER = 'EXPAND_FILTER';
@@ -47,6 +45,7 @@ export const TOGGLE_MOB_MENU = 'TOGGLE_MOB_MENU';
 export const TOGGLE_DESKTOP_FILTERS_EXPANSION = 'TOGGLE_DESKTOP_FILTERS_EXPANSION';
 export const SET_TRACKS_AS_LOCAL = 'SET_TRACKS_AS_LOCAL';
 export const SET_SHOWS_AS_LOCAL = 'SET_SHOWS_AS_LOCAL';
+export const SET_SPA_PAGE_NAME = 'SET_SPA_PAGE_NAME';
 
 export  {
     filterByTagCb,

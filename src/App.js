@@ -13,7 +13,8 @@ import {
     toggleDesktopFilters,
     setTracksAsLocal,
     setShowsAsLocal,
-    setSearchValue
+    setSearchValue,
+    setSpaPageName,
 } from './actions';
 
 import Main from './containers/main';
@@ -34,12 +35,7 @@ import { isBottomOfPage } from './helpers/dom';
 import { debounce } from './helpers/higherFunctions';
 import { updatedLocalStorageIfNeeded } from './helpers/localStorage';
 import { imgData } from './data/localImgData';
-import {
-    Router,
-    Switch,
-    Route,
-    Link,
-} from "react-router-dom";
+import { Router, Switch, Route, Link, NavLink } from "react-router-dom";
 import './styles/main.scss';
 import { createBrowserHistory } from "history";
 import { Helmet } from 'react-helmet';
@@ -70,7 +66,7 @@ const App = (props) => {
                 <Splash isTracksDataLocal={appData.isTracksDataLocal} isShowsDataLocal={appData.isShowsDataLocal}/>
             {appData.isTracksDataLocal && appData.isShowsDataLocal &&
                 (<Router history={customHistory}>
-                    <header className="App-header">
+                    <header className="header">
                         <nav className='main-nav'>
                             <div className='main-nav__logo'>
                                 <Link to="/">
@@ -78,8 +74,9 @@ const App = (props) => {
                                 </Link>
                             </div>
                             <List baseClassName="main-nav">
-                                <Link to="/editorial">Editorial</Link>
-                                <Link to="/about">About</Link>
+                                <NavLink exact={true} activeClassName="active" to="/">Home</NavLink>
+                                <NavLink activeClassName="active" to="/editorial">Editorial</NavLink>
+                                <NavLink activeClassName="active" to="/about">About</NavLink>
                             </List>
                             <Hamburger menuIsClosed={!appData.isMobileMenuOpen} toggleMobMenu={toggleMobMenu} className={'hamburger'}/>
                         </nav>
@@ -103,16 +100,16 @@ const App = (props) => {
                             </nav>
                         </div>
                     </header>
-                    <main className={`a`}>
+                    <main className={`${appData.spaPageName}`}>
                         <Switch>
                             <Route path="/about">
-                                <About name={"about"} />
+                                <About name={"about"} setSpaPageName={props.setSpaPageName}/>
                             </Route>
                             <Route path="/editorial">
-                                <Editorial name={"editorial"} />
+                                <Editorial name={"editorial"} setSpaPageName={props.setSpaPageName}/>
                             </Route>
-                            <Route path="/track/:id" component={ExpandedItem} setPlayerItem={props.setPlayerItem}/>
-                            <Route path="/concert/:id" component={ExpandedConcert} setPlayerItem={props.setPlayerItem}/>
+                            <Route path="/track/:id" component={ExpandedItem} setPlayerItem={props.setPlayerItem} />
+                            <Route path="/concert/:id" component={ExpandedConcert} setPlayerItem={props.setPlayerItem} />
                             <Route path="/">
                                 <List baseClassName="switch-modifiers">
                                     <SwitchButton Small={true} id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={props.toggleGridListView} val={appData.isGridView} />
@@ -160,7 +157,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     toggleDesktopFilters,
     setTracksAsLocal,
     setShowsAsLocal,
-    setSearchValue
+    setSearchValue,
+    setSpaPageName
 }, dispatch);
 
 export default connect(

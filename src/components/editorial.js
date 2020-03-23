@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {Helmet} from "react-helmet";
 import QuickSlide from './quickSlide';
-import Slider from './slider';
-import List from "./list";
 import Items from "./items";
+
 function Editorial(props) {
+
+    useEffect(() => {
+        props.setSpaPageName('editorial');
+        return () => {}
+    }, []);
 
     const tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data;
     console.log(tracks);
     const dnbFavs = ['laurentgarnier+themanwiththeredface','shapednoise+intruder','strafe+setitoff','shawnrudiman+secrets(djmisjahremix)','blupeter+widescreen&digital']; // a list of ids handpicked for a specific genre
-    const getItemsByIds = (ids, allTracks) => {return allTracks.filter(track => ids.includes(track.ID))}
+    const getItemsByIds = (ids, allTracks) => {return allTracks.filter(track => ids.includes(track.ID))};
     const dnbItems = getItemsByIds(dnbFavs, tracks);
 
     return (
@@ -20,9 +24,7 @@ function Editorial(props) {
             </Helmet>
             <h1>About, {props.name}</h1>
 
-
             <QuickSlide >
-
                 <Items tracksFiltered={dnbItems} isPlayingEmbedded={props.isPlayingEmbedded} setPlayerItem={props.setPlayerItem} />
             </QuickSlide>
         </>

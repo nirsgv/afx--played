@@ -3,7 +3,7 @@ import {
     TOGGLE_GRID_LIST_VIEW,
     TOGGLE_SHARE_EXPANSION,
     VIEW_MORE,
-    TOGGLE_MOB_MENU, TOGGLE_DESKTOP_FILTERS_EXPANSION, SET_TRACKS_AS_LOCAL, SET_SHOWS_AS_LOCAL
+    TOGGLE_MOB_MENU, TOGGLE_DESKTOP_FILTERS_EXPANSION, SET_TRACKS_AS_LOCAL, SET_SHOWS_AS_LOCAL, SET_SPA_PAGE_NAME
 } from "./index";
 
 /**
@@ -84,6 +84,15 @@ function setShowsAsLocal(payload) {
     return action;
 }
 
+function setSpaPageName(payload) {
+    const action = {
+        type: SET_SPA_PAGE_NAME,
+        payload
+    };
+
+    return action;
+}
+
 export {
     toggleShareExpansion,
     toggleGridListView,
@@ -92,5 +101,6 @@ export {
     toggleMobMenu,
     toggleDesktopFilters,
     setTracksAsLocal,
-    setShowsAsLocal
+    setShowsAsLocal,
+    setSpaPageName
 }

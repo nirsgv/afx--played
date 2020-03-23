@@ -15,6 +15,7 @@
     &__logo {
         font-size: 2rem;
         filter: drop-shadow(2px 4px 10px black);
+        margin-right: 3rem;
     }
 
     &__list {
@@ -24,7 +25,17 @@
     }
 
     &__item {
+        a {
+            color: #888;
+            text-decoration: none;
+            margin-right: 2rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
 
+        & .active {
+            color: black;
+        }
     }
 
     &__hamburger {

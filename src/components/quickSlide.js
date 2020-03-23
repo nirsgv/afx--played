@@ -1,22 +1,31 @@
 import React, { useState, useRef, useEffect } from 'react';
-import Icon from './icon';
 import SvgSprite from "./svgSprite";
 import {imgData} from "../data/localImgData";
-import InputBox from "./inputBox";
+import { throttle, debounce } from "../helpers/higherFunctions";
 
 function QuickSlide ({children})  {
     const [translatedX, setTranslatedX] = useState(0),
           [slidesWidth, setSlidesWidth] = useState(0),
           [wrapperWidth, SetWrapperWidth] = useState(0),
-          ref = useRef(null),
-          ref2= useRef(null);
+          listRef = useRef(null),
+          wrapperRef= useRef(null);
     useEffect(() => {
-        const width = ref.current ? ref.current.offsetWidth : 0;
-        const wrapperW = ref2.current ? ref2.current.offsetWidth : 0;
+        debouncedUpdateDimensions();
+        window.addEventListener('resize', debouncedUpdateDimensions);
+        return () => {
+            window.removeEventListener('resize', debouncedUpdateDimensions);
+        }
+    }, [listRef.current, wrapperRef.current]);
+
+    const updateDimensions = () => {
+        const width = listRef.current ? listRef.current.offsetWidth : 0;
+        const wrapperW = wrapperRef.current ? wrapperRef.current.offsetWidth : 0;
+        console.log({width, wrapperW});
         setSlidesWidth(width);
         SetWrapperWidth(wrapperW);
-    }, [ref.current, ref2.current]);
+    };
 
+    const debouncedUpdateDimensions = debounce(updateDimensions, 100);
 
 
     const isLeftScrollNeeded = (translatedX) => {
@@ -36,7 +45,7 @@ function QuickSlide ({children})  {
     };
 
     return (
-        <div className="quick-slide__wrap" ref={ref2}>
+        <div className="quick-slide__wrap" ref={wrapperRef}>
 
             <button
                 className={`quick-slide__button quick-slide__button--left quick-slide__button--${isLeftScrollNeeded(translatedX) ? 'active' : 'disabled'}`}
@@ -46,7 +55,7 @@ function QuickSlide ({children})  {
             </button>
 
             <div className="quick-slide__content" style={{transform: `translateX(${translatedX}px)`}}>
-                <ul className="quick-slide__list" ref={ref}>
+                <ul className="quick-slide__list" ref={listRef}>
                     {children}
                 </ul>
             </div>

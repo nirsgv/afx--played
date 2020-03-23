@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { bindActionCreators } from "redux";
-import { toggleShareExpansion, setPlayerItem, dispatchMessageToModal } from "../actions/index";
+import {toggleShareExpansion, setPlayerItem, dispatchMessageToModal, setSpaPageName } from "../actions/index";
 import { connect } from "react-redux";
 import Links from '../components/links';
 import Concerts from '../components/concerts';
@@ -14,7 +14,15 @@ import { getDurationFromSeconds } from '../helpers/str';
 import Share from "../components/share";
 import {Router} from "react-router-dom";
 
-const ExpandedItem = ({match, history, appData, toggleShareExpansion, isPlayingEmbedded, setPlayerItem, dispatchMessageToModal}) => {
+const ExpandedItem = ({match, history, appData, toggleShareExpansion, isPlayingEmbedded, setPlayerItem, dispatchMessageToModal, setSpaPageName}) => {
+
+    useEffect(() => {
+        console.log(setSpaPageName);
+        setSpaPageName && setSpaPageName('expanded-item');
+        return () => {
+
+        }
+    }, []);
 
     const [beenAnimated, setBeenAnimated] = useState(false);
     const tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data;
@@ -76,7 +84,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
     toggleShareExpansion,
     setPlayerItem,
-    dispatchMessageToModal
+    dispatchMessageToModal,
+    setSpaPageName
 }, dispatch);
 
 export default connect(
