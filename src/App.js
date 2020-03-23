@@ -35,7 +35,7 @@ import { isBottomOfPage } from './helpers/dom';
 import { debounce } from './helpers/higherFunctions';
 import { updatedLocalStorageIfNeeded } from './helpers/localStorage';
 import { imgData } from './data/localImgData';
-import { Router, Switch, Route, Link } from "react-router-dom";
+import { Router, Switch, Route, Link, NavLink } from "react-router-dom";
 import './styles/main.scss';
 import { createBrowserHistory } from "history";
 import { Helmet } from 'react-helmet';
@@ -66,7 +66,7 @@ const App = (props) => {
                 <Splash isTracksDataLocal={appData.isTracksDataLocal} isShowsDataLocal={appData.isShowsDataLocal}/>
             {appData.isTracksDataLocal && appData.isShowsDataLocal &&
                 (<Router history={customHistory}>
-                    <header className="App-header">
+                    <header className="header">
                         <nav className='main-nav'>
                             <div className='main-nav__logo'>
                                 <Link to="/">
@@ -74,8 +74,9 @@ const App = (props) => {
                                 </Link>
                             </div>
                             <List baseClassName="main-nav">
-                                <Link to="/editorial">Editorial</Link>
-                                <Link to="/about">About</Link>
+                                <NavLink exact={true} activeClassName="active" to="/">Home</NavLink>
+                                <NavLink activeClassName="active" to="/editorial">Editorial</NavLink>
+                                <NavLink activeClassName="active" to="/about">About</NavLink>
                             </List>
                             <Hamburger menuIsClosed={!appData.isMobileMenuOpen} toggleMobMenu={toggleMobMenu} className={'hamburger'}/>
                         </nav>
