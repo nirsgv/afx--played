@@ -24,7 +24,7 @@ function Editorial(props) {
             </Helmet>
             <h1>About, {props.name}</h1>
 
-            <QuickSlide >
+            <QuickSlide title={"Drun and base favs"}>
                 <Items tracksFiltered={dnbItems} isPlayingEmbedded={props.isPlayingEmbedded} setPlayerItem={props.setPlayerItem} />
             </QuickSlide>
         </>

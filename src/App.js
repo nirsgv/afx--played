@@ -54,10 +54,6 @@ const App = (props) => {
         }
     }, []);
 
-
-
-
-
     const { expandFilter, toggleDesktopFilters, appData, toggleMobMenu } = props;
     return (
         <div className={`app ${appData.isGridView ? 'grid' : 'list'}-view`} data-test="component-app">
