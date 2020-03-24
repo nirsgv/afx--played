@@ -7,6 +7,7 @@ import {
 import { goHome } from '../App'
 
 function toggleSearchOption(e) {
+    goHome();
     const action = {
         type: TOGGLE_SEARCH_OPTION,
         payload: e.target.name
@@ -38,6 +39,15 @@ function filterByPeriodCb(periodKey) {
 function filterByTagCb(tagKey) {
     console.log(tagKey);
     goHome();
+    const action = {
+        type: FILTER_BY_TAG_CB,
+        payload: tagKey
+    };
+
+    return action;
+}
+
+function clearAll(tagKey) {
     const action = {
         type: FILTER_BY_TAG_CB,
         payload: tagKey

@@ -12,6 +12,10 @@
         position: relative;
     }
 
+    &__wrap {
+        flex-grow: 1;
+    }
+
     &__logo {
         font-size: 2rem;
         filter: drop-shadow(2px 4px 10px black);

@@ -42,9 +42,6 @@ import { Helmet } from 'react-helmet';
 import urlConstants from './data/urlConstants';
 import InputBox from "./components/inputBox";
 const customHistory = createBrowserHistory();
-export const goHome = () => {
-    if (customHistory.location.pathname !== '/') customHistory.push('/');
-};
 
 const App = (props) => {
     const getScrollItems = debounce(function(){ isBottomOfPage(this) && props.viewMore() }, 100);
@@ -167,6 +164,10 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     setSearchValue,
     setSpaPageName
 }, dispatch);
+
+export const goHome = () => {
+    if (customHistory.location.pathname !== '/') customHistory.push('/');
+};
 
 export default connect(
     mapStateToProps,

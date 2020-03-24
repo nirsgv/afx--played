@@ -12,7 +12,7 @@ function Periods(props) {
     } = props;
     return (
         <ul className='tags filter-expansion__list'>
-            {periods && periods.map((period, index) => {
+            {periods && periods.reverse().map((period, index) => {
                 return (
                     <li className={`tags__item  tags__item--${activePeriods && !activePeriods.includes(period) ? 'in' : ''}active`}
                         key={index}
