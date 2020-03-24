@@ -15,6 +15,7 @@ import {
     setShowsAsLocal,
     setSearchValue,
     setSpaPageName,
+    setViewportDimensions
 } from './actions';
 
 import Main from './containers/main';
@@ -131,7 +132,7 @@ const App = (props) => {
                             </List>
                         </nav>
                     </footer>
-                    <ViewPort>
+                    <ViewPort setDimensionsCb={props.setViewportDimensions} viewport={props.viewport}>
                         <MultiPlayer />
                     </ViewPort>
                     <MessagesModal />
@@ -143,6 +144,7 @@ const App = (props) => {
 const mapStateToProps = state => ({
     appData: state.appData,
     isPlayingEmbedded: state.player.isPlayingEmbedded,
+    viewport: state.viewport
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -158,7 +160,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     setTracksAsLocal,
     setShowsAsLocal,
     setSearchValue,
-    setSpaPageName
+    setSpaPageName,
+    setViewportDimensions
 }, dispatch);
 
 export const goHome = () => {

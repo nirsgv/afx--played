@@ -1,8 +1,9 @@
 import React, { Component, useState, useEffect } from 'react';
+import {debounce} from "../helpers/higherFunctions";
 
 const ViewPort = (props) => {
 
-    const [ viewportDimendions, setViewportDimendions ] = useState({
+    const [ internalViewportDimensions, setInternalViewportDimensions ] = useState({
         innerWidth: 0,
         innerHeight: 0,
         outerWidth: 0,
@@ -10,18 +11,23 @@ const ViewPort = (props) => {
     });
 
     useEffect(() => {
-        updateWindowDimensions();
-        window.addEventListener('resize', updateWindowDimensions);
+        debouncedUpdateDimensions();
+        window.addEventListener('resize', debouncedUpdateDimensions);
 
         return () => {
-            // updateWindowDimensions();
-            window.removeEventListener('resize', updateWindowDimensions);
+            window.removeEventListener('resize', debouncedUpdateDimensions);
         }
     }, []);
 
     const updateWindowDimensions = () => {
         const { innerWidth, innerHeight, outerWidth, outerHeight } = window;
-        setViewportDimendions({
+        setInternalViewportDimensions({
+            innerWidth,
+            innerHeight,
+            outerWidth,
+            outerHeight
+        });
+        props.setDimensionsCb({
             innerWidth,
             innerHeight,
             outerWidth,
@@ -29,16 +35,15 @@ const ViewPort = (props) => {
         });
     };
 
-    const { innerWidth, innerHeight, outerWidth, outerHeight } = viewportDimendions;
+    const debouncedUpdateDimensions = debounce(updateWindowDimensions, 100);
+
+    //const { innerWidth, innerHeight, outerWidth, outerHeight } = props.viewport;
 
     return (
         <>
             {React.cloneElement(props.children, {
                 className: "active",
-                innerWidth,
-                innerHeight,
-                outerWidth,
-                outerHeight
+                internalViewportDimensions
             })}
         </>
     );
