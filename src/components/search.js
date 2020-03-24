@@ -47,7 +47,7 @@ function Search(props) {
             {/*       name="album-title"*/}
             {/*       checked={checkboxActivated.searchAlbumTitles}*/}
             {/*       onChange={toggleSearchOption} />*/}
-            <InputBox name="noname" placeholder="Search.." cb={(e) => props.setSearchCb(e)}/>
+            <InputBox name="noname" placeholder="Search.." cb={(e) => props.setSearchCb(e)} value={props.value}/>
         </div>
     )
 }

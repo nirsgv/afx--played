@@ -95,14 +95,12 @@ function appData(state = initialAppState, action) {
 
 
         case SET_SEARCH_VALUE:
-            //console.log(action.payload);
             return {
                 ...state,
                 filteredBySearch: action.payload
             };
 
         case EXPAND_FILTER:
-            //console.log(action);
             return {
                 ...state,
                 expandedFilter: action.payload
@@ -131,6 +129,7 @@ function appData(state = initialAppState, action) {
                 ...state,
                 filteredByPeriods: [],
                 filteredByTags: [],
+                filteredBySearch: '',
             };
 
         case SET_TRACKS_AS_LOCAL:
