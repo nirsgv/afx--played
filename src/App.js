@@ -114,8 +114,8 @@ const App = (props) => {
                             <Route path="/concert/:id" component={ExpandedConcert} setPlayerItem={props.setPlayerItem} />
                             <Route path="/">
                                 <List baseClassName="switch-modifiers">
-                                    <SwitchButton Small={true} id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={props.toggleGridListView} val={appData.isGridView} />
-                                    {isBiggerFromMobile(props.viewport.dimensions) && <SwitchButton Small={true} id={'isPlayingEmbedded'} Text={'isPlayingEmbedded'} labelText={"Embed play"} cb={props.toggleEmbeddedPlay} val={props.isPlayingEmbedded} />}
+                                    {isBiggerFromMobile(props.viewport.dimensions) && <SwitchButton Small={true} id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={props.toggleGridListView} val={appData.isGridView} />}
+                                    <SwitchButton Small={true} id={'isPlayingEmbedded'} Text={'isPlayingEmbedded'} labelText={"Embed play"} cb={props.toggleEmbeddedPlay} val={props.isPlayingEmbedded} />
                                 </List>
                                 <InputBox classname={"main-search"} name="noname" placeholder="Search.." cb={(e) => props.setSearchValue(e)}>
                                     <SvgSprite classes={'main-search__icon'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'SEARCH'} />
@@ -123,7 +123,7 @@ const App = (props) => {
                                 <Main name={"something"} ></Main>
                             </Route>
                         </Switch>
-                    </main>
+                    </main>share
                     <footer>
                         <nav>
                             <List baseClassName={'footer-nav'}>

@@ -1,5 +1,5 @@
 import {
-    FILTER_BY_PERIOD_CB, FILTER_BY_TAG_CB,
+    FILTER_BY_PERIOD_CB, FILTER_BY_TAG_CB, RESET_FILTERS,
     SET_SEARCH_VALUE,
     TOGGLE_SEARCH_OPTION
 } from "./index";
@@ -47,9 +47,10 @@ function filterByTagCb(tagKey) {
     return action;
 }
 
-function clearAll(tagKey) {
+function resetFilters(tagKey) {
+    console.log(tagKey);
     const action = {
-        type: FILTER_BY_TAG_CB,
+        type: RESET_FILTERS,
         payload: tagKey
     };
 
@@ -60,5 +61,6 @@ export {
     toggleSearchOption,
     setSearchValue,
     filterByPeriodCb,
-    filterByTagCb
+    filterByTagCb,
+    resetFilters
 }

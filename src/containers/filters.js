@@ -7,7 +7,7 @@ import Periods from '../components/periods';
 import Search from '../components/search';
 import genreMap from '../data/genreMap.js';
 import { periodMap, yearsMap } from '../data/periodMap.js';
-
+import { resetFilters } from '../actions/itemFilteringActions'
 
 const filterBy = [
   'genres',
@@ -53,6 +53,7 @@ class Filters extends React.Component {
 
         return (
             <>
+                <button className="clear-all" onClick={this.props.resetFilters}>Clear all</button>
                 {renderFilter(expandedFilter)}
             </>
         )
@@ -69,7 +70,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     filterByTagCb,
     filterByPeriodCb,
     setSearchValue,
-    toggleSearchOption
+    toggleSearchOption,
+    resetFilters
 }, dispatch);
 
 export default connect(

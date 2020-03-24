@@ -35,20 +35,20 @@ const Share = ({ url, isExpanded, onShareWindowClose, dispatchMessageToModal }) 
         onShareWindowClose(false);
     };
     return (
-        <div className={`share wrap ${isExpanded ? 'active' : 'inactive'}`}>
+        <div className={`share-box share-box__wrap ${isExpanded ? 'active' : 'inactive'}`}>
             <FacebookShareButton url={url} onShareWindowClose={() => cb()}  children={
-                <SvgSprite classes={'icon-logo'} src={src} alt={description} name={'FACEBOOK'} />
+                <SvgSprite classes={'share-box__icon icon-logo'} src={src} alt={description} name={'FACEBOOK'} />
             }/>
             <TwitterShareButton url={url} onShareWindowClose={() => cb()}  children={
-                <SvgSprite classes={'icon-logo'} src={src} alt={description} name={'TWITTER'}  />
+                <SvgSprite classes={'share-box__icon icon-logo'} src={src} alt={description} name={'TWITTER'}  />
             }/>
             <WhatsappShareButton url={url} onShareWindowClose={() => cb()}  children={
-                <SvgSprite classes={'icon-logo'} src={src} alt={description} name={'WHATSAPP'} />
+                <SvgSprite classes={'share-box__icon icon-logo'} src={src} alt={description} name={'WHATSAPP'} />
             }/>
             <RedditShareButton url={url} onShareWindowClose={() => cb()}  children={
-                <SvgSprite classes={'icon-logo'} src={src} alt={description} name={'REDDIT'} />
+                <SvgSprite classes={'share-box__icon icon-logo'} src={src} alt={description} name={'REDDIT'} />
             }/>
-            <CopyUrlButton url={url} dispatchMessageToModal={dispatchMessageToModal} onShareWindowClose={() => cb()}  children={<SvgSprite classes={'icon-logo'} src={src} alt={description} name={'CLIPBOARD'} />}/>
+            <CopyUrlButton url={url} dispatchMessageToModal={dispatchMessageToModal} onShareWindowClose={() => cb()}  children={<SvgSprite classes={'share-box__icon icon-logo'} src={src} alt={description} name={'CLIPBOARD'} />}/>
         </div>
     )
 };

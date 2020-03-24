@@ -12,7 +12,8 @@ import {
     SET_TRACKS_AS_LOCAL,
     SET_SHOWS_AS_LOCAL,
     SET_SPA_PAGE_NAME,
-    SET_VIEWPORT_DIMENSIONS
+    SET_VIEWPORT_DIMENSIONS,
+    RESET_FILTERS
 } from '../actions';
 
 
@@ -123,6 +124,13 @@ function appData(state = initialAppState, action) {
                 filteredByPeriods: index < 0
                     ? [...state.filteredByPeriods, action.payload]
                     : [...state.filteredByPeriods.slice(0, index), ...state.filteredByPeriods.slice(index + 1)]
+            };
+
+        case RESET_FILTERS:
+            return {
+                ...state,
+                filteredByPeriods: [],
+                filteredByTags: [],
             };
 
         case SET_TRACKS_AS_LOCAL:

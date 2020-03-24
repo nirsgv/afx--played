@@ -13,7 +13,8 @@ import {
     toggleSearchOption,
     setSearchValue,
     filterByPeriodCb,
-    filterByTagCb
+    filterByTagCb,
+    resetFilters
 } from './itemFilteringActions';
 
 export {
@@ -51,6 +52,7 @@ export const SET_TRACKS_AS_LOCAL = 'SET_TRACKS_AS_LOCAL';
 export const SET_SHOWS_AS_LOCAL = 'SET_SHOWS_AS_LOCAL';
 export const SET_SPA_PAGE_NAME = 'SET_SPA_PAGE_NAME';
 export const SET_VIEWPORT_DIMENSIONS = 'SET_VIEWPORT_DIMENSIONS';
+export const RESET_FILTERS = 'RESET_FILTERS';
 
 export  {
     filterByTagCb,
@@ -61,4 +63,5 @@ export  {
     removeMessageToModal,
     setPlayerItem,
     toggleEmbeddedPlay,
+    resetFilters
 }
