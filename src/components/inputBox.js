@@ -6,7 +6,7 @@ function InputBox({ cb, classname, name, placeholder, children, value }) {
         <div className={`${classname}__wrap`}>
 
             {children}
-            <input type="text" name={name} placeholder={placeholder} className={`${classname}__input`} onInput={(e) => cb(e)} value={value}/>
+            <input type="text" name={name} placeholder={placeholder} className={`${classname}__input`} onChange={(e) => cb(e)} value={value}/>
         </div>
 
     );
