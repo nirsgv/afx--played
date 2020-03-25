@@ -75,9 +75,12 @@
         flex-direction: column;
         justify-content: space-between;
 
+        & > div, & > ul {
+            flex-grow: 1;
+        }
 
         @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
-
+            height: auto;
             display: flex;
             flex-direction: column;
             padding-bottom: 0;

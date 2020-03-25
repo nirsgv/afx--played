@@ -55,8 +55,8 @@
     }
 
     .list-view & {
-        outline: 4px dashed green;
         display: block;
+        margin-bottom: 4.4rem;
     }
 
     &__image-wrap {
@@ -86,10 +86,12 @@
         filter: grayscale(1); // blur disfunctioning because of this
         transition: filter 0.05s linear !important;
     }
+    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
 
-    &:hover {
-        .track__image {
-            filter: grayscale(0);
+        &:hover {
+            .track__image {
+                filter: grayscale(0);
+            }
         }
     }
 
