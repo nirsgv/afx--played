@@ -56,7 +56,6 @@ class Filters extends React.Component {
 
         return (
             <>
-                <button className="clear-all" onClick={this.props.resetFilters}>Clear all</button>
                 {renderFilter(expandedFilter)}
             </>
         )

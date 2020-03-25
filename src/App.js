@@ -15,7 +15,8 @@ import {
     setShowsAsLocal,
     setSearchValue,
     setSpaPageName,
-    setViewportDimensions
+    setViewportDimensions,
+    resetFilters
 } from './actions';
 
 import { isBiggerFromMobile } from './helpers/dom'
@@ -94,11 +95,15 @@ const App = (props) => {
                             </nav>
 
                             <nav className={`filter-expansion__wrap filter-expansion__wrap${!appData.isDesktopFiltersExpanded ? '--close' : '--open'}`}>
+                                <button className="filter-expansion__clear-all-button button" onClick={props.resetFilters}>
+                                    <span>Clear all</span>
+                                    <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'MINUS--LIGHT'} />
+                                </button>
+
                                 <Filters />
-                                <div className="filter-expansion__close-button" onClick={() => toggleDesktopFilters(false)}>
-                                    {/*Close*/}
+                                <button className="filter-expansion__close-button" onClick={() => toggleDesktopFilters(false)}>
                                     <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'TIMES'} />
-                                </div>
+                                </button>
                             </nav>
                         </div>
                     </header>
@@ -162,7 +167,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     setShowsAsLocal,
     setSearchValue,
     setSpaPageName,
-    setViewportDimensions
+    setViewportDimensions,
+    resetFilters
 }, dispatch);
 
 export const goHome = () => {

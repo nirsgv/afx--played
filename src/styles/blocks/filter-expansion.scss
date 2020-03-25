@@ -98,6 +98,20 @@
         @extend .inline-list-item-margin
     }
 
+    &__close-button, &__clear-all-button {
+        font-size: 0.6rem;
+        cursor: pointer;
+
+        span {
+            font-size: 0.6rem;
+            margin-left: .6rem;
+
+            svg {
+                vertical-align: bottom;
+            }
+        }
+    }
+
     &__close-button {
         width: 100vw;
         background-color: #fff;
@@ -106,6 +120,11 @@
         left: 0;
         margin-left: -12rem;
         text-align: center;
+    }
+
+    &__clear-all-button {
+        padding-bottom: 1rem;
+        text-align: left;
     }
 }
 

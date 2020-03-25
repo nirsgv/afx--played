@@ -55,8 +55,32 @@ header {
 }
 
 
-.checkbox__wrap > label {
-    display: inline-block;
+.checkbox {
+
+    &__wrap {
+
+        & > label {
+            display: inline-block;
+            cursor: pointer;
+        }
+    }
+
+    &__list {
+    }
+
+    &__item {
+        display: block;
+        margin-right: 2.6rem;
+        cursor: pointer;
+
+        @media (min-width: map-get($b-points, "mob")) {
+            display: inline-block;
+        }
+
+        input + span {
+            margin-left: 0.8rem;
+        }
+    }
 }
 
 input[type="checkbox"]{
@@ -65,13 +89,18 @@ input[type="checkbox"]{
 
     + span {
         display: inline-block;
-
-        font-size: 1.2rem;
-        border: 1px solid #ccc;
+        font-size: .6rem;
+        border: 1px solid #ddd;
         padding: 0.7rem;
+        color: #888;
+        border-radius: 8px;
+
+        @media (min-width: map-get($b-points, "mob")) {
+            font-size: .8rem;
+        }
 
         & > svg {
-
+            transition: all 0.1s ease-out;
         }
     }
     &:checked {
