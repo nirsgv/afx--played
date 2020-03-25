@@ -9,7 +9,7 @@
     z-index: 20;
     padding-right: $menu_gap;
 
-    @media (min-width: map-get($b-points, "mob")) {
+    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
         //top: 0;
         border-bottom: 1px solid #ddd;
         background-color: #fff;
@@ -37,7 +37,7 @@
         &--on {
         color: #333;
 
-            @media (min-width: map-get($b-points, "mob")) {
+            @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
                 //color: #ccc;
                 border-bottom: 4px solid #ddd;
             }
@@ -69,7 +69,7 @@
         @extend %viewport-wide;
         transition: top 0.4s ease-out;
 
-        @media (min-width: map-get($b-points, "mob")) {
+        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
 
             display: flex;
             flex-direction: column;
@@ -139,7 +139,7 @@
     right: calc(-100% - 20rem);
     z-index: 50;
 
-    @media (min-width: map-get($b-points, "mob")) {
+    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
         position: relative;
         box-shadow: none;
         right: 0;

@@ -17,7 +17,7 @@ main {
     overflow: scroll;
     padding: 0 2rem;
 
-    @media (min-width: map-get($b-points, "mob")) {
+    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
         padding: 0 2rem;
         top: 14rem;
     }
@@ -41,7 +41,7 @@ header {
     z-index: map-get($z-indexes, "header");
     transform : translate3d(0, 0, 0);
 
-    @media (min-width: map-get($b-points, "mob")) {
+    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
         height: 10rem;
     }
 }
@@ -57,11 +57,22 @@ header {
 
 .checkbox {
 
+
     &__wrap {
+        padding: 2rem 0;
 
         & > label {
-            display: inline-block;
             cursor: pointer;
+
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+                display: inline-block;
+                width: auto;
+            }
         }
     }
 
@@ -70,11 +81,11 @@ header {
 
     &__item {
         display: block;
-        margin-right: 2.6rem;
         cursor: pointer;
 
-        @media (min-width: map-get($b-points, "mob")) {
+        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
             display: inline-block;
+            margin-right: 2.6rem;
         }
 
         input + span {
@@ -95,7 +106,8 @@ input[type="checkbox"]{
         color: #888;
         border-radius: 8px;
 
-        @media (min-width: map-get($b-points, "mob")) {
+
+        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
             font-size: .8rem;
         }
 

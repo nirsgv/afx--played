@@ -130,6 +130,9 @@ function appData(state = initialAppState, action) {
                 filteredByPeriods: [],
                 filteredByTags: [],
                 filteredBySearch: '',
+                searchArtistNames: true,
+                searchTrackTitles: false,
+                searchAlbumTitles: false,
             };
 
         case SET_TRACKS_AS_LOCAL:
