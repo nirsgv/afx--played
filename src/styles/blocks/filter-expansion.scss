@@ -166,12 +166,12 @@
         }
 }
 
-&--open {
-    right: calc(0% - #{$menu_gap});
-}
+    &--open {
+        right: calc(0% - #{$menu_gap});
+    }
 
-&--close {
-    //right: calc(-100%);
+    &--close {
+        //right: calc(-100%);
 
-}
+    }
 }

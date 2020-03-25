@@ -17,8 +17,13 @@
         display: flex;
         justify-content: space-between;
         background-color: #ccc;
-        //background-color: #efefef;
         padding: 0 2rem;
+
+        .list-view & {
+            background-color: transparent;
+            padding: 0;
+        }
+
         @media (min-width: map-get($b-points, "tab")) {
             padding: 0 3rem;
         }
@@ -36,6 +41,9 @@
         transition: color 0.15s ease-in-out;
         color: #fff;
 
+        .list-view & {
+            color: #777;
+        }
 
         &--active{
             @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
@@ -58,7 +66,7 @@
 
         & > .href {
 
-            &--expand, &--go-back{
+            &--expand, &--go-back {
                 color: inherit;
                 text-decoration: inherit;
                 text-transform: uppercase;
@@ -66,6 +74,10 @@
                 font-size: 1.4rem;
                 cursor: pointer;
                 text-shadow: 1px 3px 6px #55555544;
+
+                .list-view & {
+                    text-align: right;
+                }
             }
         }
     }

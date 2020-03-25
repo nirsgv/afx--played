@@ -3,7 +3,9 @@
     color: #444;
     padding: .8rem;
 
-
+  .list-view & {
+    padding: .8rem 0;
+  }
 
     &__item {
         background-color: #efefef;
