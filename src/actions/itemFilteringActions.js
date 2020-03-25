@@ -1,10 +1,13 @@
 import {
-    FILTER_BY_PERIOD_CB, FILTER_BY_TAG_CB,
+    FILTER_BY_PERIOD_CB, FILTER_BY_TAG_CB, RESET_FILTERS,
     SET_SEARCH_VALUE,
     TOGGLE_SEARCH_OPTION
 } from "./index";
 
+import { goHome } from '../App'
+
 function toggleSearchOption(e) {
+    goHome();
     const action = {
         type: TOGGLE_SEARCH_OPTION,
         payload: e.target.name
@@ -13,6 +16,7 @@ function toggleSearchOption(e) {
 }
 
 function setSearchValue(e) {
+    goHome();
     const action = {
         type: SET_SEARCH_VALUE,
         payload: e.target.value
@@ -23,6 +27,7 @@ function setSearchValue(e) {
 
 function filterByPeriodCb(periodKey) {
     console.log(periodKey);
+    goHome();
     const action = {
         type: FILTER_BY_PERIOD_CB,
         payload: periodKey
@@ -33,8 +38,19 @@ function filterByPeriodCb(periodKey) {
 
 function filterByTagCb(tagKey) {
     console.log(tagKey);
+    goHome();
     const action = {
         type: FILTER_BY_TAG_CB,
+        payload: tagKey
+    };
+
+    return action;
+}
+
+function resetFilters(tagKey) {
+    console.log(tagKey);
+    const action = {
+        type: RESET_FILTERS,
         payload: tagKey
     };
 
@@ -45,5 +61,6 @@ export {
     toggleSearchOption,
     setSearchValue,
     filterByPeriodCb,
-    filterByTagCb
+    filterByTagCb,
+    resetFilters
 }

@@ -3,7 +3,7 @@ import SvgSprite from "./svgSprite";
 import {imgData} from "../data/localImgData";
 import { throttle, debounce } from "../helpers/higherFunctions";
 
-function QuickSlide ({children})  {
+function QuickSlide ({children, title})  {
     const [translatedX, setTranslatedX] = useState(0),
           [slidesWidth, setSlidesWidth] = useState(0),
           [wrapperWidth, SetWrapperWidth] = useState(0),
@@ -45,6 +45,8 @@ function QuickSlide ({children})  {
     };
 
     return (
+        <>
+        <div className={title}>{title}</div>
         <div className="quick-slide__wrap" ref={wrapperRef}>
 
             <button
@@ -67,6 +69,7 @@ function QuickSlide ({children})  {
                            alt={imgData.sprite.description} name={'ANGLE_RIGHT'}/>
             </button>
         </div>
+        </>
     )
 };
 

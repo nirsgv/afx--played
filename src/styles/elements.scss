@@ -17,7 +17,7 @@ main {
     overflow: scroll;
     padding: 0 2rem;
 
-    @media (min-width: map-get($b-points, "mob")) {
+    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
         padding: 0 2rem;
         top: 14rem;
     }
@@ -41,7 +41,7 @@ header {
     z-index: map-get($z-indexes, "header");
     transform : translate3d(0, 0, 0);
 
-    @media (min-width: map-get($b-points, "mob")) {
+    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
         height: 10rem;
     }
 }
@@ -55,8 +55,43 @@ header {
 }
 
 
-.checkbox__wrap > label {
-    display: inline-block;
+.checkbox {
+
+
+    &__wrap {
+        padding: 2rem 0;
+
+        & > label {
+            cursor: pointer;
+
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+                display: inline-block;
+                width: auto;
+            }
+        }
+    }
+
+    &__list {
+    }
+
+    &__item {
+        display: block;
+        cursor: pointer;
+
+        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+            display: inline-block;
+            margin-right: 2.6rem;
+        }
+
+        input + span {
+            margin-left: 0.8rem;
+        }
+    }
 }
 
 input[type="checkbox"]{
@@ -65,13 +100,19 @@ input[type="checkbox"]{
 
     + span {
         display: inline-block;
-
-        font-size: 1.2rem;
-        border: 1px solid #ccc;
+        font-size: .6rem;
+        border: 1px solid #ddd;
         padding: 0.7rem;
+        color: #888;
+        border-radius: 8px;
+
+
+        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+            font-size: .8rem;
+        }
 
         & > svg {
-
+            transition: all 0.1s ease-out;
         }
     }
     &:checked {

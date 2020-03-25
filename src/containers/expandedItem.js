@@ -6,7 +6,6 @@ import Links from '../components/links';
 import Concerts from '../components/concerts';
 import DefinitionList from '../components/definitionList';
 import Img from '../components/img';
-
 import SvgSprite from "../components/svgSprite";
 import { imgData } from "../data/localImgData";
 import Tags from "../components/tags";

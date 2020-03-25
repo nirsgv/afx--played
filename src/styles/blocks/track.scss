@@ -21,7 +21,7 @@
             grid-template-columns: repeat(1, 1fr);
             grid-gap: 2rem;
 
-            @media (min-width: map-get($b-points, "mob")) {
+            @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
                 grid-template-columns: repeat(2, 1fr);
             }
             @media (min-width: map-get($b-points, "tab")) {

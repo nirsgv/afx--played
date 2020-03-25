@@ -7,7 +7,10 @@ function Checkbox({ checkboxId, labelText, name, checked, onChangeCb }) {
     return (
         <div className={"checkbox__wrap"}  >
             <label htmlFor={checkboxId}>
-                {labelText}
+                <span>
+                    {labelText}
+                </span>
+
 
 
                 <input type="checkbox"

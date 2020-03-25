@@ -15,8 +15,11 @@ import {
     setShowsAsLocal,
     setSearchValue,
     setSpaPageName,
+    setViewportDimensions,
+    resetFilters
 } from './actions';
 
+import { isBiggerFromMobile } from './helpers/dom'
 import Main from './containers/main';
 import About from './components/about';
 import Splash from './components/splash';
@@ -92,11 +95,15 @@ const App = (props) => {
                             </nav>
 
                             <nav className={`filter-expansion__wrap filter-expansion__wrap${!appData.isDesktopFiltersExpanded ? '--close' : '--open'}`}>
+                                <button className="filter-expansion__clear-all-button button" onClick={props.resetFilters}>
+                                    <span>Clear all</span>
+                                    <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'MINUS--LIGHT'} />
+                                </button>
+
                                 <Filters />
-                                <div className="filter-expansion__close-button" onClick={() => toggleDesktopFilters(false)}>
-                                    {/*Close*/}
+                                <button className="filter-expansion__close-button" onClick={() => toggleDesktopFilters(false)}>
                                     <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'TIMES'} />
-                                </div>
+                                </button>
                             </nav>
                         </div>
                     </header>
@@ -112,7 +119,7 @@ const App = (props) => {
                             <Route path="/concert/:id" component={ExpandedConcert} setPlayerItem={props.setPlayerItem} />
                             <Route path="/">
                                 <List baseClassName="switch-modifiers">
-                                    <SwitchButton Small={true} id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={props.toggleGridListView} val={appData.isGridView} />
+                                    {isBiggerFromMobile(props.viewport.dimensions) && <SwitchButton Small={true} id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={props.toggleGridListView} val={appData.isGridView} />}
                                     <SwitchButton Small={true} id={'isPlayingEmbedded'} Text={'isPlayingEmbedded'} labelText={"Embed play"} cb={props.toggleEmbeddedPlay} val={props.isPlayingEmbedded} />
                                 </List>
                                 <InputBox classname={"main-search"} name="noname" placeholder="Search.." cb={(e) => props.setSearchValue(e)}>
@@ -121,7 +128,7 @@ const App = (props) => {
                                 <Main name={"something"} ></Main>
                             </Route>
                         </Switch>
-                    </main>
+                    </main>share
                     <footer>
                         <nav>
                             <List baseClassName={'footer-nav'}>
@@ -131,7 +138,7 @@ const App = (props) => {
                             </List>
                         </nav>
                     </footer>
-                    <ViewPort>
+                    <ViewPort setDimensionsCb={props.setViewportDimensions} viewport={props.viewport}>
                         <MultiPlayer />
                     </ViewPort>
                     <MessagesModal />
@@ -143,6 +150,7 @@ const App = (props) => {
 const mapStateToProps = state => ({
     appData: state.appData,
     isPlayingEmbedded: state.player.isPlayingEmbedded,
+    viewport: state.viewport
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -158,8 +166,14 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     setTracksAsLocal,
     setShowsAsLocal,
     setSearchValue,
-    setSpaPageName
+    setSpaPageName,
+    setViewportDimensions,
+    resetFilters
 }, dispatch);
+
+export const goHome = () => {
+    if (customHistory.location.pathname !== '/') customHistory.push('/');
+};
 
 export default connect(
     mapStateToProps,

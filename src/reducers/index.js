@@ -11,7 +11,9 @@ import {
     SET_PLAYER_TYPE, SET_PLAYER_ITEM, TOGGLE_EMBEDDED_PLAY, VIEW_MORE, TOGGLE_MOB_MENU, TOGGLE_DESKTOP_FILTERS_EXPANSION,
     SET_TRACKS_AS_LOCAL,
     SET_SHOWS_AS_LOCAL,
-    SET_SPA_PAGE_NAME
+    SET_SPA_PAGE_NAME,
+    SET_VIEWPORT_DIMENSIONS,
+    RESET_FILTERS
 } from '../actions';
 
 
@@ -93,14 +95,12 @@ function appData(state = initialAppState, action) {
 
 
         case SET_SEARCH_VALUE:
-            //console.log(action.payload);
             return {
                 ...state,
                 filteredBySearch: action.payload
             };
 
         case EXPAND_FILTER:
-            //console.log(action);
             return {
                 ...state,
                 expandedFilter: action.payload
@@ -122,6 +122,17 @@ function appData(state = initialAppState, action) {
                 filteredByPeriods: index < 0
                     ? [...state.filteredByPeriods, action.payload]
                     : [...state.filteredByPeriods.slice(0, index), ...state.filteredByPeriods.slice(index + 1)]
+            };
+
+        case RESET_FILTERS:
+            return {
+                ...state,
+                filteredByPeriods: [],
+                filteredByTags: [],
+                filteredBySearch: '',
+                searchArtistNames: true,
+                searchTrackTitles: false,
+                searchAlbumTitles: false,
             };
 
         case SET_TRACKS_AS_LOCAL:
@@ -201,12 +212,36 @@ function player(state = { platform: '', item: '', isPlayingEmbedded: false }, ac
     }
 }
 
+const viewportState = {
+    dimensions: {
+        innerWidth: 0,
+        innerHeight: 0,
+        outerWidth: 0,
+        outerHeight: 0
+    }
+};
+
+function viewport(state = viewportState, action) {
+    switch(action.type) {
+
+        case SET_VIEWPORT_DIMENSIONS:
+            return {
+                ...state,
+                dimensions: action.payload
+            };
+
+        default:
+            return state;
+    }
+}
+
 
 
 const rootReducer = combineReducers({
     appData,
     messages,
-    player
+    player,
+    viewport
 });
 
 

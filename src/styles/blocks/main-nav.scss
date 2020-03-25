@@ -8,8 +8,12 @@
     z-index: 30;
 
 
-    @media (min-width: map-get($b-points, "mob")) {
+    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
         position: relative;
+    }
+
+    &__wrap {
+        flex-grow: 1;
     }
 
     &__logo {
@@ -26,7 +30,7 @@
 
     &__item {
         a {
-            color: #888;
+            color: #ccc;
             text-decoration: none;
             margin-right: 2rem;
             font-size: 1.4rem;
@@ -34,12 +38,12 @@
         }
 
         & .active {
-            color: black;
+            color: #888;
         }
     }
 
     &__hamburger {
-        @media (min-width: map-get($b-points, "mob")) {
+        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
             display: none;
         }
     }

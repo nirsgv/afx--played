@@ -7,14 +7,14 @@ import Periods from '../components/periods';
 import Search from '../components/search';
 import genreMap from '../data/genreMap.js';
 import { periodMap, yearsMap } from '../data/periodMap.js';
-
+import { resetFilters } from '../actions/itemFilteringActions'
 
 const filterBy = [
   'genres',
   'years',
   'search',
 ];
-
+//todo: trfactor to functional componrnt
 class Filters extends React.Component {
     render(props) {
         const { expandedFilter,
@@ -22,7 +22,8 @@ class Filters extends React.Component {
             filteredByPeriods,
             searchArtistNames,
             searchTrackTitles,
-            searchAlbumTitles
+            searchAlbumTitles,
+            filteredBySearch
         } = this.props.appData;
 
         const checkboxActivated = {
@@ -44,7 +45,9 @@ class Filters extends React.Component {
                 case 'search':
                     return <Search setSearchCb={this.props.setSearchValue}
                                    toggleSearchOption={this.props.toggleSearchOption}
-                                   checkboxActivated={checkboxActivated} />;
+                                   checkboxActivated={checkboxActivated}
+                                   value={filteredBySearch}
+                    />;
                 default:
                     return <h1></h1>;
             }
@@ -69,7 +72,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     filterByTagCb,
     filterByPeriodCb,
     setSearchValue,
-    toggleSearchOption
+    toggleSearchOption,
+    resetFilters
 }, dispatch);
 
 export default connect(

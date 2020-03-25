@@ -1,12 +1,12 @@
 import React from 'react';
 
 
-function InputBox({ cb, classname, name, placeholder, children }) {
+function InputBox({ cb, classname, name, placeholder, children, value }) {
     return (
         <div className={`${classname}__wrap`}>
 
             {children}
-            <input type="text" name={name} placeholder={placeholder} className={`${classname}__input`} onInput={(e) => cb(e)}/>
+            <input type="text" name={name} placeholder={placeholder} className={`${classname}__input`} onChange={(e) => cb(e)} value={value}/>
         </div>
 
     );
