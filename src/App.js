@@ -36,7 +36,7 @@ import MultiPlayer from './containers/multiPlayer';
 import SvgSprite from './components/svgSprite';
 import { isBottomOfPage } from './helpers/dom';
 import { debounce } from './helpers/higherFunctions';
-import { updatedLocalStorageIfNeeded } from './helpers/localStorage';
+import { updatedLS } from './helpers/localStorage';
 import { imgData } from './data/localImgData';
 import { Router, Switch, Route, Link, NavLink } from "react-router-dom";
 import './styles/main.scss';
@@ -46,29 +46,28 @@ import urlConstants from './data/urlConstants';
 import InputBox from "./components/inputBox";
 const customHistory = createBrowserHistory();
 
-const App = ({
-                 appData,
-                 expandFilter,
-                 toggleDesktopFilters,
-                 toggleMobMenu,
-                 setPlayerItem,
-                 toggleGridListView,
-                 toggleEmbeddedPlay,
-                 isPlayingEmbedded,
-                 setSearchValue,
-                 setViewportDimensions,
-                 resetFilters,
-                 viewMore,
-                 viewport,
-                 setTracksAsLocal,
-                 setShowsAsLocal
-             }) => {
-    const getScrollItems = debounce(function(){ isBottomOfPage(this) && viewMore() }, 100);
-    useEffect(() => {
+const App = ({  appData,
+                expandFilter,
+                toggleDesktopFilters,
+                toggleMobMenu,
+                setPlayerItem,
+                toggleGridListView,
+                toggleEmbeddedPlay,
+                isPlayingEmbedded,
+                setSearchValue,
+                setViewportDimensions,
+                resetFilters,
+                viewMore,
+                viewport,
+                setTracksAsLocal,
+                setShowsAsLocal  }) => {
 
+    const getScrollItems = debounce(function(){ isBottomOfPage(this) && viewMore() }, 100);
+
+    useEffect(() => {
         window.addEventListener('scroll', getScrollItems);
-        updatedLocalStorageIfNeeded(window.location.origin + urlConstants.TRACKS_URL, 'afx_local_tracks', setTracksAsLocal);
-        updatedLocalStorageIfNeeded(window.location.origin + urlConstants.SHOWS_URL, 'afx_local_shows', setShowsAsLocal);
+        updatedLS(window.location.origin + urlConstants.TRACKS_URL, 'afx_local_tracks', setTracksAsLocal);
+        updatedLS(window.location.origin + urlConstants.SHOWS_URL, 'afx_local_shows', setShowsAsLocal);
         return () => {
             window.removeEventListener('scroll', getScrollItems);
         }
