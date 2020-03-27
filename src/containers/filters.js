@@ -6,7 +6,7 @@ import Tags from '../components/tags';
 import Periods from '../components/periods';
 import Search from '../components/search';
 import genreMap from '../data/genreMap.js';
-import { periodMap, yearsMap } from '../data/periodMap.js';
+import { periodMap } from '../data/periodMap.js';
 import { resetFilters } from '../actions/itemFilteringActions'
 
 
@@ -51,7 +51,7 @@ function Filters ({   appData,
                     return <h1></h1>;
             }
         };
-        
+
         return (
             <>
                 {renderFilter(expandedFilter)}
