@@ -44,6 +44,8 @@ import { createBrowserHistory } from "history";
 import { Helmet } from 'react-helmet';
 import urlConstants from './data/urlConstants';
 import InputBox from "./components/inputBox";
+
+// import { useFetch } from './customHooks/index'
 const customHistory = createBrowserHistory();
 
 const App = ({  appData,
@@ -60,7 +62,8 @@ const App = ({  appData,
                 viewMore,
                 viewport,
                 setTracksAsLocal,
-                setShowsAsLocal  }) => {
+                setShowsAsLocal,
+                setSpaPageName  }) => {
 
     const getScrollItems = debounce(function(){ isBottomOfPage(this) && viewMore() }, 100);
 

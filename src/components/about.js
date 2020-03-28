@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import {Helmet} from "react-helmet";
-
+import {useSetPageName, useFetch } from '../customHooks/index'
 function About(props) {
 
     useEffect(() => {
-        props.setSpaPageName('about');
+        props.setSpaPageName(props.name);
         return () => {}
     }, []);
 

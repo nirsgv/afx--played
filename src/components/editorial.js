@@ -6,7 +6,7 @@ import Items from "./items";
 function Editorial(props) {
 
     useEffect(() => {
-        props.setSpaPageName('editorial');
+        props.setSpaPageName(props.name);
         return () => {}
     }, []);
 
