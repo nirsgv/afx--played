@@ -97,13 +97,27 @@
 
     &__icon {
         color: #999;
-        font-size: .75rem;
+        font-size: .85rem;
         &--left {
             //left: 0;
         }
 
         &--right {
             //right: 0;
+        }
+    }
+
+    &__title{
+
+        &__text{
+            font-size: 2rem;
+            @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+                font-size: 3rem;
+            }
+
+            @media (min-width: map-get($b-points, "tab")) {
+                font-size: 4rem;
+            }
         }
     }
 }
