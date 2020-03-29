@@ -37,11 +37,11 @@ function QuickSlide ({children, title})  {
     };
 
     const clickedLeft = (translatedX) => {
-        isLeftScrollNeeded(translatedX) &&  setTranslatedX(translatedX + 400);
+        isLeftScrollNeeded(translatedX) &&  setTranslatedX(translatedX + 320);
     };
 
     const clickedRight = (translatedX) => {
-        isRightScrollNeeded(translatedX) &&  setTranslatedX(translatedX - 400);
+        isRightScrollNeeded(translatedX) &&  setTranslatedX(translatedX - 320);
     };
 
     return (

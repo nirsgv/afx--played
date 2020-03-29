@@ -5,6 +5,24 @@
         height: auto;
         overflow-x: scroll;
         margin-bottom: 4.6rem;
+
+        width: calc(100% + (2 * #{(map-get($main-padding, "mob"))}));
+        margin-left: -1 * map-get($main-padding, "mob");
+        padding-left: map-get($main-padding, "mob");;
+
+        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+            width: calc(100% + (2 * #{(map-get($main-padding, "tab"))}));
+            margin-left: -1 * map-get($main-padding, "tab");
+            padding-left: map-get($main-padding, "tab");;
+
+        }
+
+        @media (min-width: map-get($b-points, "tab")) {
+            width: calc(100% + (2 * #{(map-get($main-padding, "des"))}));
+            margin-left: -1 * map-get($main-padding, "des");
+            padding-left: map-get($main-padding, "des");;
+        }
+
     }
 
     &__content {
@@ -42,11 +60,29 @@
         color: red;
 
         &--left {
-            left: 0;
+
+            left: map-get($main-padding, "mob");
+
+            @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+                left: map-get($main-padding, "tab");
+            }
+
+            @media (min-width: map-get($b-points, "tab")) {
+                left: map-get($main-padding, "des");
+            }
         }
 
         &--right {
-            right: 0;
+
+            right: map-get($main-padding, "mob") / 2;
+
+            @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+                right: map-get($main-padding, "tab") / 2;
+            }
+
+            @media (min-width: map-get($b-points, "tab")) {
+                right: map-get($main-padding, "des") / 2;
+            }
         }
 
         &--active {
