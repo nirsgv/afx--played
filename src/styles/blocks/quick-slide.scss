@@ -61,14 +61,14 @@
 
         &--left {
 
-            left: map-get($main-padding, "mob");
+            left: map-get($main-padding, "mob") / 2;;
 
             @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
-                left: map-get($main-padding, "tab");
+                left: map-get($main-padding, "tab") / 2;;
             }
 
             @media (min-width: map-get($b-points, "tab")) {
-                left: map-get($main-padding, "des");
+                left: map-get($main-padding, "des") / 2;;
             }
         }
 
