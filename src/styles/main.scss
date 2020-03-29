@@ -83,26 +83,31 @@ svg {
     }
 
     &__wrap {
+    }
+
+    &__list {
         height: auto;
         width: 100%;
         transition: bottom 0.1s ease-in;
         display: flex;
         margin-bottom: 6rem;
+        color: #606060;
     }
 
-    &__icon {
+    &__item {
 
-        width: 100%;
         height: 100%;
         display: flex;
+        width: 4rem;
 
-        > svg {
+        > .SocialMediaShareButton ,> .share{
             margin: auto;
         }
+
         @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
 
             &:hover {
-                color: red;
+                color: black;
             }
         }
     }

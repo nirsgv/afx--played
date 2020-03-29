@@ -66,6 +66,8 @@ const ExpandedItem = ({match, history, appData, toggleShareExpansion, isPlayingE
                        isExpanded={appData.isSharingExpanded}
                        onShareWindowClose={toggleShareExpansion}
                        dispatchMessageToModal={dispatchMessageToModal}/>
+
+                <h3 className={'concerts__title'}>{'Played in shows'.toUpperCase()}:</h3>
                <Concerts venues={VENUES}></Concerts>
                 <Links className="track__track-links" links={LINKS} isPlayingEmbedded={isPlayingEmbedded} setPlayerItem={setPlayerItem} isMountedByExpanded={true} history={history}/>
             </div>
