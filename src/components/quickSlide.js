@@ -46,7 +46,9 @@ function QuickSlide ({children, title})  {
 
     return (
         <>
-        <div className={title}>{title}</div>
+        <div className="quick-slide__title">
+            <h2 className="quick-slide__title__text">{title}</h2>
+        </div>
         <div className="quick-slide__wrap" ref={wrapperRef}>
 
             <button
