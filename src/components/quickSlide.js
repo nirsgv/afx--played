@@ -20,7 +20,7 @@ function QuickSlide ({children, title})  {
     const updateDimensions = () => {
         const width = listRef.current ? listRef.current.offsetWidth : 0;
         const wrapperW = wrapperRef.current ? wrapperRef.current.offsetWidth : 0;
-        console.log({width, wrapperW});
+        //console.log({width, wrapperW});
         setSlidesWidth(width);
         SetWrapperWidth(wrapperW);
     };
@@ -37,11 +37,11 @@ function QuickSlide ({children, title})  {
     };
 
     const clickedLeft = (translatedX) => {
-        isLeftScrollNeeded(translatedX) &&  setTranslatedX(translatedX + 200);
+        isLeftScrollNeeded(translatedX) &&  setTranslatedX(translatedX + 400);
     };
 
     const clickedRight = (translatedX) => {
-        isRightScrollNeeded(translatedX) &&  setTranslatedX(translatedX - 200);
+        isRightScrollNeeded(translatedX) &&  setTranslatedX(translatedX - 400);
     };
 
     return (
