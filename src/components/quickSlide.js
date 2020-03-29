@@ -20,7 +20,7 @@ function QuickSlide ({children, title})  {
     const updateDimensions = () => {
         const width = listRef.current ? listRef.current.offsetWidth : 0;
         const wrapperW = wrapperRef.current ? wrapperRef.current.offsetWidth : 0;
-        console.log({width, wrapperW});
+        //console.log({width, wrapperW});
         setSlidesWidth(width);
         SetWrapperWidth(wrapperW);
     };
@@ -37,16 +37,18 @@ function QuickSlide ({children, title})  {
     };
 
     const clickedLeft = (translatedX) => {
-        isLeftScrollNeeded(translatedX) &&  setTranslatedX(translatedX + 200);
+        isLeftScrollNeeded(translatedX) &&  setTranslatedX(translatedX + 320);
     };
 
     const clickedRight = (translatedX) => {
-        isRightScrollNeeded(translatedX) &&  setTranslatedX(translatedX - 200);
+        isRightScrollNeeded(translatedX) &&  setTranslatedX(translatedX - 320);
     };
 
     return (
         <>
-        <div className={title}>{title}</div>
+        <div className="quick-slide__title">
+            <h2 className="quick-slide__title__text">{title}</h2>
+        </div>
         <div className="quick-slide__wrap" ref={wrapperRef}>
 
             <button

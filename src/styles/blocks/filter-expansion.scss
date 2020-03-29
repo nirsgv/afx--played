@@ -64,13 +64,23 @@
         position: absolute;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 10px;
         z-index: 10;
-        padding: 2rem;
+        padding: 2rem 2rem 0 2rem;
         padding-right: $menu_gap  + 2rem;
         @extend %viewport-wide;
         transition: top 0.4s ease-out;
 
-        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
 
+        height: calc(100vh - 4rem);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        & > div, & > ul {
+            flex-grow: 1;
+        }
+
+        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+            height: auto;
             display: flex;
             flex-direction: column;
             padding-bottom: 0;
@@ -113,13 +123,19 @@
     }
 
     &__close-button {
-        width: 100vw;
+
+        width: calc(100% + 4rem);
         background-color: #fff;
         border-top: 1px solid #ccc;
-        height: 30px;
-        left: 0;
-        margin-left: -12rem;
+        height: 3rem;
+        margin-left: -2rem;
         text-align: center;
+
+        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+            width: 100vw;
+            left: 0;
+            margin-left: -12rem;
+        }
     }
 
     &__clear-all-button {
@@ -148,7 +164,7 @@
         &--open {
             right: 0;
         }
-    }
+}
 
     &--open {
         right: calc(0% - #{$menu_gap});

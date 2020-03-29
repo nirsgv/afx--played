@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux';
 import {
@@ -36,7 +36,7 @@ import MultiPlayer from './containers/multiPlayer';
 import SvgSprite from './components/svgSprite';
 import { isBottomOfPage } from './helpers/dom';
 import { debounce } from './helpers/higherFunctions';
-import { updatedLocalStorageIfNeeded } from './helpers/localStorage';
+import { updatedLS } from './helpers/localStorage';
 import { imgData } from './data/localImgData';
 import { Router, Switch, Route, Link, NavLink } from "react-router-dom";
 import './styles/main.scss';
@@ -44,20 +44,38 @@ import { createBrowserHistory } from "history";
 import { Helmet } from 'react-helmet';
 import urlConstants from './data/urlConstants';
 import InputBox from "./components/inputBox";
+
+// import { useFetch } from './customHooks/index'
 const customHistory = createBrowserHistory();
 
-const App = (props) => {
-    const getScrollItems = debounce(function(){ isBottomOfPage(this) && props.viewMore() }, 100);
+const App = ({  appData,
+                expandFilter,
+                toggleDesktopFilters,
+                toggleMobMenu,
+                setPlayerItem,
+                toggleGridListView,
+                toggleEmbeddedPlay,
+                isPlayingEmbedded,
+                setSearchValue,
+                setViewportDimensions,
+                resetFilters,
+                viewMore,
+                viewport,
+                setTracksAsLocal,
+                setShowsAsLocal,
+                setSpaPageName  }) => {
+
+    const getScrollItems = debounce(function(){ isBottomOfPage(this) && viewMore() }, 100);
+
     useEffect(() => {
         window.addEventListener('scroll', getScrollItems);
-        updatedLocalStorageIfNeeded(window.location.origin + urlConstants.TRACKS_URL, 'afx_local_tracks', props.setTracksAsLocal);
-        updatedLocalStorageIfNeeded(window.location.origin + urlConstants.SHOWS_URL, 'afx_local_shows', props.setShowsAsLocal);
+        updatedLS(window.location.origin + urlConstants.TRACKS_URL, 'afx_local_tracks', setTracksAsLocal);
+        updatedLS(window.location.origin + urlConstants.SHOWS_URL, 'afx_local_shows', setShowsAsLocal);
         return () => {
             window.removeEventListener('scroll', getScrollItems);
         }
     }, []);
 
-    const { expandFilter, toggleDesktopFilters, appData, toggleMobMenu } = props;
     return (
         <div className={`app ${appData.isGridView ? 'grid' : 'list'}-view`} data-test="component-app">
             <Helmet>
@@ -95,7 +113,7 @@ const App = (props) => {
                             </nav>
 
                             <nav className={`filter-expansion__wrap filter-expansion__wrap${!appData.isDesktopFiltersExpanded ? '--close' : '--open'}`}>
-                                <button className="filter-expansion__clear-all-button button" onClick={props.resetFilters}>
+                                <button className="filter-expansion__clear-all-button button" onClick={resetFilters}>
                                     <span>Clear all</span>
                                     <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'MINUS--LIGHT'} />
                                 </button>
@@ -110,19 +128,19 @@ const App = (props) => {
                     <main className={`${appData.spaPageName}`}>
                         <Switch>
                             <Route path="/about">
-                                <About name={"about"} setSpaPageName={props.setSpaPageName}/>
+                                <About name={"about"} setSpaPageName={setSpaPageName}/>
                             </Route>
                             <Route path="/editorial">
-                                <Editorial name={"editorial"} setSpaPageName={props.setSpaPageName}/>
+                                <Editorial name={"editorial"} setSpaPageName={setSpaPageName}/>
                             </Route>
-                            <Route path="/track/:id" component={ExpandedItem} setPlayerItem={props.setPlayerItem} />
-                            <Route path="/concert/:id" component={ExpandedConcert} setPlayerItem={props.setPlayerItem} />
+                            <Route path="/track/:id" component={ExpandedItem} setPlayerItem={setPlayerItem} />
+                            <Route path="/concert/:id" component={ExpandedConcert} setPlayerItem={setPlayerItem} />
                             <Route path="/">
                                 <List baseClassName="switch-modifiers">
-                                    {isBiggerFromMobile(props.viewport.dimensions) && <SwitchButton Small={true} id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={props.toggleGridListView} val={appData.isGridView} />}
-                                    <SwitchButton Small={true} id={'isPlayingEmbedded'} Text={'isPlayingEmbedded'} labelText={"Embed play"} cb={props.toggleEmbeddedPlay} val={props.isPlayingEmbedded} />
+                                    {isBiggerFromMobile(viewport.dimensions) && <SwitchButton Small={true} id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={toggleGridListView} val={appData.isGridView} />}
+                                    <SwitchButton Small={true} id={'isPlayingEmbedded'} Text={'isPlayingEmbedded'} labelText={"Embed play"} cb={toggleEmbeddedPlay} val={isPlayingEmbedded} />
                                 </List>
-                                <InputBox classname={"main-search"} name="noname" placeholder="Search.." cb={(e) => props.setSearchValue(e)}>
+                                <InputBox classname={"main-search"} name="noname" placeholder="Search.." cb={(e) => setSearchValue(e)}>
                                     <SvgSprite classes={'main-search__icon'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'SEARCH'} />
                                 </InputBox>
                                 <Main name={"something"} ></Main>
@@ -134,11 +152,11 @@ const App = (props) => {
                             <List baseClassName={'footer-nav'}>
                                 <Link to="/">Home</Link>
                                 <Link to="/about">About</Link>
-                                <button onClick={() => props.toggleGridListView()}>toggleGridListView button</button>
+                                <button onClick={() => toggleGridListView()}>toggleGridListView button</button>
                             </List>
                         </nav>
                     </footer>
-                    <ViewPort setDimensionsCb={props.setViewportDimensions} viewport={props.viewport}>
+                    <ViewPort setDimensionsCb={setViewportDimensions} viewport={viewport}>
                         <MultiPlayer />
                     </ViewPort>
                     <MessagesModal />

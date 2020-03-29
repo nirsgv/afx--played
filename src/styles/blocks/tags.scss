@@ -3,17 +3,24 @@
     color: #444;
     padding: .8rem;
 
-
+  .list-view & {
+    padding: .8rem 0;
+  }
 
     &__item {
         background-color: #efefef;
         display: inline-block;
         border-radius: 5rem;
-        padding: .5rem 1.3rem;
+        padding: .5rem .8rem;
         margin: 0 0.6rem 1rem 0;
-        font-size: 1.2rem;
+        font-size: 1rem;
         transition: background-color 0.15s ease-out;
         white-space: nowrap;
+
+        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+          font-size: 1.2rem;
+          padding: .5rem 1.3rem;
+        }
 
         &--inactive {
             color: #aaa;

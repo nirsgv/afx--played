@@ -52,18 +52,22 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
+
     }
 
     .list-view & {
-        outline: 4px dashed green;
         display: block;
+        margin-bottom: 4.4rem;
+        border-radius: 0px;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid #666;
+
     }
 
     &__image-wrap {
         width: 7rem;
         height: 7rem;
         padding: 0.2rem;
-        //background-color: map-get($colors, "rephlex_green");
         background-color: transparent;
         float: right;
 
@@ -74,7 +78,6 @@
     }
 
     &__text-wrap {
-        //outline: 4px dashed green;
         flex-grow: 1;
     }
 
@@ -86,10 +89,12 @@
         filter: grayscale(1); // blur disfunctioning because of this
         transition: filter 0.05s linear !important;
     }
+    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
 
-    &:hover {
-        .track__image {
-            filter: grayscale(0);
+        &:hover {
+            .track__image {
+                filter: grayscale(0);
+            }
         }
     }
 

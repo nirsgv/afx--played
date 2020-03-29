@@ -1,11 +1,11 @@
 
-const isThereLocalData = (key) => {
+const _isThereLocalData = (key) => {
     let item = localStorage.getItem(key);
     return item !== null && typeof item === "string" && item.length !== 0;
 };
 
 
-const isDataRecent = (key) => {
+const _isDataRecent = (key) => {
     const now = Date.now();
     const ONE_WEEK = 604800000;
     const dateOfObjInLocal = JSON.parse(localStorage.getItem(key)).date;
@@ -13,8 +13,8 @@ const isDataRecent = (key) => {
 };
 
 
-const updatedLocalStorageIfNeeded = (url, key, cb) => {
-    if ( !isThereLocalData(key) || !isDataRecent(key) ) {
+const updatedLS = (url, key, cb) => {
+    if ( !_isThereLocalData(key) || !_isDataRecent(key) ) {
         // fetch and set as local data
         fetch(url)
             .then(response => response.json())
@@ -32,4 +32,4 @@ const updatedLocalStorageIfNeeded = (url, key, cb) => {
     }
 };
 
-export { isThereLocalData, isDataRecent, updatedLocalStorageIfNeeded };
+export { updatedLS };

@@ -6,6 +6,8 @@ nav.main-nav, section.manage-items {
     @extend %outer-pad;
 }
 
+
+
 main {
     top: 8rem;
     position: relative;
@@ -18,16 +20,19 @@ main {
     padding: 0 2rem;
 
     @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
-        padding: 0 2rem;
+        padding-right: map-get($main-padding, "mob");
+        padding-left: map-get($main-padding, "mob");
         top: 14rem;
     }
 
     @media (min-width: map-get($b-points, "tab")) {
-        padding: 0 6rem;
+        padding-right: map-get($main-padding, "tab");
+        padding-left: map-get($main-padding, "tab");
     }
 
     @media (min-width: map-get($b-points, "des")) {
-        padding: 0 8rem;
+        padding-right: map-get($main-padding, "des");
+        padding-left: map-get($main-padding, "des");
     }
 }
 

@@ -1,13 +1,9 @@
 .links {
 
-
     &__wrap {
         display: inline-block;
         border-radius: 5rem;
-        //padding: .5rem 1.3rem;
-        //margin: 0 0.6rem 1rem 0;
         font-size: 1.2rem;
-        //width: 100%;
         width: calc(100% + 2.4rem);
         margin-left: -1.2rem;
         margin-top: auto;
@@ -17,8 +13,13 @@
         display: flex;
         justify-content: space-between;
         background-color: #ccc;
-        //background-color: #efefef;
         padding: 0 2rem;
+
+        .list-view & {
+            background-color: transparent;
+            padding: 0;
+        }
+
         @media (min-width: map-get($b-points, "tab")) {
             padding: 0 3rem;
         }
@@ -36,13 +37,17 @@
         transition: color 0.15s ease-in-out;
         color: #fff;
 
+        .list-view & {
+            color: #777;
+        }
 
         &--active{
+            @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+                &:hover {
+                    transition: color 0s ease-in-out;
 
-            &:hover {
-                transition: color 0s ease-in-out;
-
-                color: #777;
+                    color: #777;
+                }
             }
         }
         &--inactive{
@@ -57,7 +62,7 @@
 
         & > .href {
 
-            &--expand, &--go-back{
+            &--expand, &--go-back {
                 color: inherit;
                 text-decoration: inherit;
                 text-transform: uppercase;
@@ -65,12 +70,20 @@
                 font-size: 1.4rem;
                 cursor: pointer;
                 text-shadow: 1px 3px 6px #55555544;
+
+                .list-view & {
+                    text-align: right;
+                }
             }
         }
     }
 }
 
-.track:hover .links__link--expand{
-    color: #888;
+.track:hover {
 
+
+    .links__link--expand{
+        color: #888;
+
+    }
 }

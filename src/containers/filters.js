@@ -6,17 +6,16 @@ import Tags from '../components/tags';
 import Periods from '../components/periods';
 import Search from '../components/search';
 import genreMap from '../data/genreMap.js';
-import { periodMap, yearsMap } from '../data/periodMap.js';
+import { periodMap } from '../data/periodMap.js';
 import { resetFilters } from '../actions/itemFilteringActions'
 
-const filterBy = [
-  'genres',
-  'years',
-  'search',
-];
-//todo: trfactor to functional componrnt
-class Filters extends React.Component {
-    render(props) {
+
+function Filters ({   appData,
+                      filterByTagCb,
+                      filterByPeriodCb,
+                      setSearchValue,
+                      toggleSearchOption  }) {
+
         const { expandedFilter,
             filteredByTags,
             filteredByPeriods,
@@ -24,7 +23,7 @@ class Filters extends React.Component {
             searchTrackTitles,
             searchAlbumTitles,
             filteredBySearch
-        } = this.props.appData;
+        } = appData;
 
         const checkboxActivated = {
             searchTrackTitles,
@@ -36,15 +35,15 @@ class Filters extends React.Component {
             switch(filter) {
                 case 'genres':
                     return <Tags tags={Object.keys(genreMap)}
-                                 filterByTagCb={this.props.filterByTagCb}
+                                 filterByTagCb={filterByTagCb}
                                  activeTags={filteredByTags}/>;
                 case 'years':
                     return <Periods periods={Object.keys(periodMap)}
-                                    filterByPeriodCb={this.props.filterByPeriodCb}
+                                    filterByPeriodCb={filterByPeriodCb}
                                     activePeriods={filteredByPeriods}/>;
                 case 'search':
-                    return <Search setSearchCb={this.props.setSearchValue}
-                                   toggleSearchOption={this.props.toggleSearchOption}
+                    return <Search setSearchCb={setSearchValue}
+                                   toggleSearchOption={toggleSearchOption}
                                    checkboxActivated={checkboxActivated}
                                    value={filteredBySearch}
                     />;
@@ -53,13 +52,11 @@ class Filters extends React.Component {
             }
         };
 
-
         return (
             <>
                 {renderFilter(expandedFilter)}
             </>
         )
-    }
 }
 
 

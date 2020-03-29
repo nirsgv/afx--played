@@ -4,9 +4,11 @@
         display: flex;
         padding: 1rem 0rem 3rem;
 
+        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
 
-        &:hover .main-search__icon{
-            color: #888;
+            &:hover .main-search__icon{
+                color: #888;
+            }
         }
 
         .search & {

@@ -9,7 +9,7 @@
         margin: 2rem 0 6rem;
     }
 
-    & __item {
+    &__item {
         /* margin: 0 0.6rem 0.7rem 0; */
         font-size: 1.2rem;
         cursor: pointer;
@@ -20,11 +20,12 @@
         transition: color 0.15s ease-in-out;
 
         &--active {
+            @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+                &:hover {
+                    transition: color 0s ease-in-out;
 
-            &:hover {
-                transition: color 0s ease-in-out;
-
-                color: #777;
+                    color: #777;
+                }
             }
         }
 

@@ -98,8 +98,11 @@ svg {
         > svg {
             margin: auto;
         }
-        &:hover {
-            color: red;
+        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+
+            &:hover {
+                color: red;
+            }
         }
     }
 
@@ -118,9 +121,10 @@ svg {
         align-items: center;
         color: #aaa;
         outline: none;
-
-        &:hover {
-            color: #888;
+        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+            &:hover {
+                color: #888;
+            }
         }
     }
 }
