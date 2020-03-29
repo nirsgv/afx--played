@@ -83,10 +83,11 @@ svg {
     }
 
     &__wrap {
-        height: 20rem;
+        height: auto;
         width: 100%;
         transition: bottom 0.1s ease-in;
         display: flex;
+        margin-bottom: 6rem;
     }
 
     &__icon {
@@ -115,7 +116,7 @@ svg {
     }
 
     & > div {
-        flex-basis: 20%;
+        flex-basis: 4rem;
         display: flex;
         justify-content: center;
         align-items: center;

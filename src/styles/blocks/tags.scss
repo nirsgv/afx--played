@@ -3,6 +3,10 @@
     color: #444;
     padding: .8rem;
 
+  .expanded-item & {
+    margin-bottom: 1.6rem;
+  }
+
   .list-view & {
     padding: .8rem 0;
   }
