@@ -18,15 +18,15 @@ function LinkItem({value, platform, isPlayingEmbedded, cb, children}) {
     return (
 
 
-            <Awrap value={value} wrap={isPlayingEmbedded}>
             <li className={`links__link links__link--${platform} links__link--${!value ? 'in': ''}active`}
                 onClick={cb && value && isPlayingEmbedded ? (e) => cb(e, value, platform) : null}
                 data-target="internal"
             >
-                <SvgSprite classes={`logo--${platform}`} src={src} alt={description} name={platform.toUpperCase()} />
-                {children}
-                </li>
-            </Awrap>
+                <Awrap value={value} wrap={isPlayingEmbedded}>
+                    <SvgSprite classes={`logo--${platform}`} src={src} alt={description} name={platform.toUpperCase()} />
+                    {children}
+                </Awrap>
+            </li>
 
 
 
