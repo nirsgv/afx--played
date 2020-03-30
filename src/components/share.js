@@ -8,7 +8,7 @@ import {
 import SvgSprite from './svgSprite';
 import { imgData } from '../data/localImgData';
 import { copyToClipboard } from '../helpers/str';
-
+import List from "./list";
 
 
 
@@ -35,20 +35,23 @@ const Share = ({ url, isExpanded, onShareWindowClose, dispatchMessageToModal }) 
         onShareWindowClose(false);
     };
     return (
-        <div className={`share-box share-box__wrap ${isExpanded ? 'active' : 'inactive'}`}>
-            <FacebookShareButton url={url} onShareWindowClose={() => cb()}  children={
-                <SvgSprite classes={'share-box__icon icon-logo'} src={src} alt={description} name={'FACEBOOK'} />
-            }/>
-            <TwitterShareButton url={url} onShareWindowClose={() => cb()}  children={
-                <SvgSprite classes={'share-box__icon icon-logo'} src={src} alt={description} name={'TWITTER'}  />
-            }/>
-            <WhatsappShareButton url={url} onShareWindowClose={() => cb()}  children={
-                <SvgSprite classes={'share-box__icon icon-logo'} src={src} alt={description} name={'WHATSAPP'} />
-            }/>
-            <RedditShareButton url={url} onShareWindowClose={() => cb()}  children={
-                <SvgSprite classes={'share-box__icon icon-logo'} src={src} alt={description} name={'REDDIT'} />
-            }/>
-            <CopyUrlButton url={url} dispatchMessageToModal={dispatchMessageToModal} onShareWindowClose={() => cb()}  children={<SvgSprite classes={'share-box__icon icon-logo'} src={src} alt={description} name={'CLIPBOARD'} />}/>
+        <div c>
+            <List baseClassName={`share-box`}>
+                <FacebookShareButton url={url} onShareWindowClose={() => cb()}  children={
+                    <SvgSprite classes={'share-box__icoN'} src={src} alt={description} name={'FACEBOOK'} />
+                }/>
+                <TwitterShareButton url={url} onShareWindowClose={() => cb()}  children={
+                    <SvgSprite classes={'share-box__icon'} src={src} alt={description} name={'TWITTER'}  />
+                }/>
+                <WhatsappShareButton url={url} onShareWindowClose={() => cb()}  children={
+                    <SvgSprite classes={'share-box__icon'} src={src} alt={description} name={'WHATSAPP'} />
+                }/>
+                <RedditShareButton url={url} onShareWindowClose={() => cb()}  children={
+                    <SvgSprite classes={'share-box__icon'} src={src} alt={description} name={'REDDIT'} />
+                }/>
+                <CopyUrlButton url={url} dispatchMessageToModal={dispatchMessageToModal} onShareWindowClose={() => cb()}  children={<SvgSprite classes={'share-box__icon'} src={src} alt={description} name={'CLIPBOARD'} />}/>
+            </List>
+
         </div>
     )
 };

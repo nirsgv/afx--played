@@ -23,10 +23,9 @@ const ExpandedItem = ({match, history, appData, toggleShareExpansion, isPlayingE
         }
     }, []);
 
-    const [beenAnimated, setBeenAnimated] = useState(false);
-    const tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data;
-
-    const chosen = tracks.find(function(track) {
+    const [beenAnimated, setBeenAnimated] = useState(false),
+          tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data,
+          chosen = tracks.find(function(track) {
         return track.ID === match.params.id;
     });
     console.log('match', match, tracks, chosen, history);
@@ -61,13 +60,17 @@ const ExpandedItem = ({match, history, appData, toggleShareExpansion, isPlayingE
                 <h3><DefinitionList classNameSpace={'inner-item'} term={'Album'} definition={`${ALBUM_TITLE} (${YEAR})`} /></h3>
                 <h3><DefinitionList classNameSpace={'inner-item'} term={'Label'} definition={`${RECORD_LABEL} (${CAT})`} /></h3>
                 <Tags className="track__track-tags" tags={GENRES}/>
-                <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'SHARE'} onClick={() => toggleShareExpansion(false)} />
+                {/*<SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'SHARE'} */}
+                {/*           onClick={() => toggleShareExpansion(false)} />*/}
                 <Share url={'http://localhost:3000/track/fis+patupaiarehe'}
                        isExpanded={appData.isSharingExpanded}
                        onShareWindowClose={toggleShareExpansion}
                        dispatchMessageToModal={dispatchMessageToModal}/>
-               <Concerts venues={VENUES}></Concerts>
+
+                <h3 className={'concerts__title'}>{'Available streams:'.toUpperCase()}:</h3>
                 <Links className="track__track-links" links={LINKS} isPlayingEmbedded={isPlayingEmbedded} setPlayerItem={setPlayerItem} isMountedByExpanded={true} history={history}/>
+                <h3 className={'concerts__title'}>{'Played in shows'.toUpperCase()}:</h3>
+               <Concerts venues={VENUES}></Concerts>
             </div>
         </div>
         </>

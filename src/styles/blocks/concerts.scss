@@ -2,21 +2,43 @@
 
 
     &__wrap {
+        background-color: #efefef;
+        @extend %brand-border-radius;
 
     }
 
     &__list {
         margin: 2rem 0 6rem;
+
+    }
+
+
+
+    &__text {
+        margin-right: 1rem;
+    }
+
+    &__link {
+        color: #444;
+        text-decoration: none;
+
+    }
+
+    &__icon {
+        color: #888;
+        font-size: 1rem;
+    }
+    &__title {
+        font-size: 1.4rem;
+        margin-bottom: 0;
+        color: #444;
     }
 
     &__item {
-        /* margin: 0 0.6rem 0.7rem 0; */
         font-size: 1.2rem;
         cursor: pointer;
         padding: 1rem;
-        background-color: #ccc;
         color: #fff;
-        //background-color: #efefef;
         transition: color 0.15s ease-in-out;
 
         &--active {
