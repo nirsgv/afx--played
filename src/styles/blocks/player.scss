@@ -1,0 +1,9 @@
+.player {
+    position: fixed;
+    bottom: 0;
+    height: 20rem;
+    width: 100%;
+    outline: 1px dashed #aaa;
+    display: flex;
+    justify-content: center;
+}

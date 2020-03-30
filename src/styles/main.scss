@@ -17,6 +17,8 @@
 @import 'blocks/main-search.scss';
 @import 'blocks/switch-button.scss';
 @import 'blocks/quick-slide.scss';
+@import 'blocks/player.scss';
+@import 'blocks/share-box.scss';
 
 body {
     background-color: map-get($colors, "grey_bright");
@@ -72,76 +74,3 @@ svg {
     vertical-align: middle;
     box-sizing: content-box;
 }
-
-
-.share-box {
-
-    .main & {
-        height: 20rem;
-        width: 100%;
-        background-color: #ddd;
-    }
-
-    &__wrap {
-    }
-
-    &__list {
-        height: auto;
-        width: 100%;
-        transition: bottom 0.1s ease-in;
-        display: flex;
-        margin-bottom: 6rem;
-        color: #606060;
-    }
-
-    &__item {
-
-        height: 100%;
-        display: flex;
-        width: 4rem;
-
-        > .SocialMediaShareButton ,> .share{
-            margin: auto;
-        }
-
-        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
-
-            &:hover {
-                color: black;
-            }
-        }
-    }
-
-    &.inactive {
-        bottom: -20rem;
-    }
-
-    &.active {
-        bottom: 0;
-    }
-
-    & > div {
-        flex-basis: 4rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #aaa;
-        outline: none;
-        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
-            &:hover {
-                color: #888;
-            }
-        }
-    }
-}
-
-.player {
-    position: fixed;
-    bottom: 0;
-    height: 29rem;
-    width: 100%;
-    outline: 1px dashed #aaa;
-    display: flex;
-    justify-content: center;
-}
-
