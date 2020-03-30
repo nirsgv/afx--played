@@ -58,7 +58,7 @@ function MultiPlayer({ isPlayingEmbedded, platform, item, width, height, trackId
             </div>}
 
 
-            {item &&
+            {isPlayingEmbedded &&
             <div className="player__expand-item">
                 <Link to={`track/${trackId}`} className={"btn btn--full-size href--expand"}>expand</Link>
             </div>
