@@ -4,7 +4,7 @@ import { removeMessageToModal } from "../actions/index";
 import { connect } from "react-redux";
 import YouTube from 'react-youtube';
 import SpotifyPlayer from 'react-spotify-player';
-
+import { Link } from "react-router-dom";
 
 
 // size may also be a plain string using the presets 'large' or 'compact'
@@ -13,9 +13,9 @@ const view = 'coverart'; // or 'list'
 const theme = 'black'; // or 'white'
 
 
-function MultiPlayer({ isPlayingEmbedded, platform, item, width, height }) {
+function MultiPlayer({ isPlayingEmbedded, platform, item, width, height, trackId }) {
 
-    console.log(platform);
+    console.log({item, platform});
     const opts = {
             height: height / 2,
             width: width / 2,
@@ -29,6 +29,8 @@ function MultiPlayer({ isPlayingEmbedded, platform, item, width, height }) {
     };
     return (
         <section className='player__wrap'>
+
+            {isPlayingEmbedded &&
             <div className='player'>
                 {((platform) => {
                     switch(platform) {
@@ -53,7 +55,17 @@ function MultiPlayer({ isPlayingEmbedded, platform, item, width, height }) {
                             return null;
                     }
                 })(platform)}
+            </div>}
+
+
+            {item &&
+            <div className="player__expand-item">
+                <Link to={`track/${trackId}`} className={"btn btn--full-size href--expand"}>expand</Link>
             </div>
+            }
+
+
+            {/*customHistory.push('/')*/}
         </section>
     )
 };
@@ -63,6 +75,7 @@ const mapStateToProps = state => ({
     isPlayingEmbedded: state.player.isPlayingEmbedded,
     platform: state.player.platform,
     item: state.player.item,
+    trackId: state.player.trackId,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

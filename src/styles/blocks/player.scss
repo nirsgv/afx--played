@@ -11,18 +11,31 @@
         pointer-events: none;
     }
 
+    &__expand-item {
+        pointer-events: all;
+        background-color: #000;
+        height: 3rem;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+        width: 30rem;
+        color: #fff;
+        z-index: 2;
+    }
+
     & > .div {
 
         position: ABSOLUTE;
         right: 0;
         bottom: 0;
     }
-    
+
     .iframe {
         pointer-events: all;
         bottom: 3rem;
         position: absolute;
         right: 0;
+        z-index: 1;
 
         &--youtube{
 
