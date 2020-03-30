@@ -28,8 +28,7 @@ const ExpandedItem = ({match, history, appData, toggleShareExpansion, isPlayingE
           chosen = tracks.find(function(track) {
         return track.ID === match.params.id;
     });
-    console.log('match', match, tracks, chosen, history);
-    console.log(dispatchMessageToModal);
+    //console.log('match', match, tracks, chosen, history, dispatchMessageToModal);
 
 
     const {
@@ -47,7 +46,7 @@ const ExpandedItem = ({match, history, appData, toggleShareExpansion, isPlayingE
         VENUES
     } = chosen;
 
-    console.log(IMAGES);
+    //console.log(IMAGES);
     return (
         <>
         <div className="bkg__wrap">

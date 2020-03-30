@@ -1,0 +1,15 @@
+body {
+    background-color: green;
+}
+
+
+.faded-in {
+    animation-name: fadedIn;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-out;
+}
+
+@keyframes fadedIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}

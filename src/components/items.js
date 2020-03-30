@@ -10,7 +10,7 @@ class Items extends React.Component {
     }
 
     render(props) {
-        console.log(this.props.tracksFiltered);
+        //console.log(this.props.tracksFiltered);
         return (
             <>
                 {this.props.tracksFiltered.map((item, index) => {

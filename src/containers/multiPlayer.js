@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import YouTube from 'react-youtube';
 import SpotifyPlayer from 'react-spotify-player';
 import { Link } from "react-router-dom";
+import SvgSprite from "../components/svgSprite";
+import {imgData} from "../data/localImgData";
 
 
 // size may also be a plain string using the presets 'large' or 'compact'
@@ -30,8 +32,8 @@ function MultiPlayer({ isPlayingEmbedded, platform, item, width, height, trackId
     return (
         <section className='player__wrap'>
 
-            {isPlayingEmbedded &&
-            <div className='player'>
+            {isPlayingEmbedded && item &&
+            <div className='player faded-in'>
                 {((platform) => {
                     switch(platform) {
                         case 'youtube':
@@ -58,14 +60,16 @@ function MultiPlayer({ isPlayingEmbedded, platform, item, width, height, trackId
             </div>}
 
 
-            {isPlayingEmbedded &&
-            <div className="player__expand-item">
-                <Link to={`track/${trackId}`} className={"btn btn--full-size href--expand"}>expand</Link>
-            </div>
+            {isPlayingEmbedded && item &&
+            <nav className="expend-played__wrap faded-in">
+                <Link to={`track/${trackId}`} className={"expend-played__button"}>
+                    <span className={"expend-played__text"}>expand</span>
+                    <SvgSprite classes={"expend-played__icon"} src={imgData.sprite.src} alt={imgData.sprite.description} name={'LONG_ARROW_RIGHT'} />
+
+                </Link>
+            </nav>
             }
 
-
-            {/*customHistory.push('/')*/}
         </section>
     )
 };
