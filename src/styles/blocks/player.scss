@@ -6,4 +6,31 @@
     outline: 1px dashed #aaa;
     display: flex;
     justify-content: center;
+
+    &__wrap {
+        pointer-events: none;
+    }
+
+    & > .div {
+
+        position: ABSOLUTE;
+        right: 0;
+        bottom: 0;
+    }
+    
+    .iframe {
+        pointer-events: all;
+        bottom: 3rem;
+        position: absolute;
+        right: 0;
+
+        &--youtube{
+
+        }
+
+        &--spotify{
+
+        }
+    }
+
 }

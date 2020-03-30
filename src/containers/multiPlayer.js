@@ -13,7 +13,7 @@ const view = 'coverart'; // or 'list'
 const theme = 'black'; // or 'white'
 
 
-const MultiPlayer = ({ isPlayingEmbedded, platform, item, width, height }) => {
+function MultiPlayer({ isPlayingEmbedded, platform, item, width, height }) {
 
     console.log(platform);
     const opts = {
@@ -28,7 +28,7 @@ const MultiPlayer = ({ isPlayingEmbedded, platform, item, width, height }) => {
         width:width / 2,
     };
     return (
-        <section className='player player__wrap'>
+        <section className='player__wrap'>
             <div className='player'>
                 {((platform) => {
                     switch(platform) {
@@ -36,6 +36,8 @@ const MultiPlayer = ({ isPlayingEmbedded, platform, item, width, height }) => {
                             return (<YouTube
                                 videoId={item}
                                 opts={opts}
+                                className={'iframe iframe--youtube'}
+                                containerClassName={'player youtube'}
                             />);
                         case 'spotify':
                             return (<SpotifyPlayer
@@ -43,6 +45,7 @@ const MultiPlayer = ({ isPlayingEmbedded, platform, item, width, height }) => {
                                 size={size}
                                 view={view}
                                 theme={theme}
+                                className={'iframe iframe--spotify'}
                             />);
                         case 'deezer':
                             return null;
