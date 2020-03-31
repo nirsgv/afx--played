@@ -32,7 +32,7 @@ const MessagesModal = ({currentMessages, removeMessageToModal}) => {
         <section className='modal-box modal-box__wrap'>
             <ul className="modal-box modal-box__list">
                 {currentMessages.map((item, index) =>
-                    <li className='modal-box modal-box__item' data-index={index} style={{position: 'absolute', transition: 'top 0.3s ease-in', top: `${index * 62}px`}}>
+                    <li className='modal-box modal-box__item' data-index={index} style={{position: 'absolute', transition: 'top 0.3s ease-in', top: `${index * 62}px`}} key={item.uniqueId}>
 
                     <Message key={item.uniqueId}
                              index={index}

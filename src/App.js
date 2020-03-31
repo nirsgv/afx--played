@@ -156,6 +156,8 @@ const App = ({  appData,
                             </List>
                         </nav>
                     </footer>
+
+
                     <ViewPort setDimensionsCb={setViewportDimensions} viewport={viewport}>
                         <MultiPlayer />
                     </ViewPort>

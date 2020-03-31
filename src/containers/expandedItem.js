@@ -28,8 +28,7 @@ const ExpandedItem = ({match, history, appData, toggleShareExpansion, isPlayingE
           chosen = tracks.find(function(track) {
         return track.ID === match.params.id;
     });
-    console.log('match', match, tracks, chosen, history);
-    console.log(dispatchMessageToModal);
+    //console.log('match', match, tracks, chosen, history, dispatchMessageToModal);
 
 
     const {
@@ -47,7 +46,7 @@ const ExpandedItem = ({match, history, appData, toggleShareExpansion, isPlayingE
         VENUES
     } = chosen;
 
-    console.log(IMAGES);
+    //console.log(IMAGES);
     return (
         <>
         <div className="bkg__wrap">
@@ -68,7 +67,7 @@ const ExpandedItem = ({match, history, appData, toggleShareExpansion, isPlayingE
                        dispatchMessageToModal={dispatchMessageToModal}/>
 
                 <h3 className={'concerts__title'}>{'Available streams:'.toUpperCase()}:</h3>
-                <Links className="track__track-links" links={LINKS} isPlayingEmbedded={isPlayingEmbedded} setPlayerItem={setPlayerItem} isMountedByExpanded={true} history={history}/>
+                <Links className="track__track-links" links={LINKS} isPlayingEmbedded={isPlayingEmbedded} setPlayerItem={setPlayerItem} isMountedByExpanded={true} history={history} ID={ID}/>
                 <h3 className={'concerts__title'}>{'Played in shows'.toUpperCase()}:</h3>
                <Concerts venues={VENUES}></Concerts>
             </div>

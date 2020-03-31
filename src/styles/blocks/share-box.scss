@@ -1,0 +1,60 @@
+.share-box {
+
+    .main & {
+        height: 20rem;
+        width: 100%;
+        background-color: #ddd;
+    }
+
+    &__wrap {
+    }
+
+    &__list {
+        height: auto;
+        width: 100%;
+        transition: bottom 0.1s ease-in;
+        display: flex;
+        margin-bottom: 6rem;
+        color: #606060;
+    }
+
+    &__item {
+
+        height: 100%;
+        display: flex;
+        width: 4rem;
+
+        > .SocialMediaShareButton ,> .share{
+            margin: auto;
+        }
+
+        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+
+            &:hover {
+                color: black;
+            }
+        }
+    }
+
+    &.inactive {
+        bottom: -20rem;
+    }
+
+    &.active {
+        bottom: 0;
+    }
+
+    & > div {
+        flex-basis: 4rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #aaa;
+        outline: none;
+        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+            &:hover {
+                color: #888;
+            }
+        }
+    }
+}

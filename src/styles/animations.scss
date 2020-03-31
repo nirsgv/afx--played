@@ -1,0 +1,15 @@
+body {
+    background-color: green;
+}
+
+
+.faded-in-from-bottom {
+    animation-name: fadedInFromBottom;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-out;
+}
+
+@keyframes fadedInFromBottom {
+    from {opacity: 0; transform: translate3d(0rem, 1rem, 0)}
+    to {opacity: 1; transform: translate3d(0rem, 0, 0)}
+}

@@ -33,6 +33,11 @@ main {
     @media (min-width: map-get($b-points, "des")) {
         padding-right: map-get($main-padding, "des");
         padding-left: map-get($main-padding, "des");
+    }MessagesModal
+
+    &.expanded-item {
+        height: calc(100vh - 10rem);
+        top: 10rem;
     }
 }
 

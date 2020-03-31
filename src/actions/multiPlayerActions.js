@@ -36,7 +36,7 @@ const trimByPlatform = (val, platform) => {
     return res;
 };
 
-function setPlayerItem(e, val, platform) {
+function setPlayerItem(e, val, platform, trackId) {
     e.preventDefault();
     console.log(val);
     setPlayerType(platform);
@@ -45,7 +45,7 @@ function setPlayerItem(e, val, platform) {
 
     const action = {
         type: SET_PLAYER_ITEM,
-        payload: { item, platform }
+        payload: { item, platform, trackId }
     };
 
     return action;

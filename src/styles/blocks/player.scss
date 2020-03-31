@@ -1,0 +1,82 @@
+.player {
+    position: fixed;
+    bottom: 0;
+    height: 20rem;
+    width: 100%;
+    //outline: 1px dashed #aaa;
+    display: flex;
+    justify-content: center;
+
+    &__wrap {
+        pointer-events: none;
+    }
+
+
+    & > .div {
+
+        position: ABSOLUTE;
+        right: 0;
+        bottom: 0;
+    }
+
+    .iframe {
+        pointer-events: all;
+        bottom: 3rem;
+        position: absolute;
+        right: 0.5rem;
+        z-index: 1;
+        border: 1rem solid #202020;
+        border-radius: 1rem 1rem 0 0;
+        border-bottom-width: 0;
+        border-left-width: 0px;
+        border-right-width: 0;
+
+        &--youtube{
+
+        }
+
+        &--spotify{
+
+        }
+    }
+
+}
+
+.expend-played {
+
+    &__wrap{
+        pointer-events: all;
+        background-color: #202020;
+        height: 3rem;
+        bottom: 0.5rem;
+        right: 0.5rem;
+        position: fixed;
+        width: 30rem;
+        color: #fff;
+        z-index: 2;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 0 2rem;
+        border-radius: 0 0 1rem 1rem;
+    }
+
+
+    &__button{
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.2rem;
+    }
+
+
+    &__text{
+
+    }
+
+
+    &__icon{
+        font-size: .8rem;
+
+    }
+
+}
