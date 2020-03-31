@@ -33,7 +33,7 @@ function MultiPlayer({ isPlayingEmbedded, platform, item, width, height, trackId
         <section className='player__wrap'>
 
             {isPlayingEmbedded && item &&
-            <div className='player faded-in'>
+            <div className='player faded-in-from-bottom'>
                 {((platform) => {
                     switch(platform) {
                         case 'youtube':
@@ -61,7 +61,7 @@ function MultiPlayer({ isPlayingEmbedded, platform, item, width, height, trackId
 
 
             {isPlayingEmbedded && item &&
-            <nav className="expend-played__wrap faded-in">
+            <nav className="expend-played__wrap faded-in-from-bottom">
                 <Link to={`track/${trackId}`} className={"expend-played__button"}>
                     <span className={"expend-played__text"}>expand</span>
                     <SvgSprite classes={"expend-played__icon"} src={imgData.sprite.src} alt={imgData.sprite.description} name={'LONG_ARROW_RIGHT'} />
