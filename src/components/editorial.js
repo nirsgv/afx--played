@@ -12,10 +12,7 @@ function Editorial(props) {
     }, []);
 
     const tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data;
-    console.log(tracks);
-    const dnbFavs = ['laurentgarnier+themanwiththeredface','shapednoise+intruder','strafe+setitoff','shawnrudiman+secrets(djmisjahremix)','blupeter+widescreen&digital']; // a list of ids handpicked for a specific genre
     const getItemsByIds = (ids, allTracks) => {return allTracks.filter(track => ids.includes(track.ID))};
-    const dnbItems = getItemsByIds(dnbFavs, tracks);
 
     return (
         <>
@@ -24,10 +21,10 @@ function Editorial(props) {
                 <meta name="description" content="This is the editorial page" />
             </Helmet>
             <h1>About, {props.name}</h1>
-            {editorialData.map(list => {
+            {editorialData.map((list, index) => {
                 const itemsnow = getItemsByIds(list.ITEMS, tracks);
                 return (
-                    <QuickSlide title={list.TITLE}>
+                    <QuickSlide title={list.TITLE} key={index}>
                         <Items tracksFiltered={itemsnow} isPlayingEmbedded={props.isPlayingEmbedded} setPlayerItem={props.setPlayerItem} />
                     </QuickSlide>
                 )

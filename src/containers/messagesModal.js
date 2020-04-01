@@ -18,9 +18,9 @@ const Message = ({itemId, uniqueId, index, removeMessageToModal}) => {
     return (
         <>
             <SvgSprite classes={'icon-logo'} src={src} alt={message.iconName} name={message.iconName} />
-            <h1 key={index}>{message.content}</h1>
+            <h3 key={index}>{message.content}</h3>
             <button className='close-btn' onClick={() => removeMessageToModal(uniqueId)}>
-                x
+                <SvgSprite classes={'concerts__icon'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'TIMES'} />
             </button>
         </>
     );
@@ -29,11 +29,14 @@ const Message = ({itemId, uniqueId, index, removeMessageToModal}) => {
 
 const MessagesModal = ({currentMessages, removeMessageToModal}) => {
     return (
-        <section className='modal-box modal-box__wrap'>
-            <ul className="modal-box modal-box__list">
+        <section className='modal-box__wrap'>
+            <ul className="modal-box__list">
                 {currentMessages.map((item, index) =>
-                    <li className='modal-box modal-box__item' data-index={index} style={{position: 'absolute', transition: 'top 0.3s ease-in', top: `${index * 62}px`}} key={item.uniqueId}>
-
+                    <li className='modal-box__item'
+                        data-index={index}
+                        style={{ top: `${index * 62}px` }}
+                        key={item.uniqueId}
+                    >
                     <Message key={item.uniqueId}
                              index={index}
                              itemId={item.id}
