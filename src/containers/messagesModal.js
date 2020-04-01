@@ -37,7 +37,6 @@ const MessagesModal = ({currentMessages, removeMessageToModal}) => {
                         style={{ top: `${index * 62}px` }}
                         key={item.uniqueId}
                     >
-
                     <Message key={item.uniqueId}
                              index={index}
                              itemId={item.id}

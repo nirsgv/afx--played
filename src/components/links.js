@@ -13,13 +13,13 @@ function Awrap({children, value, wrap}) {
 }
 
 
-function LinkItem({value, platform, isPlayingEmbedded, cb, children}) {
+function LinkItem({value, platform, isPlayingEmbedded, cb, children, ID}) {
     const { src, description } = imgData.sprite;
     return (
 
 
             <li className={`links__link links__link--${platform} links__link--${!value ? 'in': ''}active`}
-                onClick={cb && value && isPlayingEmbedded ? (e) => cb(e, value, platform) : null}
+                onClick={cb && value && isPlayingEmbedded ? (e) => cb(e, value, platform, ID) : null}
                 data-target="internal"
             >
                 <Awrap value={value} wrap={isPlayingEmbedded}>
@@ -44,16 +44,16 @@ function NavButton({value, platform,  children}) {
 
 function Links(props) {
 
-    const {isPlayingEmbedded, setPlayerItem} = props;
+    const {isPlayingEmbedded, setPlayerItem, ID} = props;
     const {YOUTUBE, SPOTIFY, DEEZER, APPLE} = props.links;
 
     return (
         <nav className='links__wrap'>
             <ul className='links__list'>
-                <LinkItem value={YOUTUBE} platform='youtube' isPlayingEmbedded={isPlayingEmbedded} cb={setPlayerItem}/>
-                <LinkItem value={SPOTIFY} platform='spotify' isPlayingEmbedded={isPlayingEmbedded} cb={setPlayerItem}/>
-                <LinkItem value={DEEZER} platform='deezer' isPlayingEmbedded={isPlayingEmbedded} cb={setPlayerItem}/>
-                <LinkItem value={APPLE} platform='apple' isPlayingEmbedded={isPlayingEmbedded} cb={setPlayerItem}/>
+                <LinkItem value={YOUTUBE} platform='youtube' isPlayingEmbedded={isPlayingEmbedded} cb={setPlayerItem} ID={ID}/>
+                <LinkItem value={SPOTIFY} platform='spotify' isPlayingEmbedded={isPlayingEmbedded} cb={setPlayerItem} ID={ID}/>
+                <LinkItem value={DEEZER} platform='deezer' isPlayingEmbedded={isPlayingEmbedded} cb={setPlayerItem} ID={ID}/>
+                <LinkItem value={APPLE} platform='apple' isPlayingEmbedded={isPlayingEmbedded} cb={setPlayerItem} ID={ID}/>
                 <NavButton value={true} platform={!props.isMountedByExpanded ? 'expand' : 'back'}>
                     {!props.isMountedByExpanded
                         ?   <Link to={`track/${props.ID}`} className={"btn btn--full-size href--expand"}>expand</Link>

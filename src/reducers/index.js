@@ -185,7 +185,7 @@ function messages(state = { currentMessages: [] }, action) {
 }
 
 
-function player(state = { platform: '', item: '', isPlayingEmbedded: false }, action) {
+function player(state = { platform: '', item: '', isPlayingEmbedded: false, trackId: '' }, action) {
     switch(action.type) {
 
         case SET_PLAYER_TYPE:
@@ -198,7 +198,8 @@ function player(state = { platform: '', item: '', isPlayingEmbedded: false }, ac
             return {
                 ...state,
                 item: action.payload.item,
-                platform: action.payload.platform
+                platform: action.payload.platform,
+                trackId: action.payload.trackId,
             };
 
         case TOGGLE_EMBEDDED_PLAY:
