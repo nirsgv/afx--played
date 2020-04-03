@@ -15,10 +15,10 @@ main {
 
     // todo: change height property to prevent bugs in scrolling
     //height: calc(100vh - 8rem);
-
+outline: 4px dashed red;
     overflow: scroll;
     padding: 0 2rem;
-
+    padding-bottom: 12rem;
     @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
         padding-right: map-get($main-padding, "mob");
         padding-left: map-get($main-padding, "mob");
@@ -135,4 +135,12 @@ input[type="checkbox"]{
             opacity: 0.2;
         }
     }
+}
+
+
+.footer {
+    width: 100%;
+    height: 6.4rem;
+    background-color: green;
+    margin-top: 14rem;
 }
