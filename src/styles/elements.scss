@@ -11,29 +11,13 @@ nav.main-nav, section.manage-items {
 main {
     top: 8rem;
     position: relative;
-    //max-height: 100vh;
-
-    // todo: change height property to prevent bugs in scrolling
-    //height: calc(100vh - 8rem);
-outline: 4px dashed red;
     overflow: scroll;
     padding: 0 2rem;
     padding-bottom: 12rem;
+    @extend %site-wide-padding;
     @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
-        padding-right: map-get($main-padding, "mob");
-        padding-left: map-get($main-padding, "mob");
         top: 14rem;
     }
-
-    @media (min-width: map-get($b-points, "tab")) {
-        padding-right: map-get($main-padding, "tab");
-        padding-left: map-get($main-padding, "tab");
-    }
-
-    @media (min-width: map-get($b-points, "des")) {
-        padding-right: map-get($main-padding, "des");
-        padding-left: map-get($main-padding, "des");
-    }MessagesModal
 
     &.expanded-item {
         height: calc(100vh - 10rem);
@@ -135,12 +119,4 @@ input[type="checkbox"]{
             opacity: 0.2;
         }
     }
-}
-
-
-.footer {
-    width: 100%;
-    height: 6.4rem;
-    background-color: green;
-    margin-top: 14rem;
 }

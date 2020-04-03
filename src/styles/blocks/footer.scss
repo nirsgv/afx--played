@@ -1,19 +1,31 @@
-.footer {
+$footer-height: 4.4rem;
 
+.footer {
+    width: 100%;
+    height: $footer-height;
+    background-color: map-get($colors, "tag-highlight");
+    margin-top: 14rem;
+    @extend %site-wide-padding;
 }
 
 .footer-nav {
-
-
     &__wrap{
-
+        height: $footer-height;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     &__list{
-
+        display: flex;
+        align-items: center;
     }
 
     &__item{
-
+        a {
+            color: white;
+            text-decoration: none;
+            margin-right: 2rem;
+        }
     }
 }
