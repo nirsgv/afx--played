@@ -1,16 +1,17 @@
-$footer-height: 4.4rem;
+$footer-height: 14rem;
 
 .footer {
     width: 100%;
-    height: $footer-height;
-    background-color: map-get($colors, "tag-highlight");
-    margin-top: 14rem;
+    //height: $footer-height;
+    //background-color: map-get($colors, "tag-highlight");
+    border-top: 1px solid #ccc;
+    //margin-top: 14rem;
     @extend %site-wide-padding;
 }
 
 .footer-nav {
     &__wrap{
-        height: $footer-height;
+        height: auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -19,13 +20,24 @@ $footer-height: 4.4rem;
     &__list{
         display: flex;
         align-items: center;
+        height: $footer-height;
     }
 
     &__item{
         a {
-            color: white;
+            color: #888;
             text-decoration: none;
             margin-right: 2rem;
         }
     }
+}
+
+
+main {
+    min-height: 100vh;
+    margin-bottom: -1 * $footer-height;
+}
+.footer,
+.push {
+    height: $footer-height;
 }

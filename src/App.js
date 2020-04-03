@@ -146,6 +146,8 @@ const App = ({  appData,
                                 <Main name={"something"} ></Main>
                             </Route>
                         </Switch>
+                        <div className="push"></div>
+
                     </main>
                     <footer className={"footer"} >
                         <nav>

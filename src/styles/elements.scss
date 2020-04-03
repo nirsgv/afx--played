@@ -13,7 +13,7 @@ main {
     position: relative;
     overflow: scroll;
     padding: 0 2rem;
-    padding-bottom: 12rem;
+    padding-bottom: 20rem;
     @extend %site-wide-padding;
     @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
         top: 14rem;
