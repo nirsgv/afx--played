@@ -1,6 +1,7 @@
 {
   "name": "afx_played",
-  "proxy": "http://localhost:8080",
+  "homepage" : "src/",
+  "proxy": "http://localhost:3000",
   "jest": {
     "transformIgnorePatterns": [
       "/node_modules/"
@@ -10,8 +11,10 @@
   "private": true,
   "dependencies": {
     "classnames": "^2.2.6",
+    "compression": "^1.7.4",
     "express": "^4.17.1",
     "joi": "^14.3.1",
+    "morgan": "^1.10.0",
     "node-sass": "^4.13.1",
     "nodemailer": "^6.4.4",
     "nodemailer-mailgun-transport": "^2.0.0",
