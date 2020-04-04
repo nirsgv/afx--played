@@ -5,7 +5,7 @@
         height: auto;
         overflow-x: hidden;
         margin-bottom: 4.6rem;
-
+        z-index: map-get($z-indexes, "quick-slide-wrap");
         width: calc(100% + (2 * #{(map-get($main-padding, "mob"))} - (.5 * #{(map-get($main-padding, "mob"))})));
         margin-left: -1 * map-get($main-padding, "mob");
         padding-left: map-get($main-padding, "mob");;
@@ -47,7 +47,7 @@
         position: absolute;
         width: 50px;
         height: 50px;
-        z-index: 1;
+        z-index: map-get($z-indexes, "quick-slide-button");
         top: 50%;
         transform: translateY(-50%);
         border-radius: 50%;
@@ -91,7 +91,7 @@
         }
 
         &--disabled {
-            opacity: .2
+            opacity: 0
         }
     }
 

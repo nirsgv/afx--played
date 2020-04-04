@@ -24,7 +24,7 @@
         bottom: 3rem;
         position: absolute;
         right: 0.5rem;
-        z-index: 1;
+        z-index: map-get($z-indexes, "iframe");
         border: 1rem solid #202020;
         border-radius: 1rem 1rem 0 0;
         border-bottom-width: 0;
@@ -53,7 +53,7 @@
         position: fixed;
         width: 30rem;
         color: #fff;
-        z-index: 2;
+        z-index: map-get($z-indexes, "player");
         display: flex;
         justify-content: flex-end;
         align-items: center;

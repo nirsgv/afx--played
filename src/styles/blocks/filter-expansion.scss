@@ -6,7 +6,7 @@
     height: 4rem;
     width: 100%;
     background-color: #788;
-    z-index: 20;
+    z-index: map-get($z-indexes, "filter-expansion");
     padding-right: $menu_gap;
 
     @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
@@ -63,7 +63,7 @@
         top: 4rem;
         position: absolute;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 10px;
-        z-index: 10;
+        z-index: map-get($z-indexes, "filter-expansion-wrap");
         padding: 2rem 2rem 0 2rem;
         padding-right: $menu_gap  + 2rem;
         @extend %viewport-wide;
@@ -153,14 +153,14 @@
     width: 100%;
     transition: right 0.2s ease-out;
     right: calc(-100% - 20rem);
-    z-index: 50;
+    z-index: map-get($z-indexes, "nav-slide");
 
     @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
         position: relative;
         box-shadow: none;
         right: 0;
         height: auto;
-        z-index: 8;
+        z-index: map-get($z-indexes, "nav-slide-desktop");
         &--open {
             right: 0;
         }
