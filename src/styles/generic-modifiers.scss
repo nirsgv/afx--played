@@ -40,3 +40,20 @@
         border-radius: 16px;
     }
 }
+
+%site-wide-padding {
+    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+        padding-right: map-get($main-padding, "mob");
+        padding-left: map-get($main-padding, "mob");
+    }
+
+    @media (min-width: map-get($b-points, "tab")) {
+        padding-right: map-get($main-padding, "tab");
+        padding-left: map-get($main-padding, "tab");
+    }
+
+    @media (min-width: map-get($b-points, "des")) {
+        padding-right: map-get($main-padding, "des");
+        padding-left: map-get($main-padding, "des");
+    }
+}

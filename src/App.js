@@ -125,7 +125,7 @@ const App = ({  appData,
                             </nav>
                         </div>
                     </header>
-                    <main className={`${appData.spaPageName}`}>
+                    <main className={`${appData.spaPageName} faded-in-from-bottom`}>
                         <Switch>
                             <Route path="/about">
                                 <About name={"about"} setSpaPageName={setSpaPageName}/>
@@ -146,13 +146,15 @@ const App = ({  appData,
                                 <Main name={"something"} ></Main>
                             </Route>
                         </Switch>
-                    </main>share
-                    <footer>
+                        <div className="push"></div>
+
+                    </main>
+                    <footer className={"footer"} >
                         <nav>
-                            <List baseClassName={'footer-nav'}>
-                                <Link to="/">Home</Link>
-                                <Link to="/about">About</Link>
-                                <button onClick={() => toggleGridListView()}>toggleGridListView button</button>
+                            <List baseClassName="footer-nav">
+                                <NavLink exact={true} activeClassName="active" to="/">Home</NavLink>
+                                <NavLink activeClassName="active" to="/editorial">Editorial</NavLink>
+                                <NavLink activeClassName="active" to="/about">About</NavLink>
                             </List>
                         </nav>
                     </footer>

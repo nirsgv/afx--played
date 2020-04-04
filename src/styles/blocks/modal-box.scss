@@ -7,7 +7,7 @@
         position: fixed;
         top: 1rem;
         width: 100%;
-        z-index: 100;
+        z-index: map-get($z-indexes, "modal-box");
         pointer-events: none;
     }
 

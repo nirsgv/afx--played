@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Items from '../components/items';
@@ -45,10 +45,12 @@ const Main = (props) => {
             .filter(inViewRange(itemsBatchAmt, batchNum))
         : '';
 
+    const child1 = useMemo(() => <Items tracksFiltered={tracksFiltered} isPlayingEmbedded={props.isPlayingEmbedded} setPlayerItem={props.setPlayerItem} />, [tracksFiltered]);
+
     return (
         <>
             <ul className="track-items track-items--animated">
-                <Items tracksFiltered={tracksFiltered} isPlayingEmbedded={props.isPlayingEmbedded} setPlayerItem={props.setPlayerItem} />
+                { child1 }
             </ul>
         </>
     )

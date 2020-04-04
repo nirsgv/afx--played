@@ -1,3 +1,21 @@
+
+$z-indexes: (
+        "iframe": 1,
+        "player": 2,
+        "footer": 3,
+        "quick-slide-wrap": 4,
+        "quick-slide-button": 5,
+        "nav-slide-desktop": 6,
+        "something": 10,
+        "filter-expansion-wrap": 15,
+        "filter-expansion": 20,
+        "popup": 30,
+        "main-nav": 40,
+        "nav-slide": 50,
+        "header": 100,
+        "modal-box": 101,
+);
+
 $menu_gap: 8rem;
 
 // mob first state of mind
@@ -36,11 +54,6 @@ $greys: (
         "grey_10": darken( #fff, 100% ),
 );
 
-$z-indexes: (
-        "something": 10,
-        "header": 100,
-        "popup": 30
-);
 
 // example deep map
 $Hs: (
