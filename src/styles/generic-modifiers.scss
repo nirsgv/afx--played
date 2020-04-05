@@ -30,6 +30,14 @@
     width: 100vw;
 }
 
+%full-size-absolute {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
 %brand-border-radius {
     border-radius: 6px;
     @media (min-width: map-get($b-points, "tab")) {

@@ -30,7 +30,7 @@ const initialAppState = {
     isMobileMenuOpen: false,
     isDesktopFiltersExpanded: false,
     isPlayingEmbedded: true,
-    itemsBatchAmt: 15,
+    itemsBatchAmt: 8,
     batchNum: 1,
     isTracksDataLocal: false,
     isShowsDataLocal: false,
