@@ -1,7 +1,3 @@
-body {
-    background-color: green;
-}
-
 
 .faded-in-from-bottom {
     animation-name: fadedInFromBottom;
@@ -12,4 +8,13 @@ body {
 @keyframes fadedInFromBottom {
     from {opacity: 0; transform: translate3d(0rem, 1rem, 0)}
     to {opacity: 1; transform: translate3d(0rem, 0, 0)}
+}
+
+
+@keyframes footerFetchAnimation {
+    0% {transform: scale(1);opacity: 0.5;}
+    40% {transform: scale(1.2);opacity: 1;}
+    50% {transform: scale(1.2);opacity: 1;}
+    60% {transform: scale(1.2);opacity: 1;}
+    100% {transform: scale(1);opacity: 0.5;}
 }
