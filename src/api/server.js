@@ -34,6 +34,9 @@ console.log(PORT);
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
+
+
+
 app.get('/ping', function (req, res) {
     return res.send('pong');
 });
@@ -76,8 +79,15 @@ app.post('/api/email', (req, res) => {
     res.json({message: 'Message received!'});
 });
 
+
+app.get('/*', function (req, res) {
+    return res.sendFile(path.resolve(__dirname + '/../../build/index.html'));
+});
+
+
 server.listen(PORT, err => {
     if (err) throw err;
 
     console.log('server started');
 });
+
