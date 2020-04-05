@@ -34,6 +34,7 @@ header {
     background-color: map-get($greys, "grey_1");
     z-index: map-get($z-indexes, "header");
     transform : translate3d(0, 0, 0);
+    box-shadow: 1px 6px 7px #aaaaaa11;
 
     @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
         height: 10rem;

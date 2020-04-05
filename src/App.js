@@ -44,6 +44,7 @@ import { createBrowserHistory } from "history";
 import { Helmet } from 'react-helmet';
 import urlConstants from './data/urlConstants';
 import InputBox from "./components/inputBox";
+import AnimativeIndicator from "./components/animativeIndicator";
 
 // import { useFetch } from './customHooks/index'
 const customHistory = createBrowserHistory();
@@ -65,7 +66,15 @@ const App = ({  appData,
                 setShowsAsLocal,
                 setSpaPageName  }) => {
 
-    const getScrollItems = debounce(function(){ isBottomOfPage(this) && viewMore() }, 100);
+    const [ animateFooter, setAnimateFooter ] = useState(false);
+
+
+    const getScrollItems = debounce(function(){
+        isBottomOfPage(this) &&
+        setAnimateFooter(true);
+
+        setTimeout(()=>viewMore(), 500);
+    }, 300);
 
     useEffect(() => {
         window.addEventListener('scroll', getScrollItems);
@@ -101,7 +110,7 @@ const App = ({  appData,
                             </List>
                             <Hamburger menuIsClosed={!appData.isMobileMenuOpen} toggleMobMenu={toggleMobMenu} className={'hamburger'}/>
                         </nav>
-                        <div className="nav-slide" className={`nav-slide ${appData.isMobileMenuOpen ? 'nav-slide--open' : ''}`} data-test="nav-slide">
+                        <div className={`nav-slide ${appData.isMobileMenuOpen ? 'nav-slide--open' : ''}`} data-test="nav-slide">
                             <nav className="main-filters">
                                 <ul className="main-filters__list">
                                     <li onClick={() => {expandFilter('genres');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${appData.expandedFilter === 'genres' ? '--on' : ''}`}>Genres</li>
@@ -152,9 +161,12 @@ const App = ({  appData,
                     <footer className={"footer"} >
                         <nav>
                             <List baseClassName="footer-nav">
+                                <SvgSprite classes={''} src={imgData.sprite.src} alt={imgData.sprite.description} name={'APHEX'} />
                                 <NavLink exact={true} activeClassName="active" to="/">Home</NavLink>
                                 <NavLink activeClassName="active" to="/editorial">Editorial</NavLink>
                                 <NavLink activeClassName="active" to="/about">About</NavLink>
+
+                                <AnimativeIndicator animateFooter={animateFooter} setAnimateFooter={setAnimateFooter} />
                             </List>
                         </nav>
                     </footer>
@@ -194,6 +206,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 }, dispatch);
 
 export const goHome = () => {
+    //viewMore(false);
     if (customHistory.location.pathname !== '/') customHistory.push('/');
 };
 
