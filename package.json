@@ -58,5 +58,8 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "jest-enzyme": "^7.1.2",
     "redux-devtools": "^3.5.0"
+  },
+  "engines": {
+    "node": "10.x"
   }
 }
