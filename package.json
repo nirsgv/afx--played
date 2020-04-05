@@ -1,6 +1,6 @@
 {
   "name": "afx_played",
-  "homepage" : "src/",
+  "homepage" : "/",
   "proxy": "http://localhost:3000",
   "jest": {
     "transformIgnorePatterns": [
