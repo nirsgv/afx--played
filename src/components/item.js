@@ -32,8 +32,7 @@ function Item(props) {
 
 
                 <Img src={`../assets/album_covers/album_image_${ID}.jpg`}
-                     placeholderImg={'https://flypaper.soundfly.com/wp-content/uploads/2018/07/aphex-header.jpg'}
-                     alt={'https:/`/www.ucf.edu/files/2017/12/BIG-COLLAGE.jpg'}
+                     alt={''}
                      transitionSeconds={3}
                      blockClassName={'track'}
                 />

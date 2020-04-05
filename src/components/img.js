@@ -6,8 +6,12 @@ const Img = (props) => {
 
     const [ hasFinishedLoading, setHasFinishedLoading ] = useState(false);
     const {
-        src, alt, transitionSeconds, blockClassName = 'track',
-        placeholderImg ='https://flypaper.soundfly.com/wp-content/uploads/2018/07/aphex-header.jpg'} = props;
+        src,
+        alt,
+        transitionSeconds,
+        blockClassName = 'track',
+        placeholderImg ='../assets/aphex-logo.svg'
+    } = props;
 
 
     const setAssetAsLoaded = () => {
@@ -27,6 +31,8 @@ const Img = (props) => {
                  onLoad={() => setAssetAsLoaded()}
                  onError={() => console.log('Error loading')}
                  style={style}
+            />
+            <img alt='placeholder-image' src={placeholderImg} className={`${blockClassName}__default-img-layer ${hasFinishedLoading ? 'hide' : 'show'}`}
             />
         </div>
     );
