@@ -8,8 +8,11 @@ This is a react/redux spa made to present a unique list of tracks.
 
 ## Tech
 
-  - This is react app which uses redux for state managemnt and incorporates an array of unique components, which i will try to list below- 
-  - Sass is used as a stylesheet preprocessor.
+  - This is react app which uses redux for state management.
+  - The app and its API are served through express.js.
+  - Components are function based, some incorporate hooks and all are self-made.
+  - Sass is used as a stylesheet preprocessor.     
+  - The data sources are a few json files which i assembled.       
 
 
 You can also:
