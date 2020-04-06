@@ -12,11 +12,12 @@ This is a react/redux spa made to present a unique list of tracks.
   - The app and its API are served through express.js.
   - Components are function based, some incorporate hooks and all are self-made.
   - Sass is used as a stylesheet preprocessor.     
-  - The data sources are a few json files which i assembled.       
+  - The data sources are a few json files which i assembled.  
+  - Jest and Enzyme are used for testing.
 
 
-You can also:
-  - Import and save files from GitHub, Dropbox, Google Drive and One Drive
+You can:
+  - Use the filtering in the app through three parameters:
   - Drag and drop markdown and HTML files into Dillinger
   - Export documents as Markdown, HTML and PDF
 
