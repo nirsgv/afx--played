@@ -6,10 +6,10 @@ This is a react/redux spa made to present a unique list of tracks.
   - This list is long and has many fine items burried in it.
   - The created app makes an attemp to present these tracks.
 
-# New Features!
+## Tech
 
-  - Import a HTML file and watch it magically convert to Markdown
-  - Drag and drop images (requires your Dropbox account be linked)
+  - This is react app which uses redux for state managemnt and incorporates an array of unique components, which i will try to list below- 
+  - Sass is used as a stylesheet preprocessor.
 
 
 You can also:
@@ -22,10 +22,6 @@ Markdown is a lightweight markup language based on the formatting conventions th
 > The overriding design goal for Markdown's
 > formatting syntax is to make it as readable
 > as possible. The idea is that a
-> Markdown-formatted document should be
-> publishable as-is, as plain text, without
-> looking like it's been marked up with tags
-> or formatting instructions.
 
 This text you see here is *actually* written in Markdown! To get a feel for Markdown's syntax, type some text into the left window and watch the results in the right.
 
@@ -43,7 +39,7 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
 pip install foobar
 ```
 
-## Usage
+## API
 
 ```python
 import foobar
@@ -60,3 +56,7 @@ Please make sure to update tests as appropriate.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
+
+
+
