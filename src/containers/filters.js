@@ -17,14 +17,12 @@ function Filters ({   appData,
                       toggleSearchOption,
                       expandedFilter,
                       filteredByTags,
-                      filteredByPeriods}) {
+                      filteredByPeriods,
 
-        const {
-            searchArtistNames,
-            searchTrackTitles,
-            searchAlbumTitles,
-            filteredBySearch
-        } = appData;
+                      searchArtistNames,
+                      searchTrackTitles,
+                      searchAlbumTitles,
+                      filteredBySearch}) {
 
 
         const checkboxActivated = {
@@ -67,6 +65,10 @@ const mapStateToProps = state => ({
     expandedFilter: state.appData.expandedFilter,
     filteredByTags: state.appData.filteredByTags,
     filteredByPeriods: state.appData.filteredByPeriods,
+    searchArtistNames: state.appData.searchArtistNames,
+    searchTrackTitles: state.appData.searchTrackTitles,
+    searchAlbumTitles: state.appData.searchAlbumTitles,
+    filteredBySearch: state.appData.filteredBySearch,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
