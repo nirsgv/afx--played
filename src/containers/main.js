@@ -35,12 +35,16 @@ const Main = ({
         searchAlbumTitles
     };
 
+    const memoPeriodResult = useMemo(() => combineByObjKeysArr(filteredByPeriods, yearsMap), [filteredByPeriods]);
+    const memoTagsResult = useMemo(() => hasTags(filteredByTags), [filteredByTags]);
+    const memoRangeResult = useMemo(() => inViewRange(itemsBatchAmt, batchNum), [batchNum]);
+
     const tracksFiltered = useMemo(() => Array.isArray(tracks)
         ? tracks && tracks
-            .filter(hasTags(filteredByTags))
-            .filter(withinPeriod(combineByObjKeysArr(filteredByPeriods, yearsMap)))
+            .filter(memoTagsResult)
+            .filter(withinPeriod(memoPeriodResult))
             .filter(hasMatchingText(filteredBySearch, checkboxActivated))
-            .filter(inViewRange(itemsBatchAmt, batchNum))
+            .filter(memoRangeResult)
         : '', [filteredByTags, filteredByPeriods, filteredBySearch, batchNum]);
 
     const filteredItems = <Items tracksFiltered={tracksFiltered} isPlayingEmbedded={isPlayingEmbedded} setPlayerItem={setPlayerItem} />;
