@@ -32,6 +32,7 @@ function Item({ trackData, isPlayingEmbedded, setPlayerItem }) {
                      alt={''}
                      transitionSeconds={3}
                      blockClassName={'track'}
+                     
                 />
             </div>
 
