@@ -49,8 +49,7 @@ import AnimativeIndicator from "./components/animativeIndicator";
 // import { useFetch } from './customHooks/index'
 const customHistory = createBrowserHistory();
 
-const App = ({  appData,
-                expandFilter,
+const App = ({  expandFilter,
                 toggleDesktopFilters,
                 toggleMobMenu,
                 setPlayerItem,
@@ -64,7 +63,14 @@ const App = ({  appData,
                 viewport,
                 setTracksAsLocal,
                 setShowsAsLocal,
-                setSpaPageName  }) => {
+                setSpaPageName,
+                isGridView,
+                isTracksDataLocal,
+                isShowsDataLocal,
+                isMobileMenuOpen,
+                expandedFilter,
+                isDesktopFiltersExpanded,
+                spaPageName  }) => {
 
     const [ animateFooter, setAnimateFooter ] = useState(false);
 
@@ -81,15 +87,15 @@ const App = ({  appData,
     }, []);
 
     return (
-        <div className={`app ${appData.isGridView ? 'grid' : 'list'}-view`} data-test="component-app">
+        <div className={`app ${isGridView ? 'grid' : 'list'}-view`} data-test="component-app">
             <Helmet>
                 <title>Put title here...</title>
                 <meta name="description" content="This is the main page" />
                 <meta name="keywords" content="aphex twin, afx, shows, setlist, tracks, performance, electronic, music" />
             </Helmet>
             {/*// render splash screen if no data is apparent yet, otherwise render router*/}
-                <Splash isTracksDataLocal={appData.isTracksDataLocal} isShowsDataLocal={appData.isShowsDataLocal}/>
-            {appData.isTracksDataLocal && appData.isShowsDataLocal &&
+                <Splash isTracksDataLocal={isTracksDataLocal} isShowsDataLocal={isShowsDataLocal}/>
+            {isTracksDataLocal && isShowsDataLocal &&
                 (<Router history={customHistory}>
                     <header className="header">
                         <nav className='main-nav'>
@@ -103,20 +109,20 @@ const App = ({  appData,
                                 <NavLink activeClassName="active" to="/editorial">Editorial</NavLink>
                                 <NavLink activeClassName="active" to="/about">About</NavLink>
                             </List>
-                            <Hamburger menuIsClosed={!appData.isMobileMenuOpen} toggleMobMenu={toggleMobMenu} className={'hamburger'}/>
+                            <Hamburger menuIsClosed={!isMobileMenuOpen} toggleMobMenu={toggleMobMenu} className={'hamburger'}/>
                         </nav>
-                        <div className={`nav-slide ${appData.isMobileMenuOpen ? 'nav-slide--open' : ''}`} data-test="nav-slide">
+                        <div className={`nav-slide ${isMobileMenuOpen ? 'nav-slide--open' : ''}`} data-test="nav-slide">
                             <nav className="main-filters">
                                 <ul className="main-filters__list">
-                                    <li onClick={() => {expandFilter('genres');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${appData.expandedFilter === 'genres' ? '--on' : ''}`}>Genres</li>
-                                    <li onClick={() => {expandFilter('years');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${appData.expandedFilter === 'years' ? '--on' : ''}`}>Years</li>
-                                    <li onClick={() => {expandFilter('search');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${appData.expandedFilter === 'search' ? '--on' : ''}`}>Search</li>
-                                    <li className={'main-filters__item main-filters__item--hamburger'}><Hamburger menuIsClosed={!appData.isMobileMenuOpen} toggleMobMenu={toggleMobMenu} className={'hamburger'} /></li>
+                                    <li onClick={() => {expandFilter('genres');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expandedFilter === 'genres' ? '--on' : ''}`}>Genres</li>
+                                    <li onClick={() => {expandFilter('years');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expandedFilter === 'years' ? '--on' : ''}`}>Years</li>
+                                    <li onClick={() => {expandFilter('search');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expandedFilter === 'search' ? '--on' : ''}`}>Search</li>
+                                    <li className={'main-filters__item main-filters__item--hamburger'}><Hamburger menuIsClosed={!isMobileMenuOpen} toggleMobMenu={toggleMobMenu} className={'hamburger'} /></li>
                                     <li className={'main-filters__item main-filters__item--desktop-filters-expansion-toggle'}><button onClick={()=> toggleDesktopFilters()}>click</button></li>
                                 </ul>
                             </nav>
 
-                            <nav className={`filter-expansion__wrap filter-expansion__wrap${!appData.isDesktopFiltersExpanded ? '--close' : '--open'}`}>
+                            <nav className={`filter-expansion__wrap filter-expansion__wrap${!isDesktopFiltersExpanded ? '--close' : '--open'}`}>
                                 <button className="filter-expansion__clear-all-button button" onClick={resetFilters}>
                                     <span>Clear all</span>
                                     <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'MINUS--LIGHT'} />
@@ -129,7 +135,7 @@ const App = ({  appData,
                             </nav>
                         </div>
                     </header>
-                    <main className={`${appData.spaPageName} faded-in-from-bottom`}>
+                    <main className={`${spaPageName} faded-in-from-bottom`}>
                         <Switch>
                             <Route path="/about">
                                 <About name={"about"} setSpaPageName={setSpaPageName}/>
@@ -141,7 +147,7 @@ const App = ({  appData,
                             <Route path="/concert/:id" component={ExpandedConcert} setPlayerItem={setPlayerItem} />
                             <Route path="/">
                                 <List baseClassName="switch-modifiers">
-                                    {isBiggerFromMobile(viewport.dimensions) && <SwitchButton Small={true} id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={toggleGridListView} val={appData.isGridView} />}
+                                    {isBiggerFromMobile(viewport.dimensions) && <SwitchButton Small={true} id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={toggleGridListView} val={isGridView} />}
                                     <SwitchButton Small={true} id={'isPlayingEmbedded'} Text={'isPlayingEmbedded'} labelText={"Embed play"} cb={toggleEmbeddedPlay} val={isPlayingEmbedded} />
                                 </List>
                                 <InputBox classname={"main-search"} name="noname" placeholder="Search.." cb={(e) => setSearchValue(e)}>
@@ -177,8 +183,14 @@ const App = ({  appData,
 };
 
 const mapStateToProps = state => ({
-    appData: state.appData,
     isPlayingEmbedded: state.player.isPlayingEmbedded,
+    isGridView: state.appData.isGridView,
+    isTracksDataLocal: state.appData.isTracksDataLocal,
+    isShowsDataLocal: state.appData.isShowsDataLocal,
+    isMobileMenuOpen: state.appData.isMobileMenuOpen,
+    expandedFilter: state.appData.expandedFilter,
+    isDesktopFiltersExpanded: state.appData.isDesktopFiltersExpanded,
+    spaPageName: state.appData.spaPageName,
     viewport: state.viewport
 });
 

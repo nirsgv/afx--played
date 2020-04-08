@@ -53,7 +53,7 @@ const ExpandedConcert = ({match, setSpaPageName}) => {
 
 
 const mapStateToProps = state => ({
-    appData: state.appData,
+    //appData: state.appData,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

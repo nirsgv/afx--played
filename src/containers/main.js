@@ -21,7 +21,6 @@ const Main = ({
                   setSpaPageName,
                   isPlayingEmbedded,
                   setPlayerItem,
-                  setPlayerType
               }) => {
 
     useEffect(() => {
@@ -63,7 +62,6 @@ const Main = ({
 
 const mapStateToProps = state => ({
     isPlayingEmbedded: state.player.isPlayingEmbedded,
-    appData: state.appData,
     filteredByTags: state.appData.filteredByTags,
     filteredByPeriods: state.appData.filteredByPeriods,
     filteredBySearch: state.appData.filteredBySearch,

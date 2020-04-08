@@ -13,7 +13,7 @@ import { getDurationFromSeconds } from '../helpers/str';
 import Share from "../components/share";
 import {Router} from "react-router-dom";
 
-const ExpandedItem = ({match, history, appData, toggleShareExpansion, isPlayingEmbedded, setPlayerItem, dispatchMessageToModal, setSpaPageName}) => {
+const ExpandedItem = ({match, history, toggleShareExpansion, isPlayingEmbedded, setPlayerItem, dispatchMessageToModal, setSpaPageName}) => {
 
     useEffect(() => {
         console.log(setSpaPageName);
@@ -62,7 +62,6 @@ const ExpandedItem = ({match, history, appData, toggleShareExpansion, isPlayingE
                 {/*<SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'SHARE'} */}
                 {/*           onClick={() => toggleShareExpansion(false)} />*/}
                 <Share url={'http://localhost:3000/track/fis+patupaiarehe'}
-                       isExpanded={appData.isSharingExpanded}
                        onShareWindowClose={toggleShareExpansion}
                        dispatchMessageToModal={dispatchMessageToModal}/>
 
@@ -79,7 +78,6 @@ const ExpandedItem = ({match, history, appData, toggleShareExpansion, isPlayingE
 
 const mapStateToProps = state => ({
     isPlayingEmbedded: state.player.isPlayingEmbedded,
-    appData: state.appData,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
