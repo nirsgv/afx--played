@@ -8,11 +8,25 @@ import { yearsMap } from '../data/periodMap.js';
 import {dispatchMessageToModal, toggleShareExpansion, setPlayerItem, setPlayerType, setSpaPageName} from "../actions";
 
 
-const Main = (props) => {
+const Main = ({
+
+                  filteredByTags,
+                  filteredByPeriods,
+                  filteredBySearch,
+                  searchArtistNames,
+                  searchTrackTitles,
+                  searchAlbumTitles,
+                  itemsBatchAmt,
+                  batchNum,
+                  setSpaPageName,
+                  isPlayingEmbedded,
+                  setPlayerItem,
+                  setPlayerType
+              }) => {
 
     useEffect(() => {
         console.log(setSpaPageName);
-        props.setSpaPageName && props.setSpaPageName('home');
+        setSpaPageName && setSpaPageName('home');
         return () => {
 
         }
@@ -20,16 +34,6 @@ const Main = (props) => {
 
     const tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data;
 
-    const {
-        filteredByTags,
-        filteredByPeriods,
-        filteredBySearch,
-        searchArtistNames,
-        searchTrackTitles,
-        searchAlbumTitles,
-        itemsBatchAmt,
-        batchNum,
-    } = props.appData;
 
     const checkboxActivated = {
         searchTrackTitles,
@@ -45,7 +49,7 @@ const Main = (props) => {
             .filter(inViewRange(itemsBatchAmt, batchNum))
         : '';
 
-    const child1 = useMemo(() => <Items tracksFiltered={tracksFiltered} isPlayingEmbedded={props.isPlayingEmbedded} setPlayerItem={props.setPlayerItem} />, [tracksFiltered]);
+    const child1 = useMemo(() => <Items tracksFiltered={tracksFiltered} isPlayingEmbedded={isPlayingEmbedded} setPlayerItem={setPlayerItem} />, [tracksFiltered]);
 
     return (
         <>
@@ -60,6 +64,14 @@ const Main = (props) => {
 const mapStateToProps = state => ({
     isPlayingEmbedded: state.player.isPlayingEmbedded,
     appData: state.appData,
+    filteredByTags: state.appData.filteredByTags,
+    filteredByPeriods: state.appData.filteredByPeriods,
+    filteredBySearch: state.appData.filteredBySearch,
+    searchArtistNames: state.appData.searchArtistNames,
+    searchTrackTitles: state.appData.searchTrackTitles,
+    searchAlbumTitles: state.appData.searchAlbumTitles,
+    itemsBatchAmt: state.appData.itemsBatchAmt,
+    batchNum: state.appData.batchNum,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
