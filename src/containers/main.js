@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Items from '../components/items';
@@ -9,7 +9,6 @@ import {dispatchMessageToModal, toggleShareExpansion, setPlayerItem, setPlayerTy
 
 
 const Main = ({
-
                   filteredByTags,
                   filteredByPeriods,
                   filteredBySearch,
@@ -24,11 +23,7 @@ const Main = ({
               }) => {
 
     useEffect(() => {
-        console.log(setSpaPageName);
         setSpaPageName && setSpaPageName('home');
-        return () => {
-
-        }
     }, []);
 
     const tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data;
@@ -40,20 +35,20 @@ const Main = ({
         searchAlbumTitles
     };
 
-    const tracksFiltered = Array.isArray(tracks)
+    const tracksFiltered = useMemo(() => Array.isArray(tracks)
         ? tracks && tracks
             .filter(hasTags(filteredByTags))
             .filter(withinPeriod(combineByObjKeysArr(filteredByPeriods, yearsMap)))
             .filter(hasMatchingText(filteredBySearch, checkboxActivated))
             .filter(inViewRange(itemsBatchAmt, batchNum))
-        : '';
+        : '', [filteredByTags, filteredByPeriods, filteredBySearch, batchNum]);
 
-    const child1 = useMemo(() => <Items tracksFiltered={tracksFiltered} isPlayingEmbedded={isPlayingEmbedded} setPlayerItem={setPlayerItem} />, [tracksFiltered]);
+    const filteredItems = <Items tracksFiltered={tracksFiltered} isPlayingEmbedded={isPlayingEmbedded} setPlayerItem={setPlayerItem} />;
 
     return (
         <>
             <ul className="track-items track-items--animated">
-                { child1 }
+                { filteredItems }
             </ul>
         </>
     )

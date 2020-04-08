@@ -75,7 +75,7 @@ const App = ({  expandFilter,
     const [ animateFooter, setAnimateFooter ] = useState(false);
 
 
-    const getScrollItems = debounce(function(){ isBottomOfPage(this) && viewMore() }, 1000);
+    const getScrollItems = debounce(function(){ isBottomOfPage(this) && viewMore() }, 500);
 
     useEffect(() => {
         window.addEventListener('scroll', getScrollItems);
