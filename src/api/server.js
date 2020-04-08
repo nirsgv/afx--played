@@ -35,8 +35,6 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
 
-
-
 app.get('/ping', function (req, res) {
     return res.send('pong');
 });

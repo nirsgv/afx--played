@@ -70,11 +70,8 @@ const App = ({  appData,
 
 
     const getScrollItems = debounce(function(){
-        isBottomOfPage(this) &&
-        setAnimateFooter(true);
-
-        setTimeout(()=>viewMore(), 500);
-    }, 300);
+        isBottomOfPage(this) && viewMore()
+    }, 1000);
 
     useEffect(() => {
         window.addEventListener('scroll', getScrollItems);
