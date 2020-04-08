@@ -14,18 +14,20 @@ function Editorial(props) {
     const tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data;
     const getItemsByIds = (ids, allTracks) => {return allTracks.filter(track => ids.includes(track.ID))};
 
+    const { name, isPlayingEmbedded, setPlayerItem } = props;
+
     return (
         <>
             <Helmet>
                 <title>About page...</title>
                 <meta name="description" content="This is the editorial page" />
             </Helmet>
-            <h1>About, {props.name}</h1>
+            <h1>About, {name}</h1>
             {editorialData.map((list, index) => {
                 const itemsnow = getItemsByIds(list.ITEMS, tracks);
                 return (
                     <QuickSlide title={list.TITLE} key={index}>
-                        <Items tracksFiltered={itemsnow} isPlayingEmbedded={props.isPlayingEmbedded} setPlayerItem={props.setPlayerItem} />
+                        <Items tracksFiltered={itemsnow} isPlayingEmbedded={isPlayingEmbedded} setPlayerItem={setPlayerItem} />
                     </QuickSlide>
                 )
             })}
