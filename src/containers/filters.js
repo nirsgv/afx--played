@@ -10,8 +10,7 @@ import { periodMap } from '../data/periodMap.js';
 import { resetFilters } from '../actions/itemFilteringActions'
 
 
-function Filters ({   appData,
-                      filterByTagCb,
+function Filters ({   filterByTagCb,
                       filterByPeriodCb,
                       setSearchValue,
                       toggleSearchOption,
@@ -61,7 +60,6 @@ function Filters ({   appData,
 
 
 const mapStateToProps = state => ({
-    appData: state.appData,
     expandedFilter: state.appData.expandedFilter,
     filteredByTags: state.appData.filteredByTags,
     filteredByPeriods: state.appData.filteredByPeriods,
