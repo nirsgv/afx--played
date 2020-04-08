@@ -12,7 +12,7 @@ const SHOWS = require('../data/showsMap');
 const app = express();
 
 const normalizePort = port => parseInt(port, 10);
-const PORT = normalizePort(process.env.PORT || 5000);
+const PORT = normalizePort(process.env.PORT || 80);
 
 const dev = app.get('env') !== 'production';
 
@@ -33,8 +33,6 @@ console.log(PORT);
 
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
-
-
 
 
 app.get('/ping', function (req, res) {
