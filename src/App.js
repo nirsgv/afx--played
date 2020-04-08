@@ -69,9 +69,7 @@ const App = ({  appData,
     const [ animateFooter, setAnimateFooter ] = useState(false);
 
 
-    const getScrollItems = debounce(function(){
-        isBottomOfPage(this) && viewMore()
-    }, 1000);
+    const getScrollItems = debounce(function(){ isBottomOfPage(this) && viewMore() }, 1000);
 
     useEffect(() => {
         window.addEventListener('scroll', getScrollItems);
