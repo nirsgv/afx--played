@@ -22,6 +22,10 @@
 @import 'blocks/share-box.scss';
 @import 'blocks/footer.scss';
 
+* {
+    touch-action: manipulation;
+}
+
 body {
     background-color: map-get($colors, "grey_bright");
 }

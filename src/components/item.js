@@ -2,6 +2,7 @@ import React from 'react';
 import Tags from './tags';
 import Links from './links';
 import Img from './img';
+import PropTypes from 'prop-types';
 
 //const DelayedImg = lazy(() => import('./img'));
 
@@ -43,5 +44,16 @@ function Item({ trackData, isPlayingEmbedded, setPlayerItem }) {
         </li>
     )
 }
+
+Item.defaultProps = {
+    classname: 'track',
+    value: '',
+};
+
+Item.propTypes = {
+    trackData: PropTypes.object,
+    isPlayingEmbedded: PropTypes.bool,
+    setPlayerItem: PropTypes.func,
+};
 
 export default Item;

@@ -57,11 +57,13 @@ const getMonthFromShort = (str) => {
     }
 };
 
+const expClass = (filter, expandedFilter) => expandedFilter === filter ? '--on' : '';
 
 export {
     evaluateKey,
     getDurationFromSeconds,
     combineByObjKeysArr,
     copyToClipboard,
-    getMonthFromShort
+    getMonthFromShort,
+    expClass
 }

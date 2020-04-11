@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 function List({baseClassName,children, ...rest}) {
@@ -10,5 +11,15 @@ function List({baseClassName,children, ...rest}) {
         </section>
     )
 }
+
+List.defaultProps = {
+    baseClassName: 'list',
+};
+
+List.propTypes = {
+    baseClassName: PropTypes.string,
+    children: PropTypes.node,
+};
+
 
 export default List;

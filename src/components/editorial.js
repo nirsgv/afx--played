@@ -3,6 +3,7 @@ import {Helmet} from "react-helmet";
 import QuickSlide from './quickSlide';
 import Items from "./items";
 import { editorialData } from '../data/editorial.js';
+
 function Editorial(props) {
     console.log({editorialData});
 

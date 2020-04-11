@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-const defaultPlaceholderImg = 'https://upload.wikimedia.org/wikipedia/en/thumb/b/be/Big_Poster.jpg/220px-Big_Poster.jpg';
-
+import PropTypes from 'prop-types';
 
 const Img = (props) => {
 
@@ -9,8 +8,8 @@ const Img = (props) => {
         src,
         alt,
         transitionSeconds,
-        blockClassName = 'track',
-        placeholderImg ='../assets/aphex-logo.svg'
+        blockClassName,
+        placeholderImg
     } = props;
 
 
@@ -37,6 +36,19 @@ const Img = (props) => {
         </div>
     );
 
+};
+
+Img.defaultProps = {
+    blockClassName: 'track',
+    placeholderImg: '../assets/aphex-logo.svg'
+};
+
+Img.propTypes = {
+    src: PropTypes.string,
+    alt: PropTypes.string,
+    transitionSeconds: PropTypes.number,
+    blockClassName: PropTypes.string,
+    placeholderImg: PropTypes.string,
 };
 
 export default Img;

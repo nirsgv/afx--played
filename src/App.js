@@ -2,21 +2,9 @@ import React, { useState, useEffect } from 'react';
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux';
 import {
-    toggleGridListView,
-    toggleEmbeddedPlay,
-    setPlayerItem,
-    toggleShareExpansion,
-    dispatchMessageToModal,
-    viewMore,
-    expandFilter,
-    toggleMobMenu,
-    toggleDesktopFilters,
-    setTracksAsLocal,
-    setShowsAsLocal,
-    setSearchValue,
-    setSpaPageName,
-    setViewportDimensions,
-    resetFilters
+    toggleGridListView, toggleEmbeddedPlay, setPlayerItem, toggleShareExpansion, dispatchMessageToModal, viewMore,
+    expandFilter, toggleMobMenu, toggleDesktopFilters, setTracksAsLocal, setShowsAsLocal, setSearchValue,
+    setSpaPageName, setViewportDimensions, resetFilters
 } from './actions';
 
 import { isBiggerFromMobile } from './helpers/dom'
@@ -45,7 +33,7 @@ import { Helmet } from 'react-helmet';
 import urlConstants from './data/urlConstants';
 import InputBox from "./components/inputBox";
 import AnimativeIndicator from "./components/animativeIndicator";
-
+import { expClass } from './helpers/str'
 // import { useFetch } from './customHooks/index'
 const customHistory = createBrowserHistory();
 
@@ -114,11 +102,15 @@ const App = ({  expandFilter,
                         <div className={`nav-slide ${isMobileMenuOpen ? 'nav-slide--open' : ''}`} data-test="nav-slide">
                             <nav className="main-filters">
                                 <ul className="main-filters__list">
-                                    <li onClick={() => {expandFilter('genres');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expandedFilter === 'genres' ? '--on' : ''}`}>Genres</li>
-                                    <li onClick={() => {expandFilter('years');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expandedFilter === 'years' ? '--on' : ''}`}>Years</li>
-                                    <li onClick={() => {expandFilter('search');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expandedFilter === 'search' ? '--on' : ''}`}>Search</li>
-                                    <li className={'main-filters__item main-filters__item--hamburger'}><Hamburger menuIsClosed={!isMobileMenuOpen} toggleMobMenu={toggleMobMenu} className={'hamburger'} /></li>
-                                    <li className={'main-filters__item main-filters__item--desktop-filters-expansion-toggle'}><button onClick={()=> toggleDesktopFilters()}>click</button></li>
+                                    <li onClick={() => {expandFilter('genres');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass('genres')}`}>Genres</li>
+                                    <li onClick={() => {expandFilter('years');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass('years')}`}>Years</li>
+                                    <li onClick={() => {expandFilter('search');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass('search')}`}>Search</li>
+                                    <li className={'main-filters__item main-filters__item--hamburger'}>
+                                        <Hamburger menuIsClosed={!isMobileMenuOpen} toggleMobMenu={toggleMobMenu} className={'hamburger'} />
+                                    </li>
+                                    <li className={'main-filters__item main-filters__item--desktop-filters-expansion-toggle'}>
+                                        <button onClick={()=> toggleDesktopFilters()}>click</button>
+                                    </li>
                                 </ul>
                             </nav>
 

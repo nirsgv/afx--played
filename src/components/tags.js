@@ -4,12 +4,8 @@ import { evaluateKey } from '../helpers/str';
 
 
 
-function Tags(props) {
-    const {
-        tags,
-        filterByTagCb,
-        activeTags
-    } = props;
+function Tags({ tags, filterByTagCb, activeTags }) {
+
     return (
         <ul className='tags'>
             {tags && tags.map((tag, index) => {
