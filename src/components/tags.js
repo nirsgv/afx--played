@@ -1,6 +1,8 @@
 import React from 'react';
 import genreMap from '../data/genreMap.js';
 import { evaluateKey } from '../helpers/str';
+import PropTypes from "prop-types";
+import SwitchButton from "./switchButton";
 
 
 
@@ -21,5 +23,11 @@ function Tags({ tags, filterByTagCb, activeTags }) {
         </ul>
     )
 }
+
+SwitchButton.propTypes = {
+    tags: PropTypes.arrayOf(PropTypes.string),
+    filterByTagCb: PropTypes.func,
+    activeTags: PropTypes.arrayOf(PropTypes.string)
+};
 
 export default Tags;
