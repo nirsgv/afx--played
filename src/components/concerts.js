@@ -4,15 +4,15 @@ import List  from "../components/list";
 import { Link } from "react-router-dom";
 import SvgSprite from "./svgSprite";
 import {imgData} from "../data/localImgData";
+import PropTypes from 'prop-types';
 
 const getConcertById = (id, concertsData) => {
     return concertsData[id];
 };
 
 
-
-function Concerts(props) {
-    const concertsCollection = props.venues.map(item => getConcertById(item, concertsData));
+function Concerts({ venues }) {
+    const concertsCollection = venues.map(item => getConcertById(item, concertsData));
     return (
             <List baseClassName='concerts'>
                 {concertsCollection.map((item, index) => {
@@ -25,5 +25,9 @@ function Concerts(props) {
             </List>
     )
 }
+
+Concerts.propTypes = {
+    venues: PropTypes.arrayOf(PropTypes.string),
+};
 
 export default Concerts;

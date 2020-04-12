@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function DefinitionList({term, definition, classNameSpace, processCb}) {
 
@@ -10,5 +11,12 @@ function DefinitionList({term, definition, classNameSpace, processCb}) {
 
     );
 }
+
+DefinitionList.propTypes = {
+    term: PropTypes.string,
+    definition: PropTypes.string,
+    classNameSpace: PropTypes.string,
+    processCb: PropTypes.func,
+};
 
 export default DefinitionList;

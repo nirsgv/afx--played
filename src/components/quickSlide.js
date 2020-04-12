@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import SvgSprite from "./svgSprite";
 import {imgData} from "../data/localImgData";
 import { throttle, debounce } from "../helpers/higherFunctions";
+import PropTypes from 'prop-types';
 
 function QuickSlide ({children, title})  {
     const [translatedX, setTranslatedX] = useState(0),
@@ -18,11 +19,8 @@ function QuickSlide ({children, title})  {
     }, [listRef.current, wrapperRef.current]);
 
     const updateDimensions = () => {
-        const width = listRef.current ? listRef.current.offsetWidth : 0;
-        const wrapperW = wrapperRef.current ? wrapperRef.current.offsetWidth : 0;
-        //console.log({width, wrapperW});
-        setSlidesWidth(width);
-        SetWrapperWidth(wrapperW);
+        setSlidesWidth(listRef.current ? listRef.current.offsetWidth : 0);
+        SetWrapperWidth(wrapperRef.current ? wrapperRef.current.offsetWidth : 0);
     };
 
     const debouncedUpdateDimensions = debounce(updateDimensions, 100);
@@ -73,6 +71,11 @@ function QuickSlide ({children, title})  {
         </div>
         </>
     )
+};
+
+QuickSlide.propTypes = {
+    children: PropTypes.node.isRequired,
+    title: PropTypes.string.isRequired,
 };
 
 export default QuickSlide;
