@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {debounce} from "../helpers/higherFunctions";
+import PropTypes from 'prop-types';
+import SwitchButton from "./switchButton";
 
-const ViewPort = (props) => {
+const ViewPort = ({ children, setDimensionsCb }) => {
 
     const [ internalViewportDimensions, setInternalViewportDimensions ] = useState({
         innerWidth: 0,
@@ -27,27 +29,29 @@ const ViewPort = (props) => {
             outerWidth,
             outerHeight
         });
-        props.setDimensionsCb({
+        setDimensionsCb({
             innerWidth,
             innerHeight,
             outerWidth,
             outerHeight
         });
     };
-
     const debouncedUpdateDimensions = debounce(updateWindowDimensions, 100);
-
-    //const { innerWidth, innerHeight, outerWidth, outerHeight } = props.viewport;
 
     return (
         <>
-            {React.cloneElement(props.children, {
+            {children && React.cloneElement(children, {
                 className: "active",
                 internalViewportDimensions
             })}
         </>
     );
 
+};
+
+ViewPort.propTypes = {
+    children: PropTypes.element.isRequired,
+    setDimensionsCb: PropTypes.func,
 };
 
 export default ViewPort;

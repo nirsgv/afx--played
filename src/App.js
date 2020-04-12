@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 import {
     toggleGridListView, toggleEmbeddedPlay, setPlayerItem, toggleShareExpansion, dispatchMessageToModal, viewMore,
     expandFilter, toggleMobMenu, toggleDesktopFilters, setTracksAsLocal, setShowsAsLocal, setSearchValue,
@@ -37,28 +38,30 @@ import { expClass } from './helpers/str'
 // import { useFetch } from './customHooks/index'
 const customHistory = createBrowserHistory();
 
-const App = ({  expandFilter,
-                toggleDesktopFilters,
-                toggleMobMenu,
-                setPlayerItem,
-                toggleGridListView,
-                toggleEmbeddedPlay,
-                isPlayingEmbedded,
-                setSearchValue,
-                setViewportDimensions,
-                resetFilters,
-                viewMore,
-                viewport,
-                setTracksAsLocal,
-                setShowsAsLocal,
-                setSpaPageName,
-                isGridView,
-                isTracksDataLocal,
-                isShowsDataLocal,
-                isMobileMenuOpen,
-                isDesktopFiltersExpanded,
-                spaPageName,
-                expandedFilter  }) => {
+const App = ({  ...restProps }) => {
+
+    const {  expandFilter,
+             toggleDesktopFilters,
+             toggleMobMenu,
+             setPlayerItem,
+             toggleGridListView,
+             toggleEmbeddedPlay,
+             isPlayingEmbedded,
+             setSearchValue,
+             setViewportDimensions,
+             resetFilters,
+             viewMore,
+             viewport,
+             setTracksAsLocal,
+             setShowsAsLocal,
+             setSpaPageName,
+             isGridView,
+             isTracksDataLocal,
+             isShowsDataLocal,
+             isMobileMenuOpen,
+             isDesktopFiltersExpanded,
+             spaPageName,
+             expandedFilter  } = restProps;
 
     const [ animateFooter, setAnimateFooter ] = useState(false);
 
@@ -172,6 +175,18 @@ const App = ({  expandFilter,
                 </Router>)}
         </div>
     );
+};
+
+App.propTypes = {
+    isPlayingEmbedded: PropTypes.bool,
+    isGridView: PropTypes.bool,
+    isTracksDataLocal: PropTypes.bool,
+    isShowsDataLocal: PropTypes.bool,
+    isMobileMenuOpen: PropTypes.bool,
+    expandedFilter: PropTypes.string,
+    isDesktopFiltersExpanded: PropTypes.bool,
+    spaPageName: PropTypes.string,
+    viewport: PropTypes.object,
 };
 
 const mapStateToProps = state => ({
