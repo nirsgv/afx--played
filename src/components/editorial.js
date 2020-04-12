@@ -3,19 +3,20 @@ import {Helmet} from "react-helmet";
 import QuickSlide from './quickSlide';
 import Items from "./items";
 import { editorialData } from '../data/editorial.js';
+import PropTypes from 'prop-types';
 
-function Editorial(props) {
+function Editorial( { ...restProps } ) {
+    const { name, isPlayingEmbedded, setPlayerItem, setSpaPageName } = restProps;
     console.log({editorialData});
 
     useEffect(() => {
-        props.setSpaPageName(props.name);
+        setSpaPageName(name);
         return () => {}
     }, []);
 
     const tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data;
     const getItemsByIds = (ids, allTracks) => {return allTracks.filter(track => ids.includes(track.ID))};
 
-    const { name, isPlayingEmbedded, setPlayerItem } = props;
 
     return (
         <>
@@ -35,5 +36,12 @@ function Editorial(props) {
         </>
     );
 }
+
+Editorial.propTypes = {
+    name: PropTypes.string,
+    isPlayingEmbedded: PropTypes.func,
+    setPlayerItem: PropTypes.func,
+    setSpaPageName: PropTypes.func,
+};
 
 export default Editorial;
