@@ -41,14 +41,14 @@ function SwitchButton ({ Text=["Yes", "No"],  disabled=false, val, id, Name, Sma
         );
 }
 
-// SwitchButton.propTypes = {
-//     id: PropTypes.string.isRequired,
-//     Text: PropTypes.string.isRequired,
-//     Name: PropTypes.string,
-//     onChange: PropTypes.func,
-//     defaultChecked: PropTypes.bool,
-//     Small: PropTypes.bool,
-//     currentValue: PropTypes.bool,
-//     disabled: PropTypes.bool
-// };
+SwitchButton.propTypes = {
+    Text: PropTypes.array,
+    disabled: PropTypes.bool,
+    val: PropTypes.string,
+    id: PropTypes.string,
+    Name: PropTypes.string,
+    Small: PropTypes.bool,
+    labelText: PropTypes.string,
+    cb: PropTypes.func
+};
 export default SwitchButton;
