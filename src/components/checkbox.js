@@ -1,8 +1,11 @@
 import React from 'react';
 import SvgSprite from "./svgSprite";
 import {imgData} from "../data/localImgData";
+import PropTypes from 'prop-types';
 
-function Checkbox({ checkboxId, labelText, name, checked, onChangeCb }) {
+function Checkbox({ ...restProps }) {
+
+    const { checkboxId, labelText, name, checked, onChangeCb } = restProps;
 
     return (
         <div className={"checkbox__wrap"}  >
@@ -26,5 +29,13 @@ function Checkbox({ checkboxId, labelText, name, checked, onChangeCb }) {
 
     );
 }
+
+Checkbox.propTypes = {
+    checkboxId: PropTypes.string,
+    labelText: PropTypes.string,
+    name: PropTypes.string,
+    checked: PropTypes.bool,
+    onChangeCb: PropTypes.func,
+};
 
 export default Checkbox;
