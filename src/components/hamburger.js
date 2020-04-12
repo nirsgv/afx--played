@@ -1,8 +1,11 @@
 import React from 'react'
 import SvgSprite from './svgSprite';
 import { imgData } from '../data/localImgData';
+import PropTypes from 'prop-types';
 
-export default ( {menuIsClosed , className, alt, toggleMobMenu} ) => {
+function Hamburger({ ...restProps }) {
+
+    const {menuIsClosed , className, alt, toggleMobMenu} = restProps;
     const { src, description } = imgData.sprite;
 
     return (
@@ -14,3 +17,13 @@ export default ( {menuIsClosed , className, alt, toggleMobMenu} ) => {
 
     )
 }
+
+
+Hamburger.propTypes = {
+    menuIsClosed: PropTypes.bool,
+    className: PropTypes.string,
+    alt: PropTypes.string,
+    toggleMobMenu: PropTypes.func,
+};
+
+export default Hamburger;
