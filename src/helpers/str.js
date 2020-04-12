@@ -57,7 +57,7 @@ const getMonthFromShort = (str) => {
     }
 };
 
-const expClass = (filter, expandedFilter) => expandedFilter === filter ? '--on' : '';
+const expClass = (expandedFilter, filter) => expandedFilter === filter ? '--on' : '';
 
 export {
     evaluateKey,

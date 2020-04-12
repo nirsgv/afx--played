@@ -1,6 +1,7 @@
 import React from 'react';
 import { periodMap, yearsMap } from '../data/periodMap.js';
 import { evaluateKey } from '../helpers/str';
+import PropTypes from 'prop-types';
 
 
 
@@ -25,5 +26,14 @@ function Periods(props) {
         </ul>
     )
 }
+
+Periods.defaultProps = {
+};
+
+Periods.propTypes = {
+    periods: PropTypes.array,
+    filterByPeriodCb: PropTypes.func,
+    activePeriods: PropTypes.array,
+};
 
 export default Periods;

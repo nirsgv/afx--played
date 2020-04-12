@@ -56,9 +56,9 @@ const App = ({  expandFilter,
                 isTracksDataLocal,
                 isShowsDataLocal,
                 isMobileMenuOpen,
-                expandedFilter,
                 isDesktopFiltersExpanded,
-                spaPageName  }) => {
+                spaPageName,
+                expandedFilter  }) => {
 
     const [ animateFooter, setAnimateFooter ] = useState(false);
 
@@ -101,17 +101,17 @@ const App = ({  expandFilter,
                         </nav>
                         <div className={`nav-slide ${isMobileMenuOpen ? 'nav-slide--open' : ''}`} data-test="nav-slide">
                             <nav className="main-filters">
-                                <ul className="main-filters__list">
-                                    <li onClick={() => {expandFilter('genres');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass('genres')}`}>Genres</li>
-                                    <li onClick={() => {expandFilter('years');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass('years')}`}>Years</li>
-                                    <li onClick={() => {expandFilter('search');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass('search')}`}>Search</li>
-                                    <li className={'main-filters__item main-filters__item--hamburger'}>
+                                <List baseClassName="main-filters">
+                                    <span onClick={() => {expandFilter('genres');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'genres')}`}>Genres</span>
+                                    <span onClick={() => {expandFilter('years');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'years')}`}>Years</span>
+                                    <span onClick={() => {expandFilter('search');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'search')}`}>Search</span>
+                                    <span className={'main-filters__item main-filters__item--hamburger'}>
                                         <Hamburger menuIsClosed={!isMobileMenuOpen} toggleMobMenu={toggleMobMenu} className={'hamburger'} />
-                                    </li>
-                                    <li className={'main-filters__item main-filters__item--desktop-filters-expansion-toggle'}>
+                                    </span>
+                                    <span className={'main-filters__item main-filters__item--desktop-filters-expansion-toggle'}>
                                         <button onClick={()=> toggleDesktopFilters()}>click</button>
-                                    </li>
-                                </ul>
+                                    </span>
+                                </List>
                             </nav>
 
                             <nav className={`filter-expansion__wrap filter-expansion__wrap${!isDesktopFiltersExpanded ? '--close' : '--open'}`}>

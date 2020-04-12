@@ -1,43 +1,32 @@
-
 import React from 'react';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 
-class SvgSprite extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.onClick = this.props.onClick && this.onClick.bind(this);
-    }
-
-    createIconByType() {
-        const {name, classes, path, src} = this.props;
-        const viewBox = '0 0 24 24';
-
-            return (
-                <svg viewBox={viewBox}>
-                    <use xlinkHref={`${src}#${name}`} />
-                </svg>
-            )
-    }
-
-    onClick(event) {
+function SvgSprite ({...rest}) {
+    const {name, classes, path, src, clickCb, modifier, text, onMouseLeave, onMouseOver, viewBox = '0 0 24 24'} = rest;
+    const clickHandler = (event) => {
         event.stopPropagation();
-        this.props.onClick(event);
+        clickCb && clickCb(event);
     }
 
-    render() {
-        const {modifier, text, onMouseLeave, onMouseOver, classes} = this.props;
-
-        return (
-            <span
-                className={classNames('something', classes)}
-                onClick={this.onClick}
-                >
-            {this.createIconByType()}
-            </span>
-        );
-    }
+    return (
+        <span className={classNames('something', classes)}
+            onClick={clickHandler}
+            >
+           <svg viewBox={viewBox}>
+                <use xlinkHref={`${src}#${name}`} />
+            </svg>
+        </span>
+    );
 }
+
+SvgSprite.propTypes = {
+    modifier: PropTypes.string,
+    text: PropTypes.string,
+    onMouseLeave: PropTypes.func,
+    onMouseOver: PropTypes.func,
+    classes: PropTypes.array,
+};
 
 SvgSprite.defaultProps = {
     throttleTimeoutForMouseOver: 300
