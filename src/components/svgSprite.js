@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 function SvgSprite ({...restProps}) {
-    const {name, classes, path, src, clickCb, modifier, text, onMouseLeave, onMouseOver, viewBox = '0 0 24 24'} = restProps;
+    const {name, classes, path, src, clickCb, modifier, text, onMouseLeave, onMouseOver, viewBox = '0 0 24 24', style={}} = restProps;
     const clickHandler = (event) => {
         event.stopPropagation();
         clickCb && clickCb(event);
@@ -12,6 +12,7 @@ function SvgSprite ({...restProps}) {
     return (
         <span className={classNames('something', classes)}
             onClick={() => clickHandler}
+              style={style}
             >
            <svg viewBox={viewBox}>
                 <use xlinkHref={`${src}#${name}`} />

@@ -7,7 +7,7 @@ import {
     expandFilter, toggleMobMenu, toggleDesktopFilters, setTracksAsLocal, setShowsAsLocal, setSearchValue,
     setSpaPageName, setViewportDimensions, resetFilters
 } from './actions';
-
+import { useShadowAnimaStyle } from './customHooks';
 import { isBiggerFromMobile } from './helpers/dom'
 import Main from './containers/main';
 import About from './components/about';
@@ -61,12 +61,13 @@ const App = ({  ...restProps }) => {
              isMobileMenuOpen,
              isDesktopFiltersExpanded,
              spaPageName,
-             expandedFilter  } = restProps;
+             expandedFilter,
+    } = restProps;
 
     const [ animateFooter, setAnimateFooter ] = useState(false);
-
-
     const getScrollItems = debounce(function(){ isBottomOfPage(this) && viewMore() }, 500);
+
+    const customHookShadow = useShadowAnimaStyle(3);
 
     useEffect(() => {
         window.addEventListener('scroll', getScrollItems);
@@ -92,7 +93,7 @@ const App = ({  ...restProps }) => {
                         <nav className='main-nav'>
                             <div className='main-nav__logo'>
                                 <Link to="/">
-                                    <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'APHEX'} />
+                                    <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'APHEX'} style={customHookShadow}/>
                                 </Link>
                             </div>
                             <List baseClassName="main-nav">
