@@ -39,6 +39,11 @@ header {
     @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
         height: 10rem;
     }
+
+    transition: transform 0.1s ease-out;
+    &.scrolled {
+        transform: translateY(-6rem);
+    }
 }
 
 .btn {

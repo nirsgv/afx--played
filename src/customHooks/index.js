@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { randomIntFromInterval } from '../helpers/math'
-import { debounce }  from '../helpers/higherFunctions'
+import { debounce, throttle }  from '../helpers/higherFunctions'
 
 const useFetch = (url, initialValue) => {
     const [ result, setResult ] = useState(initialValue);
@@ -60,10 +60,10 @@ const useIsScrolled = () => {
     const listener = (e) => {
         setScrollY(window.pageYOffset || document.documentElement.scrollTop);
     };
-    const delay = 200;
+    const delay = 500;
 
     useEffect(() => {
-        window.addEventListener('scroll', debounce(listener, delay));
+        window.addEventListener('scroll', throttle(listener, delay));
         return () => {
             window.removeEventListener('scroll', listener);
         };

@@ -90,7 +90,7 @@ const App = ({  ...restProps }) => {
                 <Splash isTracksDataLocal={isTracksDataLocal} isShowsDataLocal={isShowsDataLocal}/>
             {isTracksDataLocal && isShowsDataLocal &&
                 (<Router history={customHistory}>
-                    <header className="header">
+                    <header className={`header ${customHcroll ? 'scrolled' : ''}`}>
                         <nav className='main-nav'>
                             <div className='main-nav__logo'>
                                 <Link to="/">
