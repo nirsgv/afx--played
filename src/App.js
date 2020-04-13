@@ -156,7 +156,7 @@ const App = ({  ...restProps }) => {
                     </main>
                     <footer className={"footer"} >
                         <nav>
-                            <List baseClassName="footer-nav">
+                            <List baseClassName="footer-nav" onClick={toggleMobMenu}>
                                 <SvgSprite classes={''} src={imgData.sprite.src} alt={imgData.sprite.description} name={'APHEX'} />
                                 <NavLink exact={true} activeClassName="active" to="/">Home</NavLink>
                                 <NavLink activeClassName="active" to="/editorial">Editorial</NavLink>

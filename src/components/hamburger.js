@@ -3,9 +3,8 @@ import SvgSprite from './svgSprite';
 import { imgData } from '../data/localImgData';
 import PropTypes from 'prop-types';
 
-function Hamburger({ ...restProps }) {
+function Hamburger({menuIsClosed , className, alt, toggleMobMenu}) {
 
-    const {menuIsClosed , className, alt, toggleMobMenu} = restProps;
     const { src, description } = imgData.sprite;
 
     return (

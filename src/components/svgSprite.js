@@ -11,7 +11,7 @@ function SvgSprite ({...restProps}) {
 
     return (
         <span className={classNames('something', classes)}
-            onClick={clickHandler}
+            onClick={() => clickHandler}
             >
            <svg viewBox={viewBox}>
                 <use xlinkHref={`${src}#${name}`} />
