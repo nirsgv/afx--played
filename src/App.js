@@ -7,7 +7,7 @@ import {
     expandFilter, toggleMobMenu, toggleDesktopFilters, setTracksAsLocal, setShowsAsLocal, setSearchValue,
     setSpaPageName, setViewportDimensions, resetFilters
 } from './actions';
-import { useShadowAnimaStyle } from './customHooks';
+import { useShadowAnimaStyle, useIsScrolled } from './customHooks';
 import { isBiggerFromMobile } from './helpers/dom'
 import Main from './containers/main';
 import About from './components/about';
@@ -67,8 +67,9 @@ const App = ({  ...restProps }) => {
     const [ animateFooter, setAnimateFooter ] = useState(false);
     const getScrollItems = debounce(function(){ isBottomOfPage(this) && viewMore() }, 500);
 
-    const customHookShadow = useShadowAnimaStyle(2, 4);
-
+    const customHookShadow = useShadowAnimaStyle(2, 4, 4);
+    const customHcroll = useIsScrolled();
+    console.log(customHcroll);
     useEffect(() => {
         window.addEventListener('scroll', getScrollItems);
         updatedLS(window.location.origin + urlConstants.TRACKS_URL, 'afx_local_tracks', setTracksAsLocal);

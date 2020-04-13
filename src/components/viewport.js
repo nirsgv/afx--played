@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {debounce} from "../helpers/higherFunctions";
 import PropTypes from 'prop-types';
-import SwitchButton from "./switchButton";
 
 const ViewPort = ({ children, setDimensionsCb }) => {
 

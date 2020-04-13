@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { randomIntFromInterval } from '../helpers/math'
-
+import { debounce }  from '../helpers/higherFunctions'
 
 const useFetch = (url, initialValue) => {
     const [ result, setResult ] = useState(initialValue);
@@ -35,22 +35,41 @@ const useMediaQuery = (query) => {
     return matches;
 };
 
-const useShadowAnimaStyle = (x= 0, y= 0) => {
+const useShadowAnimaStyle = (x= 0, y= 0, moveAmt = 1) => {
     const [ xCoor, setXCoor ] = useState(x);
     const [ yCoor, setYCoor ] = useState(y);
-
     let intervalHolder;
 
     useEffect(() => {
         intervalHolder = setInterval(() => {
-        setXCoor(randomIntFromInterval(-6,6));
-        setYCoor(randomIntFromInterval(-6,6));
+        setXCoor(randomIntFromInterval(-moveAmt,moveAmt));
+        setYCoor(randomIntFromInterval(-moveAmt,moveAmt));
     } ,1000);
         return () => clearInterval(intervalHolder);
     }, []);
+
     return {
-        filter: `drop-shadow(${xCoor}px ${yCoor}px 10px purple)`
+        filter: `drop-shadow(${2+xCoor}px ${4+yCoor}px 8px #6d8c7899)`
     };
 };
 
-export { useSetPageName, useFetch, useMediaQuery, useShadowAnimaStyle };
+
+const useIsScrolled = () => {
+
+    const [scrollY, setScrollY] = useState(window.pageYOffset || document.documentElement.scrollTop);
+    const listener = (e) => {
+        setScrollY(window.pageYOffset || document.documentElement.scrollTop);
+    };
+    const delay = 200;
+
+    useEffect(() => {
+        window.addEventListener('scroll', debounce(listener, delay));
+        return () => {
+            window.removeEventListener('scroll', listener);
+        };
+    });
+
+    return scrollY > 0;
+};
+
+export { useSetPageName, useFetch, useMediaQuery, useShadowAnimaStyle, useIsScrolled };
