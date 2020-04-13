@@ -10,6 +10,10 @@ function QuickSlide ({children, title})  {
           [wrapperWidth, SetWrapperWidth] = useState(0),
           listRef = useRef(null),
           wrapperRef= useRef(null);
+
+    const singleMoveAmt = 320;
+    const swipingThreshold = 50;
+
     useEffect(() => {
         debouncedUpdateDimensions();
         window.addEventListener('resize', debouncedUpdateDimensions);
@@ -17,6 +21,45 @@ function QuickSlide ({children, title})  {
             window.removeEventListener('resize', debouncedUpdateDimensions);
         }
     }, [listRef.current, wrapperRef.current]);
+
+    const coor = {
+        xDown: null,
+        yDown: null,
+        xUp: null,
+        yUp: null,
+        xDiff: null,
+        yDiff: null
+    };
+
+    const handleTouchStart = (e) => {
+        coor.xDown = e.touches[0].clientX;
+        coor.yDown = e.touches[0].clientY;
+    };
+    const handleTouchMove = (e, translatedX) => {
+        if (!coor.xDown || !coor.yDown) {
+            return;
+        }
+
+        coor.xUp = e.touches[0].clientX;
+        coor.yUp = e.touches[0].clientY;
+        coor.xDiff = coor.xDown - coor.xUp;
+        coor.yDiff = coor.yDown - coor.yUp;
+
+        if (Math.abs(coor.xDiff) + Math.abs(coor.yDiff) > swipingThreshold) {
+            if (Math.abs(coor.xDiff) > Math.abs(coor.yDiff)) {
+                if (coor.xDiff > 0) {
+                    clickedRight(translatedX);
+                } else {
+                    clickedLeft(translatedX);
+                }
+            }
+            /* reset values */
+            coor.xDown = null;
+            coor.yDown = null;
+        }
+    };
+
+
 
     const updateDimensions = () => {
         setSlidesWidth(listRef.current ? listRef.current.offsetWidth : 0);
@@ -35,11 +78,11 @@ function QuickSlide ({children, title})  {
     };
 
     const clickedLeft = (translatedX) => {
-        isLeftScrollNeeded(translatedX) &&  setTranslatedX(translatedX + 320);
+        isLeftScrollNeeded(translatedX) &&  setTranslatedX(translatedX + singleMoveAmt);
     };
 
     const clickedRight = (translatedX) => {
-        isRightScrollNeeded(translatedX) &&  setTranslatedX(translatedX - 320);
+        isRightScrollNeeded(translatedX) &&  setTranslatedX(translatedX - singleMoveAmt);
     };
 
     return (
@@ -57,7 +100,13 @@ function QuickSlide ({children, title})  {
             </button>
 
             <div className="quick-slide__content" style={{transform: `translateX(${translatedX}px)`}}>
-                <ul className="quick-slide__list" ref={listRef}>
+                <ul className="quick-slide__list" ref={listRef}
+                    onTouchStart={(e) => {
+                        handleTouchStart(e, translatedX);
+                    }}
+                    onTouchMove={(e) => {
+                        handleTouchMove(e, translatedX);
+                    }}>
                     {children}
                 </ul>
             </div>
