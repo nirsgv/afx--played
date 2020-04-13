@@ -67,7 +67,7 @@ const App = ({  ...restProps }) => {
     const [ animateFooter, setAnimateFooter ] = useState(false);
     const getScrollItems = debounce(function(){ isBottomOfPage(this) && viewMore() }, 500);
 
-    const customHookShadow = useShadowAnimaStyle(3);
+    const customHookShadow = useShadowAnimaStyle(2, 4);
 
     useEffect(() => {
         window.addEventListener('scroll', getScrollItems);

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-
+import { randomIntFromInterval } from '../helpers/math'
 
 
 const useFetch = (url, initialValue) => {
-    const [result, setResult] = useState(initialValue);
+    const [ result, setResult ] = useState(initialValue);
     useEffect(() => {
         fetch(url)
             .then(response => response.json())
@@ -25,7 +25,7 @@ const useSetPageName = (cb, name) => {
 
 const useMediaQuery = (query) => {
     const mediaMatch = window.matchMedia(query);
-    const [matches, setMatches] = useState(mediaMatch.matches);
+    const [ matches, setMatches ] = useState(mediaMatch.matches);
 
     useEffect(() => {
         const handler = e => setMatches(e.matches);
@@ -35,18 +35,21 @@ const useMediaQuery = (query) => {
     return matches;
 };
 
-const useShadowAnimaStyle = (x) => {
-    const [xCoor, setXCoor] = useState(x);
-    const [yCoor, setYCoor] = useState(x);
+const useShadowAnimaStyle = (x= 0, y= 0) => {
+    const [ xCoor, setXCoor ] = useState(x);
+    const [ yCoor, setYCoor ] = useState(y);
 
-
-    setTimeout(() => {setXCoor(xCoor+1)} ,500);
+    let intervalHolder;
 
     useEffect(() => {
-
-    });
+        intervalHolder = setInterval(() => {
+        setXCoor(randomIntFromInterval(-6,6));
+        setYCoor(randomIntFromInterval(-6,6));
+    } ,1000);
+        return () => clearInterval(intervalHolder);
+    }, []);
     return {
-        filter: `drop-shadow(${xCoor}px 4px 10px red)`
+        filter: `drop-shadow(${xCoor}px ${yCoor}px 10px purple)`
     };
 };
 
