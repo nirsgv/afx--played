@@ -2,14 +2,21 @@
     display: flex;
     align-items: center;
     position: absolute;
-    height: 6rem;
+    height: 7rem;
     width: 100%;
     background-color: #fff;
     z-index: map-get($z-indexes, "main-nav");
 
+    .scrolled & {
+        height: 4rem;
+    }
 
     @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
         position: relative;
+        height: 8rem;
+        .scrolled & {
+            height: 8rem;
+        }
     }
 
     &__wrap {
@@ -20,6 +27,11 @@
         font-size: 2rem;
         filter: drop-shadow(2px 4px 10px black);
         margin-right: 3rem;
+
+        .scrolled & {
+            transform: scale(.75);
+            transition: transform 0.1s ease-out;
+        }
     }
 
     &__list {

@@ -69,7 +69,7 @@ const useIsScrolled = () => {
         };
     });
 
-    return scrollY > 0;
+    return scrollY > 200;
 };
 
 export { useSetPageName, useFetch, useMediaQuery, useShadowAnimaStyle, useIsScrolled };
