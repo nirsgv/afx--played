@@ -4,6 +4,7 @@ import QuickSlide from './quickSlide';
 import Items from "./items";
 import { editorialData } from '../data/editorial.js';
 import PropTypes from 'prop-types';
+import ReactGa from 'react-ga'
 
 function Editorial( { ...restProps } ) {
     const { name, isPlayingEmbedded, setPlayerItem, setSpaPageName } = restProps;
@@ -11,6 +12,10 @@ function Editorial( { ...restProps } ) {
 
     useEffect(() => {
         setSpaPageName(name);
+        ReactGa.event({
+            category: 'clicked',
+            action: 'simulated a Editorial click'
+        });
         return () => {}
     }, []);
 
