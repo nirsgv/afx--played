@@ -1,0 +1,21 @@
+.darken-layer {
+
+    pointer-events: none;
+    background-color: #444;
+    opacity: 0;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    z-index: 30;
+    transition: opacity 0.1s ease-out 0s;
+
+    &--active {
+
+        opacity: 0.5;
+        pointer-events: all;
+        transition: opacity 0.25s ease-out 0.25s;
+
+    }
+}

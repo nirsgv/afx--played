@@ -36,6 +36,7 @@ import InputBox from "./components/inputBox";
 import AnimativeIndicator from "./components/animativeIndicator";
 import { expClass } from './helpers/str'
 import ReactGa from 'react-ga'
+import DarkenLayer from "./components/darkenLayer";
 
 // import { useFetch } from './customHooks/index'
 const customHistory = createBrowserHistory();
@@ -71,7 +72,7 @@ const App = ({  ...restProps }) => {
 
     const customHookShadow = useShadowAnimaStyle(2, 4, 4);
     const customHcroll = useIsScrolled();
-    console.log(customHcroll);
+    //console.log(customHcroll);
     useEffect(() => {
         ReactGa.initialize('UA-163593216-1');
         ReactGa.pageview('/');
@@ -141,6 +142,14 @@ const App = ({  ...restProps }) => {
                             </nav>
                         </div>
                     </header>
+
+                    <DarkenLayer
+                        isDesktopFiltersExpanded={isDesktopFiltersExpanded}
+                        isMobileMenuOpen={isMobileMenuOpen}
+                        cb1={toggleDesktopFilters}
+                        cb2={toggleMobMenu}
+                    />
+
                     <main className={`${spaPageName} faded-in-from-bottom`}>
                         <Switch>
                             <Route path="/about">
