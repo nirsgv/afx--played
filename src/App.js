@@ -35,6 +35,10 @@ import urlConstants from './data/urlConstants';
 import InputBox from "./components/inputBox";
 import AnimativeIndicator from "./components/animativeIndicator";
 import { expClass } from './helpers/str'
+
+
+import ReactGa from 'react-ga'
+
 // import { useFetch } from './customHooks/index'
 const customHistory = createBrowserHistory();
 
@@ -71,6 +75,12 @@ const App = ({  ...restProps }) => {
     const customHcroll = useIsScrolled();
     console.log(customHcroll);
     useEffect(() => {
+        ReactGa.initialize('UA-163593216-1');
+        ReactGa.pageview('/');
+        ReactGa.event({
+            category: 'clicked',
+            action: 'simulated a button click'
+        });
         window.addEventListener('scroll', getScrollItems);
         updatedLS(window.location.origin + urlConstants.TRACKS_URL, 'afx_local_tracks', setTracksAsLocal);
         updatedLS(window.location.origin + urlConstants.SHOWS_URL, 'afx_local_shows', setShowsAsLocal);
@@ -90,6 +100,7 @@ const App = ({  ...restProps }) => {
                 <Splash isTracksDataLocal={isTracksDataLocal} isShowsDataLocal={isShowsDataLocal}/>
             {isTracksDataLocal && isShowsDataLocal &&
                 (<Router history={customHistory}>
+
                     <header className={`header ${customHcroll ? 'scrolled' : ''}`}>
                         <nav className='main-nav'>
                             <div className='main-nav__logo'>
