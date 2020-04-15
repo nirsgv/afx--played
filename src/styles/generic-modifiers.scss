@@ -50,6 +50,8 @@
 }
 
 %site-wide-padding {
+    padding: 0 2rem;
+
     @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
         padding-right: map-get($main-padding, "mob");
         padding-left: map-get($main-padding, "mob");

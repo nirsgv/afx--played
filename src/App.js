@@ -7,7 +7,7 @@ import {
     expandFilter, toggleMobMenu, toggleDesktopFilters, setTracksAsLocal, setShowsAsLocal, setSearchValue,
     setSpaPageName, setViewportDimensions, resetFilters
 } from './actions';
-import { useShadowAnimaStyle, useIsScrolled } from './customHooks';
+import { useShadowAnimaStyle, useIsScrolled, useMedia } from './customHooks';
 import { isBiggerFromMobile } from './helpers/dom'
 import Main from './containers/main';
 import About from './components/about';
@@ -72,6 +72,13 @@ const App = ({  ...restProps }) => {
 
     const customHookShadow = useShadowAnimaStyle(2, 4, 4);
     const customHcroll = useIsScrolled();
+    const columnCount = useMedia(
+        ['(min-width: 1360px)', '(min-width: 1020px)', '(min-width: 768px)'],
+        [5, 4, 2],
+        1
+    );
+
+
     //console.log(customHcroll);
     useEffect(() => {
         ReactGa.initialize('UA-163593216-1');
@@ -123,9 +130,15 @@ const App = ({  ...restProps }) => {
                                     <span className={'main-filters__item main-filters__item--hamburger'}>
                                         <Hamburger menuIsClosed={!isMobileMenuOpen} toggleMobMenu={toggleMobMenu} className={'hamburger'} />
                                     </span>
-                                    <span className={'main-filters__item main-filters__item--desktop-filters-expansion-toggle'}>
-                                        <button onClick={()=> toggleDesktopFilters()}>click</button>
-                                    </span>
+
+
+
+                                    {columnCount > 1 ?
+                                        (<span className={`main-filters__item main-filters__item--expansion-toggle ${isDesktopFiltersExpanded ? 'main-filters__item--expanded' : ''}`}>
+                                            <button onClick={()=> toggleDesktopFilters()}>
+                                                <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'LONG_ARROW_LEFT'} />
+                                            </button>
+                                        </span>) : null}
                                 </List>
                             </nav>
 

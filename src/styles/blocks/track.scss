@@ -19,7 +19,7 @@
         .grid-view & {
             display: grid;
             grid-template-columns: repeat(1, 1fr);
-            grid-gap: 2rem;
+            grid-gap: 2.4rem 1.6rem;
 
             @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
                 grid-template-columns: repeat(2, 1fr);

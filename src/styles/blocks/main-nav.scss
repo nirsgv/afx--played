@@ -6,6 +6,7 @@
     width: 100%;
     background-color: #fff;
     z-index: map-get($z-indexes, "main-nav");
+    @extend %site-wide-padding;
 
     .scrolled & {
         height: 4rem;
@@ -27,9 +28,10 @@
         font-size: 2rem;
         filter: drop-shadow(2px 4px 10px black);
         margin-right: 3rem;
+        transition: transform 0.1s ease;
 
         .scrolled & {
-            transform: scale(.75);
+            transform: scale(.5);
             transition: transform 0.1s ease-out;
         }
     }
@@ -45,7 +47,7 @@
             color: #ccc;
             text-decoration: none;
             margin-right: 2rem;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 700;
         }
 
