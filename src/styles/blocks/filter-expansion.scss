@@ -88,6 +88,15 @@
         &--hamburger {
             margin-left: auto;
         }
+
+        &--expansion-toggle button{
+            font-size: .75rem;
+            transform: rotate(-90deg);
+        }
+
+        &--expanded button{
+            transform: rotate(90deg);
+        }
     }
 }
 
