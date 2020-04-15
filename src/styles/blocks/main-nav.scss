@@ -28,9 +28,10 @@
         font-size: 2rem;
         filter: drop-shadow(2px 4px 10px black);
         margin-right: 3rem;
+        transition: transform 0.1s ease;
 
         .scrolled & {
-            transform: scale(.75);
+            transform: scale(.5);
             transition: transform 0.1s ease-out;
         }
     }
