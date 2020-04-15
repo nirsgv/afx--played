@@ -17,20 +17,25 @@
 
     }
 
+    &__wrap {
+        height: inherit;
+    }
+
     &__list {
         display: flex;
         width: 100%;
         top: 0;
         left: 0;
         @extend %outer-pad;
-        padding-top: 1rem;
+        //padding-top: 1rem;
         padding-bottom: 1rem;
+        @extend %site-wide-padding;
     }
 
     &__item {
         color: #ccc;
         @extend .inline-list-item-margin;
-
+        font-size: 1.6rem;
 
 
         &--on {
@@ -38,7 +43,9 @@
 
             @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
                 //color: #ccc;
-                border-bottom: 4px solid #ddd;
+                //border-bottom: 4px solid #ddd;
+                border-bottom: 6px solid #ddd;
+                padding-bottom: 1.3rem;
             }
         }
 
