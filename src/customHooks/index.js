@@ -57,7 +57,7 @@ const useShadowAnimaStyle = (x= 0, y= 0, moveAmt = 1) => {
 const useIsScrolled = () => {
 
     const [scrollY, setScrollY] = useState(window.pageYOffset || document.documentElement.scrollTop);
-    const listener = (e) => {
+    const listener = () => {
         setScrollY(window.pageYOffset || document.documentElement.scrollTop);
     };
     const delay = 500;
@@ -102,6 +102,6 @@ const useMedia = (queries, values, defaultValue) => {
     );
 
     return value;
-}
+};
 
 export { useSetPageName, useFetch, useMediaQuery, useShadowAnimaStyle, useIsScrolled, useMedia };

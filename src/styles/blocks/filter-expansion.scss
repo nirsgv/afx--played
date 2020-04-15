@@ -11,12 +11,10 @@
     transition: height 0.1s ease;
 
     @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
-        //top: 0;
         height: 4rem;
         border-bottom: 1px solid #ddd;
         background-color: #fff;
         padding-right: 0;
-
     }
 
     &__wrap {
@@ -25,15 +23,17 @@
 
     &__list {
         display: flex;
+        height: inherit;
         width: 100%;
         top: 0;
         left: 0;
-        //@extend %outer-pad;
-        //padding-top: 1rem;
-        //padding-bottom: 1rem;
         @extend %site-wide-padding;
 
-            height: inherit;
+        .scrolled & {
+
+            @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+            }
+        }
     }
 
     &__item {
@@ -41,15 +41,36 @@
         @extend .inline-list-item-margin;
         font-size: 1.6rem;
 
-        & span {
-            padding-bottom: 1.3rem;
+        @media (max-width: map-get($b-points, "mob")) {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-right: 1.2rem;
+        }
 
-            .scrolled & {
-                padding-bottom: 0;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
+        &:last-child {
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        //&--expansion-toggle {
+        //    margin-right: auto;
+        //}
+
+
+        & span {
+
+            @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+                padding-bottom: 1.3rem;
+
+                .scrolled & {
+                    padding-bottom: 0;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
             }
 
         }

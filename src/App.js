@@ -7,7 +7,7 @@ import {
     expandFilter, toggleMobMenu, toggleDesktopFilters, setTracksAsLocal, setShowsAsLocal, setSearchValue,
     setSpaPageName, setViewportDimensions, resetFilters
 } from './actions';
-import { useShadowAnimaStyle, useIsScrolled } from './customHooks';
+import { useShadowAnimaStyle, useIsScrolled, useMedia } from './customHooks';
 import { isBiggerFromMobile } from './helpers/dom'
 import Main from './containers/main';
 import About from './components/about';
@@ -72,6 +72,16 @@ const App = ({  ...restProps }) => {
 
     const customHookShadow = useShadowAnimaStyle(2, 4, 4);
     const customHcroll = useIsScrolled();
+    const columnCount = useMedia(
+        // Media queries
+        ['(min-width: 1500px)', '(min-width: 1000px)', '(min-width: 600px)'],
+        // Column counts (relates to above media queries by array index)
+        [5, 4, 3],
+        // Default column count
+        2
+    );
+
+
     //console.log(customHcroll);
     useEffect(() => {
         ReactGa.initialize('UA-163593216-1');
@@ -105,6 +115,7 @@ const App = ({  ...restProps }) => {
                             <div className='main-nav__logo'>
                                 <Link to="/">
                                     <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'APHEX'} style={customHookShadow}/>
+                                    {columnCount}
                                 </Link>
                             </div>
                             <List baseClassName="main-nav">
@@ -123,7 +134,9 @@ const App = ({  ...restProps }) => {
                                     <span className={'main-filters__item main-filters__item--hamburger'}>
                                         <Hamburger menuIsClosed={!isMobileMenuOpen} toggleMobMenu={toggleMobMenu} className={'hamburger'} />
                                     </span>
-                                    <span className={'main-filters__item main-filters__item--desktop-filters-expansion-toggle'}>
+                                    <span className={'main-filters__item main-filters__item--expansion-toggle'}>
+
+
                                         <button onClick={()=> toggleDesktopFilters()}>click</button>
                                     </span>
                                 </List>
