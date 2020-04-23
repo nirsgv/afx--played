@@ -1,7 +1,5 @@
 // Colors
-$label-color: #ccc;
-$switch-background: blue;
-$switch-finger: #fff;
+
 
 .switch-modifiers {
 
@@ -36,7 +34,7 @@ $switch-finger: #fff;
     display: block;
     overflow: hidden;
     cursor: pointer;
-    border: 0 solid $label-color;
+    border: 0 solid map-get($colors, "label-color");
     border-radius: 20px;
     margin: 0;
   }
@@ -62,15 +60,15 @@ $switch-finger: #fff;
       content: attr(data-yes);
       text-transform: uppercase;
       padding-left: 10px;
-      background-color: $switch-background;
-      color: $switch-finger;
+      background-color: map-get($colors, "switch-background");
+      color: map-get($colors, "switch-finger");
     }
   }
   &-disabled {
-    background-color: $label-color;
+    background-color: map-get($colors, "label-color");
     cursor: not-allowed;
     &:before {
-      background-color: $label-color;
+      background-color: map-get($colors, "label-color");
       cursor: not-allowed;
     }
   }
@@ -78,20 +76,20 @@ $switch-finger: #fff;
     content: attr(data-no);
     text-transform: uppercase;
     padding-right: 10px;
-    background-color: $label-color;
-    color: $switch-finger;
+    background-color: map-get($colors, "label-color");
+    color: map-get($colors, "switch-finger");
     text-align: right;
   }
   &-switch {
     display: block;
     width: 24px;
     margin: 5px;
-    background: $switch-finger;
+    background: map-get($colors, "switch-finger");
     position: absolute;
     top: 0;
     bottom: 0;
     right: 40px;
-    border: 0 solid $label-color;
+    border: 0 solid map-get($colors, "label-color");
     border-radius: 20px;
     transition: all 0.1s ease-in 0s;
   }
