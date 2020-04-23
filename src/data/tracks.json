@@ -246,7 +246,7 @@
   {
     "ARTIST_NAME": "Mad Zach",
     "ALBUM_TITLE": "Quantum Shock",
-    "TRACK_TITLE": "#ACI Beta Test",
+    "TRACK_TITLE": "Acid Beta Test",
     "RECORD_LABEL": "SATURATE!RECORDS",
     "CAT": "STRT 010",
     "DURATION": 171,
@@ -254,7 +254,7 @@
     "GENRES": [
       "#HIP",
       "#BAS",
-      "Trap"
+      "#TRA"
     ],
     "LINKS": {
       "APPLE": "https://music.apple.com/us/album/acid-beta-test/1237942897?i=1237943058",
@@ -266,7 +266,7 @@
       "29Jul2017",
       "4Jun2017"
     ],
-    "ID": "madzach+#acibetatest",
+    "ID": "madzach+acibetatest",
     "ALBUM_ID": "madzach+quantumshock"
   },
   {
