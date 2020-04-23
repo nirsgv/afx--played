@@ -16,6 +16,18 @@ $z-indexes: (
         "modal-box": 101,
 );
 
+
+$colors: (
+        "body-bkg": #fff,
+        "item-bkg": #eee,
+        "grey_bright": #eee,
+        "grey_mid": #aaa,
+        "grey_dark": #888,
+        "rephlex_green": #138a43,
+        "tag-highlight": #138a43
+);
+
+
 $menu_gap: 8rem;
 
 // mob first state of mind
@@ -32,13 +44,6 @@ $brand-: (
 );
 
 
-$colors: (
-        "grey_bright": #eee,
-        "grey_mid": #aaa,
-        "grey_dark": #888,
-        "rephlex_green": #138a43,
-        "tag-highlight": #138a43
-);
 
 $greys: (
         "grey_0": darken( #fff, 0% ),

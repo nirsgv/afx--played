@@ -1,27 +1,29 @@
 @import 'variables.scss';
+@import 'fonts.scss';
 @import 'reset.scss';
 @import 'mixins.scss';
 @import 'elements.scss';
 @import 'generic-modifiers.scss';
 @import 'animations.scss';
-@import 'blocks/main-nav.scss';
-@import 'blocks/filter-expansion.scss';
-@import 'blocks/track.scss';
-@import 'blocks/tags.scss';
-@import 'blocks/links.scss';
-@import 'blocks/inner-page.scss';
-@import 'blocks/bkg-holder.scss';
-@import 'blocks/concerts.scss';
-@import 'blocks/modal-box.scss';
-@import 'blocks/expanded-concert.scss';
-@import 'blocks/splash.scss';
-@import 'blocks/main-search.scss';
-@import 'blocks/switch-button.scss';
-@import 'blocks/quick-slide.scss';
-@import 'blocks/player.scss';
-@import 'blocks/share-box.scss';
-@import 'blocks/footer.scss';
-@import 'blocks/darken-layer.scss';
+@import 'blocks/_main-nav.scss';
+@import 'blocks/_filter-expansion.scss';
+@import 'blocks/_track.scss';
+@import 'blocks/_tags.scss';
+@import 'blocks/_links.scss';
+@import 'blocks/_inner-page.scss';
+@import 'blocks/_bkg-holder.scss';
+@import 'blocks/_concerts.scss';
+@import 'blocks/_modal-box.scss';
+@import 'blocks/_expanded-concert.scss';
+@import 'blocks/_splash.scss';
+@import 'blocks/_main-search.scss';
+@import 'blocks/_switch-button.scss';
+@import 'blocks/_quick-slide.scss';
+@import 'blocks/_player.scss';
+@import 'blocks/_share-box.scss';
+@import 'blocks/_footer.scss';
+@import 'blocks/_darken-layer.scss';
+@import 'blocks/_checkbox.scss';
 
 * {
     touch-action: manipulation;
@@ -29,6 +31,7 @@
 
 body {
     background-color: map-get($colors, "grey_bright");
+    font-family: 'Open Sans', sans-serif;
 }
 
 // h1 - h6

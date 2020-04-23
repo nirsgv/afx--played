@@ -12,8 +12,8 @@ const SHOWS = require('../data/showsMap');
 const app = express();
 
 const normalizePort = port => parseInt(port, 10);
-const PORT = normalizePort(process.env.PORT || 80);
-//const PORT = normalizePort(process.env.PORT || 3000);
+//const PORT = normalizePort(process.env.PORT || 80);
+const PORT = normalizePort(process.env.PORT || 3000);
 
 const dev = app.get('env') !== 'production';
 
@@ -30,6 +30,7 @@ app.use(morgan('dev'));
 const server = createServer(app);
 console.log(process.env.NODE_ENV);
 console.log(PORT);
+console.log(dev);
 
 
 app.use(express.urlencoded({extended: false}));

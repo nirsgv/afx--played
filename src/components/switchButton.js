@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 function SwitchButton ({ Text=["Yes", "No"],  disabled=false, val, id, Name, Small, labelText, cb }) {
     const change = e => typeof cb === "function" && cb();
         return (<>
-            <label htmlFor={id}>{labelText} </label>
+            <label htmlFor={id} className={'toggle-switch-label'}>{labelText} </label>
             <div className={"toggle-switch" + (Small ? " small-switch" : "")}>
                 <input
                     type="checkbox"
