@@ -1,0 +1,84 @@
+$footer-height: 14rem;
+
+main.home + footer .footer__animative-indicator {
+    display: block;
+}
+
+.footer {
+    @extend %site-wide-padding;
+    position: relative;
+    width: 100%;
+    z-index: map-get($z-indexes, "footer");
+    border-top: 1px solid #ccc;
+    box-shadow: 1px 7px 20px #aaa;
+    display: flex;
+
+    &__preloader {
+
+        .footer__animative-indicator {
+            width: 5px;
+            height: 5px;
+            display: none;
+        }
+
+        &--animate-fetch {
+
+            animation-name: footerFetchAnimation;
+            animation-timing-function: ease-out;
+            animation-duration: .75s;
+            animation-iteration-count: infinite;
+
+            .footer__animative-indicator {
+                background-color: green;
+                position: relative;
+                border-radius: 5px;
+                overflow: hidden;
+            }
+        }
+
+    }
+
+    & > nav {
+        width: inherit;
+    }
+}
+
+.footer-nav {
+    &__wrap{
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: inherit;
+    }
+
+    &__list{
+        display: flex;
+        align-items: center;
+        height: $footer-height;
+        width: inherit;
+    }
+
+    &__item{
+
+        &:last-child {
+            margin-left: auto;
+        }
+
+        a, span {
+            color: #888;
+            text-decoration: none;
+            margin-right: 2rem;
+        }
+    }
+}
+
+
+main {
+    min-height: 100vh;
+    margin-bottom: -1 * $footer-height;
+}
+.footer,
+.push {
+    height: $footer-height;
+}

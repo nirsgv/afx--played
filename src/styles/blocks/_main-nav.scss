@@ -1,0 +1,66 @@
+.main-nav {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    height: 7rem;
+    width: 100%;
+    background-color: #fff;
+    z-index: map-get($z-indexes, "main-nav");
+    @extend %site-wide-padding;
+
+    .scrolled & {
+        height: 4rem;
+    }
+
+    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+        position: relative;
+        height: 8rem;
+        .scrolled & {
+            height: 8rem;
+        }
+    }
+
+    &__wrap {
+        flex-grow: 1;
+    }
+
+    &__logo {
+        font-size: 2rem;
+        filter: drop-shadow(2px 4px 10px black);
+        margin-right: 3rem;
+        transition: transform 0.1s ease;
+
+        .scrolled & {
+            transform: scale(.5);
+            transition: transform 0.1s ease-out;
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-grow: 1;
+        margin-right: auto;
+    }
+
+    &__item {
+        a {
+            color: #ccc;
+            text-decoration: none;
+            margin-right: 2rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        & .active {
+            color: #888;
+        }
+    }
+
+    &__hamburger {
+        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+            display: none;
+        }
+    }
+
+
+}

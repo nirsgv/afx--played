@@ -1,0 +1,21 @@
+.bkg {
+
+    &__wrap{
+        @extend %full-size-absolute;
+        pointer-events: none;
+        overflow: hidden;
+    }
+
+
+    &__layer{
+        position: absolute;
+        height: 110%;
+        width: 110%;
+        left: -5%;
+        top: -5%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        filter: blur(8px) grayscale(1);
+    }
+}
