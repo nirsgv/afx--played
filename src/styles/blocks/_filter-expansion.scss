@@ -87,7 +87,7 @@
         }
 
         &--on {
-        color: #333;
+        //color: #333;
 
             @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
                 //color: #ccc;
