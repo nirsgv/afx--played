@@ -1,3 +1,16 @@
+$colors: (
+        "body-bkg": #fff,
+        "grid-item-bkg": #f8f8f8,
+        "grey_bright": #eee,
+        // switch
+        "label-color": #ccc,
+        "switch-background": #777,
+        "switch-finger": #fff,
+        "grey_mid": #aaa,
+        "grey_dark": #888,
+        "rephlex_green": #138a43,
+        "tag-highlight": #138a43
+);
 
 $z-indexes: (
         "iframe": 1,
@@ -32,13 +45,6 @@ $brand-: (
 );
 
 
-$colors: (
-        "grey_bright": #eee,
-        "grey_mid": #aaa,
-        "grey_dark": #888,
-        "rephlex_green": #138a43,
-        "tag-highlight": #138a43
-);
 
 $greys: (
         "grey_0": darken( #fff, 0% ),

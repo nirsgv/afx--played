@@ -34,12 +34,23 @@
             @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
             }
         }
+
+
     }
 
     &__item {
         color: #ccc;
         @extend .inline-list-item-margin;
         font-size: 1.6rem;
+
+        &:first-child {
+
+            // filter by
+            & * {
+                color: #000;
+                margin-right: 2rem;
+            }
+        }
 
         @media (max-width: map-get($b-points, "mob")) {
             display: flex;
@@ -76,7 +87,7 @@
         }
 
         &--on {
-        color: #333;
+        //color: #333;
 
             @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
                 //color: #ccc;

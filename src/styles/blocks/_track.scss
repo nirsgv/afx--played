@@ -4,22 +4,19 @@
     @extend %brand-border-radius;
     overflow: hidden;
 
-    //@media (min-width: map-get($b-points, "mob")) {
-    //    grid-template-columns: repeat(2, 1fr);
-    //}
-    //@media (min-width: map-get($b-points, "tab")) {
-    //    grid-template-columns: repeat(3, 1fr);
-    //}
-    //
-    //@media (min-width: map-get($b-points, "des")) {
-    //    grid-template-columns: repeat(4, 1fr);
-    //}
-    // track-items
+    .grid-view & {
+        background-color: map-get($colors, "grid-item-bkg");
+        padding: 1.8rem 1.2rem 0 1.2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
     &-items {
         .grid-view & {
             display: grid;
             grid-template-columns: repeat(1, 1fr);
-            grid-gap: 2.4rem 1.6rem;
+            grid-gap: 3.4rem 3.6rem;
 
             @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
                 grid-template-columns: repeat(2, 1fr);
@@ -43,16 +40,6 @@
             animation-duration: .5s;
             animation-timing-function: ease-out;
         }
-    }
-
-    // track
-    .grid-view & {
-        background-color: #fff;
-        padding: 1.8rem 1.2rem 0 1.2rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-
     }
 
     .list-view & {
@@ -120,11 +107,20 @@
         }
     }
 
+    &__track-title {
+        font-weight: 400;
+        font-size: 2rem;
+    }
+
     &__artist-name {
+        font-weight: 700;
         font-size: 2rem;
     }
 
     &__album-title {
+        font-weight: 400;
+        color: #bbbbbb;
+        font-size: 1.6rem;
 
     }
 

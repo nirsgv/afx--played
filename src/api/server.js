@@ -30,6 +30,7 @@ app.use(morgan('dev'));
 const server = createServer(app);
 console.log(process.env.NODE_ENV);
 console.log(PORT);
+console.log(dev);
 
 
 app.use(express.urlencoded({extended: false}));
