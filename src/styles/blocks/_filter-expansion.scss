@@ -150,12 +150,13 @@
             padding-left: 12rem;
 
             &--close {
-                top: -40rem;
-
+                // top: -40rem;
+                transform: translateY(-40rem);
             }
 
             &--open {
-                top: 4rem;
+                // top: 4rem;
+                transform: translateY(0rem);
 
             }
 
