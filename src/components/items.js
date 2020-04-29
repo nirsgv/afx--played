@@ -2,13 +2,13 @@ import React, { useMemo } from 'react';
 import Item from "./item";
 
 
-function Items ({ tracksFiltered, isPlayingEmbedded, setPlayerItem }) {
+function Items ({ tracksFiltered, setPlayerItem }) {
 
     return (
         <>
             {tracksFiltered.map((item, index) => {
                 return (
-                    <Item key={index} trackData={item} isPlayingEmbedded={isPlayingEmbedded} setPlayerItem={setPlayerItem}/>
+                    <Item key={index} trackData={item} setPlayerItem={setPlayerItem}/>
                 )
             })}
         </>

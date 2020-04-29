@@ -176,8 +176,7 @@ const App = ({  ...restProps }) => {
                             <Route path="/concert/:id" component={ExpandedConcert} setPlayerItem={setPlayerItem} />
                             <Route path="/">
                                 <List baseClassName="switch-modifiers">
-                                    {isBiggerFromMobile(viewport.dimensions) && <SwitchButton Small={true} id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={toggleGridListView} val={isGridView} />}
-                                    <SwitchButton Small={true} id={'isPlayingEmbedded'} Text={'isPlayingEmbedded'} labelText={"Embed play"} cb={toggleEmbeddedPlay} val={isPlayingEmbedded} />
+                                    <SwitchButton Small={true} id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={toggleGridListView} val={isGridView} />
                                 </List>
                                 <InputBox classname={"main-search"} name="noname" placeholder="Search.." cb={(e) => setSearchValue(e)}>
                                     <SvgSprite classes={'main-search__icon'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'SEARCH'} />
@@ -212,7 +211,6 @@ const App = ({  ...restProps }) => {
 };
 
 App.propTypes = {
-    isPlayingEmbedded: PropTypes.bool,
     isGridView: PropTypes.bool,
     isTracksDataLocal: PropTypes.bool,
     isShowsDataLocal: PropTypes.bool,
@@ -224,7 +222,6 @@ App.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    isPlayingEmbedded: state.player.isPlayingEmbedded,
     isGridView: state.appData.isGridView,
     isTracksDataLocal: state.appData.isTracksDataLocal,
     isShowsDataLocal: state.appData.isShowsDataLocal,
