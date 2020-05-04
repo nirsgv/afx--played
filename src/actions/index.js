@@ -26,7 +26,8 @@ export {
     toggleDesktopFilters,
     setTracksAsLocal,
     setShowsAsLocal,
-    setSpaPageName
+    setSpaPageName,
+    setSampleId
 } from './uiToggle';
 
 export {
@@ -53,6 +54,7 @@ export const SET_SHOWS_AS_LOCAL = 'SET_SHOWS_AS_LOCAL';
 export const SET_SPA_PAGE_NAME = 'SET_SPA_PAGE_NAME';
 export const SET_VIEWPORT_DIMENSIONS = 'SET_VIEWPORT_DIMENSIONS';
 export const RESET_FILTERS = 'RESET_FILTERS';
+export const SET_SAMPLE_ID = 'SET_SAMPLE_ID';
 
 export  {
     filterByTagCb,

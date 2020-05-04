@@ -57,9 +57,8 @@
         &--active{
             @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
                 &:hover {
-                    transition: color 0s ease-in-out;
-
-                    color: #777;
+                    //transition: color 0s ease-in-out;
+                    //color: #777;
                 }
             }
         }
@@ -96,7 +95,7 @@
 
 
     .links__link--expand{
-        color: #888;
+        //color: #888;
 
     }
 }

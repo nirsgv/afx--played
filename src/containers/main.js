@@ -5,7 +5,7 @@ import Items from '../components/items';
 import { hasTags, withinPeriod, hasMatchingText, inViewRange } from '../helpers/comparitors';
 import { combineByObjKeysArr } from '../helpers/str';
 import { yearsMap } from '../data/periodMap.js';
-import {dispatchMessageToModal, toggleShareExpansion, setPlayerItem, setPlayerType, setSpaPageName} from "../actions";
+import {dispatchMessageToModal, toggleShareExpansion, setPlayerItem, setSpaPageName, setSampleId} from "../actions";
 
 
 const Main = ({
@@ -20,6 +20,7 @@ const Main = ({
                   setSpaPageName,
                   isPlayingEmbedded,
                   setPlayerItem,
+                  setSampleId
               }) => {
 
     useEffect(() => {
@@ -47,7 +48,7 @@ const Main = ({
             .filter(memoRangeResult)
         : '', [filteredByTags, filteredByPeriods, filteredBySearch, batchNum]);
 
-    const filteredItems = <Items tracksFiltered={tracksFiltered} isPlayingEmbedded={isPlayingEmbedded} setPlayerItem={setPlayerItem} />;
+    const filteredItems = <Items tracksFiltered={tracksFiltered} setPlayerItem={setPlayerItem} setSampleId={setSampleId} />;
 
     return (
         <>
@@ -75,7 +76,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     toggleShareExpansion,
     dispatchMessageToModal,
     setPlayerItem,
-    setSpaPageName
+    setSpaPageName,
+    setSampleId
 }, dispatch);
 
 export default connect(

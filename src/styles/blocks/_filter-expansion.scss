@@ -129,8 +129,6 @@
         padding: 2rem 2rem 0 2rem;
         padding-right: $menu_gap  + 2rem;
         @extend %viewport-wide;
-        transition: top 0.4s ease-out;
-
 
         height: calc(100vh - 4rem);
         display: flex;

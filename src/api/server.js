@@ -66,8 +66,9 @@ app.get('/api/show/:id', (req, res) => {
     return res.send(show);
 });
 
-app.get('/api/aphex', function (req, res) {
-    res.sendFile(path.join(__dirname, '../assets', 'aphex-logo.svg'));
+
+app.get('/api/sample', function (req, res) {
+    res.sendFile(path.join(__dirname, '../assets', 'boc-remix.mp3'));
 });
 
 

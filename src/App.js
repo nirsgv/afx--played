@@ -33,12 +33,10 @@ import { createBrowserHistory } from "history";
 import { Helmet } from 'react-helmet';
 import urlConstants from './data/urlConstants';
 import InputBox from "./components/inputBox";
-import AnimativeIndicator from "./components/animativeIndicator";
 import { expClass } from './helpers/str'
 import ReactGa from 'react-ga'
 import DarkenLayer from "./components/darkenLayer";
-
-// import { useFetch } from './customHooks/index'
+import SamplePlayer from "./components/samplePlayer"
 const customHistory = createBrowserHistory();
 
 const App = ({  ...restProps }) => {
@@ -48,8 +46,6 @@ const App = ({  ...restProps }) => {
              toggleMobMenu,
              setPlayerItem,
              toggleGridListView,
-             toggleEmbeddedPlay,
-             isPlayingEmbedded,
              setSearchValue,
              setViewportDimensions,
              resetFilters,
@@ -67,7 +63,6 @@ const App = ({  ...restProps }) => {
              expandedFilter,
     } = restProps;
 
-    const [ animateFooter, setAnimateFooter ] = useState(false);
     const getScrollItems = debounce(function(){ isBottomOfPage(this) && viewMore() }, 500);
 
     const customHookShadow = useShadowAnimaStyle(2, 4, 4);
@@ -77,7 +72,6 @@ const App = ({  ...restProps }) => {
         [5, 4, 2],
         1
     );
-
 
     //console.log(customHcroll);
     useEffect(() => {
@@ -165,6 +159,8 @@ const App = ({  ...restProps }) => {
                     />
 
                     <main className={`${spaPageName} faded-in-from-bottom`}>
+{/*<SamplePlayer/ >*/}
+          
                         <Switch>
                             <Route path="/about">
                                 <About name={"about"} setSpaPageName={setSpaPageName}/>
@@ -187,7 +183,7 @@ const App = ({  ...restProps }) => {
                         <div className="push"></div>
 
                     </main>
-                    <footer className={"footer"} >
+{/*                    <footer className={"footer"} >
                         <nav>
                             <List baseClassName="footer-nav" onClick={toggleMobMenu}>
                                 <SvgSprite classes={''} src={imgData.sprite.src} alt={imgData.sprite.description} name={'APHEX'} />
@@ -198,7 +194,7 @@ const App = ({  ...restProps }) => {
                                 <AnimativeIndicator animateFooter={animateFooter} setAnimateFooter={setAnimateFooter} />
                             </List>
                         </nav>
-                    </footer>
+                    </footer>*/}
 
 
                     <ViewPort setDimensionsCb={setViewportDimensions} viewport={viewport}>

@@ -13,7 +13,8 @@ import {
     SET_SHOWS_AS_LOCAL,
     SET_SPA_PAGE_NAME,
     SET_VIEWPORT_DIMENSIONS,
-    RESET_FILTERS
+    RESET_FILTERS,
+    SET_SAMPLE_ID
 } from '../actions';
 
 
@@ -35,6 +36,7 @@ const initialAppState = {
     isTracksDataLocal: false,
     isShowsDataLocal: false,
     spaPageName: '',
+    sampleId: ''
 };
 
 function appData(state = initialAppState, action) {
@@ -154,6 +156,13 @@ function appData(state = initialAppState, action) {
             return {
                 ...state,
                 spaPageName: action.payload
+            };
+
+        case SET_SAMPLE_ID:
+            console.log(action);
+            return {
+                ...state,
+                sampleId: action.payload
             };
         default:
             return state;
