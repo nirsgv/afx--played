@@ -36,7 +36,6 @@ const initialAppState = {
     isTracksDataLocal: false,
     isShowsDataLocal: false,
     spaPageName: '',
-    sampleId: ''
 };
 
 function appData(state = initialAppState, action) {
@@ -158,12 +157,6 @@ function appData(state = initialAppState, action) {
                 spaPageName: action.payload
             };
 
-        case SET_SAMPLE_ID:
-            console.log(action);
-            return {
-                ...state,
-                sampleId: action.payload
-            };
         default:
             return state;
     }
@@ -194,13 +187,14 @@ function messages(state = { currentMessages: [] }, action) {
 }
 
 
-function player(state = { platform: '', item: '', isPlayingEmbedded: false, trackId: '' }, action) {
+function player( state = { platform: '', item: '', isPlayingEmbedded: false, trackId: '', sampleId: ''}, action ) {
     switch(action.type) {
 
-        case SET_PLAYER_TYPE:
+        case SET_SAMPLE_ID:
+            console.log(action);
             return {
                 ...state,
-                platform: action.payload.item
+                sampleId: action.payload
             };
 
         case SET_PLAYER_ITEM:
@@ -209,12 +203,6 @@ function player(state = { platform: '', item: '', isPlayingEmbedded: false, trac
                 item: action.payload.item,
                 platform: action.payload.platform,
                 trackId: action.payload.trackId,
-            };
-
-        case TOGGLE_EMBEDDED_PLAY:
-            return {
-                ...state,
-                isPlayingEmbedded: !state.isPlayingEmbedded
             };
 
         default:
