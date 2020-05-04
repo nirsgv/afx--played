@@ -197,9 +197,7 @@ const App = ({  ...restProps }) => {
                     </footer>*/}
 
 
-                    <ViewPort setDimensionsCb={setViewportDimensions} viewport={viewport}>
-                        <MultiPlayer />
-                    </ViewPort>
+                    <MultiPlayer />
                     <MessagesModal />
                 </Router>)}
         </div>
