@@ -1,7 +1,5 @@
 import React, { useMemo } from 'react';
 import Item from "./item";
-import {setSampleId} from "../actions";
-
 
 function Items ({ tracksFiltered, setPlayerItem, setSampleId }) {
 
