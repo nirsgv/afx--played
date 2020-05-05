@@ -43,9 +43,6 @@ function NavButton({value, platform,  children}) {
 };
 
 function Item({ trackData, setSampleId }) {
-//     const [ sound, setSound ] = useState(false);
-// alt().then(res => setSound(res));
-
     const {
         ARTIST_NAME,
         ALBUM_TITLE,

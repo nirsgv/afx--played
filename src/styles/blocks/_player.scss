@@ -1,7 +1,6 @@
 .player {
     //outline: 1px dashed #aaa;
 
-    z-index: 9999;
     &__wrap {
         position: fixed;
         bottom: 0;
@@ -9,8 +8,16 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        //pointer-events: none;
         background-color: indianred;
+        z-index: map-get($z-indexes, 'player');
+
+        &.show{
+
+        }
+
+        &.hide{
+            display: none;
+        }
     }
 
 

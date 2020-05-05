@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import ReactGa from 'react-ga'
 
 function Editorial( { ...restProps } ) {
-    const { name, setPlayerItem, setSpaPageName } = restProps;
+    const { name, setPlayerItem, setSpaPageName, setSampleId } = restProps;
     //console.log({editorialData});
 
     useEffect(() => {
@@ -34,7 +34,7 @@ function Editorial( { ...restProps } ) {
                 const itemsnow = getItemsByIds(list.ITEMS, tracks);
                 return (
                     <QuickSlide title={list.TITLE} key={index}>
-                        <Items tracksFiltered={itemsnow} setPlayerItem={setPlayerItem} />
+                        <Items tracksFiltered={itemsnow} setPlayerItem={setPlayerItem} setSampleId={setSampleId} />
                     </QuickSlide>
                 )
             })}

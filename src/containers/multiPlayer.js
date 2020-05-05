@@ -1,40 +1,45 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { setSampleId } from '../actions';
 
-
-
-function MultiPlayer({ sampleId }) {
+function MultiPlayer({ sampleId, setSampleId }) {
     const audioTagRef = useRef(null), // references the audio element
           [ player, setPlayer ] = useState('stopped'),
           [ currentTime, setCurrentTime ] = useState(null),
           [ duration, setDuration ] = useState(null),
           [ preloader, setPreloader ] = useState(false),
           [ compareTarget, setCompareTarget ] = useState(''),
-          prevCountRef = useRef();
+          prevCountRef = useRef(),
+          tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data,
+          chosen = tracks.find(function(track) {
+              return track.ID === sampleId;
+          });
 
     const setTimeDisplay = (e) => {
         setCurrentTime(e.target.currentTime);
         setDuration(e.target.duration);
     };
+
     const showPreloader = () => setPreloader(true);
     const hidePreloader = () => setPreloader(false);
 
     useEffect(() => {
-        console.log(sampleId);
-        prevCountRef.current = compareTarget;
-        setCompareTarget(sampleId);
-        if(sampleId !== prevCountRef) {console.log('changed!!!')}
         // setup
         audioTagRef.current.addEventListener("timeupdate", setTimeDisplay);
         audioTagRef.current.addEventListener("loadstart", showPreloader);
         audioTagRef.current.addEventListener("canplaythrough", hidePreloader);
 
-        console.log(player,currentTime,duration,sampleId);
+        prevCountRef.current = compareTarget;
+        setCompareTarget(sampleId);
 
-        if (sampleId && !duration ) {
-            audioTagRef.current.src = "https://www2.cs.uic.edu/~i101/SoundFiles/BabyElephantWalk60.wav";
+        if (prevCountRef.current !== prevCompareTarget && player !== "paused") {
+            console.log('changed!!!');
+            audioTagRef.current.src = `../assets/${sampleId}.mp3`;
             setPlayer("playing");
+        } else if (sampleId && !duration && player === "playing") {
+            setPlayer("playing");
+            audioTagRef.current.src = `../assets/${sampleId}.mp3`;
         }
 
         if (player === "paused") {
@@ -54,16 +59,16 @@ function MultiPlayer({ sampleId }) {
             audioTagRef.current.removeEventListener("loadstart", showPreloader);
             audioTagRef.current.removeEventListener("canplaythrough", hidePreloader);
         }
-    }, [sampleId, audioTagRef.current, player]);
+    }, [ sampleId, player ]);
 
     const prevCompareTarget = prevCountRef.current;
 
     return (
-        <section className='player__wrap'>
-            {sampleId}
-
-                {/*<h1>My Little Player</h1>*/}
-            <h3>Now: {compareTarget}, before: {prevCompareTarget}</h3>
+        <section className={`player__wrap ${sampleId ? 'show' : 'hide'}`}>
+            <h2>
+                <span>{chosen && chosen.ARTIST_NAME}</span> - <span>{chosen && chosen.TRACK_TITLE}</span>
+            </h2>
+            {/*<h3>Now: {compareTarget}, before: {prevCompareTarget}</h3>*/}
                 {preloader ? 'preloader' : <div>
                     {player === "paused" && (
                         <button onClick={() => setPlayer("playing")}>
@@ -75,8 +80,10 @@ function MultiPlayer({ sampleId }) {
                             Pause
                         </button>
                     )}
+
+
                     {player === "playing" || player === "paused" ? (
-                        <button onClick={() => setPlayer("stopped")}>
+                        <button onClick={() => {setSampleId('');setPlayer("paused")}}>
                             Stop
                         </button>
                     ) : (
@@ -84,13 +91,13 @@ function MultiPlayer({ sampleId }) {
                     )}
                 </div>}
 
-                {player === "playing" || player === "paused" ? (
-                    <div>
-                        {currentTime} / {duration}
-                    </div>
-                ) : (
-                    ""
-                )}
+                {/*{player === "playing" || player === "paused" ? (*/}
+                    {/*<div>*/}
+                        {/*{currentTime} / {duration}*/}
+                    {/*</div>*/}
+                {/*) : (*/}
+                    {/*""*/}
+                {/*)}*/}
                 <audio ref={audioTagRef} />
         </section>
     )
@@ -101,7 +108,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-
+    setSampleId
 }, dispatch);
 
 export default connect(

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {
     toggleGridListView, toggleEmbeddedPlay, setPlayerItem, toggleShareExpansion, dispatchMessageToModal, viewMore,
     expandFilter, toggleMobMenu, toggleDesktopFilters, setTracksAsLocal, setShowsAsLocal, setSearchValue,
-    setSpaPageName, setViewportDimensions, resetFilters
+    setSpaPageName, setViewportDimensions, resetFilters, setSampleId
 } from './actions';
 import { useShadowAnimaStyle, useIsScrolled, useMedia } from './customHooks';
 import { isBiggerFromMobile } from './helpers/dom'
@@ -61,6 +61,7 @@ const App = ({  ...restProps }) => {
              isDesktopFiltersExpanded,
              spaPageName,
              expandedFilter,
+        setSampleId
     } = restProps;
 
     const getScrollItems = debounce(function(){ isBottomOfPage(this) && viewMore() }, 500);
@@ -159,14 +160,12 @@ const App = ({  ...restProps }) => {
                     />
 
                     <main className={`${spaPageName} faded-in-from-bottom`}>
-{/*<SamplePlayer/ >*/}
-          
                         <Switch>
                             <Route path="/about">
                                 <About name={"about"} setSpaPageName={setSpaPageName}/>
                             </Route>
                             <Route path="/editorial">
-                                <Editorial name={"editorial"} setSpaPageName={setSpaPageName}/>
+                                <Editorial name={"editorial"} setSpaPageName={setSpaPageName} setSampleId={setSampleId} />
                             </Route>
                             <Route path="/track/:id" component={ExpandedItem} setPlayerItem={setPlayerItem} />
                             <Route path="/concert/:id" component={ExpandedConcert} setPlayerItem={setPlayerItem} />
@@ -241,7 +240,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     setSearchValue,
     setSpaPageName,
     setViewportDimensions,
-    resetFilters
+    resetFilters,
+    setSampleId
 }, dispatch);
 
 export const goHome = () => {
