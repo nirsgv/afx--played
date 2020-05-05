@@ -1,7 +1,6 @@
-import React, { component, useState, useEffect } from 'react';
+import React, { component } from 'react';
 
 import Tags from './tags';
-import Links from './links';
 import Img from './img';
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
