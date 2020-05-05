@@ -1,43 +1,35 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import {randomIntFromInterval} from "../helpers/math";
 
-function getTime(time) {
-    if (!isNaN(time)) {
-        return (
-            Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
-        );
-    }
-};
+
 
 function MultiPlayer({ sampleId }) {
+    const audioTagRef = useRef(null), // references the audio element
+          [ player, setPlayer ] = useState('stopped'),
+          [ currentTime, setCurrentTime ] = useState(null),
+          [ duration, setDuration ] = useState(null),
+          [ preloader, setPreloader ] = useState(false),
+          [ compareTarget, setCompareTarget ] = useState(''),
+          prevCountRef = useRef();
 
-    const audioTagRef = useRef(null); // references the audio element
-
-    const [ player, setPlayer ] = useState('stopped');
-    const [ currentTime, setCurrentTime ] = useState(null);
-    const [ duration, setDuration ] = useState(null);
-    const [ preloader, setPreloader ] = useState(false);
+    const setTimeDisplay = (e) => {
+        setCurrentTime(e.target.currentTime);
+        setDuration(e.target.duration);
+    };
+    const showPreloader = () => setPreloader(true);
+    const hidePreloader = () => setPreloader(false);
 
     useEffect(() => {
         console.log(sampleId);
-
+        prevCountRef.current = compareTarget;
+        setCompareTarget(sampleId);
+        if(sampleId !== prevCountRef) {console.log('changed!!!')}
         // setup
-        audioTagRef.current.addEventListener("timeupdate", e => {
-            setCurrentTime(e.target.currentTime);
-            setDuration(e.target.duration);
-        });
+        audioTagRef.current.addEventListener("timeupdate", setTimeDisplay);
+        audioTagRef.current.addEventListener("loadstart", showPreloader);
+        audioTagRef.current.addEventListener("canplaythrough", hidePreloader);
 
-        audioTagRef.current.addEventListener("loadstart", e => {
-            console.log(Date.now());
-            setPreloader(true);
-        });
-
-        audioTagRef.current.addEventListener("canplaythrough", e => {
-            console.log(Date.now());
-            setPreloader(false);
-        });
         console.log(player,currentTime,duration,sampleId);
 
         if (sampleId && !duration ) {
@@ -51,26 +43,27 @@ function MultiPlayer({ sampleId }) {
         } else if (player === "stopped") {
             audioTagRef.current.pause();
             audioTagRef.current.currentTime = 0;
-        } else if (
-            player === "playing"
-        ) {
+        } else if (player === "playing") {
             setDuration(audioTagRef.current.duration);
             audioTagRef.current.play();
         }
 
         return () => {
             // tear down
-            audioTagRef.current.removeEventListener("timeupdate", e => {});
-            audioTagRef.current.removeEventListener("loadstart", e => {});
-            audioTagRef.current.removeEventListener("canplaythrough", e => {});
+            audioTagRef.current.removeEventListener("timeupdate", setTimeDisplay);
+            audioTagRef.current.removeEventListener("loadstart", showPreloader);
+            audioTagRef.current.removeEventListener("canplaythrough", hidePreloader);
         }
     }, [sampleId, audioTagRef.current, player]);
+
+    const prevCompareTarget = prevCountRef.current;
 
     return (
         <section className='player__wrap'>
             {sampleId}
 
-                <h1>My Little Player</h1>
+                {/*<h1>My Little Player</h1>*/}
+            <h3>Now: {compareTarget}, before: {prevCompareTarget}</h3>
                 {preloader ? 'preloader' : <div>
                     {player === "paused" && (
                         <button onClick={() => setPlayer("playing")}>
