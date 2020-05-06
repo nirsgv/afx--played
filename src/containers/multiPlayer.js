@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { setSampleId } from '../actions';
+import { Link } from "react-router-dom";
 
 function MultiPlayer({ sampleId, setSampleId }) {
     const audioTagRef = useRef(null), // references the audio element
@@ -10,7 +11,7 @@ function MultiPlayer({ sampleId, setSampleId }) {
           [ duration, setDuration ] = useState(null),
           [ preloader, setPreloader ] = useState(false),
           [ compareTarget, setCompareTarget ] = useState(''),
-          prevCountRef = useRef(),
+          prevSampleRef = useRef(),
           tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data,
           chosen = tracks.find(function(track) {
               return track.ID === sampleId;
@@ -30,10 +31,10 @@ function MultiPlayer({ sampleId, setSampleId }) {
         audioTagRef.current.addEventListener("loadstart", showPreloader);
         audioTagRef.current.addEventListener("canplaythrough", hidePreloader);
 
-        prevCountRef.current = compareTarget;
+        prevSampleRef.current = compareTarget;
         setCompareTarget(sampleId);
 
-        if (prevCountRef.current !== prevCompareTarget && player !== "paused") {
+        if (prevSampleRef.current !== prevCompareTarget && player !== "paused") {
             console.log('changed!!!');
             audioTagRef.current.src = `../assets/${sampleId}.mp3`;
             setPlayer("playing");
@@ -61,15 +62,17 @@ function MultiPlayer({ sampleId, setSampleId }) {
         }
     }, [ sampleId, player ]);
 
-    const prevCompareTarget = prevCountRef.current;
+    const prevCompareTarget = prevSampleRef.current;
 
     return (
         <section className={`player__wrap ${sampleId ? 'show' : 'hide'}`}>
-            <h2>
+            <h3 className={"player__text"}>
                 <span>{chosen && chosen.ARTIST_NAME}</span> - <span>{chosen && chosen.TRACK_TITLE}</span>
-            </h2>
+            </h3>
             {/*<h3>Now: {compareTarget}, before: {prevCompareTarget}</h3>*/}
-                {preloader ? 'preloader' : <div>
+                {preloader
+                    ? 'preloader'
+                    : <div className={"player__toggle-play"}>
                     {player === "paused" && (
                         <button onClick={() => setPlayer("playing")}>
                             Play
@@ -82,15 +85,7 @@ function MultiPlayer({ sampleId, setSampleId }) {
                     )}
 
 
-                    {player === "playing" || player === "paused" ? (
-                        <button onClick={() => {setSampleId('');setPlayer("paused")}}>
-                            Stop
-                        </button>
-                    ) : (
-                        ""
-                    )}
                 </div>}
-
                 {/*{player === "playing" || player === "paused" ? (*/}
                     {/*<div>*/}
                         {/*{currentTime} / {duration}*/}
@@ -98,6 +93,14 @@ function MultiPlayer({ sampleId, setSampleId }) {
                 {/*) : (*/}
                     {/*""*/}
                 {/*)}*/}
+                <div className={"player__expand"}>
+                    <button onClick={() => {
+                        setSampleId(''); setPlayer("paused");
+                    }}>
+                        Stop
+                    </button>
+                    <Link to={`/track/${sampleId}`} className={"player__text"}>More Info</Link>
+                </div>
                 <audio ref={audioTagRef} />
         </section>
     )

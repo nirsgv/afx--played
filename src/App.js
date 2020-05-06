@@ -47,10 +47,8 @@ const App = ({  ...restProps }) => {
              setPlayerItem,
              toggleGridListView,
              setSearchValue,
-             setViewportDimensions,
              resetFilters,
              viewMore,
-             viewport,
              setTracksAsLocal,
              setShowsAsLocal,
              setSpaPageName,
@@ -61,7 +59,7 @@ const App = ({  ...restProps }) => {
              isDesktopFiltersExpanded,
              spaPageName,
              expandedFilter,
-        setSampleId
+            setSampleId
     } = restProps;
 
     const getScrollItems = debounce(function(){ isBottomOfPage(this) && viewMore() }, 500);
@@ -119,7 +117,7 @@ const App = ({  ...restProps }) => {
                         <div className={`nav-slide ${isMobileMenuOpen ? 'nav-slide--open' : ''}`} data-test="nav-slide">
                             <nav className="main-filters">
                                 <List baseClassName="main-filters">
-                                    <span>Filter By:</span>
+                                    <span>Filter Tracks:</span>
                                     <span onClick={() => {expandFilter('genres');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'genres')}`}>Genres</span>
                                     <span onClick={() => {expandFilter('years');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'years')}`}>Years</span>
                                     <span onClick={() => {expandFilter('search');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'search')}`}>Search</span>

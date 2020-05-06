@@ -1,15 +1,20 @@
+$player-side-padding: 4rem;
+$toggle-play-width: 8rem;
+
 .player {
     //outline: 1px dashed #aaa;
 
     &__wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         position: fixed;
         bottom: 0;
-        height: 20rem;
+        height: 4rem;
         width: 100%;
-        display: flex;
-        justify-content: center;
         background-color: indianred;
         z-index: map-get($z-indexes, 'player');
+        padding: 0 $player-side-padding;
 
         &.show{
 
@@ -19,73 +24,35 @@
             display: none;
         }
     }
-
-
-    & > .div {
-
-        position: ABSOLUTE;
-        right: 0;
-        bottom: 0;
+    &__text {
+        @extend %one-liner;
+        width: calc(50vw - (#{$player-side-padding} / 2) - 4rem);
     }
 
-    .iframe {
-        pointer-events: all;
-        bottom: 3rem;
-        position: absolute;
-        right: 0.5rem;
-        z-index: map-get($z-indexes, "iframe");
-        border: 1rem solid #202020;
-        border-radius: 1rem 1rem 0 0;
-        border-bottom-width: 0;
-        border-left-width: 0;
-        border-right-width: 0;
+    &__toggle-play {
+        //background-color: red;
+        //width: 8rem;
+        //height: 2rem;
+        //text-align: center;
+        //display: flex;
+        //align-items: center;
+        //justify-content: center;
 
-        &--youtube{
-
-        }
-
-        &--spotify{
-
-        }
-    }
-
-}
-
-.expend-played {
-
-    &__wrap{
-        pointer-events: all;
-        background-color: #202020;
-        height: 3rem;
-        bottom: 0.5rem;
-        right: 0.5rem;
-        position: fixed;
-        width: 30rem;
-        color: #fff;
-        z-index: map-get($z-indexes, "player");
+        background-color: red;
+        width: 8rem;
+        height: 8rem;
+        text-align: center;
         display: flex;
-        justify-content: flex-end;
         align-items: center;
-        padding: 0 2rem;
-        border-radius: 0 0 1rem 1rem;
+        justify-content: center;
+        border-radius: 50%;
+        transform: translateY(1rem);
     }
 
-
-    &__button{
-        color: #fff;
-        text-decoration: none;
-        font-size: 1.2rem;
-    }
-
-
-    &__text{
-
-    }
-
-
-    &__icon{
-        font-size: .8rem;
-
+    &__expand {
+        width: calc(50vw - (#{$player-side-padding} / 2) - (#{$toggle-play-width} / 2));
+        text-align: right;
+        @extend %one-liner;
     }
 
 }

@@ -1,16 +1,14 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import Item from "./item";
 
 function Items ({ tracksFiltered, setPlayerItem, setSampleId }) {
 
     return (
-        <>
-            {tracksFiltered.map((item, index) => {
-                return (
-                    <Item key={index} trackData={item} setPlayerItem={setPlayerItem} setSampleId={setSampleId} />
-                )
-            })}
-        </>
+        tracksFiltered.map((item, index) => {
+            return (
+                <Item key={index} trackData={item} setPlayerItem={setPlayerItem} setSampleId={setSampleId} />
+            )
+        })
     )
 }
 export default Items;

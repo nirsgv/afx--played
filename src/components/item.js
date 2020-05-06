@@ -24,23 +24,13 @@ import { Link } from "react-router-dom";
 //     return await readResponse;
 // };
 
-// const alt = () => {
-//     alert(123);
-//     fetch(`${window.location.origin}/api/sample`)
-//     //.then(response => response.json())
-//     .then(data => {
-//         console.log(data)
-//     })
-//     .catch(error => console.error(error));
-// };
-
 function NavButton({value, platform,  children}) {
     return (
         <li className={`links__link links__link--${platform} links__link--${!value ? 'in': ''}active`} >
             {children}
         </li>
     )
-};
+}
 
 function Item({ trackData, setSampleId }) {
     const {

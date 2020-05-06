@@ -110,18 +110,23 @@
     &__track-title {
         font-weight: 400;
         font-size: 2rem;
+        line-height: 1;
+        margin-bottom: 0rem;
+        margin-top: 0rem;
     }
 
     &__artist-name {
         font-weight: 700;
         font-size: 2rem;
+        line-height: 1;
+        margin-bottom: 0.6rem;
     }
 
     &__album-title {
         font-weight: 400;
         color: #bbbbbb;
-        font-size: 1.6rem;
-
+        font-size: 1.4rem;
+        margin: 1rem 0 0.6rem 0;
     }
 
 
