@@ -45,6 +45,9 @@
        &--active {
             color: #fff;
             background-color: map-get($colors, "tag-highlight");
+
+         color: #777;
+         background-color: #ddd;
         }
 
         &:empty {

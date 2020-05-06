@@ -3,6 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { setSampleId } from '../actions';
 import { Link } from "react-router-dom";
+import {imgData} from "../data/localImgData";
+import SvgSprite from '../components/svgSprite';
 
 function MultiPlayer({ sampleId, setSampleId }) {
     const audioTagRef = useRef(null), // references the audio element
@@ -75,12 +77,12 @@ function MultiPlayer({ sampleId, setSampleId }) {
                     : <div className={"player__toggle-play"}>
                     {player === "paused" && (
                         <button onClick={() => setPlayer("playing")}>
-                            Play
+                            <SvgSprite classes={''} src={imgData.sprite.src} alt={imgData.sprite.description} name={'PLAY'} />
                         </button>
                     )}
                     {player === "playing" && (
                         <button onClick={() => setPlayer("paused")}>
-                            Pause
+                            <SvgSprite classes={''} src={imgData.sprite.src} alt={imgData.sprite.description} name={'PAUSE'} />
                         </button>
                     )}
 
