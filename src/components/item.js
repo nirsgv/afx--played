@@ -1,24 +1,50 @@
-import React from 'react';
+import React, { component } from 'react';
+
 import Tags from './tags';
-import Links from './links';
 import Img from './img';
 import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
 
 //const DelayedImg = lazy(() => import('./img'));
 
-function Item({ trackData, isPlayingEmbedded, setPlayerItem }) {
+
+// const alt = async() => {
+//     let response = await fetch(`${window.location.origin}/api/sample`)
+//     let body = await response.body;
+//     let data = await body.getReader();
+//     let readResponse = await data.read();
+//     var blob = new Blob([readResponse.value], { type: 'audio/mp3' });
+//     var url = window.URL.createObjectURL(blob);
+//     window.audio = new Audio();
+//     window.audio.src = url;
+//     window.audio.play();
+//     console.log(readResponse);
+//     console.log(window.audio);
+//     console.log(url);
+//     return await readResponse;
+// };
+
+function NavButton({value, platform,  children}) {
+    return (
+        <li className={`links__link links__link--${platform} links__link--${!value ? 'in': ''}active`} >
+            {children}
+        </li>
+    )
+}
+
+function Item({ trackData, setSampleId }) {
     const {
         ARTIST_NAME,
         ALBUM_TITLE,
         TRACK_TITLE,
         RECORD_LABEL,
-        CAT,
-        DURATION,
         YEAR,
         GENRES,
-        LINKS,
         ID,
-        IMAGES,
+        // CAT,
+        // LINKS,
+        // DURATION,
+        // IMAGES,
     } = trackData;
     return (
         <li className={`track`}>
@@ -32,15 +58,22 @@ function Item({ trackData, isPlayingEmbedded, setPlayerItem }) {
                 <Img src={`../assets/album_covers/album_image_${ID}.jpg`}
                      alt={''}
                      transitionSeconds={3}
-                     blockClassName={'track'}
-
-                />
+                     blockClassName={'track'} />
             </div>
 
-            {/*<Link to={`track/${ID}`}>Expand</Link>*/}
             <Tags className="track__track-tags" tags={GENRES}/>
-            <Links className="track__track-links" links={LINKS} isPlayingEmbedded={isPlayingEmbedded} setPlayerItem={setPlayerItem} ID={ID} />
 
+        <nav className='links__wrap'>
+            <ul className='links__list'>
+            <NavButton value={true} platform={'expand'}>
+                <a className={"btn btn--full-size href--expand"} onClick={() => setSampleId(ID)}>Play sample</a>
+            </NavButton>
+
+            <NavButton value={true} platform={'expand'}>
+                <Link to={`track/${ID}`} className={"btn btn--full-size href--expand"}>More Info</Link>
+            </NavButton>
+            </ul>
+            </nav>  
         </li>
     )
 }

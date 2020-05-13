@@ -7,8 +7,8 @@ import PropTypes from 'prop-types';
 import ReactGa from 'react-ga'
 
 function Editorial( { ...restProps } ) {
-    const { name, isPlayingEmbedded, setPlayerItem, setSpaPageName } = restProps;
-    console.log({editorialData});
+    const { name, setPlayerItem, setSpaPageName, setSampleId } = restProps;
+    //console.log({editorialData});
 
     useEffect(() => {
         setSpaPageName(name);
@@ -34,7 +34,7 @@ function Editorial( { ...restProps } ) {
                 const itemsnow = getItemsByIds(list.ITEMS, tracks);
                 return (
                     <QuickSlide title={list.TITLE} key={index}>
-                        <Items tracksFiltered={itemsnow} isPlayingEmbedded={isPlayingEmbedded} setPlayerItem={setPlayerItem} />
+                        <Items tracksFiltered={itemsnow} setPlayerItem={setPlayerItem} setSampleId={setSampleId} />
                     </QuickSlide>
                 )
             })}
@@ -44,7 +44,6 @@ function Editorial( { ...restProps } ) {
 
 Editorial.propTypes = {
     name: PropTypes.string,
-    isPlayingEmbedded: PropTypes.func,
     setPlayerItem: PropTypes.func,
     setSpaPageName: PropTypes.func,
 };

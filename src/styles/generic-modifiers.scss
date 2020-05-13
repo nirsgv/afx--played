@@ -67,3 +67,8 @@
         padding-left: map-get($main-padding, "des");
     }
 }
+%one-liner {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
