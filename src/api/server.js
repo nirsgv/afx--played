@@ -70,6 +70,9 @@ app.get('/api/aphex', function (req, res) {
     res.sendFile(path.join(__dirname, '../assets', 'aphex-logo.svg'));
 });
 
+app.get('/api/sample', function (req, res) {
+    res.sendFile(path.join(__dirname, '../assets', 'aphex-logo.svg'));
+});
 
 app.post('/api/email', (req, res) => {
     console.log('Server received our message');
