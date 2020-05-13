@@ -12,8 +12,8 @@ const SHOWS = require('../data/showsMap');
 const app = express();
 
 const normalizePort = port => parseInt(port, 10);
-const PORT = normalizePort(process.env.PORT || 80);
-//const PORT = normalizePort(process.env.PORT || 3000);
+// const PORT = normalizePort(process.env.PORT || 80);
+const PORT = normalizePort(process.env.PORT || 3000);
 
 const dev = app.get('env') !== 'production';
 
@@ -66,8 +66,9 @@ app.get('/api/show/:id', (req, res) => {
     return res.send(show);
 });
 
-app.get('/api/aphex', function (req, res) {
-    res.sendFile(path.join(__dirname, '../assets', 'aphex-logo.svg'));
+
+app.get('/api/sample', function (req, res) {
+    res.sendFile(path.join(__dirname, '../assets', 'boc-remix.mp3'));
 });
 
 

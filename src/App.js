@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {
     toggleGridListView, toggleEmbeddedPlay, setPlayerItem, toggleShareExpansion, dispatchMessageToModal, viewMore,
     expandFilter, toggleMobMenu, toggleDesktopFilters, setTracksAsLocal, setShowsAsLocal, setSearchValue,
-    setSpaPageName, setViewportDimensions, resetFilters
+    setSpaPageName, setViewportDimensions, resetFilters, setSampleId
 } from './actions';
 import { useShadowAnimaStyle, useIsScrolled, useMedia } from './customHooks';
 import { isBiggerFromMobile } from './helpers/dom'
@@ -33,12 +33,10 @@ import { createBrowserHistory } from "history";
 import { Helmet } from 'react-helmet';
 import urlConstants from './data/urlConstants';
 import InputBox from "./components/inputBox";
-import AnimativeIndicator from "./components/animativeIndicator";
 import { expClass } from './helpers/str'
 import ReactGa from 'react-ga'
 import DarkenLayer from "./components/darkenLayer";
-
-// import { useFetch } from './customHooks/index'
+import SamplePlayer from "./components/samplePlayer"
 const customHistory = createBrowserHistory();
 
 const App = ({  ...restProps }) => {
@@ -48,13 +46,9 @@ const App = ({  ...restProps }) => {
              toggleMobMenu,
              setPlayerItem,
              toggleGridListView,
-             toggleEmbeddedPlay,
-             isPlayingEmbedded,
              setSearchValue,
-             setViewportDimensions,
              resetFilters,
              viewMore,
-             viewport,
              setTracksAsLocal,
              setShowsAsLocal,
              setSpaPageName,
@@ -65,9 +59,9 @@ const App = ({  ...restProps }) => {
              isDesktopFiltersExpanded,
              spaPageName,
              expandedFilter,
+            setSampleId
     } = restProps;
 
-    const [ animateFooter, setAnimateFooter ] = useState(false);
     const getScrollItems = debounce(function(){ isBottomOfPage(this) && viewMore() }, 500);
 
     const customHookShadow = useShadowAnimaStyle(2, 4, 4);
@@ -77,7 +71,6 @@ const App = ({  ...restProps }) => {
         [5, 4, 2],
         1
     );
-
 
     //console.log(customHcroll);
     useEffect(() => {
@@ -124,7 +117,7 @@ const App = ({  ...restProps }) => {
                         <div className={`nav-slide ${isMobileMenuOpen ? 'nav-slide--open' : ''}`} data-test="nav-slide">
                             <nav className="main-filters">
                                 <List baseClassName="main-filters">
-                                    <span>Filter By:</span>
+                                    <span>Filter Tracks:</span>
                                     <span onClick={() => {expandFilter('genres');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'genres')}`}>Genres</span>
                                     <span onClick={() => {expandFilter('years');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'years')}`}>Years</span>
                                     <span onClick={() => {expandFilter('search');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'search')}`}>Search</span>
@@ -170,14 +163,13 @@ const App = ({  ...restProps }) => {
                                 <About name={"about"} setSpaPageName={setSpaPageName}/>
                             </Route>
                             <Route path="/editorial">
-                                <Editorial name={"editorial"} setSpaPageName={setSpaPageName}/>
+                                <Editorial name={"editorial"} setSpaPageName={setSpaPageName} setSampleId={setSampleId} />
                             </Route>
                             <Route path="/track/:id" component={ExpandedItem} setPlayerItem={setPlayerItem} />
                             <Route path="/concert/:id" component={ExpandedConcert} setPlayerItem={setPlayerItem} />
                             <Route path="/">
                                 <List baseClassName="switch-modifiers">
-                                    {isBiggerFromMobile(viewport.dimensions) && <SwitchButton Small={true} id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={toggleGridListView} val={isGridView} />}
-                                    <SwitchButton Small={true} id={'isPlayingEmbedded'} Text={'isPlayingEmbedded'} labelText={"Embed play"} cb={toggleEmbeddedPlay} val={isPlayingEmbedded} />
+                                    <SwitchButton Small={true} id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={toggleGridListView} val={isGridView} />
                                 </List>
                                 <InputBox classname={"main-search"} name="noname" placeholder="Search.." cb={(e) => setSearchValue(e)}>
                                     <SvgSprite classes={'main-search__icon'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'SEARCH'} />
@@ -188,7 +180,7 @@ const App = ({  ...restProps }) => {
                         <div className="push"></div>
 
                     </main>
-                    <footer className={"footer"} >
+{/*                    <footer className={"footer"} >
                         <nav>
                             <List baseClassName="footer-nav" onClick={toggleMobMenu}>
                                 <SvgSprite classes={''} src={imgData.sprite.src} alt={imgData.sprite.description} name={'APHEX'} />
@@ -199,12 +191,10 @@ const App = ({  ...restProps }) => {
                                 <AnimativeIndicator animateFooter={animateFooter} setAnimateFooter={setAnimateFooter} />
                             </List>
                         </nav>
-                    </footer>
+                    </footer>*/}
 
 
-                    <ViewPort setDimensionsCb={setViewportDimensions} viewport={viewport}>
-                        <MultiPlayer />
-                    </ViewPort>
+                    <MultiPlayer />
                     <MessagesModal />
                 </Router>)}
         </div>
@@ -212,7 +202,6 @@ const App = ({  ...restProps }) => {
 };
 
 App.propTypes = {
-    isPlayingEmbedded: PropTypes.bool,
     isGridView: PropTypes.bool,
     isTracksDataLocal: PropTypes.bool,
     isShowsDataLocal: PropTypes.bool,
@@ -224,7 +213,6 @@ App.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    isPlayingEmbedded: state.player.isPlayingEmbedded,
     isGridView: state.appData.isGridView,
     isTracksDataLocal: state.appData.isTracksDataLocal,
     isShowsDataLocal: state.appData.isShowsDataLocal,
@@ -250,7 +238,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     setSearchValue,
     setSpaPageName,
     setViewportDimensions,
-    resetFilters
+    resetFilters,
+    setSampleId
 }, dispatch);
 
 export const goHome = () => {
