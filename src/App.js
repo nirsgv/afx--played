@@ -36,7 +36,6 @@ import InputBox from "./components/inputBox";
 import { expClass } from './helpers/str'
 import ReactGa from 'react-ga'
 import DarkenLayer from "./components/darkenLayer";
-import SamplePlayer from "./components/samplePlayer"
 const customHistory = createBrowserHistory();
 
 const App = ({  ...restProps }) => {
