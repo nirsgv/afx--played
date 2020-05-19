@@ -15,6 +15,11 @@ const TRACKS = require('../src/data/tracks');
 const SHOWS = require('../src/data/showsMap');
 const app = express();
 
+const normalizePort = port => parseInt(port, 10);
+const PORT = normalizePort(process.env.PORT || 8000);
+//const PORT = normalizePort(process.env.PORT || 3000);
+const dev = app.get('env') !== 'production';
+
 mongoose.connect(process.env.DATABASE, {
     useNewUrlParser: true
 });
@@ -29,14 +34,10 @@ mongoose.connection.on('error', (err) => {
     console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
 });
 
-const tracksStore = require('./models/Store');
+const tracksStore = require('./models/tracksStore');
+const showsStore = require('./models/showsStore');
 //import all of our models, a singleton is implemented, once this is required it is available throught the app
 
-const normalizePort = port => parseInt(port, 10);
-const PORT = normalizePort(process.env.PORT || 8000);
-//const PORT = normalizePort(process.env.PORT || 3000);
-
-const dev = app.get('env') !== 'production';
 
 app.use(express.static(__dirname + '/../../build'));
 app.disable('x-powered-by');
@@ -48,25 +49,15 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 console.log({'process.env.NODE_ENV':process.env.NODE_ENV, PORT});
 
-
-// Sessions allow us to store data on visitors from request to request
-// This keeps users logged in and allows us to send flash messages
-// app.use(session({
-//     secret: "snickers",
-//     key: "sweetsesh",
-//     resave: false,
-//     saveUninitialized: false,
-//     store: new MongoStore({ mongooseConnection: mongoose.connection })
-// }));
-
 app.get('/api/ttt', function (req, res) {
     console.log(tracksStore);
 
-    return res.json(tracksStore);
+    // return res.json(tracksStore);
     tracksStore.find({"ARTIST_NAME": "Lanark Artefax"}, function(err, result) {
         if (err) {
             res.send(err);
         } else {
+            console.log(typeof result, result);
             res.json(result);
         }
     })
@@ -78,12 +69,27 @@ app.get('/ping', function (req, res) {
 
 app.get('/api/tracks', (req, res) => {
     console.log('It was possible to retrieve these TRACKS');
-    res.send(TRACKS);
+    // return res.json(tracksStore);
+    tracksStore.find({}, function(err, result) {
+        if (err) {
+            res.send(err);
+        } else {
+            console.log(typeof result, result);
+            res.json(result);
+        }
+    });
 });
 
 app.get('/api/shows', (req, res) => {
     console.log('It was possible to retrieve these SHOWS');
-    res.send(SHOWS);
+    showsStore.find({}, function(err, result) {
+        if (err) {
+            res.send(err);
+        } else {
+            console.log(typeof result, result);
+            res.json(result);
+        }
+    });
 });
 
 app.get('/api/track/:id', (req, res) => {
@@ -105,7 +111,6 @@ app.get('/api/aphex', function (req, res) {
     res.sendFile(path.join(__dirname, '../assets', 'aphex-logo.svg'));
 });
 
-
 app.post('/api/email', (req, res) => {
     console.log('Server received our message');
     console.log(sendMail);
@@ -114,14 +119,11 @@ app.post('/api/email', (req, res) => {
     res.json({message: 'Message received!'});
 });
 
-
 app.get('/', function (req, res) {
     return res.sendFile(path.resolve(__dirname + '/../../build/index.html'));
 });
-
 
 app.listen(PORT, err => {
     if (err) throw err;
     console.log('server started');
 });
-

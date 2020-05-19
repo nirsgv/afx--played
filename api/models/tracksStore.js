@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-const slug = require('slugs');
 
 const tracksStore = new mongoose.Schema({
     ARTIST_NAME: {
@@ -39,16 +38,5 @@ const tracksStore = new mongoose.Schema({
 }, {
     collection: 'afx_played_tracks'
 });
-
-// storeSchema.pre('save', function(next) {
-//     if (!this.isModified('name')) {
-//         next(); // skip it
-//         return; // stop this function from running
-//     }
-//     this.slug = slug(this.name);
-//     next();
-//     // TODO make more resiliant so slugs are unique
-// }
-// );
 
 module.exports = mongoose.model('tracksStore', tracksStore);
