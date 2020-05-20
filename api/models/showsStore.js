@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
+
 const showsStore = new mongoose.Schema({
     SHOW_ID: {
         type: String,
@@ -11,13 +12,35 @@ const showsStore = new mongoose.Schema({
         trim: true,
     },
     SHOW_DATE: {
-        type: {key:String},
-        trim: true
+        type: {key:Object},
     },
-    SHOW_LOCATION: {
-        type: {key:String},
+    DAY: {
+        type: String,
         trim: true,
     },
+    MONTH: {
+        type: String,
+        trim: true,
+    },
+    YEAR: {
+        type: String,
+        trim: true,
+    },
+    SHOW_LOCATION: {
+        type: {key:Object},
+    },
+    COUNTRY: {
+        type: String,
+        trim: true,
+    },
+    CITY: {
+        type: String,
+        trim: true,
+    },
+    VENUE: {
+        type: String,
+        trim: true,
+    }
 }, {
     collection: 'afx_played_shows'
 });
