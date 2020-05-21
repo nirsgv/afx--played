@@ -124,7 +124,7 @@ const App = ({  ...restProps }) => {
                         <div className={`nav-slide ${isMobileMenuOpen ? 'nav-slide--open' : ''}`} data-test="nav-slide">
                             <nav className="main-filters">
                                 <List baseClassName="main-filters">
-                                    <span>Filter By:</span>
+                                    <SvgSprite classes={''} src={imgData.sprite.src} alt={imgData.sprite.description} name={'FUNNEL'} />
                                     <span onClick={() => {expandFilter('genres');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'genres')}`}>Style</span>
                                     <span onClick={() => {expandFilter('years');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'years')}`}>Decade</span>
                                     <span onClick={() => {expandFilter('search');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'search')}`}>Search</span>
