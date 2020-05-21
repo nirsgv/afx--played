@@ -39,17 +39,9 @@
     }
 
     &__item {
-        color: #ccc;
         @extend .inline-list-item-margin;
-        font-size: 1.6rem;
-
-        &:first-child {
-
-            // filter by
-            & * {
-                margin-right: 2rem;
-            }
-        }
+        color: #ccc;
+        font-size: 1.2rem;
 
         @media (max-width: map-get($b-points, "mob")) {
             display: flex;
@@ -72,7 +64,7 @@
         & span {
 
             @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
-                padding-bottom: 1.3rem;
+                //padding-bottom: 1.3rem;
 
                 .scrolled & {
                     padding-bottom: 0;
@@ -86,12 +78,12 @@
         }
 
         &--on {
-        //color: #333;
+        color: #555;
 
             @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
                 //color: #ccc;
                 //border-bottom: 4px solid #ddd;
-                border-bottom: 6px solid #ddd;
+                //border-bottom: 6px solid #ddd;
             }
         }
 
