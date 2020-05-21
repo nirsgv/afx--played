@@ -127,19 +127,19 @@ const App = ({  ...restProps }) => {
                                     <SvgSprite classes={''} src={imgData.sprite.src} alt={imgData.sprite.description} name={'FUNNEL'} />
                                     <span onClick={() => {expandFilter('genres');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'genres')}`}>Style</span>
                                     <span onClick={() => {expandFilter('years');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'years')}`}>Decade</span>
-                                    <span onClick={() => {expandFilter('search');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'search')}`}>Search</span>
+                                    {/*<span onClick={() => {expandFilter('search');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'search')}`}>Search</span>*/}
                                     <span className={'main-filters__item main-filters__item--hamburger'}>
                                         <Hamburger menuIsClosed={!isMobileMenuOpen} toggleMobMenu={toggleMobMenu} className={'hamburger'} />
                                     </span>
 
 
 
-                                    {columnCount > 1 ?
-                                        (<span className={`main-filters__item main-filters__item--expansion-toggle ${isDesktopFiltersExpanded ? 'main-filters__item--expanded' : ''}`}>
-                                            <button onClick={()=> toggleDesktopFilters()}>
-                                                <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'LONG_ARROW_LEFT'} />
-                                            </button>
-                                        </span>) : null}
+                                    {/*{columnCount > 1 ?*/}
+                                        {/*(<span className={`main-filters__item main-filters__item--expansion-toggle ${isDesktopFiltersExpanded ? 'main-filters__item--expanded' : ''}`}>*/}
+                                            {/*<button onClick={()=> toggleDesktopFilters()}>*/}
+                                                {/*<SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'LONG_ARROW_LEFT'} />*/}
+                                            {/*</button>*/}
+                                        {/*</span>) : null}*/}
                                 </List>
                             </nav>
 
