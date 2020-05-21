@@ -22,11 +22,11 @@ function Item({ trackData, isPlayingEmbedded, setPlayerItem }) {
     } = trackData;
     return (
         <li className={`track`}>
-            <div className="split-hori">
+            <div className="track__header">
                 <p className="track__text-wrap">
                     <h2 className="track__artist-name">{ARTIST_NAME}</h2>
                     <h2 className="track__track-title">{TRACK_TITLE}</h2>
-                    <h3 className="track__album-title">{`${ALBUM_TITLE} ${RECORD_LABEL} ${YEAR}`}</h3>
+                    <h3 className="track__album-title">{`${YEAR}`}</h3>
                 </p>
 
                 <Img src={`../assets/album_covers/album_image_${ID}.jpg`}

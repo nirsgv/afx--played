@@ -39,13 +39,13 @@
 }
 
 %brand-border-radius {
-    border-radius: 6px;
+    border-radius: 10px;
     @media (min-width: map-get($b-points, "tab")) {
-        border-radius: 10px;
+        border-radius: 8px;
     }
 
     @media (min-width: map-get($b-points, "des")) {
-        border-radius: 16px;
+        border-radius: 6px;
     }
 }
 
