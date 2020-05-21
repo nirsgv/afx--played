@@ -69,7 +69,6 @@ app.get('/ping', function (req, res) {
 
 app.get('/api/tracks', (req, res) => {
     console.log('It was possible to retrieve these TRACKS');
-    // return res.json(tracksStore);
     tracksStore.find({}, function(err, result) {
         if (err) {
             res.send(err);

@@ -115,7 +115,7 @@ const App = ({  ...restProps }) => {
                                 </Link>
                             </div>
                             <List baseClassName="main-nav">
-                                <NavLink exact={true} activeClassName="active" to="/">Home</NavLink>
+                                <NavLink exact={true} activeClassName="active" to="/">Tracks</NavLink>
                                 <NavLink activeClassName="active" to="/editorial">Editorial</NavLink>
                                 <NavLink activeClassName="active" to="/about">About</NavLink>
                             </List>
@@ -125,8 +125,8 @@ const App = ({  ...restProps }) => {
                             <nav className="main-filters">
                                 <List baseClassName="main-filters">
                                     <span>Filter By:</span>
-                                    <span onClick={() => {expandFilter('genres');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'genres')}`}>Genres</span>
-                                    <span onClick={() => {expandFilter('years');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'years')}`}>Years</span>
+                                    <span onClick={() => {expandFilter('genres');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'genres')}`}>Style</span>
+                                    <span onClick={() => {expandFilter('years');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'years')}`}>Decade</span>
                                     <span onClick={() => {expandFilter('search');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'search')}`}>Search</span>
                                     <span className={'main-filters__item main-filters__item--hamburger'}>
                                         <Hamburger menuIsClosed={!isMobileMenuOpen} toggleMobMenu={toggleMobMenu} className={'hamburger'} />

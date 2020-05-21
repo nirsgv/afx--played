@@ -13,7 +13,7 @@ const ExpandedConcert = ({match, setSpaPageName}) => {
 
     const concertsData = JSON.parse(localStorage.getItem("afx_local_shows")).data,
           tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data,
-          concert = concertsData[match.params.id],
+          concert = concertsData.find((concert) => concert.SHOW_ID === match.params.id),
           tracksCollected = tracks.filter((track) => track.VENUES.includes(match.params.id));
 
     const {SHOW_TITLE, SHOW_LOCATION, SHOW_DATE} = concert;
