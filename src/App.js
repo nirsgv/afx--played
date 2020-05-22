@@ -88,7 +88,7 @@ const App = ({  ...restProps }) => {
             action: 'simulated a button click'
         });
         window.addEventListener('scroll', getScrollItems);
-        updatedLS(window.location.origin + urlConstants.TRACKS_URL, 'afx_local_tracks', setTracksAsLocal);
+        //updatedLS(window.location.origin + urlConstants.TRACKS_URL, 'afx_local_tracks', setTracksAsLocal);
         updatedLS(window.location.origin + urlConstants.SHOWS_URL, 'afx_local_shows', setShowsAsLocal);
         return () => {
             window.removeEventListener('scroll', getScrollItems);
@@ -98,7 +98,7 @@ const App = ({  ...restProps }) => {
     return (
         <div className={`app ${isGridView ? 'grid' : 'list'}-view`} data-test="component-app">
             <Helmet>
-                <title>Put title here...</title>
+                <title>AFX Played</title>
                 <meta name="description" content="This is the main page" />
                 <meta name="keywords" content="aphex twin, afx, shows, setlist, tracks, performance, electronic, music" />
             </Helmet>

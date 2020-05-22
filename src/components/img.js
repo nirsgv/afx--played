@@ -23,7 +23,7 @@ const Img = (props) => {
     };
 
     return (
-        <div className={`${blockClassName}__image-wrap`} style={{'position': 'relative'}}>
+        <div className={`${blockClassName}__image-wrap`}>
             <img src={src ? src : placeholderImg}
                  alt={alt}
                  className={`${blockClassName}__image ${blockClassName}__image--${hasFinishedLoading ? 'loaded' : 'loading'}`}
