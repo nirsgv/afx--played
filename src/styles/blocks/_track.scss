@@ -6,11 +6,17 @@
     font-family: Verdana, Geneva, sans-serif;
 
     .grid-view & {
-        padding: 1.8rem 1.2rem 0 1.2rem;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         border: 1px solid #eee;
+    }
+
+    &__body {
+        .grid-view & {
+            padding: 1.8rem 1.2rem 0 1.2rem;
+
+        }
     }
 
     &-items {
@@ -108,21 +114,21 @@
             }
         }
     }
-
+    &__track-title, &__artist-name, &__album-title {
+        font-size: 1.2rem;
+        display: block;
+    }
     &__track-title {
         font-weight: 400;
-        font-size: 1.2rem;
     }
 
     &__artist-name {
         font-weight: 700;
-        font-size: 1.2rem;
     }
 
     &__album-title {
         font-weight: 400;
         color: #bbbbbb;
-        font-size: 1.2rem;
 
     }
 
