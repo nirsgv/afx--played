@@ -24,22 +24,6 @@ $gap: 2rem;
     justify-content: space-between;
   }
 
-  //display: grid;
-  //grid-template-columns: 1fr 22rem;
-  //grid-template-rows: 2rem 1fr;
-  //grid-gap: 1rem;
-  ////grid-template-areas:
-  ////        "a a a"
-  ////        "b c c"
-  ////        "b c c"
-  ////        "b c c"
-  ////        "b c c";
-  //
-  //grid-template-areas:
-  //        "back back"
-  //        "details external-links"
-  //        "shows share";
-
   &--animated {
     animation-name: example;
     animation-duration: .5s;
@@ -48,11 +32,18 @@ $gap: 2rem;
 
   .row {
     display: flex;
+    flex-direction: column;
+
+    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+      flex-direction: row;
+    }
   }
 
   .details-and-shows {
     flex-grow: 1;
-    padding-right: $gap;
+    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+      padding-right: $gap;
+    }
   }
 
   .links-and-share {
@@ -88,6 +79,13 @@ $gap: 2rem;
   &__share {
   }
 
+  &__section-title {
+    font-size: 1.5rem;
+    font-style: italic;
+    margin-bottom: .8rem;
+    color: #6a6a6a;
+  }
+
   @keyframes example {
     from {
       top: 10px;
@@ -115,19 +113,22 @@ $gap: 2rem;
 }
 
 .inner-item {
+  &__term, &__definition {
+    display: inline-block;
+    font-size: 1.2rem;
+
+  }
 
   &__term {
-    color: #aaa;
-    font-size: 1rem;
     margin-bottom: .2rem;
     margin-right: 0.8rem;
+    font-weight: 700;
   }
 
   &__definition {
-    color: #3a3a3a;
-    font-size: 1.8rem;
     margin-bottom: 1rem;
     margin-right: 0.6rem;
+    font-weight: 400;
   }
 
 }

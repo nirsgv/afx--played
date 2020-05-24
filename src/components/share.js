@@ -27,7 +27,7 @@ const CopyUrlButton = (props) => {
 
 
 const Share = ({ url, isExpanded, onShareWindowClose, dispatchMessageToModal }) => {
-    console.log(dispatchMessageToModal);
+    // console.log(dispatchMessageToModal); //todo: find out why this is rendering on interval
 
     const { src, description } = imgData.sprite;
 

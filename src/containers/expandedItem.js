@@ -16,7 +16,7 @@ import {Router} from "react-router-dom";
 const ExpandedItem = ({match, history, toggleShareExpansion, isPlayingEmbedded, setPlayerItem, dispatchMessageToModal, setSpaPageName}) => {
 
     useEffect(() => {
-        console.log(setSpaPageName);
+        // console.log(setSpaPageName);
         setSpaPageName && setSpaPageName('expanded-item');
         //console.log('match', match, tracks, chosen, history, dispatchMessageToModal);
         return () => {
@@ -66,34 +66,38 @@ const ExpandedItem = ({match, history, toggleShareExpansion, isPlayingEmbedded, 
                 {/*block2*/}
                 <div className="row">
                     <div className="details-and-shows">
-                        <div className="expanded-item__details">
+                        <section className="expanded-item__details">
+                            <h2 className="expanded-item__section-title">Track Details</h2>
                             <h3><DefinitionList classNameSpace={'inner-item'} term={'Artist'} definition={ARTIST_NAME} /></h3>
                             <h3><DefinitionList classNameSpace={'inner-item'} term={'Track'} definition={`${TRACK_TITLE} (${getDurationFromSeconds(DURATION)})`}/></h3>
                             <h3><DefinitionList classNameSpace={'inner-item'} term={'Album'} definition={`${ALBUM_TITLE} (${YEAR})`} /></h3>
                             <h3><DefinitionList classNameSpace={'inner-item'} term={'Label'} definition={`${RECORD_LABEL} (${CAT})`} /></h3>
                             <Tags className="track__track-tags" tags={GENRES}/>
-                        </div>
+                        </section>
 
                         {/*block3*/}
-                        <div className="expanded-item__shows">
+                        <section className="expanded-item__shows">
+                            <h2 className="expanded-item__section-title">Played in shows</h2>
                             <Concerts venues={VENUES}></Concerts>
-                        </div>
+                        </section>
                     </div>
 
                     <div className="links-and-share">
 
                         {/*block4*/}
-                        <div className="expanded-item__external-links">
+                        <section className="expanded-item__external-links">
+                            <h2 className="expanded-item__section-title">External Links</h2>
                             <Links className="track__track-links" links={LINKS} isPlayingEmbedded={isPlayingEmbedded} setPlayerItem={setPlayerItem} isMountedByExpanded={true} history={history} ID={ID}/>
-                        </div>
+                        </section>
 
                         {/*block5*/}
-                        <div className="expanded-item__share">
+                        <section className="expanded-item__share">
+                            <h2 className="expanded-item__section-title">Share</h2>
                             <Share url={'http://localhost:3000/track/fis+patupaiarehe'}
                                    onShareWindowClose={toggleShareExpansion}
                                    dispatchMessageToModal={dispatchMessageToModal}
                             />
-                        </div>
+                        </section>
                     </div>
 
 
