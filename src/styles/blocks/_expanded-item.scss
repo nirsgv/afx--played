@@ -14,6 +14,10 @@ $gap: 2rem;
 
 .expanded-item {
 
+  .bkg__layer {
+    background-attachment: fixed;
+  }
+
   &__wrap {
 
     padding-top: 6rem; // temp
