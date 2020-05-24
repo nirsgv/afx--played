@@ -18,6 +18,7 @@ const ExpandedItem = ({match, history, toggleShareExpansion, isPlayingEmbedded, 
     useEffect(() => {
         console.log(setSpaPageName);
         setSpaPageName && setSpaPageName('expanded-item');
+        //console.log('match', match, tracks, chosen, history, dispatchMessageToModal);
         return () => {
 
         }
@@ -25,10 +26,9 @@ const ExpandedItem = ({match, history, toggleShareExpansion, isPlayingEmbedded, 
 
     const [beenAnimated, setBeenAnimated] = useState(false),
           tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data,
-          chosen = tracks.find(function(track) {
+          expandedTrack = tracks.find(function(track) {
         return track.ID === match.params.id;
     });
-    //console.log('match', match, tracks, chosen, history, dispatchMessageToModal);
 
 
     const {
@@ -42,35 +42,69 @@ const ExpandedItem = ({match, history, toggleShareExpansion, isPlayingEmbedded, 
         GENRES,
         LINKS,
         ID,
-        IMAGES,
+        ALBUM_ID,
         VENUES
-    } = chosen;
+    } = expandedTrack;
 
-    //console.log(IMAGES);
     return (
         <>
         <div className="bkg__wrap">
-            <div className="bkg__layer"  style={{backgroundImage: `url(../assets/album_covers/album_image_${ID}.jpg)`}} />
+            <div className="bkg__layer"  style={{backgroundImage: `url(../assets/album_covers/160x160pp/${ALBUM_ID}.jpg)`}} />
         </div>
-        <div className="inner-page__wrap">
-            <div className={`inner-page__content${!beenAnimated ? ' inner-page__content--animated' : ''}`} onAnimationEnd={() => setBeenAnimated(true)}>
-                <h3><DefinitionList classNameSpace={'inner-item'} term={'Artist'} definition={ARTIST_NAME} /></h3>
-                <h3><DefinitionList classNameSpace={'inner-item'} term={'Track'} definition={`${TRACK_TITLE} (${getDurationFromSeconds(DURATION)})`}/></h3>
-                <h3><DefinitionList classNameSpace={'inner-item'} term={'Album'} definition={`${ALBUM_TITLE} (${YEAR})`} /></h3>
-                <h3><DefinitionList classNameSpace={'inner-item'} term={'Label'} definition={`${RECORD_LABEL} (${CAT})`} /></h3>
-                <Tags className="track__track-tags" tags={GENRES}/>
-                {/*<SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'SHARE'} */}
-                {/*           onClick={() => toggleShareExpansion(false)} />*/}
-                <Share url={'http://localhost:3000/track/fis+patupaiarehe'}
-                       onShareWindowClose={toggleShareExpansion}
-                       dispatchMessageToModal={dispatchMessageToModal}/>
 
-                <h3 className={'concerts__title'}>{'Available streams:'.toUpperCase()}:</h3>
-                <Links className="track__track-links" links={LINKS} isPlayingEmbedded={isPlayingEmbedded} setPlayerItem={setPlayerItem} isMountedByExpanded={true} history={history} ID={ID}/>
-                <h3 className={'concerts__title'}>{'Played in shows'.toUpperCase()}:</h3>
-               <Concerts venues={VENUES}></Concerts>
+
+
+
+            <div className={`expanded-item__wrap${!beenAnimated ? ' expanded-item__content--animated' : ''}`} onAnimationEnd={() => setBeenAnimated(true)}>
+
+
+                {/*block1*/}
+                <div className="back-btn__wrap expanded-item__back">
+                    <button onClick={history.length > 0 ? history.goBack : null} className={"back-btn__button"}>back</button>
+                </div>
+
+                {/*block2*/}
+                <div className="row">
+                    <div className="details-and-shows">
+                        <div className="expanded-item__details">
+                            <h3><DefinitionList classNameSpace={'inner-item'} term={'Artist'} definition={ARTIST_NAME} /></h3>
+                            <h3><DefinitionList classNameSpace={'inner-item'} term={'Track'} definition={`${TRACK_TITLE} (${getDurationFromSeconds(DURATION)})`}/></h3>
+                            <h3><DefinitionList classNameSpace={'inner-item'} term={'Album'} definition={`${ALBUM_TITLE} (${YEAR})`} /></h3>
+                            <h3><DefinitionList classNameSpace={'inner-item'} term={'Label'} definition={`${RECORD_LABEL} (${CAT})`} /></h3>
+                            <Tags className="track__track-tags" tags={GENRES}/>
+                        </div>
+
+                        {/*block3*/}
+                        <div className="expanded-item__shows">
+                            <Concerts venues={VENUES}></Concerts>
+                        </div>
+                    </div>
+
+                    <div className="links-and-share">
+
+                        {/*block4*/}
+                        <div className="expanded-item__external-links">
+                            <Links className="track__track-links" links={LINKS} isPlayingEmbedded={isPlayingEmbedded} setPlayerItem={setPlayerItem} isMountedByExpanded={true} history={history} ID={ID}/>
+                        </div>
+
+                        {/*block5*/}
+                        <div className="expanded-item__share">
+                            <Share url={'http://localhost:3000/track/fis+patupaiarehe'}
+                                   onShareWindowClose={toggleShareExpansion}
+                                   dispatchMessageToModal={dispatchMessageToModal}
+                            />
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+
+                {/*<h3 className={'concerts__title'}>{'Available streams:'.toUpperCase()}:</h3>*/}
+                {/*<h3 className={'concerts__title'}>{'Played in shows'.toUpperCase()}:</h3>*/}
             </div>
-        </div>
         </>
     )
 };

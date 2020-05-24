@@ -11,7 +11,7 @@ import { useShadowAnimaStyle, useIsScrolled, useMedia } from './customHooks';
 import { isBiggerFromMobile } from './helpers/dom'
 import Main from './containers/main';
 import About from './components/about';
-import Splash from './components/splash';
+import Splash from './containers/splash';
 import List from './components/list';
 import ViewPort from './components/viewport';
 import SwitchButton from './components/switchButton';
@@ -25,7 +25,7 @@ import MultiPlayer from './containers/multiPlayer';
 import SvgSprite from './components/svgSprite';
 import { isBottomOfPage } from './helpers/dom';
 import { debounce } from './helpers/higherFunctions';
-import { updatedLS } from './helpers/localStorage';
+import { fetchUnstoraged } from './helpers/localStorage';
 import { imgData } from './data/localImgData';
 import { Router, Switch, Route, Link, NavLink } from "react-router-dom";
 import './styles/main.scss';
@@ -38,7 +38,6 @@ import { expClass } from './helpers/str'
 import ReactGa from 'react-ga'
 import DarkenLayer from "./components/darkenLayer";
 
-// import { useFetch } from './customHooks/index'
 const customHistory = createBrowserHistory();
 
 const App = ({  ...restProps }) => {
@@ -79,7 +78,6 @@ const App = ({  ...restProps }) => {
     );
 
 
-    //console.log(customHcroll);
     useEffect(() => {
         ReactGa.initialize('UA-163593216-1');
         ReactGa.pageview('/');
@@ -88,8 +86,8 @@ const App = ({  ...restProps }) => {
             action: 'simulated a button click'
         });
         window.addEventListener('scroll', getScrollItems);
-        updatedLS(window.location.origin + urlConstants.TRACKS_URL, 'afx_local_tracks', setTracksAsLocal);
-        updatedLS(window.location.origin + urlConstants.SHOWS_URL, 'afx_local_shows', setShowsAsLocal);
+        fetchUnstoraged(urlConstants.TRACKS_URL, 'afx_local_tracks', setTracksAsLocal);
+        fetchUnstoraged(urlConstants.SHOWS_URL, 'afx_local_shows', setShowsAsLocal);
         return () => {
             window.removeEventListener('scroll', getScrollItems);
         }
@@ -103,9 +101,9 @@ const App = ({  ...restProps }) => {
                 <meta name="keywords" content="aphex twin, afx, shows, setlist, tracks, performance, electronic, music" />
             </Helmet>
             {/*// render splash screen if no data is apparent yet, otherwise render router*/}
-                <Splash isTracksDataLocal={isTracksDataLocal} isShowsDataLocal={isShowsDataLocal}/>
-            {isTracksDataLocal && isShowsDataLocal &&
-                (<Router history={customHistory}>
+            <Splash />
+
+            {isTracksDataLocal && isShowsDataLocal && (<Router history={customHistory}>
 
                     <header className={`header ${customHcroll ? 'scrolled' : ''}`}>
                         <nav className='main-nav'>
@@ -194,6 +192,7 @@ const App = ({  ...restProps }) => {
                         <div className="push"></div>
 
                     </main>
+
                     <footer className={"footer"} >
                         <nav>
                             <List baseClassName="footer-nav" onClick={toggleMobMenu}>
@@ -207,11 +206,12 @@ const App = ({  ...restProps }) => {
                         </nav>
                     </footer>
 
-
                     <ViewPort setDimensionsCb={setViewportDimensions} viewport={viewport}>
                         <MultiPlayer />
                     </ViewPort>
+
                     <MessagesModal />
+
                 </Router>)}
         </div>
     );

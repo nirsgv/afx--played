@@ -1,7 +1,7 @@
 import {
     atLeastOneIsFalse,
-} from '../splash';
-import Splash from '../splash';
+} from '../../containers/splash';
+import Splash from '../../containers/splash';
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 

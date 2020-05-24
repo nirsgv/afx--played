@@ -4,21 +4,14 @@ import Links from './links';
 import Img from './img';
 import PropTypes from 'prop-types';
 
-//const DelayedImg = lazy(() => import('./img'));
-
 function Item({ trackData, isPlayingEmbedded, setPlayerItem }) {
     const {
         ARTIST_NAME,
-        ALBUM_TITLE,
         TRACK_TITLE,
-        RECORD_LABEL,
-        CAT,
-        DURATION,
         YEAR,
         GENRES,
         LINKS,
         ID,
-        IMAGES,
         ALBUM_ID
     } = trackData;
     return (
@@ -31,7 +24,6 @@ function Item({ trackData, isPlayingEmbedded, setPlayerItem }) {
                         <span className="track__album-title">{`${YEAR}`}</span>
                     </p>
 
-                    {/*<Img src={`../assets/album_covers/album_image_${ID}.jpg`}*/}
                     <Img src={`../assets/album_covers/160x160pp/${ALBUM_ID}.jpg`}
                          alt={''}
                          transitionSeconds={3}

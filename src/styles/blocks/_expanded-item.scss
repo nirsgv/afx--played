@@ -1,0 +1,148 @@
+$gap: 2rem;
+
+.back-btn {
+
+  &__wrap {
+    background-color: red;
+    color: black;
+  }
+
+  &__button {
+
+  }
+}
+
+.expanded-item {
+
+  &__wrap {
+
+    padding-top: 6rem; // temp
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  //display: grid;
+  //grid-template-columns: 1fr 22rem;
+  //grid-template-rows: 2rem 1fr;
+  //grid-gap: 1rem;
+  ////grid-template-areas:
+  ////        "a a a"
+  ////        "b c c"
+  ////        "b c c"
+  ////        "b c c"
+  ////        "b c c";
+  //
+  //grid-template-areas:
+  //        "back back"
+  //        "details external-links"
+  //        "shows share";
+
+  &--animated {
+    animation-name: example;
+    animation-duration: .5s;
+    animation-timing-function: ease-out;
+  }
+
+  .row {
+    display: flex;
+  }
+
+  .details-and-shows {
+    flex-grow: 1;
+    padding-right: $gap;
+  }
+
+  .links-and-share {
+    flex-basis: 22rem;
+  }
+
+  .details-and-shows, .links-and-share {
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  &__back, &__details, &__shows, &__external-links, &__share {
+    background-color: #fff;
+    @extend %custom-border;
+    margin-bottom: $gap;
+    border-radius: 6px;
+    padding: 2rem;
+  }
+
+  &__back {
+  }
+
+  &__details {
+  }
+
+  &__shows {
+  }
+
+  &__external-links {
+  }
+
+  &__share {
+  }
+
+  @keyframes example {
+    from {
+      top: 10px;
+      opacity: 0;
+    }
+    to {
+      top: 0;
+      opacity: 1;
+    }
+  }
+
+  &__artist-name {
+    font-size: 2rem;
+  }
+
+  &__album-title {
+
+  }
+
+  .split-hori {
+    display: flex;
+    margin-bottom: 0.8rem;
+  }
+
+}
+
+.inner-item {
+
+  &__term {
+    color: #aaa;
+    font-size: 1rem;
+    margin-bottom: .2rem;
+    margin-right: 0.8rem;
+  }
+
+  &__definition {
+    color: #3a3a3a;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    margin-right: 0.6rem;
+  }
+
+}
+
+.img {
+
+  &--loading {
+    filter: blur(3rem);
+  }
+
+  &--loaded {
+    filter: blur(0);
+  }
+
+  &__wrap {
+    overflow: hidden;
+  }
+}
