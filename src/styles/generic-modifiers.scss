@@ -6,6 +6,10 @@
     border-top: $border-style;
 }
 
+%custom-border-bottom {
+    border-bottom: $border-style;
+}
+
 %outer-pad {
 
     padding: 0 2rem;

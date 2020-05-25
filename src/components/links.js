@@ -11,7 +11,7 @@ function Links(props) {
           { src, description } = imgData.sprite;
 
     return (
-        <button onClick={setPlayerItem && YOUTUBE ? (e) => setPlayerItem(e, YOUTUBE, 'YOUTUBE'.toLowerCase(), ID) : null}>
+        <button onClick={YOUTUBE ? (e) => setPlayerItem(e, YOUTUBE, 'YOUTUBE'.toLowerCase(), ID) : null}>
             <SvgSprite classes={`logo--${'YOUTUBE'.toLowerCase()}`} src={src} alt={description} name={'YOUTUBE'} />
         </button>
     )
