@@ -30,10 +30,24 @@
 
         &:last-child {
         }
+
     }
 
     &__cta {
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: #aaa;
 
+        h4 {
+
+        }
+
+        svg {
+            font-size: 1rem;
+            margin-left: 0.4rem;
+        }
 
     }
 }

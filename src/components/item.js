@@ -6,6 +6,9 @@ import Img from './img';
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 import List from "./list";
+import SvgSprite from './svgSprite';
+import { imgData } from '../data/localImgData';
+const { src, description } = imgData.sprite;
 
 function Item({ trackData, setPlayerItem }) {
     const {
@@ -41,7 +44,10 @@ function Item({ trackData, setPlayerItem }) {
             <List baseClassName={"internal-links"}>
                 {/*<InternalLinks className="track__track-links" links={LINKS} setPlayerItem={setPlayerItem} ID={ID} />*/}
                 <Links className="track__track-links" links={LINKS} platform={'YOUTUBE'} setPlayerItem={setPlayerItem} ID={ID} />
-                <Link to={`track/${ID}`} className={"btn btn--full-size href--expand"}>expand</Link>
+                <Link to={`track/${ID}`} className={"internal-links__cta"}>
+
+                    <h4>More Info<SvgSprite classes={`logo--${'YOUTUBE'.toLowerCase()}`} src={src} alt={description} name={'LONG_ARROW_RIGHT'} /></h4>
+                </Link>
             </List>
 
         </li>

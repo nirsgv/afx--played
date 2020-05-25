@@ -13,6 +13,9 @@
     }
 
     &__body {
+
+        margin-bottom: auto;
+
         .grid-view & {
             padding: 1.8rem 1.2rem 0 1.2rem;
         }
