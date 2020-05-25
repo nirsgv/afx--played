@@ -1,66 +1,22 @@
 import React from 'react';
 import SvgSprite from './svgSprite';
 import { imgData } from '../data/localImgData';
-import { Link } from "react-router-dom";
+import List from "./list";
 
-
-function Awrap({children, value, wrap}) {
-    return (
-        wrap
-            ? <span>{children}</span>
-            : <a href={value} target="blank">{children}</a>
-    )
-}
-
-
-function LinkItem({value, platform, isPlayingEmbedded, cb, children, ID}) {
-    const { src, description } = imgData.sprite;
-    return (
-
-
-            <li className={`links__link links__link--${platform} links__link--${!value ? 'in': ''}active`}
-                onClick={cb && value && isPlayingEmbedded ? (e) => cb(e, value, platform, ID) : null}
-                data-target="internal"
-            >
-                <Awrap value={value} wrap={isPlayingEmbedded}>
-                    <SvgSprite classes={`logo--${platform}`} src={src} alt={description} name={platform.toUpperCase()} />
-                    {children}
-                </Awrap>
-            </li>
-
-
-
-    )
-}
-
-function NavButton({value, platform,  children}) {
-
-    return (
-        <li className={`links__link links__link--${platform} links__link--${!value ? 'in': ''}active`} >
-            {children}
-        </li>
-    )
-}
 
 function Links(props) {
 
-    const {isPlayingEmbedded, setPlayerItem, ID} = props;
-    const {YOUTUBE, SPOTIFY, DEEZER, APPLE} = props.links;
+    const { setPlayerItem, ID } = props,
+          { YOUTUBE, SPOTIFY, DEEZER, APPLE } = props.links,
+          { src, description } = imgData.sprite;
 
     return (
         <nav className='links__wrap'>
-            <ul className='links__list'>
-                <LinkItem value={YOUTUBE} platform='youtube' isPlayingEmbedded={isPlayingEmbedded} cb={setPlayerItem} ID={ID}/>
-                <LinkItem value={SPOTIFY} platform='spotify' isPlayingEmbedded={isPlayingEmbedded} cb={setPlayerItem} ID={ID}/>
-                <LinkItem value={DEEZER} platform='deezer' isPlayingEmbedded={isPlayingEmbedded} cb={setPlayerItem} ID={ID}/>
-                <LinkItem value={APPLE} platform='apple' isPlayingEmbedded={isPlayingEmbedded} cb={setPlayerItem} ID={ID}/>
-                <NavButton value={true} platform={!props.isMountedByExpanded ? 'expand' : 'back'}>
-                    {!props.isMountedByExpanded
-                        ?   <Link to={`track/${props.ID}`} className={"btn btn--full-size href--expand"}>expand</Link>
-                        :   <button onClick={props.history.length > 0 ? props.history.goBack : null} className={"btn btn--full-size href--go-back"}>back</button>
-                    }
-                </NavButton>
-            </ul>
+            <div className={"internal-links"}>
+                <button onClick={setPlayerItem && YOUTUBE ? (e) => setPlayerItem(e, YOUTUBE, 'YOUTUBE'.toLowerCase(), ID) : null}>
+                    <SvgSprite classes={`logo--${'YOUTUBE'.toLowerCase()}`} src={src} alt={description} name={'YOUTUBE'} />
+                </button>
+            </div>
         </nav>
     )
 }

@@ -1,8 +1,10 @@
 import React from 'react';
 import Tags from './tags';
+import InternalLinks from './internalLinks';
 import Links from './links';
 import Img from './img';
 import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
 
 function Item({ trackData, isPlayingEmbedded, setPlayerItem }) {
     const {
@@ -32,10 +34,14 @@ function Item({ trackData, isPlayingEmbedded, setPlayerItem }) {
 
                 </div>
 
-                {/*<Link to={`track/${ID}`}>Expand</Link>*/}
-                <Tags className="track__track-tags" tags={GENRES}/>
+                <Tags className="track__track-tags" tags={GENRES} />
             </div>
-            <Links className="track__track-links" links={LINKS} isPlayingEmbedded={isPlayingEmbedded} setPlayerItem={setPlayerItem} ID={ID} />
+
+            <nav className='internal-links'>
+                {/*<InternalLinks className="track__track-links" links={LINKS} setPlayerItem={setPlayerItem} ID={ID} />*/}
+                <Links className="track__track-links" links={LINKS} platform={'YOUTUBE'} isPlayingEmbedded={isPlayingEmbedded} setPlayerItem={setPlayerItem} ID={ID} />
+                <Link to={`track/${ID}`} className={"btn btn--full-size href--expand"}>expand</Link>
+            </nav>
 
         </li>
     )
@@ -48,7 +54,6 @@ Item.defaultProps = {
 
 Item.propTypes = {
     trackData: PropTypes.object,
-    isPlayingEmbedded: PropTypes.bool,
     setPlayerItem: PropTypes.func,
 };
 

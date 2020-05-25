@@ -3,6 +3,7 @@ import { bindActionCreators } from "redux";
 import {toggleShareExpansion, setPlayerItem, dispatchMessageToModal, setSpaPageName } from "../actions/index";
 import { connect } from "react-redux";
 import Links from '../components/links';
+import ExternalLinks from '../components/externalLinks';
 import Concerts from '../components/concerts';
 import DefinitionList from '../components/definitionList';
 import Img from '../components/img';
@@ -87,7 +88,9 @@ const ExpandedItem = ({match, history, toggleShareExpansion, isPlayingEmbedded, 
                         {/*block4*/}
                         <section className="expanded-item__external-links">
                             <h2 className="expanded-item__section-title">External Links</h2>
-                            <Links className="track__track-links" links={LINKS} isPlayingEmbedded={isPlayingEmbedded} setPlayerItem={setPlayerItem} isMountedByExpanded={true} history={history} ID={ID}/>
+                            {/*<Links className="track__track-links" links={LINKS} isPlayingEmbedded={isPlayingEmbedded} setPlayerItem={setPlayerItem} isMountedByExpanded={true} history={history} ID={ID}/>*/}
+                            <ExternalLinks className="track__track-links" links={LINKS} ID={ID} />
+
                         </section>
 
                         {/*block5*/}

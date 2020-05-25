@@ -35,7 +35,7 @@ const Share = ({ url, isExpanded, onShareWindowClose, dispatchMessageToModal }) 
         onShareWindowClose(false);
     };
     return (
-        <div c>
+        <div>
             <List baseClassName={`share-box`}>
                 <FacebookShareButton url={url} onShareWindowClose={() => cb()}  children={
                     <SvgSprite classes={'share-box__icoN'} src={src} alt={description} name={'FACEBOOK'} />

@@ -5,7 +5,7 @@ import Items from '../components/items';
 import { hasTags, withinPeriod, hasMatchingText, inViewRange } from '../helpers/comparitors';
 import { combineByObjKeysArr } from '../helpers/str';
 import { yearsMap } from '../data/periodMap.js';
-import {dispatchMessageToModal, toggleShareExpansion, setPlayerItem, setPlayerType, setSpaPageName} from "../actions";
+import {dispatchMessageToModal, toggleShareExpansion, setPlayerItem,  setSpaPageName} from "../actions";
 
 
 const Main = ({
