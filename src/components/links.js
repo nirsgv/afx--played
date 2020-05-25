@@ -11,13 +11,9 @@ function Links(props) {
           { src, description } = imgData.sprite;
 
     return (
-        <nav className='links__wrap'>
-            <div className={"internal-links"}>
-                <button onClick={setPlayerItem && YOUTUBE ? (e) => setPlayerItem(e, YOUTUBE, 'YOUTUBE'.toLowerCase(), ID) : null}>
-                    <SvgSprite classes={`logo--${'YOUTUBE'.toLowerCase()}`} src={src} alt={description} name={'YOUTUBE'} />
-                </button>
-            </div>
-        </nav>
+        <button onClick={setPlayerItem && YOUTUBE ? (e) => setPlayerItem(e, YOUTUBE, 'YOUTUBE'.toLowerCase(), ID) : null}>
+            <SvgSprite classes={`logo--${'YOUTUBE'.toLowerCase()}`} src={src} alt={description} name={'YOUTUBE'} />
+        </button>
     )
 }
 

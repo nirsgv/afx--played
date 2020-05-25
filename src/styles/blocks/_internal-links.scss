@@ -1,15 +1,35 @@
 .internal-links {
 
-    display: flex;
+
+    .internal-links {
+        flex-grow: 1;
+    }
 
     &__wrap {
-
+        @extend %custom-border-top;
+        padding: 0 1.2rem;
 
     }
 
     &__list {
+        display: flex;
 
+    }
 
+    &__item {
+        display: flex;
+
+        &:first-child {
+
+        }
+
+        &:nth-last-child(2) {
+            flex-grow: 1;
+
+        }
+
+        &:last-child {
+        }
     }
 
     &__cta {

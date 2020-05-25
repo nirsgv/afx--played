@@ -5,6 +5,7 @@ import Links from './links';
 import Img from './img';
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
+import List from "./list";
 
 function Item({ trackData, setPlayerItem }) {
     const {
@@ -37,11 +38,11 @@ function Item({ trackData, setPlayerItem }) {
                 <Tags className="track__track-tags" tags={GENRES} />
             </div>
 
-            <nav className='internal-links'>
+            <List baseClassName={"internal-links"}>
                 {/*<InternalLinks className="track__track-links" links={LINKS} setPlayerItem={setPlayerItem} ID={ID} />*/}
                 <Links className="track__track-links" links={LINKS} platform={'YOUTUBE'} setPlayerItem={setPlayerItem} ID={ID} />
                 <Link to={`track/${ID}`} className={"btn btn--full-size href--expand"}>expand</Link>
-            </nav>
+            </List>
 
         </li>
     )

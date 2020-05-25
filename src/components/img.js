@@ -15,7 +15,7 @@ const Img = (props) => {
 
     const setAssetAsLoaded = () => {
         setHasFinishedLoading(true);
-        console.log('finished loading');
+        //console.log('finished loading');
     };
 
     const style = {

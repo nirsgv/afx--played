@@ -13,6 +13,7 @@ const ViewPort = ({ children, setDimensionsCb }) => {
 
     useEffect(() => {
         debouncedUpdateDimensions();
+        console.log('VIEWPORT COMPONENT IS RERENDERING ITSELF!')
         window.addEventListener('resize', debouncedUpdateDimensions);
 
         return () => {
