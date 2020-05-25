@@ -1,7 +1,6 @@
 import {
     SET_PLAYER_TYPE,
     SET_PLAYER_ITEM,
-    TOGGLE_EMBEDDED_PLAY
 } from "./index";
 
 function setPlayerType(type) {
@@ -51,18 +50,7 @@ function setPlayerItem(e, val, platform, trackId) {
     return action;
 }
 
-function toggleEmbeddedPlay(val) {
-    console.log(2);
-    const action = {
-        type: TOGGLE_EMBEDDED_PLAY,
-        payload: val
-    };
-
-    return action;
-}
-
 export {
     setPlayerType,
     setPlayerItem,
-    toggleEmbeddedPlay
 }

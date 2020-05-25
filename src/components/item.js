@@ -6,7 +6,7 @@ import Img from './img';
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 
-function Item({ trackData, isPlayingEmbedded, setPlayerItem }) {
+function Item({ trackData, setPlayerItem }) {
     const {
         ARTIST_NAME,
         TRACK_TITLE,
@@ -39,7 +39,7 @@ function Item({ trackData, isPlayingEmbedded, setPlayerItem }) {
 
             <nav className='internal-links'>
                 {/*<InternalLinks className="track__track-links" links={LINKS} setPlayerItem={setPlayerItem} ID={ID} />*/}
-                <Links className="track__track-links" links={LINKS} platform={'YOUTUBE'} isPlayingEmbedded={isPlayingEmbedded} setPlayerItem={setPlayerItem} ID={ID} />
+                <Links className="track__track-links" links={LINKS} platform={'YOUTUBE'} setPlayerItem={setPlayerItem} ID={ID} />
                 <Link to={`track/${ID}`} className={"btn btn--full-size href--expand"}>expand</Link>
             </nav>
 

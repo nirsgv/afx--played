@@ -8,7 +8,7 @@ import {
     SET_SEARCH_VALUE,
     TOGGLE_SEARCH_OPTION,
     TOGGLE_SHARE_EXPANSION, DISPATCH_MESSAGE_TO_MODAL, REMOVE_MESSAGE_TO_MODAL,
-    SET_PLAYER_TYPE, SET_PLAYER_ITEM, TOGGLE_EMBEDDED_PLAY, VIEW_MORE, TOGGLE_MOB_MENU, TOGGLE_DESKTOP_FILTERS_EXPANSION,
+    SET_PLAYER_TYPE, SET_PLAYER_ITEM, VIEW_MORE, TOGGLE_MOB_MENU, TOGGLE_DESKTOP_FILTERS_EXPANSION,
     SET_TRACKS_AS_LOCAL,
     SET_SHOWS_AS_LOCAL,
     SET_SPA_PAGE_NAME,
@@ -29,7 +29,6 @@ const initialAppState = {
     isSharingExpanded: false,
     isMobileMenuOpen: false,
     isDesktopFiltersExpanded: false,
-    isPlayingEmbedded: true,
     itemsBatchAmt: 8,
     batchNum: 1,
     isTracksDataLocal: false,
@@ -185,7 +184,7 @@ function messages(state = { currentMessages: [] }, action) {
 }
 
 
-function player(state = { platform: '', item: '', isPlayingEmbedded: false, trackId: '' }, action) {
+function player(state = { platform: '', item: '', trackId: '' }, action) {
     switch(action.type) {
 
         case SET_PLAYER_TYPE:
@@ -200,12 +199,6 @@ function player(state = { platform: '', item: '', isPlayingEmbedded: false, trac
                 item: action.payload.item,
                 platform: action.payload.platform,
                 trackId: action.payload.trackId,
-            };
-
-        case TOGGLE_EMBEDDED_PLAY:
-            return {
-                ...state,
-                isPlayingEmbedded: !state.isPlayingEmbedded
             };
 
         default:

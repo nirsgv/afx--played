@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import {
-    toggleGridListView, toggleEmbeddedPlay, setPlayerItem, toggleShareExpansion, dispatchMessageToModal, viewMore,
+    toggleGridListView, setPlayerItem, toggleShareExpansion, dispatchMessageToModal, viewMore,
     expandFilter, toggleMobMenu, toggleDesktopFilters, setTracksAsLocal, setShowsAsLocal, setSearchValue,
     setSpaPageName, setViewportDimensions, resetFilters
 } from './actions';
@@ -47,8 +47,6 @@ const App = ({  ...restProps }) => {
              toggleMobMenu,
              setPlayerItem,
              toggleGridListView,
-             toggleEmbeddedPlay,
-             isPlayingEmbedded,
              setSearchValue,
              setViewportDimensions,
              resetFilters,
@@ -181,7 +179,7 @@ const App = ({  ...restProps }) => {
                             <Route path="/">
                                 <List baseClassName="switch-modifiers">
                                     {isBiggerFromMobile(viewport.dimensions) && <SwitchButton Small={true} id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={toggleGridListView} val={isGridView} />}
-                                    <SwitchButton Small={true} id={'isPlayingEmbedded'} Text={'isPlayingEmbedded'} labelText={"Embed play"} cb={toggleEmbeddedPlay} val={isPlayingEmbedded} />
+                                    <SwitchButton Small={true} id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={toggleGridListView} val={isGridView} />
                                 </List>
                                 <InputBox classname={"main-search"} name="noname" placeholder="Search.." cb={(e) => setSearchValue(e)}>
                                     <SvgSprite classes={'main-search__icon'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'SEARCH'} />
@@ -218,7 +216,6 @@ const App = ({  ...restProps }) => {
 };
 
 App.propTypes = {
-    isPlayingEmbedded: PropTypes.bool,
     isGridView: PropTypes.bool,
     isTracksDataLocal: PropTypes.bool,
     isShowsDataLocal: PropTypes.bool,
@@ -230,7 +227,6 @@ App.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    isPlayingEmbedded: state.player.isPlayingEmbedded,
     isGridView: state.appData.isGridView,
     isTracksDataLocal: state.appData.isTracksDataLocal,
     isShowsDataLocal: state.appData.isShowsDataLocal,
@@ -243,7 +239,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
     toggleGridListView,
-    toggleEmbeddedPlay,
     setPlayerItem,
     toggleShareExpansion,
     dispatchMessageToModal,

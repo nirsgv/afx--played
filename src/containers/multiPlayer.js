@@ -15,7 +15,7 @@ const view = 'coverart'; // or 'list'
 const theme = 'black'; // or 'white'
 
 
-function MultiPlayer({ isPlayingEmbedded, platform, item, width, height, trackId }) {
+function MultiPlayer({ platform, item, width, height, trackId }) {
 
     console.log({item, platform});
     const opts = {
@@ -32,7 +32,7 @@ function MultiPlayer({ isPlayingEmbedded, platform, item, width, height, trackId
     return (
         <section className='player__wrap'>
 
-            {isPlayingEmbedded && item &&
+            {item &&
             <div className='player faded-in-from-bottom'>
                 {((platform) => {
                     switch(platform) {
@@ -60,7 +60,7 @@ function MultiPlayer({ isPlayingEmbedded, platform, item, width, height, trackId
             </div>}
 
 
-            {isPlayingEmbedded && item &&
+            {item &&
             <nav className="expend-played__wrap faded-in-from-bottom">
                 <Link to={`track/${trackId}`} className={"expend-played__button"}>
                     <span className={"expend-played__text"}>expand</span>
@@ -76,7 +76,6 @@ function MultiPlayer({ isPlayingEmbedded, platform, item, width, height, trackId
 
 
 const mapStateToProps = state => ({
-    isPlayingEmbedded: state.player.isPlayingEmbedded,
     platform: state.player.platform,
     item: state.player.item,
     trackId: state.player.trackId,

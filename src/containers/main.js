@@ -18,7 +18,6 @@ const Main = ({
                   itemsBatchAmt,
                   batchNum,
                   setSpaPageName,
-                  isPlayingEmbedded,
                   setPlayerItem,
               }) => {
 
@@ -47,7 +46,7 @@ const Main = ({
             .filter(memoRangeResult)
         : '', [filteredByTags, filteredByPeriods, filteredBySearch, batchNum]);
 
-    const filteredItems = <Items tracksFiltered={tracksFiltered} isPlayingEmbedded={isPlayingEmbedded} setPlayerItem={setPlayerItem} />;
+    const filteredItems = <Items tracksFiltered={tracksFiltered} setPlayerItem={setPlayerItem} />;
 
     return (
         <>
@@ -60,7 +59,6 @@ const Main = ({
 
 
 const mapStateToProps = state => ({
-    isPlayingEmbedded: state.player.isPlayingEmbedded,
     filteredByTags: state.appData.filteredByTags,
     filteredByPeriods: state.appData.filteredByPeriods,
     filteredBySearch: state.appData.filteredBySearch,

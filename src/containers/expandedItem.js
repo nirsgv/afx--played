@@ -14,7 +14,7 @@ import { getDurationFromSeconds } from '../helpers/str';
 import Share from "../components/share";
 import {Router} from "react-router-dom";
 
-const ExpandedItem = ({match, history, toggleShareExpansion, isPlayingEmbedded, setPlayerItem, dispatchMessageToModal, setSpaPageName}) => {
+const ExpandedItem = ({match, history, toggleShareExpansion, setPlayerItem, dispatchMessageToModal, setSpaPageName}) => {
 
     useEffect(() => {
         // console.log(setSpaPageName);
@@ -88,7 +88,6 @@ const ExpandedItem = ({match, history, toggleShareExpansion, isPlayingEmbedded, 
                         {/*block4*/}
                         <section className="expanded-item__external-links">
                             <h2 className="expanded-item__section-title">External Links</h2>
-                            {/*<Links className="track__track-links" links={LINKS} isPlayingEmbedded={isPlayingEmbedded} setPlayerItem={setPlayerItem} isMountedByExpanded={true} history={history} ID={ID}/>*/}
                             <ExternalLinks className="track__track-links" links={LINKS} ID={ID} />
 
                         </section>
@@ -118,7 +117,6 @@ const ExpandedItem = ({match, history, toggleShareExpansion, isPlayingEmbedded, 
 
 
 const mapStateToProps = state => ({
-    isPlayingEmbedded: state.player.isPlayingEmbedded,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
