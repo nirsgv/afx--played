@@ -3,21 +3,19 @@ import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import {
-    toggleGridListView, setPlayerItem, toggleShareExpansion, dispatchMessageToModal, viewMore,
-    expandFilter, toggleMobMenu, toggleDesktopFilters, setTracksAsLocal, setShowsAsLocal,
+    toggleGridListView, setPlayerItem, dispatchMessageToModal, viewMore,
+    toggleMobMenu, toggleDesktopFilters, setTracksAsLocal, setShowsAsLocal,
     setSpaPageName, setViewportDimensions, resetFilters
 } from './actions';
-import { useShadowAnimaStyle, useIsScrolled, useMedia } from './customHooks';
 import { isBiggerFromMobile } from './helpers/dom'
 import Main from './containers/main';
+import Header from './components/header';
 import About from './components/about';
 import Splash from './containers/splash';
 import List from './components/list';
 import ViewPort from './components/viewport';
 import SwitchButton from './components/switchButton';
 import Editorial from './components/editorial';
-import Filters from './containers/filters';
-import Hamburger from './components/hamburger';
 import ExpandedItem from './containers/expandedItem';
 import ExpandedConcert from './containers/expandedConcert';
 import MessagesModal from './containers/messagesModal';
@@ -27,7 +25,7 @@ import { isBottomOfPage } from './helpers/dom';
 import { debounce } from './helpers/higherFunctions';
 import { fetchUnstoraged } from './helpers/localStorage';
 import { imgData } from './data/localImgData';
-import { Router, Switch, Route, Link, NavLink } from "react-router-dom";
+import { Router, Switch, Route, NavLink } from "react-router-dom";
 import './styles/main.scss';
 import { createBrowserHistory } from "history";
 import { Helmet } from 'react-helmet';
@@ -42,13 +40,11 @@ const customHistory = createBrowserHistory();
 
 const App = ({  ...restProps }) => {
 
-    const {  expandFilter,
+    const {
              toggleDesktopFilters,
              toggleMobMenu,
              setPlayerItem,
-             toggleGridListView,
              setViewportDimensions,
-             resetFilters,
              viewMore,
              viewport,
              setTracksAsLocal,
@@ -60,20 +56,14 @@ const App = ({  ...restProps }) => {
              isMobileMenuOpen,
              isDesktopFiltersExpanded,
              spaPageName,
-             expandedFilter,
+             toggleGridListView,
 
     } = restProps;
 
     const [ animateFooter, setAnimateFooter ] = useState(false);
     const getScrollItems = debounce(function(){ isBottomOfPage(this) && viewMore() }, 100);
 
-    const customHookShadow = useShadowAnimaStyle(2, 4, 4);
-    const customHcroll = useIsScrolled();
-    const columnCount = useMedia(
-        ['(min-width: 1360px)', '(min-width: 1020px)', '(min-width: 768px)'],
-        [5, 4, 2],
-        1
-    );
+
 
 
     useEffect(() => {
@@ -103,62 +93,7 @@ const App = ({  ...restProps }) => {
 
             {isTracksDataLocal && isShowsDataLocal && (<Router history={customHistory}>
 
-                    <header className={`header ${customHcroll ? 'scrolled' : ''}`}>
-                        <nav className='main-nav'>
-                            <div className='main-nav__logo'>
-                                <Link to="/">
-                                    <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'APHEX'} style={customHookShadow}/>
-                                </Link>
-                            </div>
-                            <List baseClassName="main-nav">
-                                <NavLink exact={true} activeClassName="active" to="/">Tracks</NavLink>
-                                <NavLink activeClassName="active" to="/editorial">Editorial</NavLink>
-                                <NavLink activeClassName="active" to="/about">About</NavLink>
-                            </List>
-                            <Hamburger menuIsClosed={!isMobileMenuOpen} toggleMobMenu={toggleMobMenu} className={'hamburger'}/>
-                        </nav>
-                        <div className={`nav-slide ${isMobileMenuOpen ? 'nav-slide--open' : ''}`} data-test="nav-slide">
-                            <nav className="main-filters">
-                                <List baseClassName="main-filters">
-                                    <span>
-
-                                    <button onClick={()=> toggleDesktopFilters()}>
-                                        <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'FUNNEL'} />
-                                    </button>
-                                    </span>
-                                    <span onClick={() => {expandFilter('genres');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'genres')}`}>Style</span>
-                                    <span>/</span>
-                                    <span onClick={() => {expandFilter('years');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'years')}`}>Decade</span>
-                                    {/*<span onClick={() => {expandFilter('search');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'search')}`}>Search</span>*/}
-                                    <span className={'main-filters__item main-filters__item--hamburger'}>
-                                        <Hamburger menuIsClosed={!isMobileMenuOpen} toggleMobMenu={toggleMobMenu} className={'hamburger'} />
-                                    </span>
-
-
-
-                                    {/*{columnCount > 1 ?*/}
-                                        {/*(<span className={`main-filters__item main-filters__item--expansion-toggle ${isDesktopFiltersExpanded ? 'main-filters__item--expanded' : ''}`}>*/}
-                                            {/*<button onClick={()=> toggleDesktopFilters()}>*/}
-                                                {/*<SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'LONG_ARROW_LEFT'} />*/}
-                                            {/*</button>*/}
-                                        {/*</span>) : null}*/}
-                                </List>
-                            </nav>
-
-                            <nav className={`filter-expansion__wrap filter-expansion__wrap${!isDesktopFiltersExpanded ? '--close' : '--open'}`}>
-                                <button className="filter-expansion__clear-all-button button" onClick={resetFilters}>
-                                    <span>Clear all</span>
-                                    <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'MINUS--LIGHT'} />
-                                </button>
-
-                                <Filters />
-                                <button className="filter-expansion__close-button" onClick={() => toggleDesktopFilters(false)}>
-                                    <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'TIMES'} />
-                                </button>
-                            </nav>
-                        </div>
-                    </header>
-
+                    <Header />
                     <DarkenLayer
                         isDesktopFiltersExpanded={isDesktopFiltersExpanded}
                         isMobileMenuOpen={isMobileMenuOpen}
@@ -172,7 +107,7 @@ const App = ({  ...restProps }) => {
                                 <About name={"about"} setSpaPageName={setSpaPageName}/>
                             </Route>
                             <Route path="/editorial">
-                                <Editorial name={"editorial"} setSpaPageName={setSpaPageName}/>
+                                <Editorial name={"editorial"} setSpaPageName={setSpaPageName} setPlayerItem={setPlayerItem}/>
                             </Route>
                             <Route path="/track/:id" component={ExpandedItem} setPlayerItem={setPlayerItem} />
                             <Route path="/concert/:id" component={ExpandedConcert} setPlayerItem={setPlayerItem} />
@@ -183,10 +118,6 @@ const App = ({  ...restProps }) => {
                                 {/*</List>*/}
 
                                 <Search />
-
-                                {/*<InputBox classname={"main-search"} name="noname" placeholder="Search.." cb={(e) => setSearchValue(e)} value={filteredBySearch}>*/}
-                                    {/*<SvgSprite classes={'main-search__icon'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'SEARCH'} />*/}
-                                {/*</InputBox>*/}
 
                                 <Main name={"something"} ></Main>
                             </Route>
@@ -235,7 +166,6 @@ const mapStateToProps = state => ({
     isTracksDataLocal: state.appData.isTracksDataLocal,
     isShowsDataLocal: state.appData.isShowsDataLocal,
     isMobileMenuOpen: state.appData.isMobileMenuOpen,
-    expandedFilter: state.appData.expandedFilter,
     isDesktopFiltersExpanded: state.appData.isDesktopFiltersExpanded,
     spaPageName: state.appData.spaPageName,
     filteredBySearch: state.appData.filteredBySearch,
@@ -245,10 +175,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => bindActionCreators({
     toggleGridListView,
     setPlayerItem,
-    toggleShareExpansion,
     dispatchMessageToModal,
     viewMore,
-    expandFilter,
     toggleMobMenu,
     toggleDesktopFilters,
     setTracksAsLocal,
