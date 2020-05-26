@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Items from '../components/items';
@@ -8,18 +8,17 @@ import { yearsMap } from '../data/periodMap.js';
 import {dispatchMessageToModal, toggleShareExpansion, setPlayerItem,  setSpaPageName, resetBatch} from "../actions";
 
 
-const Main = ({
-                  filteredByTags,
-                  filteredByPeriods,
-                  filteredBySearch,
-                  searchArtistNames,
-                  searchTrackTitles,
-                  searchAlbumTitles,
-                  itemsBatchAmt,
-                  batchNum,
-                  setSpaPageName,
-                  setPlayerItem,
-                  resetBatch
+const Main = ({ filteredByTags,
+                filteredByPeriods,
+                filteredBySearch,
+                searchArtistNames,
+                searchTrackTitles,
+                searchAlbumTitles,
+                itemsBatchAmt,
+                batchNum,
+                setSpaPageName,
+                setPlayerItem,
+                resetBatch
               }) => {
 
     useEffect(() => {
@@ -46,7 +45,7 @@ const Main = ({
             .filter(withinPeriod(memoPeriodResult))
             .filter(hasMatchingText(filteredBySearch, checkboxActivated))
             .filter(memoRangeResult)
-        : '', [filteredByTags, filteredByPeriods, filteredBySearch, batchNum]);
+        : '', [filteredByTags, filteredByPeriods, filteredBySearch, checkboxActivated, batchNum]);
 
     const filteredItems = <Items tracksFiltered={tracksFiltered} setPlayerItem={setPlayerItem} />;
 
