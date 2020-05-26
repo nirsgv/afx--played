@@ -13,7 +13,8 @@ import {
     SET_SHOWS_AS_LOCAL,
     SET_SPA_PAGE_NAME,
     SET_VIEWPORT_DIMENSIONS,
-    RESET_FILTERS
+    RESET_FILTERS,
+    RESET_BATCH
 } from '../actions';
 
 
@@ -43,6 +44,12 @@ function appData(state = initialAppState, action) {
             return {
                 ...state,
                 batchNum: action.payload === false ? 1 : state.batchNum + 1
+            };
+
+        case RESET_BATCH:
+            return {
+                ...state,
+                batchNum: 1
             };
 
         case TOGGLE_SHARE_EXPANSION:

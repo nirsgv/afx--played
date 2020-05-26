@@ -5,7 +5,7 @@ import Items from '../components/items';
 import { hasTags, withinPeriod, hasMatchingText, inViewRange } from '../helpers/comparitors';
 import { combineByObjKeysArr } from '../helpers/str';
 import { yearsMap } from '../data/periodMap.js';
-import {dispatchMessageToModal, toggleShareExpansion, setPlayerItem,  setSpaPageName} from "../actions";
+import {dispatchMessageToModal, toggleShareExpansion, setPlayerItem,  setSpaPageName, resetBatch} from "../actions";
 
 
 const Main = ({
@@ -19,9 +19,11 @@ const Main = ({
                   batchNum,
                   setSpaPageName,
                   setPlayerItem,
+                  resetBatch
               }) => {
 
     useEffect(() => {
+        resetBatch();
         setSpaPageName && setSpaPageName('home');
     }, []);
 
@@ -73,7 +75,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     toggleShareExpansion,
     dispatchMessageToModal,
     setPlayerItem,
-    setSpaPageName
+    setSpaPageName,
+    resetBatch
 }, dispatch);
 
 export default connect(

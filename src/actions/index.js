@@ -13,7 +13,8 @@ import {
     setSearchValue,
     filterByPeriodCb,
     filterByTagCb,
-    resetFilters
+    resetFilters,
+    resetBatch,
 } from './itemFilteringActions';
 
 export {
@@ -51,6 +52,7 @@ export const SET_SHOWS_AS_LOCAL = 'SET_SHOWS_AS_LOCAL';
 export const SET_SPA_PAGE_NAME = 'SET_SPA_PAGE_NAME';
 export const SET_VIEWPORT_DIMENSIONS = 'SET_VIEWPORT_DIMENSIONS';
 export const RESET_FILTERS = 'RESET_FILTERS';
+export const RESET_BATCH = 'RESET_BATCH';
 
 export  {
     filterByTagCb,
@@ -60,5 +62,6 @@ export  {
     dispatchMessageToModal,
     removeMessageToModal,
     setPlayerItem,
-    resetFilters
+    resetFilters,
+    resetBatch
 }

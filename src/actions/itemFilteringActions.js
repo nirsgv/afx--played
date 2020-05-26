@@ -1,7 +1,7 @@
 import {
     FILTER_BY_PERIOD_CB, FILTER_BY_TAG_CB, RESET_FILTERS,
     SET_SEARCH_VALUE,
-    TOGGLE_SEARCH_OPTION
+    TOGGLE_SEARCH_OPTION, RESET_BATCH
 } from "./index";
 
 import { goHome } from '../App'
@@ -57,10 +57,20 @@ function resetFilters(tagKey) {
     return action;
 }
 
+function resetBatch() {
+    const action = {
+        type: RESET_BATCH,
+        payload: 1
+    };
+
+    return action;
+}
+
 export {
     toggleSearchOption,
     setSearchValue,
     filterByPeriodCb,
     filterByTagCb,
-    resetFilters
+    resetFilters,
+    resetBatch
 }
