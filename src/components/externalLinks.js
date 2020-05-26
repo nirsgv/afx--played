@@ -21,12 +21,12 @@ function ExternalLinks(props) {
             <List baseClassName={"external-links"}>
                 {linksOrdered &&
                 typeof linksOrdered === 'object' &&
-                Object.keys(linksOrdered).map(platform => {
+                Object.keys(linksOrdered).map((platform, index) => {
                         let link = linksOrdered[platform];
                         return (
-                            <a href={link} target="blank" className={"external-links__link"}>
+                            <a href={link} target="blank" className={"external-links__link"} key={index}>
                                 <SvgSprite classes={`logo--${platform.toLowerCase()}`}
-                                           src={src} alt={platform}
+                                           src={src} alt={platform} description={description}
                                            name={platform} />
                             </a>
                         )

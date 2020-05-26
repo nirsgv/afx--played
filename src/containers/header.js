@@ -5,14 +5,14 @@ import {imgData} from "../data/localImgData";
 import {
     expandFilter, resetFilters, setSearchValue,
     toggleDesktopFilters, toggleMobMenu, toggleSearchOption,
-} from "../actions";
+} from "../actions/index";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
-import {useIsScrolled, useShadowAnimaStyle, useMedia} from "../customHooks";
+import {useIsScrolled, useShadowAnimaStyle, useMedia} from "../customHooks/index";
 import { Link, NavLink } from "react-router-dom";
 import SvgSprite from '../components/svgSprite';
 import List from '../components/list';
-import Filters from '../containers/filters';
+import Filters from './filters';
 import Hamburger from '../components/hamburger';
 // const columnCount = useMedia(
 //     ['(min-width: 1360px)', '(min-width: 1020px)', '(min-width: 768px)'],

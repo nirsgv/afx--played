@@ -14,7 +14,7 @@ function Tags({ tags, filterByTagCb, activeTags }) {
                 return (
                     <li className={`tags__item${activeTags && !activeTags.includes(tag) ? '' : ' tags__item--active'}`}
                         key={index}
-                        onClick={filterByTagCb ? () => {filterByTagCb(tag)} : undefined}
+                        onClick={filterByTagCb ? () => {filterByTagCb(tag)} : null}
                     >
                         {evaluateKey(genreMap, tag)}
                     </li>

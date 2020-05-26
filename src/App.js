@@ -1,70 +1,48 @@
-import React, { useState, useEffect } from 'react';
-import {connect} from 'react-redux'
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux'
+import { Router, Switch, Route } from "react-router-dom";
+import { createBrowserHistory } from "history";
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import {
-    toggleGridListView, setPlayerItem, dispatchMessageToModal, viewMore,
-    toggleMobMenu, toggleDesktopFilters, setTracksAsLocal, setShowsAsLocal,
-    setSpaPageName, setViewportDimensions, resetFilters
-} from './actions';
-import { isBiggerFromMobile } from './helpers/dom'
 import Main from './containers/main';
-import Header from './components/header';
+import Header from './containers/header';
+import Index from './containers/index';
 import About from './components/about';
 import Splash from './containers/splash';
-import List from './components/list';
+import Footer from './containers/footer';
 import ViewPort from './components/viewport';
-import SwitchButton from './components/switchButton';
 import Editorial from './components/editorial';
 import ExpandedItem from './containers/expandedItem';
 import ExpandedConcert from './containers/expandedConcert';
 import MessagesModal from './containers/messagesModal';
 import MultiPlayer from './containers/multiPlayer';
-import SvgSprite from './components/svgSprite';
 import { isBottomOfPage } from './helpers/dom';
 import { debounce } from './helpers/higherFunctions';
 import { fetchUnstoraged } from './helpers/localStorage';
-import { imgData } from './data/localImgData';
-import { Router, Switch, Route, NavLink } from "react-router-dom";
-import './styles/main.scss';
-import { createBrowserHistory } from "history";
 import { Helmet } from 'react-helmet';
 import urlConstants from './data/urlConstants';
-import AnimativeIndicator from "./components/animativeIndicator";
-import { expClass } from './helpers/str'
-import ReactGa from 'react-ga'
 import DarkenLayer from "./components/darkenLayer";
 import Search from "./containers/search";
+import './styles/main.scss';
+import {
+    toggleGridListView, setPlayerItem, dispatchMessageToModal, viewMore,
+    toggleMobMenu, toggleDesktopFilters, setTracksAsLocal, setShowsAsLocal,
+    setSpaPageName, setViewportDimensions, resetFilters
+} from './actions';
+import ReactGa from 'react-ga'
+import List from './components/list';
+import SwitchButton from './components/switchButton';
 
 const customHistory = createBrowserHistory();
 
 const App = ({  ...restProps }) => {
 
-    const {
-             toggleDesktopFilters,
-             toggleMobMenu,
-             setPlayerItem,
-             setViewportDimensions,
-             viewMore,
-             viewport,
-             setTracksAsLocal,
-             setShowsAsLocal,
-             setSpaPageName,
-             isGridView,
-             isTracksDataLocal,
-             isShowsDataLocal,
-             isMobileMenuOpen,
-             isDesktopFiltersExpanded,
-             spaPageName,
-             toggleGridListView,
-
+    const { toggleDesktopFilters, toggleMobMenu, setPlayerItem, setViewportDimensions, viewMore, viewport,
+            setTracksAsLocal, setShowsAsLocal, setSpaPageName, isGridView, isTracksDataLocal, isShowsDataLocal,
+            isMobileMenuOpen, isDesktopFiltersExpanded, spaPageName, toggleGridListView,
     } = restProps;
 
-    const [ animateFooter, setAnimateFooter ] = useState(false);
     const getScrollItems = debounce(function(){ isBottomOfPage(this) && viewMore() }, 100);
-
-
-
 
     useEffect(() => {
         ReactGa.initialize('UA-163593216-1');
@@ -119,25 +97,17 @@ const App = ({  ...restProps }) => {
 
                                 <Search />
 
-                                <Main name={"something"} ></Main>
+                                <Index />
+
+                                <Main name={"something"}></Main>
+
                             </Route>
                         </Switch>
                         <div className="push"></div>
 
                     </main>
 
-                    <footer className={"footer"} >
-                        <nav>
-                            <List baseClassName="footer-nav" onClick={toggleMobMenu}>
-                                <SvgSprite classes={''} src={imgData.sprite.src} alt={imgData.sprite.description} name={'APHEX'} />
-                                <NavLink exact={true} activeClassName="active" to="/">Home</NavLink>
-                                <NavLink activeClassName="active" to="/editorial">Editorial</NavLink>
-                                <NavLink activeClassName="active" to="/about">About</NavLink>
-
-                                <AnimativeIndicator animateFooter={animateFooter} setAnimateFooter={setAnimateFooter} />
-                            </List>
-                        </nav>
-                    </footer>
+                    <Footer />
 
                     <ViewPort setDimensionsCb={setViewportDimensions} viewport={viewport}>
                         <MultiPlayer />
@@ -168,26 +138,15 @@ const mapStateToProps = state => ({
     isMobileMenuOpen: state.appData.isMobileMenuOpen,
     isDesktopFiltersExpanded: state.appData.isDesktopFiltersExpanded,
     spaPageName: state.appData.spaPageName,
-    filteredBySearch: state.appData.filteredBySearch,
     viewport: state.viewport
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    toggleGridListView,
-    setPlayerItem,
-    dispatchMessageToModal,
-    viewMore,
-    toggleMobMenu,
-    toggleDesktopFilters,
-    setTracksAsLocal,
-    setShowsAsLocal,
-    setSpaPageName,
-    setViewportDimensions,
-    resetFilters
+    toggleGridListView, setPlayerItem, dispatchMessageToModal, viewMore, toggleMobMenu, toggleDesktopFilters,
+    setTracksAsLocal, setShowsAsLocal, setSpaPageName, setViewportDimensions, resetFilters
 }, dispatch);
 
 export const goHome = () => {
-    //viewMore(false);
     if (customHistory.location.pathname !== '/') customHistory.push('/');
 };
 
