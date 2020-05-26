@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import {
     toggleGridListView, setPlayerItem, toggleShareExpansion, dispatchMessageToModal, viewMore,
-    expandFilter, toggleMobMenu, toggleDesktopFilters, setTracksAsLocal, setShowsAsLocal, setSearchValue,
+    expandFilter, toggleMobMenu, toggleDesktopFilters, setTracksAsLocal, setShowsAsLocal,
     setSpaPageName, setViewportDimensions, resetFilters
 } from './actions';
 import { useShadowAnimaStyle, useIsScrolled, useMedia } from './customHooks';
@@ -32,11 +32,11 @@ import './styles/main.scss';
 import { createBrowserHistory } from "history";
 import { Helmet } from 'react-helmet';
 import urlConstants from './data/urlConstants';
-import InputBox from "./components/inputBox";
 import AnimativeIndicator from "./components/animativeIndicator";
 import { expClass } from './helpers/str'
 import ReactGa from 'react-ga'
 import DarkenLayer from "./components/darkenLayer";
+import Search from "./containers/search";
 
 const customHistory = createBrowserHistory();
 
@@ -47,7 +47,6 @@ const App = ({  ...restProps }) => {
              toggleMobMenu,
              setPlayerItem,
              toggleGridListView,
-             setSearchValue,
              setViewportDimensions,
              resetFilters,
              viewMore,
@@ -62,10 +61,11 @@ const App = ({  ...restProps }) => {
              isDesktopFiltersExpanded,
              spaPageName,
              expandedFilter,
+
     } = restProps;
 
     const [ animateFooter, setAnimateFooter ] = useState(false);
-    const getScrollItems = debounce(function(){ isBottomOfPage(this) && viewMore() }, 500);
+    const getScrollItems = debounce(function(){ isBottomOfPage(this) && viewMore() }, 100);
 
     const customHookShadow = useShadowAnimaStyle(2, 4, 4);
     const customHcroll = useIsScrolled();
@@ -177,13 +177,17 @@ const App = ({  ...restProps }) => {
                             <Route path="/track/:id" component={ExpandedItem} setPlayerItem={setPlayerItem} />
                             <Route path="/concert/:id" component={ExpandedConcert} setPlayerItem={setPlayerItem} />
                             <Route path="/">
-                                <List baseClassName="switch-modifiers">
-                                    {isBiggerFromMobile(viewport.dimensions) && <SwitchButton Small={true} id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={toggleGridListView} val={isGridView} />}
-                                    <SwitchButton Small={true} id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={toggleGridListView} val={isGridView} />
-                                </List>
-                                <InputBox classname={"main-search"} name="noname" placeholder="Search.." cb={(e) => setSearchValue(e)}>
-                                    <SvgSprite classes={'main-search__icon'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'SEARCH'} />
-                                </InputBox>
+                                {/*<List baseClassName="switch-modifiers">*/}
+                                    {/*{isBiggerFromMobile(viewport.dimensions) && <SwitchButton Small={true} id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={toggleGridListView} val={isGridView} />}*/}
+                                    {/*<SwitchButton Small={true} id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={toggleGridListView} val={isGridView} />*/}
+                                {/*</List>*/}
+
+                                <Search />
+
+                                {/*<InputBox classname={"main-search"} name="noname" placeholder="Search.." cb={(e) => setSearchValue(e)} value={filteredBySearch}>*/}
+                                    {/*<SvgSprite classes={'main-search__icon'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'SEARCH'} />*/}
+                                {/*</InputBox>*/}
+
                                 <Main name={"something"} ></Main>
                             </Route>
                         </Switch>
@@ -234,6 +238,7 @@ const mapStateToProps = state => ({
     expandedFilter: state.appData.expandedFilter,
     isDesktopFiltersExpanded: state.appData.isDesktopFiltersExpanded,
     spaPageName: state.appData.spaPageName,
+    filteredBySearch: state.appData.filteredBySearch,
     viewport: state.viewport
 });
 
@@ -248,7 +253,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     toggleDesktopFilters,
     setTracksAsLocal,
     setShowsAsLocal,
-    setSearchValue,
     setSpaPageName,
     setViewportDimensions,
     resetFilters

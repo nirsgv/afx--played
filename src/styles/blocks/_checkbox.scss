@@ -1,6 +1,8 @@
 .checkbox {
+
   &__wrap {
-    padding: 2rem 0;
+    padding: 0 0;
+    text-align: right;
 
     & > label {
       cursor: pointer;
@@ -25,8 +27,10 @@
     cursor: pointer;
 
     @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+      &:not(:last-child) {
+        margin-right: 2.6rem;
+      }
       display: inline-block;
-      margin-right: 2.6rem;
     }
 
     input + span {
@@ -41,16 +45,16 @@ input[type="checkbox"]{
 
   + span {
     display: inline-block;
-    font-size: .6rem;
-    border: 1px solid #ddd;
-    padding: 0.7rem;
+    font-size: .5rem;
+    border: 1px solid #eee;
+    padding: 0.2rem;
     color: #888;
-    border-radius: 8px;
+    border-radius: 4px;
 
 
-    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
-      font-size: .8rem;
-    }
+    //@media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+    //  font-size: .8rem;
+    //}
 
     & > svg {
       transition: all 0.1s ease-out;

@@ -1,10 +1,5 @@
 .internal-links {
 
-
-    .internal-links {
-        flex-grow: 1;
-    }
-
     &__wrap {
         @extend %custom-border-top;
         padding: 0 1.2rem;
@@ -31,6 +26,9 @@
         &:last-child {
         }
 
+        button {
+            cursor: pointer;
+        }
     }
 
     &__cta {

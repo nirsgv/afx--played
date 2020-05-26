@@ -2,7 +2,6 @@
 
     &__wrap {
         display: flex;
-        padding: 1rem 0rem 3rem;
 
         @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
 
@@ -12,8 +11,7 @@
         }
 
         .search & {
-            margin-top: 2rem;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
         }
     }
 
