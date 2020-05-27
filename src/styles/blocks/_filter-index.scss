@@ -1,0 +1,21 @@
+.filter-index {
+
+    &__par {
+        white-space: nowrap;
+    }
+
+    ul {
+        display: inline-block;
+    }
+
+    .tags__item {
+
+        background-color: transparent;
+        color: #777;
+
+        &:hover {
+            text-decoration: line-through;
+        }
+    }
+
+}

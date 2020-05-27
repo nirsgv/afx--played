@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import Main from './containers/main';
 import Header from './containers/header';
-import Index from './containers/index';
 import About from './components/about';
 import Splash from './containers/splash';
 import Footer from './containers/footer';
@@ -97,7 +96,6 @@ const App = ({  ...restProps }) => {
 
                                 <Search />
 
-                                <Index />
 
                                 <Main name={"something"}></Main>
 

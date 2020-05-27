@@ -42,10 +42,8 @@ function Item({ trackData, setPlayerItem }) {
             </div>
 
             <List baseClassName={"internal-links"}>
-                {/*<InternalLinks className="track__track-links" links={LINKS} setPlayerItem={setPlayerItem} ID={ID} />*/}
                 <Links className="track__track-links" links={LINKS} platform={'YOUTUBE'} setPlayerItem={setPlayerItem} ID={ID} />
                 <Link to={`track/${ID}`} className={"internal-links__cta"}>
-
                     <h4>More Info<SvgSprite classes={`logo--${'YOUTUBE'.toLowerCase()}`} src={src} alt={description} name={'LONG_ARROW_RIGHT'} /></h4>
                 </Link>
             </List>

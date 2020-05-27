@@ -16,7 +16,7 @@ function toggleSearchOption(e) {
 }
 
 function setSearchValue(e) {
-    goHome();
+    goHome(); //todo: move
     const action = {
         type: SET_SEARCH_VALUE,
         payload: e.target.value
@@ -27,7 +27,7 @@ function setSearchValue(e) {
 
 function filterByPeriodCb(periodKey) {
     console.log(periodKey);
-    goHome();
+    goHome(); //todo: move
     const action = {
         type: FILTER_BY_PERIOD_CB,
         payload: periodKey
@@ -38,7 +38,7 @@ function filterByPeriodCb(periodKey) {
 
 function filterByTagCb(tagKey) {
     console.log(tagKey);
-    goHome();
+    goHome(); //todo: move
     const action = {
         type: FILTER_BY_TAG_CB,
         payload: tagKey

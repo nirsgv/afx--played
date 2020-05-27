@@ -5,8 +5,8 @@ import Items from '../components/items';
 import { hasTags, withinPeriod, hasMatchingText, inViewRange } from '../helpers/comparitors';
 import { combineByObjKeysArr } from '../helpers/str';
 import { yearsMap } from '../data/periodMap.js';
-import {dispatchMessageToModal, toggleShareExpansion, setPlayerItem,  setSpaPageName, resetBatch} from "../actions";
-
+import { dispatchMessageToModal, toggleShareExpansion, setPlayerItem,  setSpaPageName, resetBatch, filterByTagCb} from "../actions";
+import Index from './index';
 
 const Main = ({ filteredByTags,
                 filteredByPeriods,
@@ -26,8 +26,8 @@ const Main = ({ filteredByTags,
         setSpaPageName && setSpaPageName('home');
     }, []);
 
-    const tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data;
 
+    const tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data;
 
     const checkboxActivated = {
         searchTrackTitles,
@@ -44,15 +44,15 @@ const Main = ({ filteredByTags,
             .filter(memoTagsResult)
             .filter(withinPeriod(memoPeriodResult))
             .filter(hasMatchingText(filteredBySearch, checkboxActivated))
-            .filter(memoRangeResult)
         : '', [filteredByTags, filteredByPeriods, filteredBySearch, checkboxActivated, batchNum]);
 
-    const filteredItems = <Items tracksFiltered={tracksFiltered} setPlayerItem={setPlayerItem} />;
+    const tracksPaginated = tracksFiltered.filter(memoRangeResult);
 
     return (
         <>
+            <Index itemsCount={tracksFiltered.length}/>
             <ul className="track-items track-items--animated">
-                { filteredItems }
+                <Items tracksFiltered={tracksPaginated} setPlayerItem={setPlayerItem} />
             </ul>
         </>
     )
@@ -75,7 +75,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     dispatchMessageToModal,
     setPlayerItem,
     setSpaPageName,
-    resetBatch
+    resetBatch,
+    filterByTagCb
 }, dispatch);
 
 export default connect(

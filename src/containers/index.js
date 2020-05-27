@@ -1,21 +1,27 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import Tags from '../components/tags'
-import Periods from '../components/periods'
-
+import Decades from '../components/decades'
+import { filterByTagCb, filterByPeriodCb } from '../actions'
 const Index = (props) => {
 
 
     const {
         filteredByTags,
-        filteredByPeriods
+        filteredByPeriods,
+        itemsCount,
+        filterByTagCb,
+        filterByPeriodCb
     } = props;
 
     return (
-        <section className=''>
-            <p>Showing result for <Tags tags={filteredByTags}/> <Periods periods={filteredByPeriods}/> </p>
-        </section>
+        <nav className='filter-index'>
+            <p className='filter-index__par'>Showing {itemsCount} result for:
+                <Tags tags={filteredByTags} tagCb={(tag) => filterByTagCb(tag)} />
+                <Decades periods={filteredByPeriods} periodCb={(period) => filterByPeriodCb(period)}/>
+            </p>
+        </nav>
     );
 
 };
@@ -35,6 +41,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
+    filterByTagCb,
+    filterByPeriodCb
 }, dispatch);
 
 export default connect(

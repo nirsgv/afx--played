@@ -5,7 +5,7 @@ import { resetFilters } from '../actions/itemFilteringActions'
 import { connect } from "react-redux";
 import { periodMap } from '../data/periodMap.js';
 import Tags from '../components/tags';
-import Periods from '../components/periods';
+import Decades from '../components/decades';
 import genreMap from '../data/genreMap.js';
 
 
@@ -22,11 +22,11 @@ function Filters ({   filterByTagCb,
             switch(filter) {
                 case 'genres':
                     return <Tags tags={Object.keys(genreMap)}
-                                 filterByTagCb={filterByTagCb}
+                                 tagCb={filterByTagCb}
                                  activeTags={filteredByTags}/>;
                 case 'years':
-                    return <Periods periods={Object.keys(periodMap)}
-                                    filterByPeriodCb={filterByPeriodCb}
+                    return <Decades periods={Object.keys(periodMap)}
+                                    periodCb={filterByPeriodCb}
                                     activePeriods={filteredByPeriods}/>;
 
                 default:
