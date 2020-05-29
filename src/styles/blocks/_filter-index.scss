@@ -1,17 +1,38 @@
 .filter-index {
 
-    &__par {
+    height: 3rem;
+
+    &__paragraph {
         white-space: nowrap;
+    }
+
+    &__results {
+        margin-right: .6rem;
+    }
+
+    &__filters {
+        margin-right: .6rem;
+    }
+
+    &__number {
+        margin-right: .6rem;
+
+        width: 2rem;
     }
 
     ul {
         display: inline-block;
     }
 
-    .tags__item {
+    .tags {
+        padding: 0;
+    }
 
+    .tags__item {
+        font-size: 1rem;
         background-color: transparent;
         color: #777;
+        margin-bottom: 0;
 
         &:hover {
             text-decoration: line-through;

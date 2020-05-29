@@ -17,7 +17,6 @@ $colors: (
 
 $z-indexes: (
         "iframe": 1,
-        "player": 2,
         "footer": 3,
         "quick-slide-wrap": 4,
         "quick-slide-button": 5,
@@ -29,7 +28,8 @@ $z-indexes: (
         "main-nav": 40,
         "nav-slide": 50,
         "header": 100,
-        "modal-box": 101,
+        "player": 101,
+        "modal-box": 102,
 );
 
 $menu_gap: 8rem;

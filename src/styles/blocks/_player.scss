@@ -9,6 +9,8 @@
 
     &__wrap {
         pointer-events: none;
+        z-index: map-get($z-indexes, "player");
+        position: fixed;
     }
 
 
@@ -53,7 +55,6 @@
         position: fixed;
         width: 30rem;
         color: #fff;
-        z-index: map-get($z-indexes, "player");
         display: flex;
         justify-content: flex-end;
         align-items: center;

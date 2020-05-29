@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import Tags from '../components/tags'
 import Decades from '../components/decades'
 import { filterByTagCb, filterByPeriodCb } from '../actions'
-const Index = (props) => {
+const FilterIndex = (props) => {
 
 
     const {
@@ -17,20 +17,24 @@ const Index = (props) => {
 
     return (
         <nav className='filter-index'>
-            <p className='filter-index__par'>Showing {itemsCount} result for:
+            <aside className='filter-index__paragraph'>
+                <span className='filter-index__results'>Showing</span>
+                <span className='filter-index__number'>{itemsCount}</span>
+                <span className='filter-index__results'>results.</span>
+                <span className='filter-index__filters'>{(filteredByTags.length || filteredByPeriods.length) ? 'Filters applied:' : ''}</span>
                 <Tags tags={filteredByTags} tagCb={(tag) => filterByTagCb(tag)} />
                 <Decades periods={filteredByPeriods} periodCb={(period) => filterByPeriodCb(period)}/>
-            </p>
+            </aside>
         </nav>
     );
 
 };
 
-Index.defaultProps = {
+FilterIndex.defaultProps = {
 
 };
 
-Index.propTypes = {
+FilterIndex.propTypes = {
 
 };
 
@@ -48,4 +52,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Index);
+)(FilterIndex);

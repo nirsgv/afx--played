@@ -1,8 +1,8 @@
 import React from 'react';
 import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
 import { expandFilter, filterByTagCb, filterByPeriodCb } from "../actions/index";
 import { resetFilters } from '../actions/itemFilteringActions'
-import { connect } from "react-redux";
 import { periodMap } from '../data/periodMap.js';
 import Tags from '../components/tags';
 import Decades from '../components/decades';

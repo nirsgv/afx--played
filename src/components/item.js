@@ -1,6 +1,8 @@
 import React from 'react';
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+
 import Tags from './tags';
-import InternalLinks from './internalLinks';
 import Links from './links';
 import Img from './img';
 import PropTypes from 'prop-types';
@@ -8,9 +10,10 @@ import { Link } from "react-router-dom";
 import List from "./list";
 import SvgSprite from './svgSprite';
 import { imgData } from '../data/localImgData';
+import { expandFilter, filterByPeriodCb, filterByTagCb } from "../actions";
 const { src, description } = imgData.sprite;
 
-function Item({ trackData, setPlayerItem }) {
+function Item({ trackData, setPlayerItem, filterByTagCb }) {
     const {
         ARTIST_NAME,
         TRACK_TITLE,
@@ -38,7 +41,7 @@ function Item({ trackData, setPlayerItem }) {
 
                 </div>
 
-                <Tags className="track__track-tags" tags={GENRES} />
+                <Tags className="track__track-tags" tags={GENRES} tagCb={(tag) => filterByTagCb(tag)}/>
             </div>
 
             <List baseClassName={"internal-links"}>
@@ -62,4 +65,15 @@ Item.propTypes = {
     setPlayerItem: PropTypes.func,
 };
 
-export default Item;
+const mapStateToProps = state => ({
+
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+    filterByTagCb,
+}, dispatch);
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Item);

@@ -6,7 +6,7 @@ import { hasTags, withinPeriod, hasMatchingText, inViewRange } from '../helpers/
 import { combineByObjKeysArr } from '../helpers/str';
 import { yearsMap } from '../data/periodMap.js';
 import { dispatchMessageToModal, toggleShareExpansion, setPlayerItem,  setSpaPageName, resetBatch, filterByTagCb} from "../actions";
-import Index from './index';
+import FilterIndex from './filterIndex';
 
 const Main = ({ filteredByTags,
                 filteredByPeriods,
@@ -50,7 +50,7 @@ const Main = ({ filteredByTags,
 
     return (
         <>
-            <Index itemsCount={tracksFiltered.length}/>
+            <FilterIndex itemsCount={tracksFiltered.length}/>
             <ul className="track-items track-items--animated">
                 <Items tracksFiltered={tracksPaginated} setPlayerItem={setPlayerItem} />
             </ul>
