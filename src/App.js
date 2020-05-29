@@ -97,7 +97,7 @@ const App = ({  ...restProps }) => {
                                 <Search />
 
 
-                                <Main name={"something"}></Main>
+                                <Main name={"tracks"}></Main>
 
                             </Route>
                         </Switch>

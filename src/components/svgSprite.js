@@ -10,7 +10,7 @@ function SvgSprite ({...restProps}) {
     };
 
     return (
-        <span className={classNames('something', classes)}
+        <span className={classNames(classes)} // classes can be comma-sepatrate-added
             onClick={() => clickHandler}
               style={style}
             >

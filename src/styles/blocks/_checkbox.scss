@@ -23,14 +23,15 @@
   }
 
   &__item {
-    display: block;
     cursor: pointer;
+    display: inline-block;
 
-    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
-      &:not(:last-child) {
-        margin-right: 2.6rem;
+    &:not(:last-child) {
+      margin-right: 1.6rem;
+
+      @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+          margin-right: 2.6rem;
       }
-      display: inline-block;
     }
 
     input + span {
