@@ -41,7 +41,7 @@
     text-decoration: none;
     cursor: pointer;
 
-    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+    @include respond-to(hover-device) {
       font-size: 1.2rem;
     }
 

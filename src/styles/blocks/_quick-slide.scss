@@ -10,7 +10,7 @@
         margin-left: -1 * map-get($main-padding, "mob");
         padding-left: map-get($main-padding, "mob");;
 
-        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+        @include respond-to(hover-device) {
             width: calc(100% + (2 * #{(map-get($main-padding, "tab"))} ));
             margin-left: -1 * map-get($main-padding, "tab");
             padding-left: map-get($main-padding, "tab");;
@@ -63,7 +63,7 @@
 
             left: map-get($main-padding, "mob") ;
 
-            @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+            @include respond-to(hover-device) {
                 left: map-get($main-padding, "tab") / 2;;
             }
 
@@ -76,7 +76,7 @@
 
             right: map-get($main-padding, "mob") / 2;
 
-            @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+            @include respond-to(hover-device) {
                 right: map-get($main-padding, "tab") / 2;
             }
 
@@ -116,7 +116,7 @@
 
         &__text{
             font-size: 2rem;
-            @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+            @include respond-to(hover-device) {
                 font-size: 3rem;
             }
 

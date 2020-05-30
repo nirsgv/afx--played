@@ -38,14 +38,14 @@ $gap: 2rem;
     display: flex;
     flex-direction: column;
 
-    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+    @include respond-to(hover-device) {
       flex-direction: row;
     }
   }
 
   .details-and-shows {
     flex-grow: 1;
-    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+    @include respond-to(hover-device) {
       padding-right: $gap;
     }
   }

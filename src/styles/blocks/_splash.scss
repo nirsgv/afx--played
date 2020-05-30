@@ -19,8 +19,8 @@
     & > .splash-icon {
         & > svg {
             font-size: 10rem;
-            
-            @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+
+            @include respond-to(hover-device) {
                 font-size: 20rem;
             }
         }

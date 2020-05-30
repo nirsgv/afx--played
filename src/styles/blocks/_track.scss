@@ -27,7 +27,7 @@
             grid-template-columns: repeat(1, 1fr);
             grid-gap: 3.4rem 2.2rem;
 
-            @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+            @include respond-to(hover-device) {
                 grid-template-columns: repeat(2, 1fr);
             }
             @media (min-width: map-get($b-points, "tab")) {
@@ -108,7 +108,7 @@
     }
 
 
-    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+    @include respond-to(hover-device) {
 
         &:hover {
             .track__image {

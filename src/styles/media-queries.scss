@@ -1,0 +1,71 @@
+// mob first state of mind
+$b-points: (
+        "mob": 768px,
+        "tab": 1020px,
+        "des": 1360px
+);
+
+//// mob first state of mind
+//$b-points: (
+//        "phone-small": 320px,
+//        "phone-big": 640px,
+//        "tablet-portrait": 768px,
+//        "tablet-landscape": 1024px,
+//        "desktop-small": 1200px,
+//        "desktop-big": 1360px,
+//);
+
+    $media-expressions: (
+        'no-hover': '(hover: none) and (pointer: coarse)', // smartphones, touchscreens
+        'hover': '(hover: hover) and (pointer: fine)', // mouse, touch pad
+        '>phone': '(min-width: 321px)',
+        '<phone': '(max-width: 319px)',
+        '>=phone': '(min-width: 320px)',
+        '≥phone': '(min-width: 320px)',
+        '<=phone': '(max-width: 320px)',
+        '≤phone': '(max-width: 320px)',
+
+        '>tablet': '(min-width: 769px)',
+        '<tablet': '(max-width: 767px)',
+        '>=tablet': '(min-width: 768px)',
+        '≥tablet': '(min-width: 768px)',
+        '<=tablet': '(max-width: 768px)',
+        '≤tablet': '(max-width: 768px)',
+
+        '>desktop': '(min-width: 1025px)',
+        '<desktop': '(max-width: 1023px)',
+        '>=desktop': '(min-width: 1024px)',
+        '≥desktop': '(min-width: 1024px)',
+        '<=desktop': '(max-width: 1024px)',
+        '≤desktop': '(max-width: 1024px)'
+);
+
+@mixin respond-to($media) {
+    @if $media == up-to-and-including-tablet-portrait {
+        @media only screen and #{map_get($media-expressions, '<=tablet')} { @content; }
+    }
+    @if $media == up-to-and-discluding-tablet-portrait {
+        @media only screen and #{map_get($media-expressions, '<tablet')} { @content; }
+    }
+    @if $media == up-to-and-including-tablet-landscape {
+        @media only screen and #{map_get($media-expressions, '<tablet')} { @content; }
+    }
+    @if $media == up-to-and-discluding-tablet-landscape {
+        @media only screen and #{map_get($media-expressions, '<tablet')} { @content; }
+    }
+    @if $media == smart-device {
+        @media only screen and #{map_get($media-expressions, 'no-hover')} { @content; }
+    }
+    @if $media == hover-device {
+        @media only screen and #{map_get($media-expressions, 'hover') and #{map_get($media-expressions, '≥tablet')}} { @content; }
+    }
+}
+
+span {
+    //@media #{map_get($media-expressions, '>phone')} and #{map_get($media-expressions, '<desktop')}{
+    //    color: red!important;
+    //}
+    @include respond-to(up-to-tablet-portrait) {
+        color: red!important;
+    }
+}

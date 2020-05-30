@@ -12,7 +12,7 @@
         height: 4rem;
     }
 
-    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+    @include respond-to(hover-device) {
         position: relative;
         height: 8rem;
         .scrolled & {
@@ -57,7 +57,7 @@
     }
 
     &__hamburger {
-        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+        @include respond-to(hover-device) {
             display: none;
         }
     }

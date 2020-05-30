@@ -27,7 +27,7 @@
 //            margin: auto;
 //        }
 //
-//        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+//@include respond-to(hover-device) {
 //
 //            &:hover {
 //                color: black;
@@ -50,7 +50,7 @@
 //        align-items: center;
 //        color: #aaa;
 //        outline: none;
-//        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+//@include respond-to(hover-device) {
 //            &:hover {
 //                color: #888;
 //            }

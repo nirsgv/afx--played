@@ -10,7 +10,7 @@
     padding-right: $menu_gap;
     transition: height 0.1s ease;
 
-    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+    @include respond-to(hover-device) {
         height: 4rem;
         border-bottom: 1px solid #ddd;
         background-color: #fff;
@@ -31,7 +31,7 @@
 
         .scrolled & {
 
-            @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+            @include respond-to(hover-device) {
             }
         }
 
@@ -63,7 +63,7 @@
 
         & span {
 
-            @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+            @include respond-to(hover-device) {
                 //padding-bottom: 1.3rem;
 
                 .scrolled & {
@@ -80,7 +80,7 @@
         &--on {
         color: #555;
 
-            @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+            @include respond-to(hover-device) {
                 //color: #ccc;
                 //border-bottom: 4px solid #ddd;
                 //border-bottom: 6px solid #ddd;
@@ -132,7 +132,7 @@
             flex-grow: 1;
         }
 
-        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+        @include respond-to(hover-device) {
             height: auto;
             display: flex;
             flex-direction: column;
@@ -184,7 +184,7 @@
         margin-left: -2rem;
         text-align: center;
 
-        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+        @include respond-to(hover-device) {
             width: 100vw;
             left: 0;
             margin-left: -12rem;
@@ -208,7 +208,7 @@
     right: calc(-100% - 20rem);
     z-index: map-get($z-indexes, "nav-slide");
 
-    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+    @include respond-to(hover-device) {
         position: relative;
         box-shadow: none;
         right: 0;
