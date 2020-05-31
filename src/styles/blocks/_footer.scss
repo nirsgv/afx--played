@@ -1,4 +1,4 @@
-$footer-height: 14rem;
+$footer-height: 16rem;
 
 main.home + footer .footer__animative-indicator {
     display: block;
@@ -9,8 +9,7 @@ main.home + footer .footer__animative-indicator {
     position: relative;
     width: 100%;
     z-index: map-get($z-indexes, "footer");
-    border-top: 1px solid #ccc;
-    box-shadow: 1px 7px 20px #aaa;
+    border-top: 1px solid #eee;
     display: flex;
 
     &__preloader {
@@ -54,7 +53,9 @@ main.home + footer .footer__animative-indicator {
 
     &__list{
         display: flex;
-        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
         height: $footer-height;
         width: inherit;
     }
@@ -77,6 +78,7 @@ main.home + footer .footer__animative-indicator {
 main {
     min-height: 100vh;
     margin-bottom: -1 * $footer-height;
+    padding-bottom: $footer-height + 4rem;
 }
 .footer,
 .push {
