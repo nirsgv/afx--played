@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types';
 import {expClass} from "../helpers/str";
 import {imgData} from "../data/localImgData";
@@ -9,7 +9,7 @@ import {
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
 import {useIsScrolled, useShadowAnimaStyle, useMedia} from "../customHooks/index";
-import { Link, NavLink } from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import SvgSprite from '../components/svgSprite';
 import List from '../components/list';
 import Filters from './filters';
@@ -23,7 +23,7 @@ import Hamburger from '../components/hamburger';
 const Header = (props) => {
 
     const customHookShadow = useShadowAnimaStyle(2, 4, 4),
-          customHcroll = useIsScrolled();
+        customHcroll = useIsScrolled();
 
     const {
         isMobileMenuOpen,
@@ -40,7 +40,8 @@ const Header = (props) => {
             <nav className='main-nav'>
                 <div className='main-nav__logo'>
                     <Link to="/">
-                        <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'APHEX'}
+                        <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description}
+                                   name={'APHEX'}
                                    style={customHookShadow}
                         />
                     </Link>
@@ -57,29 +58,43 @@ const Header = (props) => {
                     <List baseClassName="main-filters">
                                     <span>
 
-                                    <button onClick={()=> toggleDesktopFilters()}>
-                                        <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'FUNNEL'} />
+                                    <button onClick={() => toggleDesktopFilters()}
+                                            className={`funnel-button funnel-button--${isDesktopFiltersExpanded || isMobileMenuOpen ? 'open' : 'closed'}`}>
+                                        <SvgSprite src={imgData.sprite.src}
+                                                   alt={imgData.sprite.description} name={'FUNNEL'}/>
                                     </button>
                                     </span>
-                        <span onClick={() => {expandFilter('genres');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'genres')}`}>Style</span>
+                        <span onClick={() => {
+                            expandFilter('genres');
+                            toggleDesktopFilters(true)
+                        }}
+                              className={`main-filters__item main-filters__item${expClass(expandedFilter, 'genres')}`}>Style</span>
                         <span>/</span>
-                        <span onClick={() => {expandFilter('years');toggleDesktopFilters(true)}} className={`main-filters__item main-filters__item${expClass(expandedFilter,'years')}`}>Decade</span>
+                        <span onClick={() => {
+                            expandFilter('years');
+                            toggleDesktopFilters(true)
+                        }}
+                              className={`main-filters__item main-filters__item${expClass(expandedFilter, 'years')}`}>Decade</span>
                         <span className={'main-filters__item main-filters__item--hamburger'}>
-                                        <Hamburger menuIsClosed={!isMobileMenuOpen} toggleMobMenu={toggleMobMenu} className={'hamburger'} />
-                                    </span>
+                            <Hamburger menuIsClosed={!isMobileMenuOpen} toggleMobMenu={toggleMobMenu}
+                                       className={'hamburger'}/>
+                        </span>
 
                     </List>
                 </nav>
 
-                <nav className={`filter-expansion__wrap filter-expansion__wrap${!isDesktopFiltersExpanded ? '--close' : '--open'}`}>
+                <nav
+                    className={`filter-expansion__wrap filter-expansion__wrap${!isDesktopFiltersExpanded ? '--close' : '--open'}`}>
                     <button className="filter-expansion__clear-all-button button" onClick={resetFilters}>
                         <span>Clear all</span>
-                        <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'MINUS--LIGHT'} />
+                        <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description}
+                                   name={'MINUS--LIGHT'}/>
                     </button>
 
-                    <Filters />
+                    <Filters/>
                     <button className="filter-expansion__close-button" onClick={() => toggleDesktopFilters(false)}>
-                        <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'TIMES'} />
+                        <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description}
+                                   name={'TIMES'}/>
                     </button>
                 </nav>
             </div>
@@ -88,13 +103,9 @@ const Header = (props) => {
 
 };
 
-Header.defaultProps = {
+Header.defaultProps = {};
 
-};
-
-Header.propTypes = {
-
-};
+Header.propTypes = {};
 
 
 const mapStateToProps = state => ({

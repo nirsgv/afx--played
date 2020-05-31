@@ -9,14 +9,11 @@ import Decades from '../components/decades';
 import genreMap from '../data/genreMap.js';
 
 
-function Filters ({   filterByTagCb,
-                      filterByPeriodCb,
-                      expandedFilter,
-                      filteredByTags,
-                      filteredByPeriods,
-}) {
-
-
+function Filters ({ filterByTagCb,
+                    filterByPeriodCb,
+                    expandedFilter,
+                    filteredByTags,
+                    filteredByPeriods}) {
 
         const renderFilter = (filter) => {
             switch(filter) {
