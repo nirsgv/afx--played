@@ -1,9 +1,15 @@
 .filter-index {
 
-    height: 3rem;
+    @include respond-to(smart-device) {
+        margin-bottom: 1.4rem;
+    }
 
+    @include respond-to(hover-device) {
+        min-height: 3rem;
+    }
     &__paragraph {
-        white-space: nowrap;
+        //white-space: nowrap;
+        display: flex;
     }
 
     &__results {
@@ -16,8 +22,15 @@
 
     &__number {
         margin-right: .6rem;
-
         width: 2rem;
+    }
+
+    &__clear-button {
+        font-size: 1rem;
+    }
+
+    .b {
+        margin-left: auto;
     }
 
     ul {

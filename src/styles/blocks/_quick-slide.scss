@@ -61,27 +61,27 @@
 
         &--left {
 
-            left: map-get($main-padding, "mob") ;
+            left: 6rem;
 
             @include respond-to(hover-device) {
-                left: map-get($main-padding, "tab") / 2;;
+                left: 6rem;
             }
 
             @media (min-width: map-get($b-points, "tab")) {
-                left: map-get($main-padding, "des") / 2;;
+                left: 6rem;
             }
         }
 
         &--right {
 
-            right: map-get($main-padding, "mob") / 2;
+            right: 6rem;
 
             @include respond-to(hover-device) {
-                right: map-get($main-padding, "tab") / 2;
+                right: 6rem;
             }
 
             @media (min-width: map-get($b-points, "tab")) {
-                right: map-get($main-padding, "des") / 2;
+                right: 6rem;
             }
         }
 

@@ -18,12 +18,18 @@ const FilterIndex = (props) => {
     return (
         <nav className='filter-index'>
             <aside className='filter-index__paragraph'>
-                <span className='filter-index__results'>Showing</span>
-                <span className='filter-index__number'>{itemsCount}</span>
-                <span className='filter-index__results'>results.</span>
-                <span className='filter-index__filters'>{(filteredByTags.length || filteredByPeriods.length) ? 'Filters applied:' : ''}</span>
-                <Tags tags={filteredByTags} tagCb={(tag) => filterByTagCb(tag)} />
-                <Decades periods={filteredByPeriods} periodCb={(period) => filterByPeriodCb(period)}/>
+                <div className="a">
+                    <span className='filter-index__results'>Showing</span>
+                    <span className='filter-index__number'>{itemsCount}</span>
+                    <span className='filter-index__results'>results.</span>
+                    <span className='filter-index__filters'>{(filteredByTags.length || filteredByPeriods.length) ? 'Filters applied:' : ''}</span>
+                    <Tags tags={filteredByTags} tagCb={(tag) => filterByTagCb(tag)} />
+                    <Decades periods={filteredByPeriods} periodCb={(period) => filterByPeriodCb(period)}/>
+                </div>
+                <div className="b">
+                    <button className='filter-index__clear-button' href={'#'}>clear (-)</button>
+                </div>
+
             </aside>
         </nav>
     );

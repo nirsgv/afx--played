@@ -54,26 +54,18 @@ const Header = (props) => {
                 <Hamburger menuIsClosed={!isMobileMenuOpen} toggleMobMenu={toggleMobMenu} className={'hamburger'}/>
             </nav>
             <div className={`nav-slide ${isMobileMenuOpen ? 'nav-slide--open' : ''}`} data-test="nav-slide">
-                <nav className="main-filters">
+                <nav className={`main-filters main-filters--${isDesktopFiltersExpanded || isMobileMenuOpen ? 'expanded' : 'minified'}`}>
                     <List baseClassName="main-filters">
-                                    <span>
 
-                                    <button onClick={() => toggleDesktopFilters()}
-                                            className={`funnel-button funnel-button--${isDesktopFiltersExpanded || isMobileMenuOpen ? 'open' : 'closed'}`}>
-                                        <SvgSprite src={imgData.sprite.src}
-                                                   alt={imgData.sprite.description} name={'FUNNEL'}/>
-                                    </button>
-                                    </span>
-                        <span onClick={() => {
-                            expandFilter('genres');
-                            toggleDesktopFilters(true)
-                        }}
+                        <button onClick={() => toggleDesktopFilters()}
+                                className={`funnel-button funnel-button--${isDesktopFiltersExpanded || isMobileMenuOpen ? 'open' : 'closed'}`}>
+                            <SvgSprite src={imgData.sprite.src} alt={imgData.sprite.description} name={'FUNNEL'} />
+                        </button>
+
+                        <span onClick={() => {expandFilter('genres'); toggleDesktopFilters(true)}}
                               className={`main-filters__item main-filters__item${expClass(expandedFilter, 'genres')}`}>Style</span>
                         <span>/</span>
-                        <span onClick={() => {
-                            expandFilter('years');
-                            toggleDesktopFilters(true)
-                        }}
+                        <span onClick={() => {expandFilter('years'); toggleDesktopFilters(true)}}
                               className={`main-filters__item main-filters__item${expClass(expandedFilter, 'years')}`}>Decade</span>
                         <span className={'main-filters__item main-filters__item--hamburger'}>
                             <Hamburger menuIsClosed={!isMobileMenuOpen} toggleMobMenu={toggleMobMenu}

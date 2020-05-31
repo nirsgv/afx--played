@@ -61,11 +61,11 @@ $b-points: (
     }
 }
 
-span {
-    //@media #{map_get($media-expressions, '>phone')} and #{map_get($media-expressions, '<desktop')}{
-    //    color: red!important;
-    //}
-    @include respond-to(up-to-tablet-portrait) {
-        color: red!important;
-    }
-}
+//span {
+//    //@media #{map_get($media-expressions, '>phone')} and #{map_get($media-expressions, '<desktop')}{
+//    //    color: red!important;
+//    //}
+//    @include respond-to(up-to-tablet-portrait) {
+//        color: red!important;
+//    }
+//}

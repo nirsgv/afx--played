@@ -89,15 +89,10 @@ const App = ({  ...restProps }) => {
                             <Route path="/track/:id" component={ExpandedItem} setPlayerItem={setPlayerItem} />
                             <Route path="/concert/:id" component={ExpandedConcert} setPlayerItem={setPlayerItem} />
                             <Route path="/">
-                                {/*<List baseClassName="switch-modifiers">*/}
-                                    {/*{isBiggerFromMobile(viewport.dimensions) && <SwitchButton Small={true} id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={toggleGridListView} val={isGridView} />}*/}
-                                    {/*<SwitchButton Small={true} id={'isGridView'} Text={'isGridView'} labelText={"Grid view"} cb={toggleGridListView} val={isGridView} />*/}
-                                {/*</List>*/}
 
                                 <Search />
 
-
-                                <Main name={"tracks"}></Main>
+                                <Main />
 
                             </Route>
                         </Switch>
