@@ -17,21 +17,26 @@ const FilterIndex = (props) => {
         resetFilters
     } = props;
 
+    const areFiltersApplied = (filteredByTags, filteredByPeriods) => {
+      return filteredByTags.length || filteredByPeriods.length;
+    };
+
     return (
         <nav className='filter-index'>
             <aside className='filter-index__paragraph'>
-                
+
                 <div className="filter-index__info-wrap">
                     <span className='filter-index__results'>Showing</span>
                     <span className='filter-index__number'>{itemsCount}</span>
                     <span className='filter-index__results'>results.</span>
-                    <span className='filter-index__filters'>{(filteredByTags.length || filteredByPeriods.length) ? 'Filters applied:' : ''}</span>
+                    <span className='filter-index__filters'>{areFiltersApplied(filteredByTags, filteredByPeriods) ? 'Filters applied:' : ''}</span>
                     <Tags tags={filteredByTags} tagCb={(tag) => filterByTagCb(tag)} />
                     <Decades periods={filteredByPeriods} periodCb={(period) => filterByPeriodCb(period)}/>
                 </div>
 
                 <div className="filter-index__cta-wrap">
-                    <button onClick={resetFilters} className='filter-index__clear-button' href={'#'}>clear (-)</button>
+                    <button onClick={areFiltersApplied(filteredByTags, filteredByPeriods) ? resetFilters : null}
+                            className={`filter-index__clear-button filter-index__clear-button--${areFiltersApplied(filteredByTags, filteredByPeriods) ? 'active' : 'disabled'}`} href={'#'}>clear (-)</button>
                 </div>
 
             </aside>

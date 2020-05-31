@@ -27,6 +27,14 @@
 
     &__clear-button {
         font-size: 1rem;
+
+        &--active {
+            cursor: pointer;
+        }
+
+        &--disabled {
+            color: #aaa;
+        }
     }
 
     &__cta-wrap {
