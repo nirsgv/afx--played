@@ -29,7 +29,7 @@
         left: 0;
         @extend %site-wide-padding;
 
-        .scrolled & {
+        .header--minified & {
 
             @include respond-to(hover-device) {
             }
@@ -56,17 +56,12 @@
             margin-right: 0;
         }
 
-        //&--expansion-toggle {
-        //    margin-right: auto;
-        //}
-
-
         & span {
 
             @include respond-to(hover-device) {
                 //padding-bottom: 1.3rem;
 
-                .scrolled & {
+                .header--minified & {
                     padding-bottom: 0;
                     height: 100%;
                     display: flex;

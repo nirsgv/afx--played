@@ -8,14 +8,14 @@
     z-index: map-get($z-indexes, "main-nav");
     @extend %site-wide-padding;
 
-    .scrolled & {
+    .header--minified & {
         height: 4rem;
     }
 
     @include respond-to(hover-device) {
         position: relative;
         height: 8rem;
-        .scrolled & {
+        .header--minified & {
             height: 8rem;
         }
     }
@@ -30,7 +30,7 @@
         margin-right: 3rem;
         transition: transform 0.1s ease;
 
-        .scrolled & {
+        .header--minified & {
             transform: scale(.5);
             transition: transform 0.1s ease-out;
         }

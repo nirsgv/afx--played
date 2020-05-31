@@ -31,7 +31,7 @@ label, button {
     user-select: none; /* Standard */
 }
 
-header {
+.header {
     position: fixed;
     top: 0;
     left: 0;
@@ -43,13 +43,16 @@ header {
     box-shadow: 1px 6px 7px #aaaaaa11;
     transition: transform 0.1s ease-out;
 
-    &.scrolled {
+    &--minified {
         height: 4rem;
 
         @include respond-to(hover-device) {
             transform: translateY(-8rem);
         }
 
+    }
+
+    &--expanded {
     }
     @include respond-to(hover-device) {
         height: 12rem;

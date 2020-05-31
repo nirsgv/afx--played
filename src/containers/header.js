@@ -36,7 +36,7 @@ const Header = (props) => {
     } = props;
 
     return (
-        <header className={`header ${customHcroll ? 'scrolled' : ''}`}>
+        <header className={`header header--${customHcroll ? 'minified' : 'expanded'}`}>
             <nav className='main-nav'>
                 <div className='main-nav__logo'>
                     <Link to="/">
