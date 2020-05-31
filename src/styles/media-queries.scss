@@ -25,27 +25,27 @@ $b-points: (
         '<=phone': '(max-width: 320px)',
         '≤phone': '(max-width: 320px)',
 
-        '>tablet': '(min-width: 769px)',
-        '<tablet': '(max-width: 767px)',
-        '>=tablet': '(min-width: 768px)',
-        '≥tablet': '(min-width: 768px)',
-        '<=tablet': '(max-width: 768px)',
-        '≤tablet': '(max-width: 768px)',
+        '>tablet-portrait': '(min-width: 769px)',
+        '<tablet-portrait': '(max-width: 767px)',
+        '>=tablet-portrait': '(min-width: 768px)',
+        '≥tablet-portrait': '(min-width: 768px)',
+        '<=tablet-portrait': '(max-width: 768px)',
+        '≤tablet-portrait': '(max-width: 768px)',
 
-        '>desktop': '(min-width: 1025px)',
-        '<desktop': '(max-width: 1023px)',
-        '>=desktop': '(min-width: 1024px)',
-        '≥desktop': '(min-width: 1024px)',
-        '<=desktop': '(max-width: 1024px)',
-        '≤desktop': '(max-width: 1024px)'
+        '>tablet-landscape': '(min-width: 1025px)',
+        '<tablet-landscape': '(max-width: 1023px)',
+        '>=tablet-landscape': '(min-width: 1024px)',
+        '≥tablet-landscape': '(min-width: 1024px)',
+        '<=tablet-landscape': '(max-width: 1024px)',
+        '≤tablet-landscape': '(max-width: 1024px)'
 );
 
 @mixin respond-to($media) {
     @if $media == up-to-and-including-tablet-portrait {
-        @media only screen and #{map_get($media-expressions, '<=tablet')} { @content; }
+        @media only screen and #{map_get($media-expressions, '<=tablet-portrait')} { @content; }
     }
     @if $media == up-to-and-discluding-tablet-portrait {
-        @media only screen and #{map_get($media-expressions, '<tablet')} { @content; }
+        @media only screen and #{map_get($media-expressions, '<tablet-portrait')} { @content; }
     }
     @if $media == up-to-and-including-tablet-landscape {
         @media only screen and #{map_get($media-expressions, '<tablet')} { @content; }
@@ -57,7 +57,7 @@ $b-points: (
         @media only screen and #{map_get($media-expressions, 'no-hover')} { @content; }
     }
     @if $media == hover-device {
-        @media only screen and #{map_get($media-expressions, 'hover') and #{map_get($media-expressions, '≥tablet')}} { @content; }
+        @media only screen and #{map_get($media-expressions, 'hover') and #{map_get($media-expressions, '>tablet-portrait')}} { @content; }
     }
 }
 

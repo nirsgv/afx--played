@@ -18,6 +18,7 @@ const ExpandedItem = ({match, history, toggleShareExpansion, setPlayerItem, disp
 
     useEffect(() => {
         // console.log(setSpaPageName);
+        console.log(decodeURIComponent(match.params.id));
         setSpaPageName && setSpaPageName('expanded-item');
         //console.log('match', match, tracks, chosen, history, dispatchMessageToModal);
         return () => {
@@ -25,10 +26,11 @@ const ExpandedItem = ({match, history, toggleShareExpansion, setPlayerItem, disp
         }
     }, []);
 
+
     const [beenAnimated, setBeenAnimated] = useState(false),
           tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data,
           expandedTrack = tracks.find(function(track) {
-        return track.ID === match.params.id;
+        return track.ID === decodeURIComponent(match.params.id);
     });
 
 
@@ -77,10 +79,11 @@ const ExpandedItem = ({match, history, toggleShareExpansion, setPlayerItem, disp
                         </section>
 
                         {/*block3*/}
+                        {VENUES[0] && (
                         <section className="expanded-item__shows">
                             <h2 className="expanded-item__section-title">Played in shows</h2>
                             <Concerts venues={VENUES}></Concerts>
-                        </section>
+                        </section>)}
                     </div>
 
                     <div className="links-and-share">

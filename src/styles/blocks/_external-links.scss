@@ -18,6 +18,19 @@
         //[role="button"] {
         //    color: #aaa;
         //}
+
+        &:hover, &:active {
+            .external-links__link, .share-box__icon {
+                color: #6a6a6a;
+                font-size: 1.2rem;
+            }
+        }
+        .external-links__link, .share-box__icon {
+            height: 4.4rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
 
     &__link, &__icon {
