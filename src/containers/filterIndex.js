@@ -5,6 +5,8 @@ import Tags from '../components/tags';
 import Decades from '../components/decades';
 import { filterByTagCb, filterByPeriodCb } from '../actions';
 import { resetFilters } from '../actions/itemFilteringActions'
+import { areFiltersApplied } from '../helpers/comparitors'
+import ClearAllButton from "../components/clearAllButton";
 
 const FilterIndex = (props) => {
 
@@ -16,10 +18,6 @@ const FilterIndex = (props) => {
         filterByPeriodCb,
         resetFilters
     } = props;
-
-    const areFiltersApplied = (filteredByTags, filteredByPeriods) => {
-      return filteredByTags.length || filteredByPeriods.length;
-    };
 
     return (
         <nav className='filter-index'>
@@ -35,8 +33,7 @@ const FilterIndex = (props) => {
                 </div>
 
                 <div className="filter-index__cta-wrap">
-                    <button onClick={areFiltersApplied(filteredByTags, filteredByPeriods) ? resetFilters : null}
-                            className={`filter-index__clear-button filter-index__clear-button--${areFiltersApplied(filteredByTags, filteredByPeriods) ? 'active' : 'disabled'}`} href={'#'}>clear (-)</button>
+                    <ClearAllButton filteredByTags={filteredByTags} filteredByPeriods={filteredByPeriods} clickCb={resetFilters}/>
                 </div>
 
             </aside>

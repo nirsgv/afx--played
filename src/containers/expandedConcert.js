@@ -3,11 +3,14 @@ import { bindActionCreators } from "redux";
 import {toggleShareExpansion, setPlayerItem, setSpaPageName } from "../actions/index";
 import { connect } from "react-redux";
 import { getMonthFromShort, getDurationFromSeconds } from '../helpers/str';
-import {Link} from "react-router-dom";
-const ExpandedConcert = ({match, setSpaPageName}) => {
+import { Link } from "react-router-dom";
+import { scrollTop } from '../helpers/dom';
+
+const ExpandedConcert = ({ match, setSpaPageName }) => {
 
     useEffect(() => {
         setSpaPageName('expanded-concert');
+        scrollTop();
         return () => {}
     }, []);
 

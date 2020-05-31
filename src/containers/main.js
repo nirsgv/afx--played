@@ -7,6 +7,7 @@ import { combineByObjKeysArr } from '../helpers/str';
 import { yearsMap } from '../data/periodMap.js';
 import { dispatchMessageToModal, toggleShareExpansion, setPlayerItem,  setSpaPageName, resetBatch, filterByTagCb} from "../actions";
 import FilterIndex from './filterIndex';
+import { scrollTop } from '../helpers/dom';
 
 const Main = ({ filteredByTags,
                 filteredByPeriods,
@@ -24,6 +25,7 @@ const Main = ({ filteredByTags,
     useEffect(() => {
         resetBatch();
         setSpaPageName && setSpaPageName('home');
+        scrollTop();
     }, []);
 
 

@@ -13,13 +13,14 @@ import Tags from "../components/tags";
 import { getDurationFromSeconds } from '../helpers/str';
 import Share from "../components/share";
 import {Router} from "react-router-dom";
+import { scrollTop } from '../helpers/dom';
 
 const ExpandedItem = ({match, history, toggleShareExpansion, setPlayerItem, dispatchMessageToModal, setSpaPageName}) => {
 
     useEffect(() => {
-        // console.log(setSpaPageName);
         console.log(decodeURIComponent(match.params.id));
         setSpaPageName && setSpaPageName('expanded-item');
+        scrollTop();
         //console.log('match', match, tracks, chosen, history, dispatchMessageToModal);
         return () => {
 

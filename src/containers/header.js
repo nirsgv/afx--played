@@ -6,14 +6,16 @@ import {
     expandFilter, resetFilters, setSearchValue,
     toggleDesktopFilters, toggleMobMenu, toggleSearchOption,
 } from "../actions/index";
-import {bindActionCreators} from "redux";
-import {connect} from "react-redux";
-import {useIsScrolled, useShadowAnimaStyle, useMedia} from "../customHooks/index";
-import {Link, NavLink} from "react-router-dom";
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { useIsScrolled, useShadowAnimaStyle, useMedia } from "../customHooks/index";
+import { Link, NavLink } from "react-router-dom";
+import { areFiltersApplied } from '../helpers/comparitors'
 import SvgSprite from '../components/svgSprite';
 import List from '../components/list';
 import Filters from './filters';
 import Hamburger from '../components/hamburger';
+import ClearAllButton from "../components/clearAllButton";
 // const columnCount = useMedia(
 //     ['(min-width: 1360px)', '(min-width: 1020px)', '(min-width: 768px)'],
 //     [5, 4, 2],
@@ -32,7 +34,9 @@ const Header = (props) => {
         expandFilter,
         toggleMobMenu,
         toggleDesktopFilters,
-        resetFilters
+        resetFilters,
+        filteredByTags,
+        filteredByPeriods
     } = props;
 
     return (
@@ -75,14 +79,9 @@ const Header = (props) => {
                     </List>
                 </nav>
 
-                <nav
-                    className={`filter-expansion__wrap filter-expansion__wrap${!isDesktopFiltersExpanded ? '--close' : '--open'}`}>
-                    <button className="filter-expansion__clear-all-button button" onClick={resetFilters}>
-                        <span>Clear all</span>
-                        <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description}
-                                   name={'MINUS--LIGHT'}/>
-                    </button>
+                <nav className={`filter-expansion__wrap filter-expansion__wrap${!isDesktopFiltersExpanded ? '--close' : '--open'}`}>
 
+                    <ClearAllButton filteredByTags={filteredByTags} filteredByPeriods={filteredByPeriods} clickCb={resetFilters}/>
                     <Filters/>
                     <button className="filter-expansion__close-button" onClick={() => toggleDesktopFilters(false)}>
                         <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description}
@@ -104,6 +103,8 @@ const mapStateToProps = state => ({
     isMobileMenuOpen: state.appData.isMobileMenuOpen,
     expandedFilter: state.appData.expandedFilter,
     isDesktopFiltersExpanded: state.appData.isDesktopFiltersExpanded,
+    filteredByTags: state.appData.filteredByTags,
+    filteredByPeriods: state.appData.filteredByPeriods
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
