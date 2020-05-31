@@ -81,7 +81,9 @@ const Header = (props) => {
 
                 <nav className={`filter-expansion__wrap filter-expansion__wrap${!isDesktopFiltersExpanded ? '--close' : '--open'}`}>
 
-                    <ClearAllButton filteredByTags={filteredByTags} filteredByPeriods={filteredByPeriods} clickCb={resetFilters}/>
+                    <div className="clear-button__wrap">
+                        <ClearAllButton filteredByTags={filteredByTags} filteredByPeriods={filteredByPeriods} clickCb={resetFilters}/>
+                    </div>
                     <Filters/>
                     <button className="filter-expansion__close-button" onClick={() => toggleDesktopFilters(false)}>
                         <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description}
