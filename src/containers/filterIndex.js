@@ -1,24 +1,27 @@
 import React from 'react'
-import {bindActionCreators} from "redux";
-import {connect} from "react-redux";
-import Tags from '../components/tags'
-import Decades from '../components/decades'
-import { filterByTagCb, filterByPeriodCb } from '../actions'
-const FilterIndex = (props) => {
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import Tags from '../components/tags';
+import Decades from '../components/decades';
+import { filterByTagCb, filterByPeriodCb } from '../actions';
+import { resetFilters } from '../actions/itemFilteringActions'
 
+const FilterIndex = (props) => {
 
     const {
         filteredByTags,
         filteredByPeriods,
         itemsCount,
         filterByTagCb,
-        filterByPeriodCb
+        filterByPeriodCb,
+        resetFilters
     } = props;
 
     return (
         <nav className='filter-index'>
             <aside className='filter-index__paragraph'>
-                <div className="a">
+                
+                <div className="filter-index__info-wrap">
                     <span className='filter-index__results'>Showing</span>
                     <span className='filter-index__number'>{itemsCount}</span>
                     <span className='filter-index__results'>results.</span>
@@ -26,8 +29,9 @@ const FilterIndex = (props) => {
                     <Tags tags={filteredByTags} tagCb={(tag) => filterByTagCb(tag)} />
                     <Decades periods={filteredByPeriods} periodCb={(period) => filterByPeriodCb(period)}/>
                 </div>
-                <div className="b">
-                    <button className='filter-index__clear-button' href={'#'}>clear (-)</button>
+
+                <div className="filter-index__cta-wrap">
+                    <button onClick={resetFilters} className='filter-index__clear-button' href={'#'}>clear (-)</button>
                 </div>
 
             </aside>
@@ -52,7 +56,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
     filterByTagCb,
-    filterByPeriodCb
+    filterByPeriodCb,
+    resetFilters
 }, dispatch);
 
 export default connect(
