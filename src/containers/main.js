@@ -4,10 +4,10 @@ import { connect } from "react-redux";
 import Items from '../components/items';
 import { hasTags, withinPeriod, hasMatchingText, inViewRange } from '../helpers/comparitors';
 import { combineByObjKeysArr } from '../helpers/str';
+import { scrollTop } from '../helpers/dom';
 import { yearsMap } from '../data/periodMap.js';
 import { dispatchMessageToModal, toggleShareExpansion, setPlayerItem,  setSpaPageName, resetBatch, filterByTagCb} from "../actions";
 import FilterIndex from './filterIndex';
-import { scrollTop } from '../helpers/dom';
 
 const Main = ({ filteredByTags,
                 filteredByPeriods,
