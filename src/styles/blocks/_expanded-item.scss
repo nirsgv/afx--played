@@ -1,17 +1,5 @@
 $gap: 2rem;
 
-.back-btn {
-
-  &__wrap {
-    background-color: red;
-    color: black;
-  }
-
-  &__button {
-
-  }
-}
-
 .expanded-item {
 
   .bkg__layer {
@@ -20,7 +8,7 @@ $gap: 2rem;
 
   &__wrap {
 
-    padding-top: 6rem; // temp
+    padding-top: 2rem; // temp
 
     position: relative;
     display: flex;
@@ -60,7 +48,7 @@ $gap: 2rem;
   }
 
 
-  &__back, &__details, &__shows, &__external-links, &__share {
+  &__details, &__shows, &__external-links, &__share {
     background-color: #fff;
     @extend %custom-border;
     margin-bottom: $gap;
@@ -68,8 +56,12 @@ $gap: 2rem;
     padding: 2rem;
   }
 
-  &__back {
-  }
+  //&__back {
+  //  margin-bottom: $gap;
+  //  border-radius: 6px;
+  //  padding: 2rem 0;
+  //
+  //}
 
   &__details {
   }

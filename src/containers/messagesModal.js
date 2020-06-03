@@ -8,7 +8,7 @@ import SvgSprite from '../components/svgSprite';
 import { imgData } from "../data/localImgData";
 import List from '../components/list';
 
-const Message = ({itemId, uniqueId, index, removeMessageToModal}) => {
+const Message = ({itemId, uniqueId, index, removeMessageToModal, className}) => {
     const { src, description } = imgData.sprite;
     const message = evaluateKey(messagesMap, itemId),
           timeout = setTimeout(
@@ -17,10 +17,10 @@ const Message = ({itemId, uniqueId, index, removeMessageToModal}) => {
 
     return (
         <>
-            <SvgSprite classes={'icon-logo'} src={src} alt={message.iconName} name={message.iconName} />
-            <h3 key={index}>{message.content}</h3>
+            <SvgSprite classes={'message-icon'} src={src} alt={message.iconName} name={message.iconName} />
+            <span key={index}>{message.content}</span>
             <button className='close-btn' onClick={() => removeMessageToModal(uniqueId)}>
-                <SvgSprite classes={'concerts__icon'} src={imgData.sprite.src} alt={imgData.sprite.description} name={'TIMES'} />
+                <SvgSprite src={imgData.sprite.src} alt={imgData.sprite.description} name={'TIMES'} />
             </button>
         </>
     );
@@ -42,8 +42,8 @@ const MessagesModal = ({currentMessages, removeMessageToModal}) => {
                              itemId={item.id}
                              uniqueId={item.uniqueId}
                              removeMessageToModal={removeMessageToModal}
-                    >
-                    </Message>
+                             className='modal-box__item'
+                    />
                     </li>
 
                 )}

@@ -1,8 +1,6 @@
 $footer-height: 16rem;
 
-main.home + footer .footer__animative-indicator {
-    display: block;
-}
+
 
 .footer {
     @extend %site-wide-padding;
@@ -74,12 +72,10 @@ main.home + footer .footer__animative-indicator {
     }
 }
 
-
-main {
-    min-height: 100vh;
-    margin-bottom: -1 * $footer-height;
-    padding-bottom: $footer-height + 4rem;
+.footer{
+    margin-top: $footer-height;
 }
+
 .footer,
 .push {
     height: $footer-height;

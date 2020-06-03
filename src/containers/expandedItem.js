@@ -2,18 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { bindActionCreators } from "redux";
 import {toggleShareExpansion, setPlayerItem, dispatchMessageToModal, setSpaPageName } from "../actions/index";
 import { connect } from "react-redux";
-import Links from '../components/links';
 import ExternalLinks from '../components/externalLinks';
 import Concerts from '../components/concerts';
 import DefinitionList from '../components/definitionList';
-import Img from '../components/img';
-import SvgSprite from "../components/svgSprite";
-import { imgData } from "../data/localImgData";
 import Tags from "../components/tags";
 import { getDurationFromSeconds } from '../helpers/str';
 import Share from "../components/share";
-import {Router} from "react-router-dom";
+import { Router } from "react-router-dom";
 import { scrollTop } from '../helpers/dom';
+import BackButton from "../components/backButton";
 
 const ExpandedItem = ({match, history, toggleShareExpansion, setPlayerItem, dispatchMessageToModal, setSpaPageName}) => {
 
@@ -28,7 +25,7 @@ const ExpandedItem = ({match, history, toggleShareExpansion, setPlayerItem, disp
     }, []);
 
 
-    const [beenAnimated, setBeenAnimated] = useState(false),
+    const [ beenAnimated, setBeenAnimated ] = useState(false),
           tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data,
           expandedTrack = tracks.find(function(track) {
         return track.ID === decodeURIComponent(match.params.id);
@@ -56,16 +53,12 @@ const ExpandedItem = ({match, history, toggleShareExpansion, setPlayerItem, disp
             <div className="bkg__layer"  style={{backgroundImage: `url(../assets/album_covers/160x160pp/${ALBUM_ID}.jpg)`}} />
         </div>
 
-
-
-
             <div className={`expanded-item__wrap${!beenAnimated ? ' expanded-item__content--animated' : ''}`} onAnimationEnd={() => setBeenAnimated(true)}>
 
-
                 {/*block1*/}
-                <div className="back-btn__wrap expanded-item__back">
-                    <button onClick={history.length > 0 ? history.goBack : null} className={"back-btn__button"}>back</button>
-                </div>
+                <nav className="back-btn__wrap expanded-item__back">
+                    <BackButton history={history} className={"back-btn"} />
+                </nav>
 
                 {/*block2*/}
                 <div className="row">
@@ -76,7 +69,8 @@ const ExpandedItem = ({match, history, toggleShareExpansion, setPlayerItem, disp
                             <h3><DefinitionList classNameSpace={'inner-item'} term={'Track'} definition={`${TRACK_TITLE} (${getDurationFromSeconds(DURATION)})`}/></h3>
                             <h3><DefinitionList classNameSpace={'inner-item'} term={'Album'} definition={`${ALBUM_TITLE} (${YEAR})`} /></h3>
                             <h3><DefinitionList classNameSpace={'inner-item'} term={'Label'} definition={`${RECORD_LABEL} (${CAT})`} /></h3>
-                            <Tags className="track__track-tags" tags={GENRES}/>
+                            <h3><DefinitionList classNameSpace={'inner-item'} term={'Label'} definition={<Tags className="track__track-tags" tags={GENRES}/>} /></h3>
+
                         </section>
 
                         {/*block3*/}

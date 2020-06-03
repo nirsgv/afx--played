@@ -9,19 +9,30 @@ section.manage-items {
 main {
     top: 9rem;
     position: relative;
-    overflow: scroll;
     padding: 0 2rem;
-    padding-bottom: 20rem;
+    margin-bottom: -16rem;
     @extend %site-wide-padding;
 
-    @include respond-to(hover-device) {
-        top: 16rem;
+    &.expanded-item {
+        //@include respond-to(hover-device) {
+        //}
     }
 
-    &.expanded-item {
-        height: calc(100vh - 10rem);
-        top: 10rem;
+    &.home, &.editorial, &.expanded-concert {
+        @include respond-to(hover-device) {
+            padding-top: 2rem;
+        }
     }
+
+
+    @include respond-to(hover-device) {
+        top: 11rem;
+    }
+
+}
+
+strong {
+    font-weight: 700;
 }
 
 label, button {
@@ -54,7 +65,5 @@ label, button {
 
     &--expanded {
     }
-    @include respond-to(hover-device) {
-        height: 12rem;
-    }
+
 }

@@ -13,9 +13,9 @@
 
   &__item {
 
-    .track & {
-      background-color: #fff;
-      color: #23543Ccc;
+    .track &, .expanded-item & {
+      background-color: transparent;
+      color: #23543C;
       border-bottom: 1px solid;
       padding: 0.2rem 0;
     }

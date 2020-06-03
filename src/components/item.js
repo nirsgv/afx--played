@@ -47,7 +47,7 @@ function Item({ trackData, setPlayerItem, filterByTagCb }) {
             <List baseClassName={"internal-links"}>
                 <Links className="track__track-links" links={LINKS} platform={'YOUTUBE'} setPlayerItem={setPlayerItem} ID={ID} />
                 <Link to={`track/${encodeURIComponent(ID)}`} className={"internal-links__cta"}>
-                    <h4>More Info<SvgSprite classes={`logo--${'YOUTUBE'.toLowerCase()}`} src={src} alt={description} name={'LONG_ARROW_RIGHT'} /></h4>
+                    <h4>More Info<SvgSprite src={src} alt={description} name={'LONG_ARROW_RIGHT'} /></h4>
                 </Link>
             </List>
 

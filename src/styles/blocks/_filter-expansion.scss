@@ -11,7 +11,7 @@
     transition: height 0.1s ease;
 
     @include respond-to(hover-device) {
-        height: 4rem;
+        height: 3rem;
         border-bottom: 1px solid #ddd;
         background-color: #fff;
         padding-right: 0;
@@ -139,10 +139,8 @@
             }
 
             &--open {
-                top: 4rem;
-
+                top: 3rem;
             }
-
         }
     }
 

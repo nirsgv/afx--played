@@ -8,7 +8,6 @@
         top: 1rem;
         width: 100%;
         z-index: map-get($z-indexes, "modal-box");
-        pointer-events: none;
     }
 
     &__list {
@@ -21,12 +20,18 @@
         position: absolute;
         background-color: #eee;
         align-items: center;
-        height: 5rem;
         padding: 0rem 1.4rem;
         border: 1px solid #ddd;
-        width: 50rem;
+        width: calc(100vw - 8rem);
+
+        @include respond-to(hover-device) {
+            width: 40rem;
+        }
+
         pointer-events: auto;
         transition: top 0.3s ease-out;
+        height: 4rem;
+        color: #666;
         @extend %brand-border-radius;
 
         & > .icon-logo {
@@ -35,8 +40,14 @@
         }
 
         & > .close-btn {
-            flex-basis: 5rem;
+            font-size: 0.6rem;
             margin-left: auto;
+            cursor: pointer;
+            color: #666;
+        }
+        & > .message-icon {
+            font-size: 0.8rem;
+            margin-right: 1rem;
         }
     }
 }
