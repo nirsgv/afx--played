@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import {Helmet} from "react-helmet";
 import {useSetPageName, useFetch } from '../customHooks/index'
+import BackButton from "./backButton";
 function About(props) {
 
     useEffect(() => {
@@ -16,6 +17,8 @@ function About(props) {
                 <title>About page...</title>
                 <meta name="description" content="This is the main page" />
             </Helmet>
+            <BackButton history={props.history} className={"back-btn"}/>
+
             <h1>About, {props.name}</h1>
 
             <form>

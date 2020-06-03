@@ -23,7 +23,7 @@ function Splash({ isTracksDataLocal, isShowsDataLocal }) {
 
             <section className="splash" data-test="splash-root">
                 {/*<h1 className={"animate-opacity"}>Splashing...</h1>*/}
-                <SvgSprite classes={'splash-icon animate-opacity '} src={imgData.sprite.src} alt={imgData.sprite.description} name={'APHEX'} />
+                <SvgSprite classes={'splash-icon animate-opacity '} name={'APHEX'} />
             </section>
         </>
         )

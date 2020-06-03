@@ -80,20 +80,13 @@ const App = ({  ...restProps }) => {
 
                     <main className={`${spaPageName} faded-in-from-bottom`}>
                         <Switch>
-                            <Route path="/about">
-                                <About name={"about"} setSpaPageName={setSpaPageName}/>
-                            </Route>
-                            <Route path="/editorial">
-                                <Editorial name={"editorial"} setSpaPageName={setSpaPageName} setPlayerItem={setPlayerItem}/>
-                            </Route>
+                            <Route path="/about"><About name={"about"} setSpaPageName={setSpaPageName} history={customHistory}/></Route>
+                            <Route path="/editorial"><Editorial name={"editorial"} setSpaPageName={setSpaPageName} setPlayerItem={setPlayerItem} history={customHistory}/></Route>
                             <Route path="/track/:id" component={ExpandedItem} setPlayerItem={setPlayerItem} />
                             <Route path="/concert/:id" component={ExpandedConcert} setPlayerItem={setPlayerItem} />
                             <Route path="/">
-
                                 <Search />
-
                                 <Main />
-
                             </Route>
                         </Switch>
                         <div className="push"></div>

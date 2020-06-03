@@ -9,9 +9,8 @@ import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 import List from "./list";
 import SvgSprite from './svgSprite';
-import { imgData } from '../data/localImgData';
 import { expandFilter, filterByPeriodCb, filterByTagCb } from "../actions";
-const { src, description } = imgData.sprite;
+import MoreInfoButton from "./moreInfoButton";
 
 function Item({ trackData, setPlayerItem, filterByTagCb }) {
     const {
@@ -46,9 +45,8 @@ function Item({ trackData, setPlayerItem, filterByTagCb }) {
 
             <List baseClassName={"internal-links"}>
                 <Links className="track__track-links" links={LINKS} platform={'YOUTUBE'} setPlayerItem={setPlayerItem} ID={ID} />
-                <Link to={`track/${encodeURIComponent(ID)}`} className={"internal-links__cta"}>
-                    <h4>More Info<SvgSprite src={src} alt={description} name={'LONG_ARROW_RIGHT'} /></h4>
-                </Link>
+                <MoreInfoButton ID={ID}/>
+
             </List>
 
         </li>

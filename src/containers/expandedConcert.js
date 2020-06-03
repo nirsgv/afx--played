@@ -6,7 +6,6 @@ import { getMonthFromShort, getDurationFromSeconds } from '../helpers/str';
 import { Link } from "react-router-dom";
 import { scrollTop } from '../helpers/dom';
 import SvgSprite from "../components/svgSprite";
-import { imgData } from "../data/localImgData";
 import BackButton from "../components/backButton";
 
 const ExpandedConcert = ({ match, history, setSpaPageName }) => {
@@ -55,7 +54,7 @@ const ExpandedConcert = ({ match, history, setSpaPageName }) => {
                                         </div>
                                         <span className="concert-tracks__cta internal-links__cta">
                                             <h4>More Info
-                                                <SvgSprite src={imgData.sprite.src} alt={imgData.sprite.description}  name={'LONG_ARROW_RIGHT'} />
+                                                <SvgSprite name={'LONG_ARROW_RIGHT'} />
                                             </h4>
                                         </span>
                                     </div>

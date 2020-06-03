@@ -26,7 +26,7 @@ const Footer = (props) => {
         <footer className={"footer"} >
             <nav>
                 <List baseClassName="footer-nav" onClick={toggleMobMenu}>
-                    <SvgSprite classes={''} src={imgData.sprite.src} alt={imgData.sprite.description} name={'APHEX'} />
+                    <SvgSprite classes={''} name={'APHEX'} />
                     <NavLink exact={true} activeClassName="active" to="/">Home</NavLink>
                     <NavLink activeClassName="active" to="/editorial">Editorial</NavLink>
                     <NavLink activeClassName="active" to="/about">About</NavLink>

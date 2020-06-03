@@ -8,7 +8,7 @@ function BackButton({ ...restProps }) {
     return (
         <button className={`${className}__button`}
                 onClick={history.length > 0 ? history.goBack : null}>
-            <SvgSprite classes={`${className}__icon`} src={imgData.sprite.src} alt={imgData.sprite.description} name={'ANGLE_LEFT'} />
+            <SvgSprite classes={`${className}__icon`} name={'ANGLE_LEFT'} />
             <span className={`${className}__text`}>Back</span>
         </button>
     );
