@@ -52,6 +52,19 @@ app.get('/api/track/:id', tracksController.getTrack);
 app.get('/api/shows', showsController.getShows);
 app.get('/api/show:id', showsController.getShow);
 
+app.get('/about', function (req, res) {
+    return res.sendFile(path.resolve(__dirname + '/../build/index.html'));
+});
+app.get('/track/*', function (req, res) {
+    return res.sendFile(path.resolve(__dirname + '/../build/index.html'));
+});
+app.get('/concert/*', function (req, res) {
+    return res.sendFile(path.resolve(__dirname + '/../build/index.html'));
+});
+app.get('/editorial', function (req, res) {
+    return res.sendFile(path.resolve(__dirname + '/../build/index.html'));
+});
+
 app.listen(PORT, err => {
     if (err) throw err;
     console.log('server started');
