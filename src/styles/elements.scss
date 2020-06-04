@@ -6,6 +6,10 @@ section.manage-items {
     @extend %outer-pad;
 }
 
+button {
+    padding: 0;
+}
+
 main {
     top: 9rem;
     position: relative;

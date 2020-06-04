@@ -42,7 +42,7 @@
 
 }
 
-.concert-tracks{
+.concert-tracks {
     display: grid;
     grid-template-columns: .5fr 1fr 12rem;
     color: #444;
@@ -56,9 +56,7 @@
     &__cta {
         text-align: right;
 
-        .expanded-concert__link:hover &, .expanded-concert__link:active & {
-            color:#333333
-        }
+
     }
 
     &__artist {

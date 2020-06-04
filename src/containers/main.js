@@ -23,10 +23,10 @@ const Main = ({ filteredByTags,
               }) => {
 
     useEffect(() => {
-        resetBatch();
         setSpaPageName && setSpaPageName('home');
+        resetBatch();
         scrollTop();
-    }, []);
+    }, [ filteredByTags ]);
 
 
     const tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data;

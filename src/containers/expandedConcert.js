@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { scrollTop } from '../helpers/dom';
 import SvgSprite from "../components/svgSprite";
 import BackButton from "../components/backButton";
+import MoreInfoButton from "../components/moreInfoButton";
 
 const ExpandedConcert = ({ match, history, setSpaPageName }) => {
 
@@ -52,11 +53,13 @@ const ExpandedConcert = ({ match, history, setSpaPageName }) => {
                                             <span className="concert-tracks__title">{item.TRACK_TITLE}</span>
                                             <span className="concert-tracks__duration">, {getDurationFromSeconds(item.DURATION)}</span>
                                         </div>
-                                        <span className="concert-tracks__cta internal-links__cta">
-                                            <h4>More Info
-                                                <SvgSprite name={'LONG_ARROW_RIGHT'} />
-                                            </h4>
-                                        </span>
+                                        <MoreInfoButton />
+
+                                        {/*<span className="concert-tracks__cta internal-links__cta">*/}
+                                            {/*<h4>More Info*/}
+                                                {/*<SvgSprite name={'LONG_ARROW_RIGHT'} />*/}
+                                            {/*</h4>*/}
+                                        {/*</span>*/}
                                     </div>
                                 </h3>
                             </Link>

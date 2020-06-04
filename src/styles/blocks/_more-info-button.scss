@@ -1,0 +1,43 @@
+.more-info {
+
+  &__wrap {
+  }
+
+  &__button {
+    width: 100%;
+    height: 100%;
+    text-align: right;
+
+  }
+
+  &__icon {
+    position: relative;
+    font-size: .8rem;
+
+  }
+
+  &__link {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #aaa;
+
+    &:hover, &:active {
+      color: #888;
+    }
+    .expanded-concert__link:hover &, .expanded-concert__link:active & {
+      color: #888;
+    }
+  }
+
+  &__text {
+    font-size: 1.2rem;
+    margin-right: .4rem;
+
+  }
+
+}
