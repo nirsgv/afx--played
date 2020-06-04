@@ -8,14 +8,14 @@
     z-index: map-get($z-indexes, "main-nav");
     @extend %site-wide-padding;
 
-    .scrolled & {
+    .header--minified & {
         height: 4rem;
     }
 
-    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+    @include respond-to(hover-device) {
         position: relative;
         height: 8rem;
-        .scrolled & {
+        .header--minified & {
             height: 8rem;
         }
     }
@@ -26,11 +26,11 @@
 
     &__logo {
         font-size: 2rem;
-        filter: drop-shadow(2px 4px 10px black);
+        filter: drop-shadow(2px 4px 3px black);
         margin-right: 3rem;
         transition: transform 0.1s ease;
 
-        .scrolled & {
+        .header--minified & {
             transform: scale(.5);
             transition: transform 0.1s ease-out;
         }
@@ -57,7 +57,7 @@
     }
 
     &__hamburger {
-        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+        @include respond-to(hover-device) {
             display: none;
         }
     }

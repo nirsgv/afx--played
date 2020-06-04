@@ -1,16 +1,13 @@
-$footer-height: 14rem;
+$footer-height: 16rem;
 
-main.home + footer .footer__animative-indicator {
-    display: block;
-}
+
 
 .footer {
     @extend %site-wide-padding;
     position: relative;
     width: 100%;
     z-index: map-get($z-indexes, "footer");
-    border-top: 1px solid #ccc;
-    box-shadow: 1px 7px 20px #aaa;
+    border-top: 1px solid #eee;
     display: flex;
 
     &__preloader {
@@ -54,7 +51,9 @@ main.home + footer .footer__animative-indicator {
 
     &__list{
         display: flex;
-        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
         height: $footer-height;
         width: inherit;
     }
@@ -73,11 +72,10 @@ main.home + footer .footer__animative-indicator {
     }
 }
 
-
-main {
-    min-height: 100vh;
-    margin-bottom: -1 * $footer-height;
+.footer{
+    margin-top: $footer-height;
 }
+
 .footer,
 .push {
     height: $footer-height;

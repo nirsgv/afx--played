@@ -8,13 +8,13 @@ import {
     SET_SEARCH_VALUE,
     TOGGLE_SEARCH_OPTION,
     TOGGLE_SHARE_EXPANSION, DISPATCH_MESSAGE_TO_MODAL, REMOVE_MESSAGE_TO_MODAL,
-    SET_PLAYER_TYPE, SET_PLAYER_ITEM, TOGGLE_EMBEDDED_PLAY, VIEW_MORE, TOGGLE_MOB_MENU, TOGGLE_DESKTOP_FILTERS_EXPANSION,
+    SET_PLAYER_TYPE, SET_PLAYER_ITEM, VIEW_MORE, TOGGLE_MOB_MENU, TOGGLE_DESKTOP_FILTERS_EXPANSION,
     SET_TRACKS_AS_LOCAL,
     SET_SHOWS_AS_LOCAL,
     SET_SPA_PAGE_NAME,
     SET_VIEWPORT_DIMENSIONS,
     RESET_FILTERS,
-    SET_SAMPLE_ID
+    RESET_BATCH
 } from '../actions';
 
 
@@ -30,7 +30,6 @@ const initialAppState = {
     isSharingExpanded: false,
     isMobileMenuOpen: false,
     isDesktopFiltersExpanded: false,
-    isPlayingEmbedded: true,
     itemsBatchAmt: 8,
     batchNum: 1,
     isTracksDataLocal: false,
@@ -45,6 +44,12 @@ function appData(state = initialAppState, action) {
             return {
                 ...state,
                 batchNum: action.payload === false ? 1 : state.batchNum + 1
+            };
+
+        case RESET_BATCH:
+            return {
+                ...state,
+                batchNum: 1
             };
 
         case TOGGLE_SHARE_EXPANSION:
@@ -156,7 +161,6 @@ function appData(state = initialAppState, action) {
                 ...state,
                 spaPageName: action.payload
             };
-
         default:
             return state;
     }
@@ -187,14 +191,13 @@ function messages(state = { currentMessages: [] }, action) {
 }
 
 
-function player( state = { platform: '', item: '', isPlayingEmbedded: false, trackId: '', sampleId: ''}, action ) {
+function player(state = { platform: '', item: '', trackId: '' }, action) {
     switch(action.type) {
 
-        case SET_SAMPLE_ID:
-            console.log(action);
+        case SET_PLAYER_TYPE:
             return {
                 ...state,
-                sampleId: action.payload
+                platform: action.payload.item
             };
 
         case SET_PLAYER_ITEM:

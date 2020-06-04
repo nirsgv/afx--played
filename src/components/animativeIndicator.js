@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import SvgSprite from "./svgSprite";
-import { imgData } from '../data/localImgData';
 
 
 function AnimativeIndicator({ animateFooter, setAnimateFooter, pageName }) {

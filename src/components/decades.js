@@ -1,23 +1,22 @@
 import React from 'react';
-import { periodMap, yearsMap } from '../data/periodMap.js';
+import { periodMap } from '../data/periodMap.js';
 import { evaluateKey } from '../helpers/str';
 import PropTypes from 'prop-types';
 
 
-
-function Periods(props) {
+function Decades(props) {
     const {
         periods,
-        filterByPeriodCb,
+        periodCb,
         activePeriods
     } = props;
     return (
-        <ul className='tags filter-expansion__list'>
+        <ul className='tags tags--decades'>
             {periods && periods.reverse().map((period, index) => {
                 return (
                     <li className={`tags__item  tags__item--${activePeriods && !activePeriods.includes(period) ? 'in' : ''}active`}
                         key={index}
-                        onClick={filterByPeriodCb ? () => {filterByPeriodCb(period)} : undefined}
+                        onClick={periodCb ? () => {periodCb(period)} : undefined}
                     >
                         {evaluateKey(periodMap, period)}
                     </li>
@@ -27,13 +26,13 @@ function Periods(props) {
     )
 }
 
-Periods.defaultProps = {
+Decades.defaultProps = {
 };
 
-Periods.propTypes = {
+Decades.propTypes = {
     periods: PropTypes.array,
     filterByPeriodCb: PropTypes.func,
     activePeriods: PropTypes.array,
 };
 
-export default Periods;
+export default Decades;

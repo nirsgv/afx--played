@@ -1,4 +1,14 @@
+%custom-border {
+    border: $border-style;
+}
 
+%custom-border-top {
+    border-top: $border-style;
+}
+
+%custom-border-bottom {
+    border-bottom: $border-style;
+}
 
 %outer-pad {
 
@@ -39,20 +49,20 @@
 }
 
 %brand-border-radius {
-    border-radius: 6px;
+    border-radius: 10px;
     @media (min-width: map-get($b-points, "tab")) {
-        border-radius: 10px;
+        border-radius: 8px;
     }
 
     @media (min-width: map-get($b-points, "des")) {
-        border-radius: 16px;
+        border-radius: 6px;
     }
 }
 
 %site-wide-padding {
     padding: 0 2rem;
 
-    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+    @include respond-to(hover-device) {
         padding-right: map-get($main-padding, "mob");
         padding-left: map-get($main-padding, "mob");
     }

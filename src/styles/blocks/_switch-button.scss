@@ -13,6 +13,11 @@
   &__item{
     margin-left: 1.6rem;
     cursor: pointer;
+
+    & > .toggle-switch-label {
+      display: inline-block;
+      vertical-align: middle;
+    }
   }
 }
 

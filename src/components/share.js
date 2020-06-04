@@ -16,7 +16,6 @@ const CopyUrlButton = (props) => {
     return (
         <div className={`share`} onClick={() => {
             copyToClipboard();
-            console.log(props);
             props.dispatchMessageToModal('URL_COPIED');
         }} >
             {props.children}
@@ -27,7 +26,7 @@ const CopyUrlButton = (props) => {
 
 
 const Share = ({ url, isExpanded, onShareWindowClose, dispatchMessageToModal }) => {
-    console.log(dispatchMessageToModal);
+    // console.log(dispatchMessageToModal); //todo: find out why this is rendering on interval
 
     const { src, description } = imgData.sprite;
 
@@ -35,24 +34,26 @@ const Share = ({ url, isExpanded, onShareWindowClose, dispatchMessageToModal }) 
         onShareWindowClose(false);
     };
     return (
-        <div c>
+        <>
             <List baseClassName={`share-box`}>
+                <CopyUrlButton url={url} dispatchMessageToModal={dispatchMessageToModal} onShareWindowClose={() => cb()}  children={
+                    <SvgSprite classes={'share-box__icon'} name={'CLIPBOARD'} />
+                }/>
                 <FacebookShareButton url={url} onShareWindowClose={() => cb()}  children={
-                    <SvgSprite classes={'share-box__icoN'} src={src} alt={description} name={'FACEBOOK'} />
+                    <SvgSprite classes={'share-box__icon'} name={'FACEBOOK'} />
                 }/>
                 <TwitterShareButton url={url} onShareWindowClose={() => cb()}  children={
-                    <SvgSprite classes={'share-box__icon'} src={src} alt={description} name={'TWITTER'}  />
+                    <SvgSprite classes={'share-box__icon'} name={'TWITTER'}  />
                 }/>
                 <WhatsappShareButton url={url} onShareWindowClose={() => cb()}  children={
-                    <SvgSprite classes={'share-box__icon'} src={src} alt={description} name={'WHATSAPP'} />
+                    <SvgSprite classes={'share-box__icon'} name={'WHATSAPP'} />
                 }/>
                 <RedditShareButton url={url} onShareWindowClose={() => cb()}  children={
-                    <SvgSprite classes={'share-box__icon'} src={src} alt={description} name={'REDDIT'} />
+                    <SvgSprite classes={'share-box__icon'} name={'REDDIT'} />
                 }/>
-                <CopyUrlButton url={url} dispatchMessageToModal={dispatchMessageToModal} onShareWindowClose={() => cb()}  children={<SvgSprite classes={'share-box__icon'} src={src} alt={description} name={'CLIPBOARD'} />}/>
             </List>
 
-        </div>
+        </>
     )
 };
 

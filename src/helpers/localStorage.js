@@ -13,9 +13,9 @@ const _isDataRecent = (key) => {
 };
 
 
-const updatedLS = (url, key, cb) => {
+const fetchUnstoraged = (url, key, cb) => {
     if ( !_isThereLocalData(key) || !_isDataRecent(key) ) {
-        // fetch and set as local data
+        url = window.location.origin + url;
         fetch(url)
             .then(response => response.json())
             .then(data => {
@@ -23,7 +23,6 @@ const updatedLS = (url, key, cb) => {
                     date: Date.now(),
                     data
                 }));
-                //console.log(localStorage.getItem(key));
                 cb(true);
             })
             .catch(error => console.error(error));
@@ -32,4 +31,4 @@ const updatedLS = (url, key, cb) => {
     }
 };
 
-export { updatedLS };
+export { fetchUnstoraged };

@@ -6,15 +6,15 @@ import SwitchButton from "./switchButton";
 
 
 
-function Tags({ tags, filterByTagCb, activeTags }) {
+function Tags({ tags, tagCb, activeTags }) {
 
     return (
-        <ul className='tags'>
+        <ul className='tags tags--style'>
             {tags && tags.map((tag, index) => {
                 return (
                     <li className={`tags__item${activeTags && !activeTags.includes(tag) ? '' : ' tags__item--active'}`}
                         key={index}
-                        onClick={filterByTagCb ? () => {filterByTagCb(tag)} : undefined}
+                        onClick={tagCb ? () => {tagCb(tag, activeTags)} : null}
                     >
                         {evaluateKey(genreMap, tag)}
                     </li>

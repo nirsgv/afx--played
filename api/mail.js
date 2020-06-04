@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 const mailgun = require('nodemailer-mailgun-transport');
-const auth = require('../credentials.js');
+const auth = require('../src/credentials.js');
 
 const transporter = nodemailer.createTransport(mailgun(auth));
 

@@ -1,34 +1,35 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Items from '../components/items';
 import { hasTags, withinPeriod, hasMatchingText, inViewRange } from '../helpers/comparitors';
 import { combineByObjKeysArr } from '../helpers/str';
+import { scrollTop } from '../helpers/dom';
 import { yearsMap } from '../data/periodMap.js';
-import {dispatchMessageToModal, toggleShareExpansion, setPlayerItem, setSpaPageName, setSampleId} from "../actions";
+import { dispatchMessageToModal, toggleShareExpansion, setPlayerItem,  setSpaPageName, resetBatch, filterByTagCb} from "../actions";
+import FilterIndex from './filterIndex';
 
-
-const Main = ({
-                  filteredByTags,
-                  filteredByPeriods,
-                  filteredBySearch,
-                  searchArtistNames,
-                  searchTrackTitles,
-                  searchAlbumTitles,
-                  itemsBatchAmt,
-                  batchNum,
-                  setSpaPageName,
-                  isPlayingEmbedded,
-                  setPlayerItem,
-                  setSampleId
+const Main = ({ filteredByTags,
+                filteredByPeriods,
+                filteredBySearch,
+                searchArtistNames,
+                searchTrackTitles,
+                searchAlbumTitles,
+                itemsBatchAmt,
+                batchNum,
+                setSpaPageName,
+                setPlayerItem,
+                resetBatch
               }) => {
 
     useEffect(() => {
         setSpaPageName && setSpaPageName('home');
-    }, []);
+        resetBatch();
+        scrollTop();
+    }, [ filteredByTags ]);
+
 
     const tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data;
-
 
     const checkboxActivated = {
         searchTrackTitles,
@@ -45,15 +46,15 @@ const Main = ({
             .filter(memoTagsResult)
             .filter(withinPeriod(memoPeriodResult))
             .filter(hasMatchingText(filteredBySearch, checkboxActivated))
-            .filter(memoRangeResult)
-        : '', [filteredByTags, filteredByPeriods, filteredBySearch, batchNum]);
+        : '', [filteredByTags, filteredByPeriods, filteredBySearch, checkboxActivated, batchNum]);
 
-    const filteredItems = <Items tracksFiltered={tracksFiltered} setPlayerItem={setPlayerItem} setSampleId={setSampleId} />;
+    const tracksPaginated = tracksFiltered.filter(memoRangeResult);
 
     return (
         <>
+            <FilterIndex itemsCount={tracksFiltered.length}/>
             <ul className="track-items track-items--animated">
-                { filteredItems }
+                <Items tracksFiltered={tracksPaginated} setPlayerItem={setPlayerItem} />
             </ul>
         </>
     )
@@ -61,7 +62,6 @@ const Main = ({
 
 
 const mapStateToProps = state => ({
-    isPlayingEmbedded: state.player.isPlayingEmbedded,
     filteredByTags: state.appData.filteredByTags,
     filteredByPeriods: state.appData.filteredByPeriods,
     filteredBySearch: state.appData.filteredBySearch,
@@ -77,7 +77,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     dispatchMessageToModal,
     setPlayerItem,
     setSpaPageName,
-    setSampleId
+    resetBatch,
+    filterByTagCb
 }, dispatch);
 
 export default connect(

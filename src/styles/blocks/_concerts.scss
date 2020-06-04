@@ -8,7 +8,7 @@
     }
 
     &__list {
-        margin: 2rem 0 6rem;
+        margin: 2rem 0 2rem;
 
     }
 
@@ -42,7 +42,7 @@
         transition: color 0.15s ease-in-out;
 
         &--active {
-            @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+            @include respond-to(hover-device) {
                 &:hover {
                     transition: color 0s ease-in-out;
 

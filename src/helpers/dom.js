@@ -8,8 +8,13 @@ const isBiggerFromMobile = (dimensions) => {
     return dimensions.innerWidth >= 640
 };
 
+const scrollTop = () => {
+    return window.scrollTo(0, 0);
+};
+
 export {
     isBottomOfPage,
-    isBiggerFromMobile
+    isBiggerFromMobile,
+    scrollTop
 }
 

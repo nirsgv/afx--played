@@ -45,4 +45,8 @@ const hasMatchingText = (searchString, searchFor) => {
     }
 };
 
-export { hasTags, withinPeriod, hasMatchingText, inViewRange, _matchHelper, _isSearchUnneeded };
+const areFiltersApplied = (filteredByTags, filteredByPeriods) => {
+    return filteredByTags.length || filteredByPeriods.length;
+};
+
+export { hasTags, withinPeriod, hasMatchingText, inViewRange, areFiltersApplied };

@@ -15,7 +15,7 @@ const Img = (props) => {
 
     const setAssetAsLoaded = () => {
         setHasFinishedLoading(true);
-        console.log('finished loading');
+        //console.log('finished loading');
     };
 
     const style = {
@@ -23,9 +23,18 @@ const Img = (props) => {
     };
 
     return (
-        <div className={`${blockClassName}__image-wrap`} style={{'position': 'relative'}}>
+        <div className={`${blockClassName}__image-wrap`}>
+            {/*<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">*/}
+            {/*<filter id="myFilter">*/}
+                {/*<feGaussianBlur stDeviation="25"></feGaussianBlur>*/}
+                {/*<feFlood flood-color="#000" result="COLOR"></feFlood>*/}
+                {/*<feComponentTransfer in="SHADOW1" result="SHADOW">*/}
+                    {/*<feFuncA type="table" tableValues="0 0.5"></feFuncA>*/}
+                {/*</feComponentTransfer>*/}
+            {/*</filter>*/}
             <img src={src ? src : placeholderImg}
                  alt={alt}
+                 filter="url(#myFilter)"
                  className={`${blockClassName}__image ${blockClassName}__image--${hasFinishedLoading ? 'loaded' : 'loading'}`}
                  onLoad={() => setAssetAsLoaded()}
                  onError={() => console.log('Error loading')}

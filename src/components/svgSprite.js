@@ -1,16 +1,21 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
+import { imgData } from "../data/localImgData";
 
 function SvgSprite ({...restProps}) {
-    const {name, classes, path, src, clickCb, modifier, text, onMouseLeave, onMouseOver, viewBox = '0 0 24 24', style={}} = restProps;
+    const {name, classes, path, src = imgData.sprite.src, clickCb, alt=imgData.sprite.description,
+        modifier, text, onMouseLeave, onMouseOver, viewBox = '0 0 24 24',
+        style={}
+    } = restProps;
+
     const clickHandler = (event) => {
         event.stopPropagation();
         clickCb && clickCb(event);
     };
 
     return (
-        <span className={classNames('something', classes)}
+        <span className={classNames(classes)} // classes can be comma-sepatrate-added
             onClick={() => clickHandler}
               style={style}
             >

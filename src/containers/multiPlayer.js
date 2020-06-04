@@ -1,119 +1,88 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { setSampleId } from '../actions';
+import React from 'react';
+import { bindActionCreators } from "redux";
+import { removeMessageToModal } from "../actions/index";
+import { connect } from "react-redux";
+import YouTube from 'react-youtube';
+import SpotifyPlayer from 'react-spotify-player';
 import { Link } from "react-router-dom";
+import SvgSprite from "../components/svgSprite";
 import {imgData} from "../data/localImgData";
-import SvgSprite from '../components/svgSprite';
 
-function MultiPlayer({ sampleId, setSampleId }) {
-    const audioTagRef = useRef(null), // references the audio element
-          [ player, setPlayer ] = useState('stopped'),
-          [ currentTime, setCurrentTime ] = useState(null),
-          [ duration, setDuration ] = useState(null),
-          [ preloader, setPreloader ] = useState(false),
-          [ compareTarget, setCompareTarget ] = useState(''),
-          prevSampleRef = useRef(),
-          tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data,
-          chosen = tracks.find(function(track) {
-              return track.ID === sampleId;
-          });
 
-    const setTimeDisplay = (e) => {
-        setCurrentTime(e.target.currentTime);
-        setDuration(e.target.duration);
+// size may also be a plain string using the presets 'large' or 'compact'
+
+const view = 'coverart'; // or 'list'
+const theme = 'black'; // or 'white'
+
+
+function MultiPlayer({ platform, item, width, height, trackId }) {
+
+    console.log({item, platform});
+    const opts = {
+            height: height / 2,
+            width: width / 2,
+        playerVars: { // https://developers.google.com/youtube/player_parameters
+            autoplay: 1
+        }
     };
-
-    const showPreloader = () => setPreloader(true);
-    const hidePreloader = () => setPreloader(false);
-
-    useEffect(() => {
-        // setup
-        audioTagRef.current.addEventListener("timeupdate", setTimeDisplay);
-        audioTagRef.current.addEventListener("loadstart", showPreloader);
-        audioTagRef.current.addEventListener("canplaythrough", hidePreloader);
-
-        prevSampleRef.current = compareTarget;
-        setCompareTarget(sampleId);
-
-        if (prevSampleRef.current !== prevCompareTarget && player !== "paused") {
-            console.log('changed!!!');
-            audioTagRef.current.src = `../assets/${sampleId}.mp3`;
-            setPlayer("playing");
-        } else if (sampleId && !duration && player === "playing") {
-            setPlayer("playing");
-            audioTagRef.current.src = `../assets/${sampleId}.mp3`;
-        }
-
-        if (player === "paused") {
-            audioTagRef.current.pause();
-            console.log("paused");
-        } else if (player === "stopped") {
-            audioTagRef.current.pause();
-            audioTagRef.current.currentTime = 0;
-        } else if (player === "playing") {
-            setDuration(audioTagRef.current.duration);
-            audioTagRef.current.play();
-        }
-
-        return () => {
-            // tear down
-            audioTagRef.current.removeEventListener("timeupdate", setTimeDisplay);
-            audioTagRef.current.removeEventListener("loadstart", showPreloader);
-            audioTagRef.current.removeEventListener("canplaythrough", hidePreloader);
-        }
-    }, [ sampleId, player ]);
-
-    const prevCompareTarget = prevSampleRef.current;
-
+    const size = {
+        height:height / 2,
+        width:width / 2,
+    };
     return (
-        <section className={`player__wrap ${sampleId ? 'show' : 'hide'}`}>
-            <h3 className={"player__text"}>
-                <span>{chosen && chosen.ARTIST_NAME}</span> - <span>{chosen && chosen.TRACK_TITLE}</span>
-            </h3>
-            {/*<h3>Now: {compareTarget}, before: {prevCompareTarget}</h3>*/}
-                {preloader
-                    ? 'preloader'
-                    : <div className={"player__toggle-play"}>
-                    {player === "paused" && (
-                        <button onClick={() => setPlayer("playing")}>
-                            <SvgSprite classes={''} src={imgData.sprite.src} alt={imgData.sprite.description} name={'PLAY'} />
-                        </button>
-                    )}
-                    {player === "playing" && (
-                        <button onClick={() => setPlayer("paused")}>
-                            <SvgSprite classes={''} src={imgData.sprite.src} alt={imgData.sprite.description} name={'PAUSE'} />
-                        </button>
-                    )}
+        <section className='player__wrap'>
+
+            {item &&
+            <div className='player faded-in-from-bottom'>
+                {((platform) => {
+                    switch(platform) {
+                        case 'youtube':
+                            return (<YouTube
+                                videoId={item}
+                                opts={opts}
+                                className={'iframe iframe--youtube'}
+                                containerClassName={'player youtube'}
+                            />);
+                        case 'spotify':
+                            return (<SpotifyPlayer
+                                uri={`spotify:track:${item}`}
+                                size={size}
+                                view={view}
+                                theme={theme}
+                                className={'iframe iframe--spotify'}
+                            />);
+                        case 'deezer':
+                            return null;
+                        default:
+                            return null;
+                    }
+                })(platform)}
+            </div>}
 
 
-                </div>}
-                {/*{player === "playing" || player === "paused" ? (*/}
-                    {/*<div>*/}
-                        {/*{currentTime} / {duration}*/}
-                    {/*</div>*/}
-                {/*) : (*/}
-                    {/*""*/}
-                {/*)}*/}
-                <div className={"player__expand"}>
-                    <button onClick={() => {
-                        setSampleId(''); setPlayer("paused");
-                    }}>
-                        Stop
-                    </button>
-                    <Link to={`/track/${sampleId}`} className={"player__text"}>More Info</Link>
-                </div>
-                <audio ref={audioTagRef} />
+            {item &&
+            <nav className="expend-played__wrap faded-in-from-bottom">
+                <Link to={`track/${trackId}`} className={"expend-played__button"}>
+                    <span className={"expend-played__text"}>expand</span>
+                    <SvgSprite classes={"expend-played__icon"} src={imgData.sprite.src} alt={imgData.sprite.description} name={'LONG_ARROW_RIGHT'} />
+
+                </Link>
+            </nav>
+            }
+
         </section>
     )
 };
 
+
 const mapStateToProps = state => ({
-    sampleId: state.player.sampleId,
+    platform: state.player.platform,
+    item: state.player.item,
+    trackId: state.player.trackId,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    setSampleId
+
 }, dispatch);
 
 export default connect(

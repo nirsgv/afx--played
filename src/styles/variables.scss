@@ -1,3 +1,21 @@
+$z-indexes: (
+        "iframe": 1,
+        "footer": 3,
+        "quick-slide-wrap": 4,
+        "quick-slide-button": 5,
+        "nav-slide-desktop": 6,
+        //"player": 7,
+        "something": 10,
+        "filter-expansion-wrap": 15,
+        "filter-expansion": 20,
+        "popup": 30,
+        "main-nav": 40,
+        "nav-slide": 50,
+        "header": 100,
+        "player": 101,
+        "modal-box": 102,
+);
+
 $colors: (
         "body-bkg": #fff,
         "grid-item-bkg": #f8f8f8,
@@ -9,34 +27,16 @@ $colors: (
         "grey_mid": #aaa,
         "grey_dark": #888,
         "rephlex_green": #138a43,
-        "tag-highlight": #138a43
-);
-
-$z-indexes: (
-        "iframe": 1,
-        "footer": 3,
-        "quick-slide-wrap": 4,
-        "quick-slide-button": 5,
-        "nav-slide-desktop": 6,
-        "player": 7,
-        "something": 10,
-        "filter-expansion-wrap": 15,
-        "filter-expansion": 20,
-        "popup": 30,
-        "main-nav": 40,
-        "nav-slide": 50,
-        "header": 100,
-        "modal-box": 101,
+        "tag-highlight": #138a43,
+        "autobulb-green": #23543C,
+        "autobulb-red": #5A2619,
+        "autobulb-black": #0E0500,
 );
 
 $menu_gap: 8rem;
+$border-style: 1px solid #eee;
 
-// mob first state of mind
-$b-points: (
-        "mob": 768px,
-        "tab": 1020px,
-        "des": 1360px
-);
+
 
 $brand-: (
         "mob": 768px,
@@ -84,12 +84,6 @@ $Hs: (
 h2 {
         color:  #333
 }
-
-$base-pad: (
-        "mob": 1.6rem,
-        "tab": 1.6rem,
-        "des": 1.6rem
-);
 
 $main-padding: (
         "mob": 4rem,

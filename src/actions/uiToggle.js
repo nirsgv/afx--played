@@ -29,7 +29,6 @@ function toggleGridListView(val) {
 }
 
 function expandFilter(val) {
-    console.log(val);
     const action = {
         type: EXPAND_FILTER,
         payload: val
@@ -39,7 +38,6 @@ function expandFilter(val) {
 }
 
 function viewMore(val) {
-    console.log(val);
     const action = {
         type: VIEW_MORE,
         payload: val

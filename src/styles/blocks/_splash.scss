@@ -1,5 +1,5 @@
 .splash {
-    background-color: wheat;
+    background-color: #eee;
     color: white;
     position: fixed;
     top: 0;
@@ -18,7 +18,11 @@
 
     & > .splash-icon {
         & > svg {
-            font-size: 20rem
+            font-size: 10rem;
+
+            @include respond-to(hover-device) {
+                font-size: 20rem;
+            }
         }
     }
 }
@@ -35,14 +39,3 @@
     animation-iteration-count: infinite;
 }
 
-@keyframes animate-opacity-back-and-forth {
-    0% {opacity: .5;}
-    50% {opacity: 1;}
-    100% {opacity: .5;}
-}
-
-@keyframes animate-size-back-and-forth {
-    0% {transform: scale(.5)}
-    50% {transform: scale(1)}
-    100% {transform: scale(.5)}
-}
