@@ -37,7 +37,7 @@ mongoose.connection.on('error', (err) => {
     console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
 });
 
-app.use(express.static(__dirname + '/../../build'));
+app.use(express.static(path.resolve(__dirname + '/../build')));
 app.disable('x-powered-by');
 app.use(compression());
 app.use(morgan('common'));
