@@ -44,7 +44,7 @@
     "styled-components": "^5.0.1"
   },
   "scripts": {
-    "start": "node ./src/api/server.js",
+    "start": "node ./api/server.js",
     "react:start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
