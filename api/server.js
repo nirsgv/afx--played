@@ -1,4 +1,5 @@
-require('dotenv').config({ path: '../variables.env' });
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname + '/../variables.env') });
 const tracksController = require('./controllers/tracksController');
 const showsController = require('./controllers/showsController');
 console.log(tracksController);
@@ -12,7 +13,7 @@ const MongoStore = require('connect-mongo')(session);
 const compression = require('compression');
 const morgan = require('morgan');
 const sendMail = require('./mail');
-const path = require('path');
+
 const TRACKS = require('../src/data/tracks');
 const SHOWS = require('../src/data/showsMap');
 const app = express();
