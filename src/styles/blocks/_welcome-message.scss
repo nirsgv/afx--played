@@ -1,7 +1,43 @@
 
 .welcome-message {
-    padding: 1.8rem 1.2rem 2rem 1.2rem;
+    display: flex;
     border: $border-style;
+    padding: 1.8rem 1.2rem 2rem 1.2rem;
     margin-bottom: 3rem;
+    cursor: pointer;
     @extend %brand-border-radius;
+
+    &:hover .welcome-message__close-button{
+        color: #ccc;
+    }
+
+    &__content{}
+    &__close-wrap{
+        flex-basis: 5rem;
+        text-align: right;
+        margin-left: auto;
+
+          .welcome-message__close-button {
+            color: #666;
+        }
+
+    }
+    &__close-button{
+        font-size: 0.75rem;
+    }
+
+    &__headline{}
+    &__paragraph{
+        margin-bottom: 1rem;
+    }
+
+    &__link{
+        color: #666;
+        text-decoration: underline;
+        font-size: 1.2rem;
+
+        &:hover {
+            color: #ccc;
+        }
+    }
 }
