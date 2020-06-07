@@ -1,9 +1,7 @@
 import {
-    EXPAND_FILTER,
-    TOGGLE_GRID_LIST_VIEW,
-    TOGGLE_SHARE_EXPANSION,
-    VIEW_MORE,
-    TOGGLE_MOB_MENU, TOGGLE_DESKTOP_FILTERS_EXPANSION, SET_TRACKS_AS_LOCAL, SET_SHOWS_AS_LOCAL, SET_SPA_PAGE_NAME, SET_SAMPLE_ID
+    EXPAND_FILTER, TOGGLE_GRID_LIST_VIEW, TOGGLE_SHARE_EXPANSION, VIEW_MORE,
+    TOGGLE_MOB_MENU, TOGGLE_DESKTOP_FILTERS_EXPANSION, SET_TRACKS_AS_LOCAL, SET_SHOWS_AS_LOCAL, SET_SPA_PAGE_NAME,
+    SET_SAMPLE_ID, CANCEL_WELCOME_INTRO
 } from "./index";
 
 /**
@@ -16,6 +14,15 @@ function toggleShareExpansion(shouldOnlyClose = true) {
         type: TOGGLE_SHARE_EXPANSION,
         payload: shouldOnlyClose
     };
+    return action;
+}
+
+function cancelWelcomeIntro() {
+    const action = {
+        type: CANCEL_WELCOME_INTRO,
+        payload: false
+    };
+
     return action;
 }
 
@@ -110,5 +117,6 @@ export {
     setTracksAsLocal,
     setShowsAsLocal,
     setSpaPageName,
-    setSampleId
+    setSampleId,
+    cancelWelcomeIntro
 }

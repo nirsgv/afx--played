@@ -1,5 +1,4 @@
 import React from 'react';
-import {imgData} from "../data/localImgData";
 import SvgSprite from "./svgSprite";
 
 function BackButton({ ...restProps }) {

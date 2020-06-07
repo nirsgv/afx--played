@@ -1,0 +1,7 @@
+
+.welcome-message {
+    padding: 1.8rem 1.2rem 2rem 1.2rem;
+    border: $border-style;
+    margin-bottom: 3rem;
+    @extend %brand-border-radius;
+}

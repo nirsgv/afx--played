@@ -14,7 +14,8 @@ main {
     top: 9rem;
     position: relative;
     padding: 0 2rem;
-    margin-bottom: -16rem;
+    margin-bottom: -1 * $footer-height;
+    min-height: calc(100vh - #{$footer-height});
     @extend %site-wide-padding;
 
     &.expanded-item {

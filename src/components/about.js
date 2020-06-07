@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import {Helmet} from "react-helmet";
-import {useSetPageName, useFetch } from '../customHooks/index'
+import { Helmet } from "react-helmet";
 import BackButton from "./backButton";
 function About(props) {
 
