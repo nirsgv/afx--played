@@ -10,7 +10,7 @@ function BackButton({ ...restProps }) {
     return (
         <aside className={className} onClick={cancelWelcomeIntro}>
             <div className={`${className}__content`}>
-                <h1 className={`${className}__headline`}>Hello!</h1>
+                {/*<h1 className={`${className}__headline`}>Hello!</h1>*/}
                 <p className={`${className}__paragraph`}>
                     This site presents <strong>a list</strong> of tracks.<br />
                     These tracks were played by Richard James aka The Aphex Twin during his shows.
