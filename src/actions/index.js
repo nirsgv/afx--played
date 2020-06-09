@@ -6,6 +6,7 @@ import {
 
 import {
     setPlayerItem,
+    closePlayer
 } from './multiPlayerActions';
 
 import {
@@ -66,5 +67,6 @@ export  {
     removeMessageToModal,
     setPlayerItem,
     resetFilters,
-    resetBatch
+    resetBatch,
+    closePlayer
 }

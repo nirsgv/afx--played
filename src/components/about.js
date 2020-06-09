@@ -28,7 +28,7 @@ function About({ history, name, setSpaPageName }) {
 
                 <p className={`${name}__paragraph`}>
                     This project began from A 'Aphex twin DJ set' playlist.<br />
-                    Listening to this playlist was interesting and enjoyable and i continuously gathered more and more items,
+                    Listening to this turned out to be very interesting and enjoyable and i continuously gathered more and more items,
                     mostly by 'shazaming' shows on youtube but also by harnessing 'reddit' and 'setlist' which turned out to be
                     a great help.
                 </p>
@@ -36,6 +36,7 @@ function About({ history, name, setSpaPageName }) {
                     After a while this list has become very large and with a few hundred items it became
                     impossible to effectively navigate through, hence the motivation for making this minisite -
                     <strong> solely for the purpose of effectively navigating through that playlist. </strong>
+                    Items are categorized by genre and year of recording, please use the provided filters for ease.
                     I guess you could label it as a fan site.
                 </p>
                 <p className={`${name}__paragraph`}>
@@ -45,6 +46,9 @@ function About({ history, name, setSpaPageName }) {
                 </p>
             </div>
 
+            <h2 className={`${name}__map-header`}>
+                The <strong>events</strong> are mapped here.<br />
+            </h2>
             <ShowGoogleMap />
 
         </>

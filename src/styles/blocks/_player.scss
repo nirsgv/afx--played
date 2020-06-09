@@ -3,7 +3,6 @@
     bottom: 0;
     height: 20rem;
     width: 100%;
-    //outline: 1px dashed #aaa;
     display: flex;
     justify-content: center;
 
@@ -42,42 +41,43 @@
         }
     }
 
-}
 
-.expend-played {
-
-    &__wrap{
+    &__close, &__expand {
         pointer-events: all;
         background-color: #202020;
-        height: 3rem;
-        bottom: 0.5rem;
         right: 0.5rem;
-        position: fixed;
+        position: absolute;
         width: 30rem;
-        color: #fff;
+        z-index: 1;
         display: flex;
         justify-content: flex-end;
-        align-items: center;
-        padding: 0 2rem;
-        border-radius: 0 0 1rem 1rem;
-    }
-
-
-    &__button{
         color: #fff;
-        text-decoration: none;
-        font-size: 1.2rem;
     }
 
-
-    &__text{
-
+    &__close {
+        top: 0.5rem;
+        border-radius: 1rem 1rem 0 0;
+        height: 2rem;
+        padding: 0 1.6rem;
+        cursor: pointer;
     }
 
-
-    &__icon{
-        font-size: .8rem;
-
+    &__expand {
+        bottom: 0.5rem;
+        height: 3rem;
+        border-radius: 0 0 1rem 1rem;
+        padding: 0 2rem;
     }
 
+    &__close-btn {
+        top: 0.5rem;
+        border-radius: 1rem 1rem 0 0;
+        color: #aaa;
+        font-size: .65rem;
+        cursor: pointer;
+
+        & > span {
+            text-align: right;
+        }
+    }
 }

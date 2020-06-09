@@ -1,13 +1,10 @@
 import React from 'react';
 import { bindActionCreators } from "redux";
-import { removeMessageToModal } from "../actions/index";
 import { connect } from "react-redux";
 import YouTube from 'react-youtube';
-import SpotifyPlayer from 'react-spotify-player';
-import { Link } from "react-router-dom";
 import SvgSprite from "../components/svgSprite";
-import {imgData} from "../data/localImgData";
-
+import { closePlayer } from '../actions'
+import MoreInfoButton from "../components/moreInfoButton";
 
 // size may also be a plain string using the presets 'large' or 'compact'
 
@@ -15,7 +12,7 @@ const view = 'coverart'; // or 'list'
 const theme = 'black'; // or 'white'
 
 
-function MultiPlayer({ platform, item, width, height, trackId }) {
+function MultiPlayer({ platform, item, width, height, trackId, closePlayer }) {
 
     console.log({item, platform});
     const opts = {
@@ -33,42 +30,26 @@ function MultiPlayer({ platform, item, width, height, trackId }) {
         <section className='player__wrap'>
 
             {item &&
+            <>
             <div className='player faded-in-from-bottom'>
-                {((platform) => {
-                    switch(platform) {
-                        case 'youtube':
-                            return (<YouTube
-                                videoId={item}
-                                opts={opts}
-                                className={'iframe iframe--youtube'}
-                                containerClassName={'player youtube'}
-                            />);
-                        case 'spotify':
-                            return (<SpotifyPlayer
-                                uri={`spotify:track:${item}`}
-                                size={size}
-                                view={view}
-                                theme={theme}
-                                className={'iframe iframe--spotify'}
-                            />);
-                        case 'deezer':
-                            return null;
-                        default:
-                            return null;
-                    }
-                })(platform)}
-            </div>}
-
-
-            {item &&
-            <nav className="expend-played__wrap faded-in-from-bottom">
-                <Link to={`track/${trackId}`} className={"expend-played__button"}>
-                    <span className={"expend-played__text"}>expand</span>
-                    <SvgSprite classes={"expend-played__icon"} src={imgData.sprite.src} alt={imgData.sprite.description} name={'LONG_ARROW_RIGHT'} />
-
-                </Link>
-            </nav>
+                <nav className="player__close">
+                    <button className="player__close-btn" onClick={closePlayer}>
+                        <SvgSprite name={'TIMES'} />
+                    </button>
+                </nav>
+                <YouTube
+                    videoId={item}
+                    opts={opts}
+                    className={'iframe iframe--youtube'}
+                    containerClassName={'player youtube'}
+                />
+                <nav className="player__expand">
+                    <MoreInfoButton ID={trackId} />
+                </nav>
+            </div>
+            </>
             }
+
 
         </section>
     )
@@ -82,7 +63,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-
+    closePlayer
 }, dispatch);
 
 export default connect(
