@@ -29,7 +29,7 @@ function About({ history, name, setSpaPageName }) {
                 <p className={`${name}__paragraph`}>
                     This project began from A 'Aphex twin DJ set' playlist.<br />
                     Listening to this playlist was interesting and enjoyable and i continuously gathered more and more items,
-                    mostly by 'shazaming' shows on youtube but also from harnessing reddit and setlist which turned out to be
+                    mostly by 'shazaming' shows on youtube but also by harnessing 'reddit' and 'setlist' which turned out to be
                     a great help.
                 </p>
                 <p className={`${name}__paragraph`}>
