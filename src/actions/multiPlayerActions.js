@@ -37,7 +37,6 @@ const trimByPlatform = (val, platform) => {
 
 function setPlayerItem(e, val, platform, trackId) {
     e.preventDefault();
-    console.log(val);
     setPlayerType(platform);
     //store.dispatch(setPlayerType(platform));
     const item = trimByPlatform(val, platform);
@@ -50,7 +49,24 @@ function setPlayerItem(e, val, platform, trackId) {
     return action;
 }
 
+function closePlayer(e) {
+    e.preventDefault();
+    const clear = {
+        item: '',
+        platform: 'YOUTUBE'.toLowerCase(),
+        trackId: '',
+    };
+
+    const action = {
+        type: SET_PLAYER_ITEM,
+        payload: clear
+    };
+
+    return action;
+}
+
 export {
     setPlayerType,
     setPlayerItem,
+    closePlayer
 }

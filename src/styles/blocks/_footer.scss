@@ -1,4 +1,4 @@
-$footer-height: 16rem;
+
 
 
 
@@ -51,8 +51,9 @@ $footer-height: 16rem;
 
     &__list{
         display: flex;
-        justify-content: center;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
         height: $footer-height;
         width: inherit;
@@ -60,14 +61,11 @@ $footer-height: 16rem;
 
     &__item{
 
-        &:last-child {
-            margin-left: auto;
-        }
+        margin: .2rem 0;
 
         a, span {
             color: #888;
             text-decoration: none;
-            margin-right: 2rem;
         }
     }
 }

@@ -6,6 +6,7 @@ import {
 
 import {
     setPlayerItem,
+    closePlayer
 } from './multiPlayerActions';
 
 import {
@@ -26,7 +27,8 @@ export {
     toggleDesktopFilters,
     setTracksAsLocal,
     setShowsAsLocal,
-    setSpaPageName
+    setSpaPageName,
+    cancelWelcomeIntro
 } from './uiToggle';
 
 export {
@@ -54,6 +56,7 @@ export const SET_VIEWPORT_DIMENSIONS = 'SET_VIEWPORT_DIMENSIONS';
 export const RESET_FILTERS = 'RESET_FILTERS';
 export const RESET_BATCH = 'RESET_BATCH';
 export const SET_SAMPLE_ID = 'SET_SAMPLE_ID';
+export const CANCEL_WELCOME_INTRO = 'CANCEL_WELCOME_INTRO';
 
 export  {
     filterByTagCb,
@@ -64,5 +67,6 @@ export  {
     removeMessageToModal,
     setPlayerItem,
     resetFilters,
-    resetBatch
+    resetBatch,
+    closePlayer
 }

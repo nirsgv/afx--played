@@ -1,20 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types';
-import {imgData} from "../data/localImgData";
 import {
     expandFilter, resetFilters, setSearchValue,
     toggleDesktopFilters, toggleMobMenu, toggleSearchOption,
 } from "../actions/index";
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import SvgSprite from '../components/svgSprite';
 import List from '../components/list';
 import AnimativeIndicator from '../components/animativeIndicator';
 
 
 const Footer = (props) => {
-
 
     const [ animateFooter, setAnimateFooter ] = useState(false);
 
@@ -30,8 +28,7 @@ const Footer = (props) => {
                     <NavLink exact={true} activeClassName="active" to="/">Home</NavLink>
                     <NavLink activeClassName="active" to="/editorial">Editorial</NavLink>
                     <NavLink activeClassName="active" to="/about">About</NavLink>
-
-                    <AnimativeIndicator animateFooter={animateFooter} setAnimateFooter={setAnimateFooter} />
+                    {/*<AnimativeIndicator animateFooter={animateFooter} setAnimateFooter={setAnimateFooter} />*/}
                 </List>
             </nav>
         </footer>

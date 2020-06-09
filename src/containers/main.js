@@ -5,9 +5,12 @@ import Items from '../components/items';
 import { hasTags, withinPeriod, hasMatchingText, inViewRange } from '../helpers/comparitors';
 import { combineByObjKeysArr } from '../helpers/str';
 import { scrollTop } from '../helpers/dom';
+import { checkIntroNecessity } from '../helpers/localStorage';
 import { yearsMap } from '../data/periodMap.js';
-import { dispatchMessageToModal, toggleShareExpansion, setPlayerItem,  setSpaPageName, resetBatch, filterByTagCb} from "../actions";
+import { dispatchMessageToModal, toggleShareExpansion, setPlayerItem, setSpaPageName, resetBatch, filterByTagCb,
+         cancelWelcomeIntro } from "../actions";
 import FilterIndex from './filterIndex';
+import WelcomeMessage from '../components/welcomeMessage';
 
 const Main = ({ filteredByTags,
                 filteredByPeriods,
@@ -19,15 +22,17 @@ const Main = ({ filteredByTags,
                 batchNum,
                 setSpaPageName,
                 setPlayerItem,
-                resetBatch
+                resetBatch,
+                shouldPresentWelcomeIntro,
+                cancelWelcomeIntro
               }) => {
 
     useEffect(() => {
         setSpaPageName && setSpaPageName('home');
+        checkIntroNecessity('afx-local_intro', cancelWelcomeIntro);
         resetBatch();
         scrollTop();
-    }, [ filteredByTags ]);
-
+    }, [ filteredByTags, filteredByPeriods ]);
 
     const tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data;
 
@@ -53,6 +58,9 @@ const Main = ({ filteredByTags,
     return (
         <>
             <FilterIndex itemsCount={tracksFiltered.length}/>
+
+            {shouldPresentWelcomeIntro && <WelcomeMessage cancelWelcomeIntro={cancelWelcomeIntro}/>}
+
             <ul className="track-items track-items--animated">
                 <Items tracksFiltered={tracksPaginated} setPlayerItem={setPlayerItem} />
             </ul>
@@ -70,6 +78,7 @@ const mapStateToProps = state => ({
     searchAlbumTitles: state.appData.searchAlbumTitles,
     itemsBatchAmt: state.appData.itemsBatchAmt,
     batchNum: state.appData.batchNum,
+    shouldPresentWelcomeIntro: state.appData.shouldPresentWelcomeIntro
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -78,7 +87,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     setPlayerItem,
     setSpaPageName,
     resetBatch,
-    filterByTagCb
+    filterByTagCb,
+    cancelWelcomeIntro
 }, dispatch);
 
 export default connect(

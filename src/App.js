@@ -4,41 +4,37 @@ import { Router, Switch, Route } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
-import Main from './containers/main';
-import Header from './containers/header';
-import About from './components/about';
-import Splash from './containers/splash';
-import Footer from './containers/footer';
-import ViewPort from './components/viewport';
-import Editorial from './components/editorial';
-import ExpandedItem from './containers/expandedItem';
-import ExpandedConcert from './containers/expandedConcert';
-import MessagesModal from './containers/messagesModal';
 import MultiPlayer from './containers/multiPlayer';
+import Main from './containers/main';
+import ExpandedConcert from './containers/expandedConcert';
+import Search from "./containers/search";
+import Header from './containers/header';
+import Splash from './containers/splash';
+import ExpandedItem from './containers/expandedItem';
+import Footer from './containers/footer';
+import MessagesModal from './containers/messagesModal';
+import Editorial from './components/editorial';
+import About from './components/about';
 import { isBottomOfPage } from './helpers/dom';
 import { debounce } from './helpers/higherFunctions';
 import { fetchUnstoraged } from './helpers/localStorage';
 import { Helmet } from 'react-helmet';
+import ViewPort from './components/viewport';
 import urlConstants from './data/urlConstants';
 import DarkenLayer from "./components/darkenLayer";
-import Search from "./containers/search";
 import './styles/main.scss';
-import {
-    toggleGridListView, setPlayerItem, dispatchMessageToModal, viewMore,
-    toggleMobMenu, toggleDesktopFilters, setTracksAsLocal, setShowsAsLocal,
-    setSpaPageName, setViewportDimensions, resetFilters
-} from './actions';
+import { toggleGridListView, setPlayerItem, dispatchMessageToModal, viewMore,
+        toggleMobMenu, toggleDesktopFilters, setTracksAsLocal, setShowsAsLocal,
+        setSpaPageName, setViewportDimensions, resetFilters } from './actions';
 import ReactGa from 'react-ga'
-import List from './components/list';
-import SwitchButton from './components/switchButton';
-
 const customHistory = createBrowserHistory();
+
 
 const App = ({  ...restProps }) => {
 
     const { toggleDesktopFilters, toggleMobMenu, setPlayerItem, setViewportDimensions, viewMore, viewport,
             setTracksAsLocal, setShowsAsLocal, setSpaPageName, isGridView, isTracksDataLocal, isShowsDataLocal,
-            isMobileMenuOpen, isDesktopFiltersExpanded, spaPageName, toggleGridListView,
+            isMobileMenuOpen, isDesktopFiltersExpanded, spaPageName,
     } = restProps;
 
     const getScrollItems = debounce(function(){ isBottomOfPage(this) && viewMore() }, 100);
@@ -61,7 +57,7 @@ const App = ({  ...restProps }) => {
     return (
         <div className={`app ${isGridView ? 'grid' : 'list'}-view`} data-test="component-app">
             <Helmet>
-                <title>AFX Played</title>
+                <title>AFX Played Info</title>
                 <meta name="description" content="This is the main page" />
                 <meta name="keywords" content="aphex twin, afx, shows, setlist, tracks, performance, electronic, music" />
             </Helmet>

@@ -1,0 +1,33 @@
+.google-map {
+
+    &__wrap{
+    }
+
+
+    &__link{
+        text-decoration: none;
+        white-space: nowrap;
+        background-color: #fff;
+        box-shadow: 0px 3px 7px #66666655;
+        @extend %brand-border-radius;
+
+
+        padding: 0.3rem 1rem 0.3rem 0.2rem;
+        position: relative;
+        bottom: 1.8rem;
+        font-size: 1.6rem;
+        color: gray;
+    }
+
+    &__text{
+        white-space: nowrap;
+    }
+
+    &__icon{
+        color: #333;
+        font-size: 0.6rem;
+        position: relative;
+        bottom: 0.3rem;
+        margin-right: .8rem;
+    }
+}

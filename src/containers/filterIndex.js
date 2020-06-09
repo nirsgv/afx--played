@@ -13,7 +13,7 @@ const FilterIndex = (props) => {
     const {
         filteredByTags,
         filteredByPeriods,
-        itemsCount,
+        itemsCount = 0,
         filterByTagCb,
         filterByPeriodCb,
         resetFilters

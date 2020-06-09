@@ -24,7 +24,7 @@ const ExpandedConcert = ({ match, history, setSpaPageName }) => {
           concert = concertsData.find((concert) => concert.SHOW_ID === id),
           tracksCollected = tracks.filter((track) => track.VENUES.includes(id));
 
-    const {SHOW_TITLE, SHOW_LOCATION, SHOW_DATE} = concert;
+    const { SHOW_TITLE, SHOW_LOCATION, SHOW_DATE } = concert;
 
 
     return (

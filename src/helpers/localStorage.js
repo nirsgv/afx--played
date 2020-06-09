@@ -6,12 +6,22 @@ const _isThereLocalData = (key) => {
 
 
 const _isDataRecent = (key) => {
-    const now = Date.now();
-    const ONE_WEEK = 604800000;
-    const dateOfObjInLocal = JSON.parse(localStorage.getItem(key)).date;
-    return dateOfObjInLocal > now - ONE_WEEK;
+    const now = Date.now(),
+          ONE_DAY = 86400000,
+          dateOfObjInLocal = JSON.parse(localStorage.getItem(key)).date;
+    return dateOfObjInLocal > now - ONE_DAY;
 };
 
+// if intro was not recently shown, set date on corresponding local-storage key otherwise cancel presentation
+const checkIntroNecessity = (key, cb) => {
+    if ( !_isThereLocalData(key) || !_isDataRecent(key) )  {
+        localStorage.setItem(key, JSON.stringify (
+            { date: Date.now() }
+        ));
+    } else {
+        cb();
+    }
+};
 
 const fetchUnstoraged = (url, key, cb) => {
     if ( !_isThereLocalData(key) || !_isDataRecent(key) ) {
@@ -31,4 +41,4 @@ const fetchUnstoraged = (url, key, cb) => {
     }
 };
 
-export { fetchUnstoraged };
+export { checkIntroNecessity, fetchUnstoraged };
