@@ -12,7 +12,7 @@ function BackButton({ ...restProps }) {
             <div className={`${className}__content`}>
                 {/*<h1 className={`${className}__headline`}>Hello!</h1>*/}
                 <p className={`${className}__paragraph`}>
-                    This site presents <strong>a list</strong> of tracks.<br />
+                    This site presents <strong>a list</strong> of tracks, by <strong>Various Artists.</strong><br />
                     These tracks were played by Richard James aka The Aphex Twin during his shows.
                 </p>
                 <Link className={`${className}__link`} to="/about">More info</Link>

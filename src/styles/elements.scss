@@ -23,7 +23,7 @@ main {
         //}
     }
 
-    &.home, &.editorial, &.expanded-concert {
+    &.home, &.editorial, &.expanded-concert, &.about {
         @include respond-to(hover-device) {
             padding-top: 2rem;
         }

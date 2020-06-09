@@ -3,31 +3,12 @@ import { Helmet } from "react-helmet";
 import BackButton from "./backButton";
 import ShowGoogleMap from "./showsGoogleMap";
 
-
-const AnyReactComponent = ({ lat, lng, text }) => {
-    return <h3>{`${lat}${lng}${text}`}</h3>
-};
-
-const handleApiLoaded = (map, maps) => {
-    // use map and maps objects
-};
-
-const defaultMapProps = {
-    center: {lat: 40.73, lng: -73.93},
-    zoom: 12,
-    bootstrapURLKeys: { key: 'AIzaSyCKj8YlOvnus07jxLryEGnHrITN2z8a0_I' },
-    yesIWantToUseGoogleMapApiInternals: true,
-    onGoogleApiLoaded: ({ map, maps }) => handleApiLoaded(map, maps),
-};
-
 function About(props) {
 
     useEffect(() => {
         props.setSpaPageName(props.name);
         return () => {}
     }, []);
-
-
 
     return (
 
