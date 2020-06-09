@@ -5,7 +5,7 @@ import urlConstants from "../data/urlConstants";
 import { Link } from "react-router-dom";
 import SvgSprite from "./svgSprite";
 
-import { MAP_API_KEY } from '../../inf'
+import { MAP_API_KEY } from '../inf'
 
 const handleApiLoaded = (map, maps) => {
     console.log(maps);
