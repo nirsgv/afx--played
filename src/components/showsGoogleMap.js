@@ -5,7 +5,7 @@ import urlConstants from "../data/urlConstants";
 import { Link } from "react-router-dom";
 import SvgSprite from "./svgSprite";
 
-
+import { MAP_API_KEY } from '../inf'
 
 const handleApiLoaded = (map, maps) => {
     console.log(maps);
@@ -16,7 +16,7 @@ const defaultMapProps = {
     center: {lat: 51.509865, lng: -0.118092},
     zoom: 1,
     bootstrapURLKeys: {
-        key: 'AIzaSyCKj8YlOvnus07jxLryEGnHrITN2z8a0_I',
+        key: MAP_API_KEY,
         language: 'en'
     },
     yesIWantToUseGoogleMapApiInternals: true,
@@ -27,10 +27,6 @@ const defaultMapProps = {
     scaleControl: true, // allow scale controle
 
     options: { styles: mapStyle }
-};
-
-const getRnd = () => {
-  return Math.floor(Math.random() * 2000) - 1000;
 };
 
 const getLeftToComma = (str) => {
