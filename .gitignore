@@ -23,5 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 # variables.env
 #credentials.js
-# /src/inf.js
+
 #/api/server-junk.js

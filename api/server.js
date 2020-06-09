@@ -3,19 +3,16 @@ require('dotenv').config({ path: path.resolve(__dirname + '/../variables.env') }
 const tracksController = require('./controllers/tracksController');
 const showsController = require('./controllers/showsController');
 console.log(tracksController);
-const bodyParser = require('body-parser');
 const express = require('express');
-const session = require('express-session');
 const mongoose = require('mongoose');
 const cors = require("cors");
 
+const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const compression = require('compression');
 const morgan = require('morgan');
 const sendMail = require('./mail');
 
-const TRACKS = require('../src/data/tracks');
-const SHOWS = require('../src/data/showsMap');
 const app = express();
 
 const normalizePort = port => parseInt(port, 10);
