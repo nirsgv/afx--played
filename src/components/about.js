@@ -2,11 +2,13 @@ import React, { useEffect } from 'react';
 import { Helmet } from "react-helmet";
 import BackButton from "./backButton";
 import ShowGoogleMap from "./showsGoogleMap";
+import { scrollTop } from '../helpers/dom';
 
-function About(props) {
+function About({ history, name, setSpaPageName }) {
 
     useEffect(() => {
-        props.setSpaPageName(props.name);
+        setSpaPageName(name);
+        scrollTop();
         return () => {}
     }, []);
 
@@ -17,23 +19,34 @@ function About(props) {
                 <title>About page...</title>
                 <meta name="description" content="This is the main page" />
             </Helmet>
-            <BackButton history={props.history} className={"back-btn"}/>
+            <BackButton history={history} className={"back-btn"}/>
 
-            <h1>About, {props.name}</h1>
-asdasd
+            <div className="about__text-wrap">
+                <h1 className={`${name}__hero`}>
+                    The <strong>motivation</strong> behind this project<br />
+                </h1>
+
+                <p className={`${name}__paragraph`}>
+                    This project began from A 'Aphex twin DJ set' playlist.<br />
+                    Listening to this playlist was interesting and enjoyable and i continuously gathered more and more items,
+                    mostly by 'shazaming' shows on youtube but also from harnessing reddit and setlist which turned out to be
+                    a great help.
+                </p>
+                <p className={`${name}__paragraph`}>
+                    After a while this list has become very large and with a few hundred items it became
+                    impossible to effectively navigate through, hence the motivation for making this minisite -
+                    <strong> solely for the purpose of effectively navigating through that playlist. </strong>
+                    I guess you could label it as a fan site.
+                </p>
+                <p className={`${name}__paragraph`}>
+                    Please use <a href="mailto:nirsegevmail@gmail.com" target="_blank" className={`${name}__link`}>this mail</a> for any inquiries,
+                    reports about wrong or misleading data.<br />
+                    This site is non-commercial.
+                </p>
+            </div>
+
             <ShowGoogleMap />
 
-            <form>
-                <label>
-                    From:
-                    <input type="text" name="name" />
-                </label>
-                <label>
-                    Name:
-                    <input type="text" name="name" />
-                </label>
-                <input type="submit" value="Submit" />
-            </form>
         </>
 
     );

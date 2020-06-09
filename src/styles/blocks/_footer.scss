@@ -61,14 +61,11 @@
 
     &__item{
 
-        &:last-child {
-            margin-left: auto;
-        }
+        margin: .2rem 0;
 
         a, span {
             color: #888;
             text-decoration: none;
-            margin-right: 2rem;
         }
     }
 }

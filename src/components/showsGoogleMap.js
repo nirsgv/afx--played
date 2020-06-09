@@ -67,7 +67,7 @@ function ShowGoogleMap(props) {
                         lng={show.SHOW_LOCATION.SHOW_GEO.LNG}
                         id={show.SHOW_ID}
                         text={getLeftToComma(show.SHOW_TITLE)} />
-                    )}`
+                    )}
                 </GoogleMapReact>}
 
             </section>

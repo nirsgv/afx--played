@@ -27,11 +27,10 @@ function Editorial( { ...restProps } ) {
     return (
         <>
             <Helmet>
-                <title>About page...</title>
+                <title>Editorial</title>
                 <meta name="description" content="This is the editorial page" />
             </Helmet>
             <BackButton history={history} className={"back-btn"}/>
-            <h1>About, {name}</h1>
             {editorialData.map((list, index) => {
                 const itemsnow = getItemsByIds(list.ITEMS, tracks);
                 return (
