@@ -106,7 +106,6 @@
 
     &__wrap {
         background-color: #fff;
-        top: 4rem;
         position: absolute;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 10px;
         z-index: map-get($z-indexes, "filter-expansion-wrap");
@@ -114,18 +113,15 @@
         padding-right: $menu_gap  + 2rem;
         @extend %viewport-wide;
         transition: top 0.4s ease-out;
-
-
-        height: calc(100vh - 4rem);
+        top: 7rem;
+        height: calc(100vh - 7rem);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
 
-        & > div, & > ul {
-            flex-grow: 1;
-        }
-
         @include respond-to(hover-device) {
+
+            top: 4rem;
             height: auto;
             display: flex;
             flex-direction: column;

@@ -17,7 +17,6 @@ const Footer = (props) => {
     const [ animateFooter, setAnimateFooter ] = useState(false);
 
     const {
-        toggleMobMenu,
     } = props;
 
     return (
@@ -48,9 +47,9 @@ Footer.propTypes = {
 
 
 const mapStateToProps = state => ({
-    isMobileMenuOpen: state.appData.isMobileMenuOpen,
-    expandedFilter: state.appData.expandedFilter,
-    isDesktopFiltersExpanded: state.appData.isDesktopFiltersExpanded,
+    // isMobileMenuOpen: state.appData.isMobileMenuOpen,
+    // expandedFilter: state.appData.expandedFilter,
+    // isDesktopFiltersExpanded: state.appData.isDesktopFiltersExpanded,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

@@ -10,7 +10,6 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { useIsScrolled, useShadowAnimaStyle, useMedia } from "../customHooks/index";
 import { Link, NavLink } from "react-router-dom";
-import { areFiltersApplied } from '../helpers/comparitors'
 import SvgSprite from '../components/svgSprite';
 import List from '../components/list';
 import Filters from './filters';
@@ -24,8 +23,8 @@ import ClearAllButton from "../components/clearAllButton";
 
 const Header = (props) => {
 
-    const customHookShadow = useShadowAnimaStyle(2, 4, 4),
-        customHcroll = useIsScrolled();
+    // const customHookShadow = useShadowAnimaStyle(2, 4, 4);
+    const customHcroll = useIsScrolled();
 
     const {
         isMobileMenuOpen,
@@ -36,9 +35,10 @@ const Header = (props) => {
         toggleDesktopFilters,
         resetFilters,
         filteredByTags,
-        filteredByPeriods
+        filteredByPeriods,
+        filteredBySearch
     } = props;
-
+console.log({toggleDesktopFilters});
     return (
         <header className={`header header--${customHcroll ? 'minified' : 'expanded'}`}>
             <nav className='main-nav'>
@@ -46,16 +46,16 @@ const Header = (props) => {
                     <Link to="/">
                         <SvgSprite classes={'icon-logo'} src={imgData.sprite.src} alt={imgData.sprite.description}
                                    name={'APHEX'}
-                                   style={customHookShadow}
+                                   // style={customHookShadow}
                         />
                     </Link>
                 </div>
-                <List baseClassName="main-nav">
+                <List baseClassName="main-nav" printBase={false}>
                     <NavLink exact={true} activeClassName="active" to="/">Tracks</NavLink>
                     <NavLink activeClassName="active" to="/editorial">Editorial</NavLink>
                     <NavLink activeClassName="active" to="/about">About</NavLink>
                 </List>
-                <Hamburger menuIsClosed={!isMobileMenuOpen} toggleMobMenu={toggleMobMenu} className={'hamburger'}/>
+                <Hamburger menuIsClosed={!isMobileMenuOpen} toggleMobMenu={toggleMobMenu} toggleDesktopFilters={toggleDesktopFilters} className={'hamburger'}/>
             </nav>
             <div className={`nav-slide ${isMobileMenuOpen ? 'nav-slide--open' : ''}`} data-test="nav-slide">
                 <nav className={`main-filters main-filters--${isDesktopFiltersExpanded || isMobileMenuOpen ? 'expanded' : 'minified'}`}>
@@ -73,7 +73,7 @@ const Header = (props) => {
                               className={`main-filters__item main-filters__item${expClass(expandedFilter, 'years')}`}>Decade</span>
                         <span className={'main-filters__item main-filters__item--hamburger'}>
                             <Hamburger menuIsClosed={!isMobileMenuOpen} toggleMobMenu={toggleMobMenu}
-                                       className={'hamburger'}/>
+                                       className={'hamburger'} toggleDesktopFilters={toggleDesktopFilters}/>
                         </span>
 
                     </List>
@@ -82,7 +82,10 @@ const Header = (props) => {
                 <nav className={`filter-expansion__wrap filter-expansion__wrap${!isDesktopFiltersExpanded ? '--close' : '--open'}`}>
 
                     <div className="clear-button__wrap">
-                        <ClearAllButton filteredByTags={filteredByTags} filteredByPeriods={filteredByPeriods} clickCb={resetFilters}/>
+                        <ClearAllButton filteredByTags={filteredByTags}
+                                        filteredByPeriods={filteredByPeriods}
+                                        filteredBySearch={filteredBySearch}
+                                        clickCb={resetFilters}/>
                     </div>
                     <Filters/>
                     <button className="filter-expansion__close-button" onClick={() => toggleDesktopFilters(false)}>
@@ -106,7 +109,8 @@ const mapStateToProps = state => ({
     expandedFilter: state.appData.expandedFilter,
     isDesktopFiltersExpanded: state.appData.isDesktopFiltersExpanded,
     filteredByTags: state.appData.filteredByTags,
-    filteredByPeriods: state.appData.filteredByPeriods
+    filteredByPeriods: state.appData.filteredByPeriods,
+    filteredBySearch: state.appData.filteredBySearch
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
