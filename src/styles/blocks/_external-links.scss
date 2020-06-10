@@ -1,4 +1,8 @@
-.external-links, .share-box {
+$but-height: 4.4rem;
+
+
+
+.external-links{
 
     &__wrap {
         width: inherit;
@@ -15,18 +19,8 @@
         }
         text-align: center;
 
-        //[role="button"] {
-        //    color: #aaa;
-        //}
-
-        &:hover, &:active {
-            .external-links__link, .share-box__icon {
-                color: #6a6a6a;
-                font-size: 1.2rem;
-            }
-        }
-        .external-links__link, .share-box__icon {
-            height: 4.4rem;
+        .external-links__link {
+            height: $but-height;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -38,8 +32,74 @@
         width: 100%;
         height: 100%;
         display: inline-block;
-        padding: 1rem 0;
 
     }
 
+    &__link:not(.external-links__link--disabled) {
+
+        &:hover, &:active {
+            .external-links__icon {
+                color: #6a6a6a;
+                font-size: 1.2rem;
+            }
+        }
+
+    }
+
+    &__link {
+        padding: 1rem 0;
+
+        &--disabled {
+
+            cursor: auto;
+            & > span {
+                color: #eee;
+            }
+        }
+    }
+
+}
+
+.share-box {
+
+    &__wrap {
+        width: inherit;
+        @extend %custom-border-top;
+    }
+
+    &__list {
+
+    }
+
+    &__item {
+        &:not(:last-child) {
+            @extend %custom-border-bottom;
+        }
+        text-align: center;
+
+
+        .share-box__icon {
+            height: $but-height;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    &__link, &__icon {
+        color: #aaa;
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+    }
+
+     .share-box__item {
+        &:hover, &:active {
+            .share-box__icon {
+                color: #6a6a6a!important;
+                font-size: 1.2rem;
+            }
+        }
+
+    }
 }

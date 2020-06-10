@@ -86,7 +86,7 @@ const ExpandedItem = ({match, history, toggleShareExpansion, setPlayerItem, disp
                         {/*block4*/}
                         <section className="expanded-item__external-links">
                             <h2 className="expanded-item__section-title">External Links</h2>
-                            <ExternalLinks className="track__track-links" links={LINKS} ID={ID} />
+                            <ExternalLinks className="track__track-links" links={LINKS} ID={ID} blockClassName={'external-links'} />
 
                         </section>
 

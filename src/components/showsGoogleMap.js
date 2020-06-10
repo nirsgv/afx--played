@@ -53,8 +53,7 @@ function ShowGoogleMap(props) {
     return (
         <>
 
-            <section className="google-map google-map__wrap" style={{ height: '30rem', width: '100%' }}>
-                {/*{shows.toString()}*/}
+            <section className="google-map google-map__wrap" style={{ height: '50rem', width: '100%' }}>
 
                 {shows && shows.length > 0 && <GoogleMapReact {...defaultMapProps}>
                     {shows.map((show, index) => <ShowGooglePin
