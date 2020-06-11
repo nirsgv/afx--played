@@ -12,7 +12,6 @@ const shows = JSON.parse(localStorage.getItem("afx_local_shows")),
 
 function Concerts({ venues }) {
     const concertsCollection = shows && venues.map(item => getConcertById(item, showsData));
-    console.error(concertsCollection);
     {return concertsCollection.filter(item => !!item).length ?
      (
             <List baseClassName='concerts'>
