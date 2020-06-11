@@ -35,7 +35,6 @@ const Main = ({ filteredByTags,
     }, [ filteredByTags, filteredByPeriods ]);
 
     const tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data;
-
     const [ entranceClassName, setEntranceClassName ] = useState('faded-in-from-bottom');
 
 

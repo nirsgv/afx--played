@@ -4,7 +4,7 @@ import BackButton from "./backButton";
 import ShowGoogleMap from "./showsGoogleMap";
 import { scrollTop } from '../helpers/dom';
 
-function About({ history, name, setSpaPageName }) {
+function About({ history, name, setSpaPageName, mapHasLoaded, setMapAsLoaded }) {
 
     useEffect(() => {
         setSpaPageName(name);
@@ -52,7 +52,7 @@ function About({ history, name, setSpaPageName }) {
                 <h2 className={`${name}__map-header`}>
                     The <strong>events</strong> are mapped here.<br />
                 </h2>
-                <ShowGoogleMap />
+                <ShowGoogleMap mapHasLoaded={mapHasLoaded} setMapAsLoaded={setMapAsLoaded}/>
             </div>
 
         </>

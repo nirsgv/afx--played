@@ -7,31 +7,8 @@ import SvgSprite from "./svgSprite";
 
 import { MAP_API_KEY } from '../inf'
 
-const handleApiLoaded = (map, maps) => {
-    console.log(maps);
+import { getLeftToComma } from "../helpers/str";
 
-};
-
-const defaultMapProps = {
-    center: {lat: 51.509865, lng: -0.118092},
-    zoom: 1,
-    bootstrapURLKeys: {
-        key: MAP_API_KEY,
-        language: 'en'
-    },
-    yesIWantToUseGoogleMapApiInternals: true,
-    onGoogleApiLoaded: ({ map, maps }) => handleApiLoaded(map, maps),
-    disableDefaultUI: true, // disable default map UI
-    draggable: true, // make map draggable
-    keyboardShortcuts: false, // disable keyboard shortcuts
-    scaleControl: true, // allow scale controle
-
-    options: { styles: mapStyle }
-};
-
-const getLeftToComma = (str) => {
-  return str.split(',')[0]
-};
 
 const ShowGooglePin = ({ text = '', id='' }) => <Link to={`concert/${encodeURIComponent(id)}`} className={'google-map google-map__link'}>
     <SvgSprite classes={`google-map__icon`} name={'POINTER'} />
@@ -40,11 +17,32 @@ const ShowGooglePin = ({ text = '', id='' }) => <Link to={`concert/${encodeURICo
     </span>
     </Link>;
 
-function ShowGoogleMap(props) {
+function ShowGoogleMap({ mapHasLoaded, setMapAsLoaded }) {
 
     const [ shows, setShows ] = useState([]);
 
+    const handleApiLoaded = (map, maps) => {
+        console.log(map);
+    };
+
+    const defaultMapProps = {
+        center: {lat: 51.509865, lng: -0.118092},
+        zoom: 1,
+        bootstrapURLKeys: {
+            key: MAP_API_KEY,
+            language: 'en'
+        },
+        yesIWantToUseGoogleMapApiInternals: true,
+        onGoogleApiLoaded: ({ map, maps }) => setMapAsLoaded(true),
+        disableDefaultUI: true, // disable default map UI
+        draggable: true, // make map draggable
+        keyboardShortcuts: false, // disable keyboard shortcuts
+        scaleControl: true, // allow scale controle
+        options: { styles: mapStyle }
+    };
+
     useEffect(() => {
+        setMapAsLoaded(false);
         fetch(window.location.origin + urlConstants.SHOWS_URL)
             .then(response => response.json())
             .then(data => setShows(data))
@@ -52,8 +50,8 @@ function ShowGoogleMap(props) {
 
     return (
         <>
-
-            <section className="google-map google-map__wrap" style={{ height: '50rem', width: '100%' }}>
+            <section className={`google-map google-map__wrap google-map--${mapHasLoaded ? 'loaded' : 'unloaded'}`}
+                     style={{ height: '50rem', width: '100%' }}>
 
                 {shows && shows.length > 0 && <GoogleMapReact {...defaultMapProps}>
                     {shows.map((show, index) => <ShowGooglePin
@@ -64,9 +62,7 @@ function ShowGoogleMap(props) {
                         text={getLeftToComma(show.SHOW_TITLE)} />
                     )}
                 </GoogleMapReact>}
-
             </section>
-
         </>
 
     );

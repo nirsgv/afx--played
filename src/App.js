@@ -23,7 +23,7 @@ import ViewPort from './components/viewport';
 import urlConstants from './data/urlConstants';
 import DarkenLayer from "./components/darkenLayer";
 import './styles/main.scss';
-import { toggleGridListView, setPlayerItem, dispatchMessageToModal, viewMore,
+import { setMapAsLoaded, setPlayerItem, dispatchMessageToModal, viewMore,
         toggleMobMenu, toggleDesktopFilters, setTracksAsLocal, setShowsAsLocal,
         setSpaPageName, setViewportDimensions, resetFilters } from './actions';
 import ReactGa from 'react-ga'
@@ -34,7 +34,7 @@ const App = ({  ...restProps }) => {
 
     const { toggleDesktopFilters, toggleMobMenu, setPlayerItem, setViewportDimensions, viewMore, viewport,
             setTracksAsLocal, setShowsAsLocal, setSpaPageName, isGridView, isTracksDataLocal, isShowsDataLocal,
-            isMobileMenuOpen, isDesktopFiltersExpanded, spaPageName,
+            isMobileMenuOpen, isDesktopFiltersExpanded, spaPageName, mapHasLoaded, setMapAsLoaded
     } = restProps;
 
     const getScrollItems = debounce(function(){ isBottomOfPage(this) && viewMore() }, 100);
@@ -76,7 +76,7 @@ const App = ({  ...restProps }) => {
 
                     <main className={`${spaPageName}`}>
                         <Switch>
-                            <Route path="/about"><About name={"about"} setSpaPageName={setSpaPageName} history={customHistory}/></Route>
+                            <Route path="/about"><About name={"about"} setSpaPageName={setSpaPageName} history={customHistory} setMapAsLoaded={setMapAsLoaded} mapHasLoaded={mapHasLoaded} /></Route>
                             <Route path="/editorial"><Editorial name={"editorial"} setSpaPageName={setSpaPageName} setPlayerItem={setPlayerItem} history={customHistory}/></Route>
                             <Route path="/track/:id" component={ExpandedItem} setPlayerItem={setPlayerItem} />
                             <Route path="/concert/:id" component={ExpandedConcert} setPlayerItem={setPlayerItem} />
@@ -120,17 +120,20 @@ const mapStateToProps = state => ({
     isMobileMenuOpen: state.appData.isMobileMenuOpen,
     isDesktopFiltersExpanded: state.appData.isDesktopFiltersExpanded,
     spaPageName: state.appData.spaPageName,
-    viewport: state.viewport
+    viewport: state.viewport,
+    mapHasLoaded: state.appData.mapHasLoaded
+
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    toggleGridListView, setPlayerItem, dispatchMessageToModal, viewMore, toggleMobMenu, toggleDesktopFilters,
+    setMapAsLoaded, setPlayerItem, dispatchMessageToModal, viewMore, toggleMobMenu, toggleDesktopFilters,
     setTracksAsLocal, setShowsAsLocal, setSpaPageName, setViewportDimensions, resetFilters
 }, dispatch);
 
 export const goHome = () => {
     if (customHistory.location.pathname !== '/') customHistory.push('/');
 };
+
 
 export default connect(
     mapStateToProps,
