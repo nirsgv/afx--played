@@ -12,7 +12,7 @@ import {Router} from "react-router-dom";
 import {scrollTop} from '../helpers/dom';
 import BackButton from "../components/backButton";
 
-const ExpandedItem = ({match, history, toggleShareExpansion, setPlayerItem, dispatchMessageToModal, setSpaPageName}) => {
+const ExpandedItem = ({ match, history, toggleShareExpansion, setPlayerItem, dispatchMessageToModal, setSpaPageName }) => {
 
     useEffect(() => {
         setSpaPageName && setSpaPageName('expanded-item');
@@ -45,6 +45,7 @@ const ExpandedItem = ({match, history, toggleShareExpansion, setPlayerItem, disp
         VENUES
     } = expandedTrack;
 
+    console.error(VENUES);
     return (
         <>
             <div className="bkg__wrap">
@@ -81,11 +82,11 @@ const ExpandedItem = ({match, history, toggleShareExpansion, setPlayerItem, disp
                             </section>
 
                             {/*block3*/}
-                            {VENUES[0] && (
+
                                 <section className="expanded-item__shows">
                                     <h2 className="expanded-item__section-title">Played in shows</h2>
                                     <Concerts venues={VENUES}></Concerts>
-                                </section>)}
+                                </section>
                         </div>
 
                         <div className="links-and-share">
