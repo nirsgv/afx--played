@@ -74,7 +74,7 @@ const App = ({  ...restProps }) => {
                         cb2={toggleMobMenu}
                     />
 
-                    <main className={`${spaPageName} faded-in-from-bottom`}>
+                    <main className={`${spaPageName}`}>
                         <Switch>
                             <Route path="/about"><About name={"about"} setSpaPageName={setSpaPageName} history={customHistory}/></Route>
                             <Route path="/editorial"><Editorial name={"editorial"} setSpaPageName={setSpaPageName} setPlayerItem={setPlayerItem} history={customHistory}/></Route>

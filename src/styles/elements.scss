@@ -11,12 +11,20 @@ button {
 }
 
 main {
-    top: 9rem;
+    top: 7rem;
     position: relative;
     padding: 0 2rem;
     margin-bottom: -1 * $footer-height;
     min-height: calc(100vh - #{$footer-height});
     @extend %site-wide-padding;
+
+    #root & {
+        padding-top: 2rem;
+    }
+
+    @include respond-to(hover-device) {
+        top: 11rem;
+    }
 
     &.expanded-item {
         //@include respond-to(hover-device) {
@@ -30,9 +38,7 @@ main {
     }
 
 
-    @include respond-to(hover-device) {
-        top: 11rem;
-    }
+
 
 }
 

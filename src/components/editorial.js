@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import {Helmet} from "react-helmet";
+import React, { useEffect, useState } from 'react';
+import { Helmet } from "react-helmet";
 import QuickSlide from './quickSlide';
 import Items from "./items";
 import { editorialData } from '../data/editorial.js';
@@ -9,7 +9,7 @@ import BackButton from "./backButton";
 
 function Editorial( { ...restProps } ) {
     const { name, setPlayerItem, setSpaPageName, history } = restProps;
-    console.log({editorialData});
+    const [ entranceClassName, setEntranceClassName ] = useState('faded-in-from-bottom');
 
     useEffect(() => {
         setSpaPageName(name);
@@ -30,7 +30,9 @@ function Editorial( { ...restProps } ) {
                 <title>Editorial</title>
                 <meta name="description" content="This is the editorial page" />
             </Helmet>
+
             <BackButton history={history} className={"back-btn"}/>
+            <div className={`animate-content ${entranceClassName}`} onAnimationEnd={() => setEntranceClassName('')}>
             {editorialData.map((list, index) => {
                 const itemsnow = getItemsByIds(list.ITEMS, tracks);
                 return (
@@ -39,6 +41,7 @@ function Editorial( { ...restProps } ) {
                     </QuickSlide>
                 )
             })}
+            </div>
         </>
     );
 }

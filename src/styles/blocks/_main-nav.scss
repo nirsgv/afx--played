@@ -4,7 +4,7 @@
     position: absolute;
     height: 7rem;
     width: 100%;
-    background-color: #fff;
+    background-color: white;
     z-index: map-get($z-indexes, "main-nav");
     @extend %site-wide-padding;
 
