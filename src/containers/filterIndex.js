@@ -16,7 +16,8 @@ const FilterIndex = (props) => {
         itemsCount = 0,
         filterByTagCb,
         filterByPeriodCb,
-        resetFilters
+        resetFilters,
+        filteredBySearch
     } = props;
 
     return (
@@ -27,13 +28,16 @@ const FilterIndex = (props) => {
                     <span className='filter-index__results'>Showing</span>
                     <span className='filter-index__number'>{itemsCount}</span>
                     <span className='filter-index__results'>results.</span>
-                    <span className='filter-index__filters'>{areFiltersApplied(filteredByTags, filteredByPeriods) ? 'Filters applied:' : ''}</span>
+                    <span className='filter-index__filters'>{areFiltersApplied(filteredByTags, filteredByPeriods, filteredBySearch) ? 'Filters applied:' : ''}</span>
                     <Tags tags={filteredByTags} tagCb={(tag) => filterByTagCb(tag)} />
                     <Decades periods={filteredByPeriods} periodCb={(period) => filterByPeriodCb(period)}/>
                 </div>
 
                 <div className="filter-index__cta-wrap">
-                    <ClearAllButton filteredByTags={filteredByTags} filteredByPeriods={filteredByPeriods} clickCb={resetFilters}/>
+                    <ClearAllButton filteredByTags={filteredByTags}
+                                    filteredByPeriods={filteredByPeriods}
+                                    clickCb={resetFilters}
+                                    filteredBySearch={filteredBySearch}/>
                 </div>
 
             </aside>
@@ -53,7 +57,8 @@ FilterIndex.propTypes = {
 
 const mapStateToProps = state => ({
     filteredByTags: state.appData.filteredByTags,
-    filteredByPeriods: state.appData.filteredByPeriods
+    filteredByPeriods: state.appData.filteredByPeriods,
+    filteredBySearch: state.appData.filteredBySearch
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({

@@ -28,7 +28,8 @@ export {
     setTracksAsLocal,
     setShowsAsLocal,
     setSpaPageName,
-    cancelWelcomeIntro
+    cancelWelcomeIntro,
+    setMapAsLoaded
 } from './uiToggle';
 
 export {
@@ -57,6 +58,7 @@ export const RESET_FILTERS = 'RESET_FILTERS';
 export const RESET_BATCH = 'RESET_BATCH';
 export const SET_SAMPLE_ID = 'SET_SAMPLE_ID';
 export const CANCEL_WELCOME_INTRO = 'CANCEL_WELCOME_INTRO';
+export const SET_MAP_AS_LOADED = 'SET_MAP_AS_LOADED';
 
 export  {
     filterByTagCb,

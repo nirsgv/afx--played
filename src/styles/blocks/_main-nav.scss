@@ -4,7 +4,7 @@
     position: absolute;
     height: 7rem;
     width: 100%;
-    background-color: #fff;
+    background-color: white;
     z-index: map-get($z-indexes, "main-nav");
     @extend %site-wide-padding;
 
@@ -27,8 +27,11 @@
     &__logo {
         font-size: 2rem;
         filter: drop-shadow(2px 4px 3px black);
-        margin-right: 3rem;
         transition: transform 0.1s ease;
+        margin-right: 2.6rem;
+        @include respond-to(hover-device) {
+            margin-right: 3rem;
+        }
 
         .header--minified & {
             transform: scale(.5);

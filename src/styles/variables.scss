@@ -17,13 +17,13 @@ $z-indexes: (
 );
 
 $colors: (
-        "body-bkg": #fff,
+        "body-bkg": white,
         "grid-item-bkg": #f8f8f8,
         "grey_bright": #eee,
         // switch
         "label-color": #ccc,
         "switch-background": #777,
-        "switch-finger": #fff,
+        "switch-finger": white,
         "grey_mid": #aaa,
         "grey_dark": #888,
         "rephlex_green": #138a43,
@@ -66,17 +66,17 @@ $Hs: (
         "h1": (
                 "mob":  1.4rem,
                 "tab":  4rem,
-                "des":  8rem
+                "des":  5.4rem
         ),
         "h2": (
-                "mob":  1rem,
-                "tab":  2rem,
-                "des":  2.6rem
+                "mob":  1.5rem,
+                "tab":  1.6rem,
+                "des":  1.8rem
         ),
         "h3": (
-                "mob":  2rem,
-                "tab":  1.4rem,
-                "des":  1rem
+                "mob":  1.2rem,
+                "tab":  1.3rem,
+                "des":  1.4rem
         ),
 
 );

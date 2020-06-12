@@ -4,7 +4,8 @@ import {
     TOGGLE_GRID_LIST_VIEW, EXPAND_FILTER, FILTER_BY_TAG_CB, FILTER_BY_PERIOD_CB, SET_SEARCH_VALUE,
     TOGGLE_SEARCH_OPTION, TOGGLE_SHARE_EXPANSION, DISPATCH_MESSAGE_TO_MODAL, REMOVE_MESSAGE_TO_MODAL, SET_PLAYER_TYPE,
     SET_PLAYER_ITEM, VIEW_MORE, TOGGLE_MOB_MENU, TOGGLE_DESKTOP_FILTERS_EXPANSION, SET_TRACKS_AS_LOCAL,
-    SET_SHOWS_AS_LOCAL, SET_SPA_PAGE_NAME, SET_VIEWPORT_DIMENSIONS, RESET_FILTERS, RESET_BATCH, CANCEL_WELCOME_INTRO
+    SET_SHOWS_AS_LOCAL, SET_SPA_PAGE_NAME, SET_VIEWPORT_DIMENSIONS, RESET_FILTERS, RESET_BATCH, CANCEL_WELCOME_INTRO,
+    SET_MAP_AS_LOADED
 } from '../actions';
 
 
@@ -25,11 +26,18 @@ const initialAppState = {
     isTracksDataLocal: false,
     isShowsDataLocal: false,
     shouldPresentWelcomeIntro: true,
+    mapHasLoaded: false,
     spaPageName: '',
 };
 
 function appData(state = initialAppState, action) {
     switch(action.type) {
+
+        case SET_MAP_AS_LOADED:
+            return {
+                ...state,
+                mapHasLoaded: action.payload
+            };
 
         case CANCEL_WELCOME_INTRO:
             return {

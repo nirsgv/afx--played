@@ -9,6 +9,7 @@
     z-index: map-get($z-indexes, "footer");
     border-top: 1px solid #eee;
     display: flex;
+    background-color: white;
 
     &__preloader {
 

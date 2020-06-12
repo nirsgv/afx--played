@@ -40,6 +40,14 @@ const showsStore = new mongoose.Schema({
     VENUE: {
         type: String,
         trim: true,
+    },
+    LAT: {
+        type: Number,
+        trim: true,
+    },
+    LNG: {
+        type: Number,
+        trim: true,
     }
 }, {
     collection: 'afx_played_shows'
