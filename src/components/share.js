@@ -6,7 +6,6 @@ import {
     RedditShareButton,
 } from "react-share";
 import SvgSprite from './svgSprite';
-import { imgData } from '../data/localImgData';
 import { copyToClipboard } from '../helpers/str';
 import List from "./list";
 
@@ -28,7 +27,6 @@ const CopyUrlButton = (props) => {
 const Share = ({ url, isExpanded, onShareWindowClose, dispatchMessageToModal }) => {
     // console.log(dispatchMessageToModal); //todo: find out why this is rendering on interval
 
-    const { src, description } = imgData.sprite;
 
     const cb = () => {
         onShareWindowClose(false);

@@ -11,16 +11,25 @@ button {
 }
 
 main {
-    top: 9rem;
+    top: 7rem;
     position: relative;
-    padding: 0 2rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
     margin-bottom: -1 * $footer-height;
     min-height: calc(100vh - #{$footer-height});
     @extend %site-wide-padding;
 
-    &.expanded-item {
-        //@include respond-to(hover-device) {
-        //}
+    #root & {
+        padding-top: 2rem;
+    }
+
+    &:not(.editorial){
+        @include respond-to(hover-device) {
+            top: 11rem;
+            max-width: 148rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
     }
 
     &.home, &.editorial, &.expanded-concert, &.about {
@@ -30,9 +39,7 @@ main {
     }
 
 
-    @include respond-to(hover-device) {
-        top: 11rem;
-    }
+
 
 }
 

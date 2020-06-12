@@ -5,15 +5,14 @@
     top: 0;
     height: 7rem;
     width: 100%;
-    background-color: #788;
-    z-index: map-get($z-indexes, "filter-expansion");
     padding-right: $menu_gap;
     transition: height 0.1s ease;
+    background-color: white;
+    z-index: map-get($z-indexes, "filter-expansion");
 
     @include respond-to(hover-device) {
         height: 3rem;
         border-bottom: 1px solid #ddd;
-        background-color: #fff;
         padding-right: 0;
     }
 
@@ -105,8 +104,7 @@
     }
 
     &__wrap {
-        background-color: #fff;
-        top: 4rem;
+        background-color: white;
         position: absolute;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 10px;
         z-index: map-get($z-indexes, "filter-expansion-wrap");
@@ -114,18 +112,15 @@
         padding-right: $menu_gap  + 2rem;
         @extend %viewport-wide;
         transition: top 0.4s ease-out;
-
-
-        height: calc(100vh - 4rem);
+        top: 7rem;
+        height: calc(100vh - 7rem);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
 
-        & > div, & > ul {
-            flex-grow: 1;
-        }
-
         @include respond-to(hover-device) {
+
+            top: 4rem;
             height: auto;
             display: flex;
             flex-direction: column;
@@ -169,7 +164,7 @@
     &__close-button {
 
         width: calc(100% + 4rem);
-        background-color: #fff;
+        background-color: white;
         border-top: 1px solid #ccc;
         height: 3rem;
         margin-left: -2rem;

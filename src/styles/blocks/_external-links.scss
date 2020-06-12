@@ -1,35 +1,22 @@
-.external-links, .share-box {
+$but-height: 4.4rem;
 
+.external-links, .share-box{
     &__wrap {
         width: inherit;
         @extend %custom-border-top;
     }
 
-    &__list {
-
-    }
-
     &__item {
+
+        text-align: center;
+
         &:not(:last-child) {
             @extend %custom-border-bottom;
         }
-        text-align: center;
 
-        //[role="button"] {
-        //    color: #aaa;
-        //}
-
-        &:hover, &:active {
-            .external-links__link, .share-box__icon {
-                color: #6a6a6a;
-                font-size: 1.2rem;
-            }
-        }
-        .external-links__link, .share-box__icon {
-            height: 4.4rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .external-links__link {
+            height: $but-height;
+            @extend %flex-center-children;
         }
     }
 
@@ -38,8 +25,43 @@
         width: 100%;
         height: 100%;
         display: inline-block;
-        padding: 1rem 0;
 
     }
+}
 
+.external-links{
+    &__link:not(.external-links__link--disabled) {
+        &:hover, &:active {
+            .external-links__icon {
+                color: #6a6a6a;
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    &__link {
+        padding: 1rem 0;
+        &--disabled {
+            cursor: auto;
+            & > span {
+                color: #eee;
+            }
+        }
+    }
+}
+
+.share-box {
+     .share-box__item {
+         height: $but-height;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         @extend %flex-center-children;
+         &:hover, &:active {
+            .share-box__icon {
+                color: #6a6a6a;
+                font-size: 1.2rem;
+            }
+        }
+    }
 }

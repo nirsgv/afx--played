@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Items from '../components/items';
@@ -7,8 +7,8 @@ import { combineByObjKeysArr } from '../helpers/str';
 import { scrollTop } from '../helpers/dom';
 import { checkIntroNecessity } from '../helpers/localStorage';
 import { yearsMap } from '../data/periodMap.js';
-import { dispatchMessageToModal, toggleShareExpansion, setPlayerItem, setSpaPageName, resetBatch, filterByTagCb,
-         cancelWelcomeIntro } from "../actions";
+import { dispatchMessageToModal, toggleShareExpansion, setPlayerItem, setSpaPageName,
+         resetBatch, filterByTagCb, cancelWelcomeIntro } from "../actions";
 import FilterIndex from './filterIndex';
 import WelcomeMessage from '../components/welcomeMessage';
 
@@ -35,6 +35,8 @@ const Main = ({ filteredByTags,
     }, [ filteredByTags, filteredByPeriods ]);
 
     const tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data;
+    const [ entranceClassName, setEntranceClassName ] = useState('faded-in-from-bottom');
+
 
     const checkboxActivated = {
         searchTrackTitles,
@@ -59,11 +61,12 @@ const Main = ({ filteredByTags,
         <>
             <FilterIndex itemsCount={tracksFiltered.length}/>
 
-            {shouldPresentWelcomeIntro && <WelcomeMessage cancelWelcomeIntro={cancelWelcomeIntro}/>}
-
-            <ul className="track-items track-items--animated">
-                <Items tracksFiltered={tracksPaginated} setPlayerItem={setPlayerItem} />
-            </ul>
+            <div className={`animate-content ${entranceClassName}`} onAnimationEnd={() => setEntranceClassName('')}>
+                {shouldPresentWelcomeIntro && <WelcomeMessage cancelWelcomeIntro={cancelWelcomeIntro}/>}
+                <ul className="track-items track-items--animated">
+                    <Items tracksFiltered={tracksPaginated} setPlayerItem={setPlayerItem} />
+                </ul>
+            </div>
         </>
     )
 };

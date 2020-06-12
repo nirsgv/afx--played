@@ -1077,7 +1077,6 @@
     "DURATION": 327,
     "YEAR": 2017,
     "GENRES": [
-      "#AVA",
       "#IDM",
       "#MOD",
       "#AMB"
@@ -1232,7 +1231,6 @@
     "YEAR": 2015,
     "GENRES": [
       "#HOU",
-      "#TRI",
       "Leftfield",
       "Latin",
       "EBM",
@@ -2500,7 +2498,6 @@
     "GENRES": [
       "#BRN",
       "#IDM",
-      "Downtempo"
     ],
     "LINKS": {
       "APPLE": "https://music.apple.com/us/album/xmas-evet10-120-thanaton3-mix/911319255?i=911319268",
@@ -2579,7 +2576,6 @@
     "GENRES": [
       "#BRN",
       "#IDM",
-      "Downtempo"
     ],
     "LINKS": {
       "APPLE": "https://music.apple.com/us/album/180db-130/911319255?i=911319278",
@@ -2603,9 +2599,6 @@
     "DURATION": 289,
     "YEAR": 1981,
     "GENRES": [
-      "Pop Rock",
-      "Schlager",
-      "Art Rock",
       "#NEW",
       "#SYN"
     ],
@@ -3592,7 +3585,6 @@
     "DURATION": 186,
     "YEAR": 2000,
     "GENRES": [
-      "#TRI",
       "#TEC"
     ],
     "LINKS": {
@@ -3696,7 +3688,6 @@
     "GENRES": [
       "#BRN",
       "#IDM",
-      "Downtempo"
     ],
     "LINKS": {
       "APPLE": "https://music.apple.com/us/album/minipops-67-120-2-source-field-mix/911319255?i=911319264",
@@ -3793,7 +3784,6 @@
     "GENRES": [
       "#BRN",
       "#IDM",
-      "Downtempo"
     ],
     "LINKS": {
       "APPLE": "https://music.apple.com/us/album/papat4-155-pineal-mix/911319255?i=911319350",
@@ -3817,8 +3807,7 @@
     "YEAR": 2014,
     "GENRES": [
       "#BRN",
-      "#IDM",
-      "Downtempo"
+      "#IDM"
     ],
     "LINKS": {
       "APPLE": "https://music.apple.com/us/album/windowlicker/281953326?i=281953327",
@@ -5750,7 +5739,6 @@
     "YEAR": 1991,
     "GENRES": [
       "#BRN",
-      "Leftfield",
       "#TEC"
     ],
     "LINKS": {
@@ -5949,9 +5937,7 @@
       "EBM",
       "#IND",
       "#BRN",
-      "Minimal Techno",
-      "#HOU",
-      "Downtempo"
+      "#HOU"
     ],
     "LINKS": {
       "APPLE": "https://music.apple.com/us/album/sheen/1125871468?i=1125871614",
@@ -6100,7 +6086,6 @@
       "African",
       "#HOU",
       "Dub",
-      "#TRI",
       "#EXP"
     ],
     "LINKS": {
@@ -6908,11 +6893,9 @@
     "DURATION": 287,
     "YEAR": 1989,
     "GENRES": [
-      "Leftfield",
       "#BRN",
       "Dub",
-      "#ELE",
-      "Downtempo"
+      "#ELE"
     ],
     "LINKS": {
       "APPLE": "https://music.apple.com/us/album/the-phantom/828249382?i=828249490",
@@ -7897,8 +7880,7 @@
     "YEAR": 2014,
     "GENRES": [
       "#BRN",
-      "#IDM",
-      "Downtempo"
+      "#IDM"
     ],
     "LINKS": {
       "APPLE": "https://music.apple.com/us/album/syro-u473t8-e-141-98-piezoluminescence-mix/911319255?i=911319349",
@@ -8238,8 +8220,7 @@
     "YEAR": 2018,
     "GENRES": [
       "#IND",
-      "#EXP",
-      "#TRI"
+      "#EXP"
     ],
     "LINKS": {
       "APPLE": "",

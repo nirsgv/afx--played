@@ -11,10 +11,10 @@
     "SHOW_LOCATION": {
       "COUNTRY": "England",
       "CITY": "Falmouth",
-      "VENUE": "almouth Art Gallery",
+      "VENUE": "Falmouth Art Gallery",
       "SHOW_GEO": {
-        "LAT": 983,
-        "LNG": -356
+        "LAT": 50.1569754802915,
+        "LNG": -5.071085619708499
       }
     }
   },
@@ -32,8 +32,8 @@
       "CITY": "CA",
       "VENUE": "Empire Polo ClubIndio",
       "SHOW_GEO": {
-        "LAT": -413,
-        "LNG": 873
+        "LAT": 33.68149708029149,
+        "LNG": -116.2356671197085
       }
     }
   },
@@ -51,8 +51,8 @@
       "CITY": "Newquay",
       "VENUE": "Trevelgue Holiday Park",
       "SHOW_GEO": {
-        "LAT": -35,
-        "LNG": -921
+        "LAT": 50.4307467,
+        "LNG": -5.028394599999999
       }
     }
   },
@@ -70,8 +70,8 @@
       "CITY": "London",
       "VENUE": "Victoria Park",
       "SHOW_GEO": {
-        "LAT": 772,
-        "LNG": -469
+        "LAT": 51.53791038029151,
+        "LNG": -0.03762301970849797
       }
     }
   },
@@ -89,8 +89,8 @@
       "CITY": "Adelaide",
       "VENUE": "Ellis Park",
       "SHOW_GEO": {
-        "LAT": -303,
-        "LNG": 984
+        "LAT": -34.92644461970851,
+        "LNG": 138.5872391802915
       }
     }
   },
@@ -108,8 +108,8 @@
       "CITY": "Saint-Père",
       "VENUE": "Fort de Saint-Père",
       "SHOW_GEO": {
-        "LAT": 639,
-        "LNG": 846
+        "LAT": 48.56988258029149,
+        "LNG": -1.924334319708498
       }
     }
   },
@@ -127,8 +127,8 @@
       "CITY": "Minehead",
       "VENUE": "Butlins Holiday Resort",
       "SHOW_GEO": {
-        "LAT": -507,
-        "LNG": 307
+        "LAT": 51.20661468029149,
+        "LNG": -3.460406519708498
       }
     }
   },
@@ -146,8 +146,8 @@
       "CITY": "Dores",
       "VENUE": "Clune Farm",
       "SHOW_GEO": {
-        "LAT": 604,
-        "LNG": 648
+        "LAT": 57.3813212,
+        "LNG": -4.3191336
       }
     }
   },
@@ -165,8 +165,8 @@
       "CITY": "Barcelona",
       "VENUE": "Parc del Fòrum",
       "SHOW_GEO": {
-        "LAT": 729,
-        "LNG": 584
+        "LAT": 41.41280838029149,
+        "LNG": 2.226006680291502
       }
     }
   },
@@ -184,8 +184,8 @@
       "CITY": "Manchester",
       "VENUE": "Mayfield Depot",
       "SHOW_GEO": {
-        "LAT": -249,
-        "LNG": -887
+        "LAT": 53.47700358029149,
+        "LNG": -2.224403119708498
       }
     }
   },
@@ -203,8 +203,8 @@
       "CITY": "Melbourne",
       "VENUE": "Flemington Racecourse",
       "SHOW_GEO": {
-        "LAT": -912,
-        "LNG": -678
+        "LAT": -37.782017,
+        "LNG": -144.930902
       }
     }
   },
@@ -222,8 +222,8 @@
       "CITY": "Cannole",
       "VENUE": "Masseria Torcito",
       "SHOW_GEO": {
-        "LAT": -210,
-        "LNG": -434
+        "LAT": 40.1757240802915,
+        "LNG": 18.3768755802915
       }
     }
   },
@@ -241,8 +241,8 @@
       "CITY": "Barakaldo",
       "VENUE": "Bilbao Exhibition Centre",
       "SHOW_GEO": {
-        "LAT": 197,
-        "LNG": -14
+        "LAT": 43.2896527802915,
+        "LNG": -2.989449519708498
       }
     }
   },
@@ -260,8 +260,8 @@
       "CITY": "Sydney",
       "VENUE": "Enmore Theatre",
       "SHOW_GEO": {
-        "LAT": -324,
-        "LNG": -197
+        "LAT": -33.8976066197085,
+        "LNG": 151.1754878802915
       }
     }
   },
@@ -279,8 +279,8 @@
       "CITY": "Copenhagen",
       "VENUE": "Unknown Venue",
       "SHOW_GEO": {
-        "LAT": 340,
-        "LNG": 609
+        "LAT": 55.7270937,
+        "LNG": 12.7342654
       }
     }
   },
@@ -298,8 +298,8 @@
       "CITY": "Dublin",
       "VENUE": "Royal Hospital Kilmainham",
       "SHOW_GEO": {
-        "LAT": -818,
-        "LNG": -26
+        "LAT": 53.3442695802915,
+        "LNG": -6.298684919708498
       }
     }
   },
@@ -317,8 +317,8 @@
       "CITY": "Barcelona",
       "VENUE": "Razzmatazz",
       "SHOW_GEO": {
-        "LAT": -262,
-        "LNG": 526
+        "LAT": 41.3990688802915,
+        "LNG": 2.192454480291502
       }
     }
   },
@@ -336,8 +336,8 @@
       "CITY": "London",
       "VENUE": "Matter",
       "SHOW_GEO": {
-        "LAT": -352,
-        "LNG": 546
+        "LAT": 51.51527958029149,
+        "LNG": -0.130192719708498
       }
     }
   },
@@ -355,8 +355,8 @@
       "CITY": "Madrid",
       "VENUE": "Fabrik",
       "SHOW_GEO": {
-        "LAT": -717,
-        "LNG": 921
+        "LAT": 40.26680458029149,
+        "LNG": -3.839137119708497
       }
     }
   },
@@ -374,8 +374,8 @@
       "CITY": "Eindhoven",
       "VENUE": "Klokgebouw",
       "SHOW_GEO": {
-        "LAT": -871,
-        "LNG": -481
+        "LAT": 51.4500415302915,
+        "LNG": 5.458318230291502
       }
     }
   },
@@ -393,8 +393,8 @@
       "CITY": "Penryn",
       "VENUE": "Miss Peapod's",
       "SHOW_GEO": {
-        "LAT": 266,
-        "LNG": -706
+        "LAT": 50.1688418802915,
+        "LNG": -5.095748119708499
       }
     }
   },
@@ -412,8 +412,8 @@
       "CITY": "Singapore",
       "VENUE": "Esplanade Concert Hall",
       "SHOW_GEO": {
-        "LAT": -741,
-        "LNG": 761
+        "LAT": 1.290676880291502,
+        "LNG": 103.8565822802915
       }
     }
   },
@@ -431,8 +431,8 @@
       "CITY": "NY",
       "VENUE": "Avant GardnerBrooklyn",
       "SHOW_GEO": {
-        "LAT": -829,
-        "LNG": -615
+        "LAT": 40.71198528029149,
+        "LNG": -73.92483011970849
       }
     }
   },
@@ -450,8 +450,8 @@
       "CITY": "Helsinki",
       "VENUE": "Suvilahti",
       "SHOW_GEO": {
-        "LAT": 754,
-        "LNG": -406
+        "LAT": 60.1918961,
+        "LNG": 24.9872543
       }
     }
   },
@@ -469,8 +469,8 @@
       "CITY": "Paris",
       "VENUE": "Grande Halle de la Villette",
       "SHOW_GEO": {
-        "LAT": -625,
-        "LNG": -610
+        "LAT": 48.8904412802915,
+        "LNG": 2.395780980291502
       }
     }
   },
@@ -488,8 +488,8 @@
       "CITY": "Toluca",
       "VENUE": "Foro Pegaso",
       "SHOW_GEO": {
-        "LAT": -817,
-        "LNG": 659
+        "LAT": 19.3688892802915,
+        "LNG": -99.55607391970848
       }
     }
   },
@@ -507,8 +507,8 @@
       "CITY": "Manchester",
       "VENUE": "Warehouse Project",
       "SHOW_GEO": {
-        "LAT": 317,
-        "LNG": 357
+        "LAT": 53.4770916802915,
+        "LNG": -2.226877219708498
       }
     }
   },
@@ -526,8 +526,8 @@
       "CITY": "Wrocław",
       "VENUE": "Hala Stulecia",
       "SHOW_GEO": {
-        "LAT": 210,
-        "LNG": -656
+        "LAT": 51.10821778029151,
+        "LNG": 17.0786339802915
       }
     }
   },
@@ -545,8 +545,8 @@
       "CITY": "Copenhagen",
       "VENUE": "Tap1",
       "SHOW_GEO": {
-        "LAT": -492,
-        "LNG": 728
+        "LAT": 55.67379098029149,
+        "LNG": 12.6227299802915
       }
     }
   },
@@ -564,8 +564,8 @@
       "CITY": "Joensuu",
       "VENUE": "Laulurinne",
       "SHOW_GEO": {
-        "LAT": -925,
-        "LNG": -74
+        "LAT": 62.59612860000001,
+        "LNG": 29.73626569999999
       }
     }
   },
@@ -583,8 +583,8 @@
       "CITY": "Chiba",
       "VENUE": "Makuhari Messe",
       "SHOW_GEO": {
-        "LAT": 303,
-        "LNG": -200
+        "LAT": 35.6495549802915,
+        "LNG": 140.0359796802915
       }
     }
   },
@@ -602,8 +602,8 @@
       "CITY": "Rome",
       "VENUE": "Palazzo dei Congressi",
       "SHOW_GEO": {
-        "LAT": -201,
-        "LNG": 58
+        "LAT": 41.8354077802915,
+        "LNG": 12.4758943802915
       }
     }
   },
@@ -621,8 +621,8 @@
       "CITY": "Oporto",
       "VENUE": "Parque da Cidade",
       "SHOW_GEO": {
-        "LAT": -125,
-        "LNG": -182
+        "LAT": 41.16867389999999,
+        "LNG": -8.6788358
       }
     }
   },
@@ -640,8 +640,8 @@
       "CITY": "Brisbane",
       "VENUE": "Doomben Racecourse",
       "SHOW_GEO": {
-        "LAT": -415,
-        "LNG": 247
+        "LAT": -27.4272684197085,
+        "LNG": 153.0757021802915
       }
     }
   },
@@ -659,8 +659,8 @@
       "CITY": "Dublin",
       "VENUE": "Royal Hospital Kilmainham",
       "SHOW_GEO": {
-        "LAT": -123,
-        "LNG": -504
+        "LAT": 53.34291700000001,
+        "LNG": -6.300048
       }
     }
   },
@@ -678,8 +678,8 @@
       "CITY": "London",
       "VENUE": "Printworks",
       "SHOW_GEO": {
-        "LAT": 158,
-        "LNG": 305
+        "LAT": 51.49780270000001,
+        "LNG": -0.0439263
       }
     }
   },
@@ -697,8 +697,8 @@
       "CITY": "London",
       "VENUE": "Hyde Park",
       "SHOW_GEO": {
-        "LAT": 682,
-        "LNG": -370
+        "LAT": 51.50861718029149,
+        "LNG": -0.164381319708498
       }
     }
   },
@@ -716,8 +716,8 @@
       "CITY": "London",
       "VENUE": "Barbican Centre",
       "SHOW_GEO": {
-        "LAT": -700,
-        "LNG": -994
+        "LAT": 51.5215566802915,
+        "LNG": -0.09243741970849796
       }
     }
   },
@@ -735,8 +735,8 @@
       "CITY": "Saint-Cloud",
       "VENUE": "Domaine national de Saint-Cloud",
       "SHOW_GEO": {
-        "LAT": 464,
-        "LNG": -824
+        "LAT": 48.83672360000001,
+        "LNG": 2.2186507
       }
     }
   },
@@ -754,8 +754,8 @@
       "CITY": "Berlin",
       "VENUE": "Funkhaus Berlin",
       "SHOW_GEO": {
-        "LAT": -913,
-        "LNG": 109
+        "LAT": 52.48089218029149,
+        "LNG": 13.5016275802915
       }
     }
   },
@@ -773,8 +773,8 @@
       "CITY": "Perth",
       "VENUE": "Arena Joondalup",
       "SHOW_GEO": {
-        "LAT": 138,
-        "LNG": -646
+        "LAT": -31.735314,
+        "LNG": 115.760647
       }
     }
   },
@@ -792,8 +792,8 @@
       "CITY": "Cannole",
       "VENUE": "Masseria Torcito",
       "SHOW_GEO": {
-        "LAT": 454,
-        "LNG": -389
+        "LAT": 40.1743751,
+        "LNG": 18.3755266
       }
     }
   },
@@ -811,8 +811,8 @@
       "CITY": "l'Hospitalet de Llobregat",
       "VENUE": "Fira de Barcelona - Gran Via",
       "SHOW_GEO": {
-        "LAT": -514,
-        "LNG": 456
+        "LAT": 41.3547222,
+        "LNG": 2.1277778
       }
     }
   },
@@ -830,8 +830,8 @@
       "CITY": "Barcelona",
       "VENUE": "Razzmatazz",
       "SHOW_GEO": {
-        "LAT": -431,
-        "LNG": -771
+        "LAT": 41.3977199,
+        "LNG": 2.1911055
       }
     }
   },
@@ -849,8 +849,8 @@
       "CITY": "Wels",
       "VENUE": "Rockarena",
       "SHOW_GEO": {
-        "LAT": -657,
-        "LNG": -728
+        "LAT": 48.16542,
+        "LNG": 14.03664
       }
     }
   },
@@ -868,8 +868,8 @@
       "CITY": "Livorno",
       "VENUE": "Stadio Comunale Armando Picchi",
       "SHOW_GEO": {
-        "LAT": 228,
-        "LNG": 551
+        "LAT": 43.5265463,
+        "LNG": 10.3143589
       }
     }
   },
@@ -887,8 +887,8 @@
       "CITY": "Düdingen",
       "VENUE": "Bad Bonn",
       "SHOW_GEO": {
-        "LAT": -138,
-        "LNG": -8
+        "LAT": 46.8615646,
+        "LNG": 7.1801581
       }
     }
   },
@@ -906,8 +906,8 @@
       "CITY": "Kraków",
       "VENUE": "Hala Ocynowni ArcelorMittal Poland",
       "SHOW_GEO": {
-        "LAT": 653,
-        "LNG": -830
+        "LAT": 50.0827784,
+        "LNG": 20.0735397
       }
     }
   },
@@ -925,8 +925,8 @@
       "CITY": "Melbourne",
       "VENUE": "Palace Theatre",
       "SHOW_GEO": {
-        "LAT": -840,
-        "LNG": 259
+        "LAT": -37.8114025,
+        "LNG": 144.9722943
       }
     }
   },
@@ -944,8 +944,8 @@
       "CITY": "Osaka",
       "VENUE": "Maishima",
       "SHOW_GEO": {
-        "LAT": 656,
-        "LNG": -956
+        "LAT": 34.662358,
+        "LNG": 135.3944627
       }
     }
   },
@@ -963,8 +963,8 @@
       "CITY": "Constantine",
       "VENUE": "Retallack Woodlands",
       "SHOW_GEO": {
-        "LAT": -575,
-        "LNG": -92
+        "LAT": 50.45613729999999,
+        "LNG": -4.9139532
       }
     }
   },
@@ -982,8 +982,8 @@
       "CITY": "London",
       "VENUE": "Victoria Park",
       "SHOW_GEO": {
-        "LAT": -369,
-        "LNG": 234
+        "LAT": 51.53791038029151,
+        "LNG": -0.03762301970849797
       }
     }
   },
@@ -1001,8 +1001,8 @@
       "CITY": "Manchester",
       "VENUE": "Warehouse Project",
       "SHOW_GEO": {
-        "LAT": 256,
-        "LNG": -602
+        "LAT": 53.4770916802915,
+        "LNG": -2.226877219708498
       }
     }
   },
@@ -1020,8 +1020,8 @@
       "CITY": "CA",
       "VENUE": "Empire Polo ClubIndio",
       "SHOW_GEO": {
-        "LAT": 369,
-        "LNG": -808
+        "LAT": 33.68149708029149,
+        "LNG": -116.2356671197085
       }
     }
   },
@@ -1039,8 +1039,8 @@
       "CITY": "TX",
       "VENUE": "Barbara Jordan Post OfficeHouston",
       "SHOW_GEO": {
-        "LAT": 0,
-        "LNG": 0
+        "LAT": 29.76606959999999,
+        "LNG": -95.36458990000001
       }
     }
   },
@@ -1058,8 +1058,8 @@
       "CITY": "Sydney",
       "VENUE": "Royal Randwick Racecourse",
       "SHOW_GEO": {
-        "LAT": 638,
-        "LNG": 51
+        "LAT": -33.9086394,
+        "LNG": 151.2290349
       }
     }
   },
@@ -1077,8 +1077,8 @@
       "CITY": "Caen",
       "VENUE": "Parc des Expositions",
       "SHOW_GEO": {
-        "LAT": -764,
-        "LNG": -911
+        "LAT": 49.1719444,
+        "LNG": -0.3797222
       }
     }
   },
@@ -1096,8 +1096,8 @@
       "CITY": "Ibiza Town",
       "VENUE": "Space",
       "SHOW_GEO": {
-        "LAT": -504,
-        "LNG": -687
+        "LAT": 38.90774,
+        "LNG": 1.429514
       }
     }
   },
@@ -1552,8 +1552,8 @@
       "CITY": "Manchester",
       "VENUE": "Warehouse Project",
       "SHOW_GEO": {
-        "LAT": 940,
-        "LNG": 645
+        "LAT": 53.4770916802915,
+        "LNG": -2.226877219708498
       }
     }
   },

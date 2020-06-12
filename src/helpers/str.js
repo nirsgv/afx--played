@@ -59,11 +59,16 @@ const getMonthFromShort = (str) => {
 
 const expClass = (expandedFilter, filter) => expandedFilter === filter ? '--on' : '';
 
+const getLeftToComma = (str) => {
+    return str.split(',')[0]
+};
+
 export {
     evaluateKey,
     getDurationFromSeconds,
     combineByObjKeysArr,
     copyToClipboard,
     getMonthFromShort,
-    expClass
+    expClass,
+    getLeftToComma
 }

@@ -1,13 +1,8 @@
 import React from 'react';
 import SvgSprite from './svgSprite';
-import {imgData} from '../data/localImgData';
 import List from "./list";
 
-
-function ExternalLinks(props) {
-
-    const {links} = props;
-    const { src, description } = imgData.sprite;
+function ExternalLinks({ links={}, blockClassName='' }) {
 
     const linksOrdered = Object.assign({}, {
         YOUTUBE: links.YOUTUBE,
@@ -15,19 +10,24 @@ function ExternalLinks(props) {
         APPLE: links.APPLE,
         DEEZER: links.DEEZER
     });
-
+console.log(linksOrdered);
     return (
         <nav className='links__wrap'>
-            <List baseClassName={"external-links"}>
+            <List baseClassName={blockClassName}>
                 {linksOrdered &&
                 typeof linksOrdered === 'object' &&
                 Object.keys(linksOrdered).map((platform, index) => {
                         let link = linksOrdered[platform];
                         return (
-                            <a href={link} target="blank" className={"external-links__link"} key={index}>
-                                <SvgSprite classes={`logo--${platform.toLowerCase()}`}
-                                           src={src} alt={platform} description={description}
-                                           name={platform} />
+                            <a href={link}
+                               target="blank"
+                               className={`${blockClassName}__link ${blockClassName}__link--${link !== 'null' ? 'active' : 'disabled'}`}
+                               key={index}
+                            >
+                                <SvgSprite classes={`${blockClassName}__icon ${blockClassName}__icon--${platform.toLowerCase()}`}
+                                           alt={platform}
+                                           name={platform}
+                                />
                             </a>
                         )
                     }

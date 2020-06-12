@@ -2,6 +2,11 @@
 
   color: #444;
   padding: .8rem 0 0 0;
+  margin-bottom: auto;
+
+  @include respond-to(hover-device) {
+    margin-bottom: 0;
+  }
 
   .expanded-item & {
     //margin-bottom: 1.6rem;
@@ -50,7 +55,7 @@
     }
 
     &--active {
-      color: #fff;
+      color: white;
       background-color: map-get($colors, "autobulb-green");
       background-color: #23543Ccc;
     }
