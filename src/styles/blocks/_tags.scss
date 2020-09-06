@@ -1,57 +1,67 @@
 .tags {
 
-    color: #444;
-    padding: .8rem;
   color: #444;
-  padding: 0rem;
-  /* margin: auto 0 0.4rem 0; */
-  margin-top: auto;
+  padding: .8rem 0 0 0;
+  margin-bottom: auto;
+
+  @include respond-to(hover-device) {
+    margin-bottom: 0;
+  }
+
   .expanded-item & {
-    margin-bottom: 1.6rem;
+    //margin-bottom: 1.6rem;
   }
 
   .list-view & {
     padding: .8rem 0;
   }
 
-    &__item {
-        background-color: #efefef;
-        display: inline-block;
-        border-radius: 5rem;
-        padding: .5rem .8rem;
-        margin: 0 0.6rem 1rem 0;
-        font-size: 1rem;
-        transition: background-color 0.15s ease-out;
-        white-space: nowrap;
+  &__item {
 
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      -khtml-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      text-decoration: none;
-      cursor: pointer;
-
-        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
-          font-size: 1.2rem;
-          padding: .5rem 1.3rem;
-        }
-
-        &--inactive {
-            color: #aaa;
-        }
-
-       &--active {
-            color: #fff;
-            background-color: map-get($colors, "tag-highlight");
-
-         color: #777;
-         background-color: #ddd;
-        }
-
-        &:empty {
-            display: none;
-        }
+    .track &, .expanded-item & {
+      background-color: transparent;
+      color: #23543C;
+      border-bottom: 1px solid;
+      padding: 0.2rem 0;
     }
+
+    .filter-expansion__wrap & {
+      border-radius: 5rem;
+      padding: 0.2rem 0.7rem;
+    }
+
+    background-color: #efefef;
+    display: inline-block;
+    margin: 0 0.6rem 1rem 0;
+    font-size: 1rem;
+    transition: background-color 0.15s ease-out;
+    white-space: nowrap;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    text-decoration: none;
+    cursor: pointer;
+
+    @include respond-to(hover-device) {
+      font-size: 1.2rem;
+    }
+
+    &--inactive {
+      color: #aaa;
+    }
+
+    &--active {
+      color: white;
+      background-color: map-get($colors, "autobulb-green");
+      background-color: #23543Ccc;
+    }
+
+    &:empty {
+      display: none;
+    }
+  }
 }

@@ -6,16 +6,26 @@ const _isThereLocalData = (key) => {
 
 
 const _isDataRecent = (key) => {
-    const now = Date.now();
-    const ONE_WEEK = 604800000;
-    const dateOfObjInLocal = JSON.parse(localStorage.getItem(key)).date;
-    return dateOfObjInLocal > now - ONE_WEEK;
+    const now = Date.now(),
+          ONE_DAY = 86400000,
+          dateOfObjInLocal = JSON.parse(localStorage.getItem(key)).date;
+    return dateOfObjInLocal > now - ONE_DAY;
 };
 
+// if intro was not recently shown, set date on corresponding local-storage key otherwise cancel presentation
+const checkIntroNecessity = (key, cb) => {
+    if ( !_isThereLocalData(key) || !_isDataRecent(key) )  {
+        localStorage.setItem(key, JSON.stringify (
+            { date: Date.now() }
+        ));
+    } else {
+        cb();
+    }
+};
 
-const updatedLS = (url, key, cb) => {
+const fetchUnstoraged = (url, key, cb) => {
     if ( !_isThereLocalData(key) || !_isDataRecent(key) ) {
-        // fetch and set as local data
+        url = window.location.origin + url;
         fetch(url)
             .then(response => response.json())
             .then(data => {
@@ -23,7 +33,6 @@ const updatedLS = (url, key, cb) => {
                     date: Date.now(),
                     data
                 }));
-                //console.log(localStorage.getItem(key));
                 cb(true);
             })
             .catch(error => console.error(error));
@@ -32,4 +41,4 @@ const updatedLS = (url, key, cb) => {
     }
 };
 
-export { updatedLS };
+export { checkIntroNecessity, fetchUnstoraged };

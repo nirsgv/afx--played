@@ -1,18 +1,19 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Item from "./item";
 
-function Items ({ tracksFiltered, setPlayerItem, setSampleId }) {
+
+function Items ({ tracksFiltered, setPlayerItem }) {
 
     return (
-        tracksFiltered.map((item, index) => {
-            return (
-                <Item key={index} trackData={item} setPlayerItem={setPlayerItem} setSampleId={setSampleId} />
-            )
-        })
+        <>
+            {tracksFiltered.map((item, index) => {
+                return (
+                    <Item key={index} trackData={item} setPlayerItem={setPlayerItem}/>
+                )
+            })}
+        </>
     )
 }
-export default Items;
-
 
 // class Items extends React.Component {
 //
@@ -27,10 +28,12 @@ export default Items;
 //             <>
 //                 {this.props.tracksFiltered.map((item, index) => {
 //                     return (
-//                         <Item key={index} trackData={item} isPlayingEmbedded={this.props.isPlayingEmbedded} setPlayerItem={this.props.setPlayerItem}/>
+//                         <Item key={index} trackData={item} setPlayerItem={this.props.setPlayerItem}/>
 //                     )
 //                 })}
 //             </>
 //         )
 //     }
 // }
+
+export default Items;

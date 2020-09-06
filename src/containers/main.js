@@ -1,33 +1,41 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Items from '../components/items';
 import { hasTags, withinPeriod, hasMatchingText, inViewRange } from '../helpers/comparitors';
 import { combineByObjKeysArr } from '../helpers/str';
+import { scrollTop } from '../helpers/dom';
+import { checkIntroNecessity } from '../helpers/localStorage';
 import { yearsMap } from '../data/periodMap.js';
-import {dispatchMessageToModal, toggleShareExpansion, setPlayerItem, setSpaPageName, setSampleId} from "../actions";
+import { dispatchMessageToModal, toggleShareExpansion, setPlayerItem, setSpaPageName,
+         resetBatch, filterByTagCb, cancelWelcomeIntro } from "../actions";
+import FilterIndex from './filterIndex';
+import WelcomeMessage from '../components/welcomeMessage';
 
-
-const Main = ({
-                  filteredByTags,
-                  filteredByPeriods,
-                  filteredBySearch,
-                  searchArtistNames,
-                  searchTrackTitles,
-                  searchAlbumTitles,
-                  itemsBatchAmt,
-                  batchNum,
-                  setSpaPageName,
-                  isPlayingEmbedded,
-                  setPlayerItem,
-                  setSampleId
+const Main = ({ filteredByTags,
+                filteredByPeriods,
+                filteredBySearch,
+                searchArtistNames,
+                searchTrackTitles,
+                searchAlbumTitles,
+                itemsBatchAmt,
+                batchNum,
+                setSpaPageName,
+                setPlayerItem,
+                resetBatch,
+                shouldPresentWelcomeIntro,
+                cancelWelcomeIntro
               }) => {
 
     useEffect(() => {
         setSpaPageName && setSpaPageName('home');
-    }, []);
+        checkIntroNecessity('afx-local_intro', cancelWelcomeIntro);
+        resetBatch();
+        scrollTop();
+    }, [ filteredByTags, filteredByPeriods ]);
 
     const tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data;
+    const [ entranceClassName, setEntranceClassName ] = useState('faded-in-from-bottom');
 
 
     const checkboxActivated = {
@@ -45,23 +53,26 @@ const Main = ({
             .filter(memoTagsResult)
             .filter(withinPeriod(memoPeriodResult))
             .filter(hasMatchingText(filteredBySearch, checkboxActivated))
-            .filter(memoRangeResult)
-        : '', [filteredByTags, filteredByPeriods, filteredBySearch, batchNum]);
+        : '', [filteredByTags, filteredByPeriods, filteredBySearch, checkboxActivated, batchNum]);
 
-    const filteredItems = <Items tracksFiltered={tracksFiltered} setPlayerItem={setPlayerItem} setSampleId={setSampleId} />;
+    const tracksPaginated = tracksFiltered.filter(memoRangeResult);
 
     return (
         <>
-            <ul className="track-items track-items--animated">
-                { filteredItems }
-            </ul>
+            <FilterIndex itemsCount={tracksFiltered.length}/>
+
+            <div className={`animate-content ${entranceClassName}`} onAnimationEnd={() => setEntranceClassName('')}>
+                {shouldPresentWelcomeIntro && <WelcomeMessage cancelWelcomeIntro={cancelWelcomeIntro}/>}
+                <ul className="track-items track-items--animated">
+                    <Items tracksFiltered={tracksPaginated} setPlayerItem={setPlayerItem} />
+                </ul>
+            </div>
         </>
     )
 };
 
 
 const mapStateToProps = state => ({
-    isPlayingEmbedded: state.player.isPlayingEmbedded,
     filteredByTags: state.appData.filteredByTags,
     filteredByPeriods: state.appData.filteredByPeriods,
     filteredBySearch: state.appData.filteredBySearch,
@@ -70,6 +81,7 @@ const mapStateToProps = state => ({
     searchAlbumTitles: state.appData.searchAlbumTitles,
     itemsBatchAmt: state.appData.itemsBatchAmt,
     batchNum: state.appData.batchNum,
+    shouldPresentWelcomeIntro: state.appData.shouldPresentWelcomeIntro
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -77,7 +89,9 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     dispatchMessageToModal,
     setPlayerItem,
     setSpaPageName,
-    setSampleId
+    resetBatch,
+    filterByTagCb,
+    cancelWelcomeIntro
 }, dispatch);
 
 export default connect(

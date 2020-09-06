@@ -1,12 +1,12 @@
 const messagesMap = {
     'URL_COPIED': {
-        countdown: 135,
-        content: 'The URL is copied to the clipboard.',
+        countdown: 4,
+        content: 'Address Copied.',
         type: 'success',
         iconName: 'CHECK'
     },
     'PLAY_ERROR': {
-        countdown: 135,
+        countdown: 4,
         content: 'Could not play this file.',
         type: 'error',
         iconName: 'EXCLAMATION'

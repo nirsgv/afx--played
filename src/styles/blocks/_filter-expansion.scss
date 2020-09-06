@@ -5,15 +5,14 @@
     top: 0;
     height: 7rem;
     width: 100%;
-    background-color: #788;
-    z-index: map-get($z-indexes, "filter-expansion");
     padding-right: $menu_gap;
     transition: height 0.1s ease;
+    background-color: white;
+    z-index: map-get($z-indexes, "filter-expansion");
 
-    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
-        height: 4rem;
+    @include respond-to(hover-device) {
+        height: 3rem;
         border-bottom: 1px solid #ddd;
-        background-color: #fff;
         padding-right: 0;
     }
 
@@ -29,9 +28,9 @@
         left: 0;
         @extend %site-wide-padding;
 
-        .scrolled & {
+        .header--minified & {
 
-            @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+            @include respond-to(hover-device) {
             }
         }
 
@@ -39,18 +38,9 @@
     }
 
     &__item {
-        color: #ccc;
         @extend .inline-list-item-margin;
-        font-size: 1.6rem;
-
-        &:first-child {
-
-            // filter by
-            & * {
-                color: #000;
-                margin-right: 2rem;
-            }
-        }
+        color: #ccc;
+        font-size: 1.2rem;
 
         @media (max-width: map-get($b-points, "mob")) {
             display: flex;
@@ -65,17 +55,12 @@
             margin-right: 0;
         }
 
-        //&--expansion-toggle {
-        //    margin-right: auto;
-        //}
-
-
         & span {
 
-            @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
-                padding-bottom: 1.3rem;
+            @include respond-to(hover-device) {
+                //padding-bottom: 1.3rem;
 
-                .scrolled & {
+                .header--minified & {
                     padding-bottom: 0;
                     height: 100%;
                     display: flex;
@@ -83,15 +68,14 @@
                     justify-content: center;
                 }
             }
+
         }
 
         &--on {
-        //color: #333;
+        text-decoration: underline;
 
-            @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
-                //color: #ccc;
-                //border-bottom: 4px solid #ddd;
-                border-bottom: 6px solid #ddd;
+            .main-filters--expanded & {
+                color: #555;
             }
         }
 
@@ -120,25 +104,23 @@
     }
 
     &__wrap {
-        background-color: #fff;
-        top: 4rem;
+        background-color: white;
         position: absolute;
         box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 10px;
         z-index: map-get($z-indexes, "filter-expansion-wrap");
         padding: 2rem 2rem 0 2rem;
         padding-right: $menu_gap  + 2rem;
         @extend %viewport-wide;
-
-        height: calc(100vh - 4rem);
+        transition: top 0.4s ease-out;
+        top: 7rem;
+        height: calc(100vh - 7rem);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
 
-        & > div, & > ul {
-            flex-grow: 1;
-        }
+        @include respond-to(hover-device) {
 
-        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+            top: 4rem;
             height: auto;
             display: flex;
             flex-direction: column;
@@ -147,16 +129,13 @@
             padding-left: 12rem;
 
             &--close {
-                // top: -40rem;
-                transform: translateY(-40rem);
+                top: -40rem;
+
             }
 
             &--open {
-                // top: 4rem;
-                transform: translateY(0rem);
-
+                top: 3rem;
             }
-
         }
     }
 
@@ -185,13 +164,13 @@
     &__close-button {
 
         width: calc(100% + 4rem);
-        background-color: #fff;
+        background-color: white;
         border-top: 1px solid #ccc;
         height: 3rem;
         margin-left: -2rem;
         text-align: center;
 
-        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+        @include respond-to(hover-device) {
             width: 100vw;
             left: 0;
             margin-left: -12rem;
@@ -201,6 +180,23 @@
     &__clear-all-button {
         padding-bottom: 1rem;
         text-align: left;
+    }
+}
+
+.funnel-button {
+
+    font-size: 1rem;
+
+    .header--minified & {
+        height: 100%;
+    }
+
+    &--closed {
+        color: #ccc;
+    }
+
+    &--open {
+        color: #aaa;
     }
 }
 
@@ -215,7 +211,7 @@
     right: calc(-100% - 20rem);
     z-index: map-get($z-indexes, "nav-slide");
 
-    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+    @include respond-to(hover-device) {
         position: relative;
         box-shadow: none;
         right: 0;

@@ -1,4 +1,5 @@
 @import 'variables.scss';
+@import 'media-queries.scss';
 @import 'fonts.scss';
 @import 'reset.scss';
 @import 'mixins.scss';
@@ -7,10 +8,11 @@
 @import 'animations.scss';
 @import 'blocks/_main-nav.scss';
 @import 'blocks/_filter-expansion.scss';
+@import 'blocks/filter-index.scss';
 @import 'blocks/_track.scss';
 @import 'blocks/_tags.scss';
 @import 'blocks/_links.scss';
-@import 'blocks/_inner-page.scss';
+@import 'blocks/_expanded-item.scss';
 @import 'blocks/_bkg-holder.scss';
 @import 'blocks/_concerts.scss';
 @import 'blocks/_modal-box.scss';
@@ -18,12 +20,19 @@
 @import 'blocks/_splash.scss';
 @import 'blocks/_main-search.scss';
 @import 'blocks/_switch-button.scss';
+@import 'blocks/_welcome-message.scss';
 @import 'blocks/_quick-slide.scss';
 @import 'blocks/_player.scss';
 @import 'blocks/_share-box.scss';
 @import 'blocks/_footer.scss';
 @import 'blocks/_darken-layer.scss';
 @import 'blocks/_checkbox.scss';
+@import 'blocks/_back-button.scss';
+@import 'blocks/_more-info-button.scss';
+@import 'blocks/_internal-links.scss';
+@import 'blocks/_external-links.scss';
+@import 'blocks/_about.scss';
+@import 'blocks/_google-map.scss';
 
 * {
     touch-action: manipulation;
@@ -31,7 +40,9 @@
 
 body {
     background-color: map-get($colors, "body-bkg");
-    font-family: 'Open Sans', sans-serif;
+    //font-family: 'Open Sans', sans-serif;
+    font-family: Verdana, Geneva, sans-serif;
+
 }
 
 // h1 - h6

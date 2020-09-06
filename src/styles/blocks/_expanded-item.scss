@@ -1,0 +1,146 @@
+$gap: 2rem;
+
+.expanded-item {
+
+  .bkg__layer {
+    background-attachment: fixed;
+  }
+
+  &__wrap {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &--animated {
+    animation-name: example;
+    animation-duration: .5s;
+    animation-timing-function: ease-out;
+  }
+
+  &__none {
+    font-size: 1.2rem;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: column;
+
+    @include respond-to(hover-device) {
+      flex-direction: row;
+    }
+  }
+
+  .details-and-shows {
+    flex-grow: 1;
+    @include respond-to(hover-device) {
+      padding-right: $gap;
+    }
+  }
+
+  .links-and-share {
+    flex-basis: 18rem;
+  }
+
+  .details-and-shows, .links-and-share {
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  &__details, &__shows, &__external-links, &__share {
+    background-color: white;
+    @extend %custom-border;
+    margin-bottom: $gap;
+    border-radius: 6px;
+    padding: 2rem;
+  }
+
+  //&__back {
+  //  margin-bottom: $gap;
+  //  border-radius: 6px;
+  //  padding: 2rem 0;
+  //
+  //}
+
+  &__details {
+  }
+
+  &__shows {
+  }
+
+  &__external-links {
+  }
+
+  &__share {
+  }
+
+  &__section-title {
+    font-size: 1.5rem;
+    font-style: italic;
+    margin-bottom: .8rem;
+    color: #6a6a6a;
+  }
+
+  @keyframes example {
+    from {
+      top: 10px;
+      opacity: 0;
+    }
+    to {
+      top: 0;
+      opacity: 1;
+    }
+  }
+
+  &__artist-name {
+    font-size: 2rem;
+  }
+
+  &__album-title {
+
+  }
+
+  .split-hori {
+    display: flex;
+    margin-bottom: 0.8rem;
+  }
+
+}
+
+.inner-item {
+  &__term, &__definition {
+    display: inline-block;
+    font-size: 1.2rem;
+
+  }
+
+  &__term {
+    margin-bottom: .2rem;
+    margin-right: 0.8rem;
+    font-weight: 700;
+  }
+
+  &__definition {
+    margin-bottom: 1rem;
+    margin-right: 0.6rem;
+    font-weight: 400;
+  }
+
+}
+
+.img {
+
+  &--loading {
+    filter: blur(3rem);
+  }
+
+  &--loaded {
+    filter: blur(0);
+  }
+
+  &__wrap {
+    overflow: hidden;
+  }
+}

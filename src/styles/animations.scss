@@ -1,12 +1,12 @@
 
 .faded-in-from-bottom {
     animation-name: fadedInFromBottom;
-    animation-duration: 1.5s;
+    animation-duration: .75s;
     animation-timing-function: ease-out;
 }
 
 @keyframes fadedInFromBottom {
-    from {opacity: 0; transform: translate3d(0rem, 1rem, 0)}
+    from {opacity: .25; transform: translate3d(0rem, .4rem, 0)}
     to {opacity: 1; transform: translate3d(0rem, 0, 0)}
 }
 
@@ -17,4 +17,16 @@
     50% {transform: scale(1.2);opacity: 1;}
     60% {transform: scale(1.2);opacity: 1;}
     100% {transform: scale(1);opacity: 0.5;}
+}
+
+@keyframes animate-opacity-back-and-forth {
+    0% {opacity: .5;}
+    50% {opacity: 1;}
+    100% {opacity: .5;}
+}
+
+@keyframes animate-size-back-and-forth {
+    0% {transform: scale(.5)}
+    50% {transform: scale(1)}
+    100% {transform: scale(.5)}
 }

@@ -1,0 +1,65 @@
+.filter-index {
+
+    @include respond-to(smart-device) {
+        margin-bottom: 1.4rem;
+    }
+
+    @include respond-to(hover-device) {
+        min-height: 3rem;
+    }
+    &__paragraph {
+        //white-space: nowrap;
+        display: flex;
+    }
+
+    &__results {
+        margin-right: .6rem;
+    }
+
+    &__filters {
+        margin-right: .6rem;
+    }
+
+    &__number {
+        margin-right: .6rem;
+        width: 2rem;
+    }
+
+    &__clear-button {
+        font-size: 1rem;
+        padding: 0;
+        margin-bottom: 1.4rem;
+
+        &--active {
+            cursor: pointer;
+        }
+
+        &--disabled {
+            color: #aaa;
+        }
+    }
+
+    &__cta-wrap {
+        margin-left: auto;
+    }
+
+    ul {
+        display: inline-block;
+    }
+
+    .tags {
+        padding: 0;
+    }
+
+    .tags__item {
+        font-size: 1rem;
+        background-color: transparent;
+        color: #777;
+        margin-bottom: 0;
+
+        &:hover {
+            text-decoration: line-through;
+        }
+    }
+
+}

@@ -4,18 +4,18 @@
     position: absolute;
     height: 7rem;
     width: 100%;
-    background-color: #fff;
+    background-color: white;
     z-index: map-get($z-indexes, "main-nav");
     @extend %site-wide-padding;
 
-    .scrolled & {
+    .header--minified & {
         height: 4rem;
     }
 
-    @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+    @include respond-to(hover-device) {
         position: relative;
         height: 8rem;
-        .scrolled & {
+        .header--minified & {
             height: 8rem;
         }
     }
@@ -26,11 +26,14 @@
 
     &__logo {
         font-size: 2rem;
-        filter: drop-shadow(2px 4px 10px black);
-        margin-right: 3rem;
+        filter: drop-shadow(2px 4px 3px black);
         transition: transform 0.1s ease;
+        margin-right: 2.6rem;
+        @include respond-to(hover-device) {
+            margin-right: 3rem;
+        }
 
-        .scrolled & {
+        .header--minified & {
             transform: scale(.5);
             transition: transform 0.1s ease-out;
         }
@@ -57,7 +60,7 @@
     }
 
     &__hamburger {
-        @media(hover: hover) and (pointer: fine) and (min-width: map-get($b-points, "mob")) {
+        @include respond-to(hover-device) {
             display: none;
         }
     }

@@ -3,7 +3,7 @@ const genreMap = {
     '#ABS': 'Abstract',
     '#ACI': 'Acid',
     '#AMB': 'Ambient',
-    '#AVA': 'Avantgarde',
+    // '#AVA': 'Avantgarde',
     '#BAS': 'Bass',
     '#BRE': 'Breaks',
     '#BRN': 'Breakbeat',
@@ -48,7 +48,7 @@ const genreMap = {
     '#TEC': 'Techno',
     // '#TRP': 'Trap',
     '#TRA': 'Trance',
-    '#TRI': 'Tribal',
+    // '#TRI': 'Tribal',
     // '#TRN': 'Neo Trance',
 };
 

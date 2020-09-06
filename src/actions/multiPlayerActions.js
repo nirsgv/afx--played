@@ -1,7 +1,6 @@
 import {
     SET_PLAYER_TYPE,
     SET_PLAYER_ITEM,
-    TOGGLE_EMBEDDED_PLAY
 } from "./index";
 
 function setPlayerType(type) {
@@ -38,7 +37,6 @@ const trimByPlatform = (val, platform) => {
 
 function setPlayerItem(e, val, platform, trackId) {
     e.preventDefault();
-    console.log(val);
     setPlayerType(platform);
     //store.dispatch(setPlayerType(platform));
     const item = trimByPlatform(val, platform);
@@ -51,11 +49,17 @@ function setPlayerItem(e, val, platform, trackId) {
     return action;
 }
 
-function toggleEmbeddedPlay(val) {
-    console.log(2);
+function closePlayer(e) {
+    e.preventDefault();
+    const clear = {
+        item: '',
+        platform: 'YOUTUBE'.toLowerCase(),
+        trackId: '',
+    };
+
     const action = {
-        type: TOGGLE_EMBEDDED_PLAY,
-        payload: val
+        type: SET_PLAYER_ITEM,
+        payload: clear
     };
 
     return action;
@@ -64,5 +68,5 @@ function toggleEmbeddedPlay(val) {
 export {
     setPlayerType,
     setPlayerItem,
-    toggleEmbeddedPlay
+    closePlayer
 }

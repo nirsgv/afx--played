@@ -1,9 +1,7 @@
 import {
-    EXPAND_FILTER,
-    TOGGLE_GRID_LIST_VIEW,
-    TOGGLE_SHARE_EXPANSION,
-    VIEW_MORE,
-    TOGGLE_MOB_MENU, TOGGLE_DESKTOP_FILTERS_EXPANSION, SET_TRACKS_AS_LOCAL, SET_SHOWS_AS_LOCAL, SET_SPA_PAGE_NAME, SET_SAMPLE_ID
+    EXPAND_FILTER, TOGGLE_GRID_LIST_VIEW, TOGGLE_SHARE_EXPANSION, VIEW_MORE,
+    TOGGLE_MOB_MENU, TOGGLE_DESKTOP_FILTERS_EXPANSION, SET_TRACKS_AS_LOCAL, SET_SHOWS_AS_LOCAL, SET_SPA_PAGE_NAME,
+    SET_SAMPLE_ID, CANCEL_WELCOME_INTRO, SET_MAP_AS_LOADED
 } from "./index";
 
 /**
@@ -19,6 +17,24 @@ function toggleShareExpansion(shouldOnlyClose = true) {
     return action;
 }
 
+function setMapAsLoaded(bool) {
+    const action = {
+        type: SET_MAP_AS_LOADED,
+        payload: bool
+    };
+
+    return action;
+}
+
+function cancelWelcomeIntro() {
+    const action = {
+        type: CANCEL_WELCOME_INTRO,
+        payload: false
+    };
+
+    return action;
+}
+
 function toggleGridListView(val) {
     const action = {
         type: TOGGLE_GRID_LIST_VIEW,
@@ -29,7 +45,6 @@ function toggleGridListView(val) {
 }
 
 function expandFilter(val) {
-    console.log(val);
     const action = {
         type: EXPAND_FILTER,
         payload: val
@@ -39,7 +54,6 @@ function expandFilter(val) {
 }
 
 function viewMore(val) {
-    console.log(val);
     const action = {
         type: VIEW_MORE,
         payload: val
@@ -93,14 +107,6 @@ function setSpaPageName(payload) {
     return action;
 }
 
-function setSampleId(payload) {
-    const action = {
-        type: SET_SAMPLE_ID,
-        payload
-    };
-
-    return action;
-}
 
 export {
     toggleShareExpansion,
@@ -112,5 +118,6 @@ export {
     setTracksAsLocal,
     setShowsAsLocal,
     setSpaPageName,
-    setSampleId
+    setMapAsLoaded,
+    cancelWelcomeIntro
 }

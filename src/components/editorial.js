@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react';
-import {Helmet} from "react-helmet";
+import React, { useEffect, useState } from 'react';
+import { Helmet } from "react-helmet";
 import QuickSlide from './quickSlide';
 import Items from "./items";
 import { editorialData } from '../data/editorial.js';
 import PropTypes from 'prop-types';
 import ReactGa from 'react-ga'
+import BackButton from "./backButton";
 
 function Editorial( { ...restProps } ) {
-    const { name, setPlayerItem, setSpaPageName, setSampleId } = restProps;
-    //console.log({editorialData});
+    const { name, setPlayerItem, setSpaPageName, history } = restProps;
+    const [ entranceClassName, setEntranceClassName ] = useState('faded-in-from-bottom');
 
     useEffect(() => {
         setSpaPageName(name);
@@ -26,18 +27,21 @@ function Editorial( { ...restProps } ) {
     return (
         <>
             <Helmet>
-                <title>About page...</title>
+                <title>Editorial</title>
                 <meta name="description" content="This is the editorial page" />
             </Helmet>
-            <h1>About, {name}</h1>
+
+            <BackButton history={history} className={"back-btn"}/>
+            <div className={`animate-content ${entranceClassName}`} onAnimationEnd={() => setEntranceClassName('')}>
             {editorialData.map((list, index) => {
                 const itemsnow = getItemsByIds(list.ITEMS, tracks);
                 return (
                     <QuickSlide title={list.TITLE} key={index}>
-                        <Items tracksFiltered={itemsnow} setPlayerItem={setPlayerItem} setSampleId={setSampleId} />
+                        <Items tracksFiltered={itemsnow} setPlayerItem={setPlayerItem} />
                     </QuickSlide>
                 )
             })}
+            </div>
         </>
     );
 }

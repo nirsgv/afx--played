@@ -2,59 +2,72 @@
 
 
     &__title {
-        padding: 1rem;
+        margin-bottom: 1rem;
     }
 
     &__location {
-        margin: 0;
-        padding: 1rem;
+        margin-bottom: 2rem;
     }
 
     &__date {
-        /* margin: 0 0.6rem 0.7rem 0; */
         font-size: 1.2rem;
         cursor: pointer;
-        padding: 1rem;
-        background-color: #ccc;
-        color: #fff;
-        //background-color: #efefef;
+        color: #333;
         transition: color 0.15s ease-in-out;
-
     }
 
     &__list {
-        /* margin: 0 0.6rem 0.7rem 0; */
         font-size: 1.2rem;
         cursor: pointer;
-        padding: 1rem;
-        background-color: #ccc;
-        color: #fff;
-        //background-color: #efefef;
         transition: color 0.15s ease-in-out;
-
     }
 
     &__item {
-        /* margin: 0 0.6rem 0.7rem 0; */
         font-size: 1.2rem;
         cursor: pointer;
-        padding: 1rem;
-        background-color: #ccc;
-        color: #fff;
         transition: color 0.15s ease-in-out;
-        border-bottom: 1px solid #ffffff44;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 0rem;
 
-        a {
-            text-decoration: none;
+        &:hover, &:active {
+            border-color: #ccc;
         }
+    }
+
+    &__link {
+        text-decoration: none;
+        display: block;
+        padding: 2rem 0;
     }
 
 }
 
-.linked-table{
+.concert-tracks {
     display: grid;
-    grid-template-columns: 1fr 1fr 8rem;
-    color: #333;
+    grid-template-columns: .5fr 1fr 12rem;
+    color: #444;
     font-size: 1.2rem;
     grid-gap: 2rem;
+
+    &__row {
+
+    }
+
+    &__cta {
+        text-align: right;
+
+
+    }
+
+    &__artist {
+        //text-align: right;
+    }
+
+    &__title {
+        //text-align: right;
+    }
+
+    &__duration {
+        text-align: right;
+    }
 }
