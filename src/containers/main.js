@@ -60,13 +60,6 @@ const Main = ({
     searchAlbumTitles,
   };
 
-  //   const memoPeriodResult = useMemo(
-  //     () => combineByObjKeysArr(filteredByPeriods, yearsMap),
-  //     [filteredByPeriods]
-  //   );
-  //   const memoTagsResult = useMemo(() => hasTags(filteredByTags), [
-  //     filteredByTags,
-  //   ]);
   const memoRangeResult = useMemo(() => inViewRange(itemsBatchAmt, batchNum), [
     batchNum,
   ]);
