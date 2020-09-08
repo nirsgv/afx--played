@@ -7,7 +7,7 @@ exports.getTracks = (req, res) => {
       console.log('It was possible to retrieve these TRACKS');
       res.send(err);
     } else {
-      console.log(typeof result, result);
+      //   console.log(typeof result, result);
       res.json(result);
     }
   });
@@ -23,6 +23,59 @@ exports.getTrack = (req, res) => {
       res.json(result);
     }
   });
+};
+
+const combineByObjKeysArr = (objKeys, obj) => {
+  return objKeys.reduce(function (prev, item) {
+    return prev.concat(obj[item]);
+  }, []);
+};
+const yearsMap = {
+  '#60a': [1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969],
+  '#70a': [1970, 1971, 1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979],
+  '#80a': [1980, 1981, 1982, 1983, 1984, 1985, 1986, 1987, 1988, 1989],
+  '#90a': [1990, 1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999],
+  '#00a': [2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009],
+  '#10a': [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019],
+  '#20a': [2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027, 2028, 2029],
+};
+
+exports.getFilteredTracks = (req, res) => {
+  console.log(Array.isArray(req.body));
+  console.log(req.body);
+  const reqBod = req.body;
+  const { filteredByTags, filteredByPeriods } = reqBod;
+
+  tracksStore.find(
+    {
+      $and: [
+        { GENRES: { $in: [...filteredByTags] } },
+        {
+          YEAR: {
+            $in: [
+              ...combineByObjKeysArr(
+                filteredByPeriods.length
+                  ? filteredByPeriods
+                  : ['#60a', '#70a', '#80a', '#90a', '#00a', '#10a', '#20a'],
+                yearsMap
+              ),
+            ],
+          },
+        },
+      ],
+    },
+
+    function (err, result) {
+      if (err) {
+        console.log('It was possible to retrieve these TRACKS');
+        res.send(err);
+      } else {
+        //   console.log(typeof result, result);
+        res.json(result);
+      }
+      console.log(req.body);
+    }
+  );
 };
 
 // exports.getTrack =  async (req, res) => {

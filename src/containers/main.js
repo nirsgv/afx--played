@@ -2,16 +2,9 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Items from '../components/items';
-import {
-  hasTags,
-  withinPeriod,
-  hasMatchingText,
-  inViewRange,
-} from '../helpers/comparitors';
-import { combineByObjKeysArr } from '../helpers/str';
+import { hasMatchingText, inViewRange } from '../helpers/comparitors';
 import { scrollTop } from '../helpers/dom';
 import { checkIntroNecessity } from '../helpers/localStorage';
-import { yearsMap } from '../data/periodMap.js';
 import {
   dispatchMessageToModal,
   toggleShareExpansion,
@@ -46,14 +39,16 @@ const Main = ({
     resetBatch();
     scrollTop();
 
-    // fetch.[filteredByTags]
-    fetch(
-      window.location.origin + urlConstants.TRACK_URL + '/kennethscott+yuki'
-    )
+    fetch(window.location.origin + '/api/taggedtracks', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ filteredByTags, filteredByPeriods }),
+    })
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => setTrx(data));
   }, [filteredByTags, filteredByPeriods]);
 
+  const [trx, setTrx] = useState([]);
   const tracks = JSON.parse(localStorage.getItem('afx_local_tracks')).data;
   const [entranceClassName, setEntranceClassName] = useState(
     'faded-in-from-bottom'
@@ -65,30 +60,20 @@ const Main = ({
     searchAlbumTitles,
   };
 
-  const memoPeriodResult = useMemo(
-    () => combineByObjKeysArr(filteredByPeriods, yearsMap),
-    [filteredByPeriods]
-  );
-  const memoTagsResult = useMemo(() => hasTags(filteredByTags), [
-    filteredByTags,
-  ]);
+  //   const memoPeriodResult = useMemo(
+  //     () => combineByObjKeysArr(filteredByPeriods, yearsMap),
+  //     [filteredByPeriods]
+  //   );
+  //   const memoTagsResult = useMemo(() => hasTags(filteredByTags), [
+  //     filteredByTags,
+  //   ]);
   const memoRangeResult = useMemo(() => inViewRange(itemsBatchAmt, batchNum), [
     batchNum,
   ]);
 
   const tracksFiltered = useMemo(
-    () =>
-      tracks
-        .filter(memoTagsResult)
-        .filter(withinPeriod(memoPeriodResult))
-        .filter(hasMatchingText(filteredBySearch, checkboxActivated)),
-    [
-      filteredByTags,
-      filteredByPeriods,
-      filteredBySearch,
-      checkboxActivated,
-      batchNum,
-    ]
+    () => trx.filter(hasMatchingText(filteredBySearch, checkboxActivated)),
+    [filteredBySearch, checkboxActivated, batchNum]
   );
 
   const tracksPaginated = tracksFiltered.filter(memoRangeResult);
