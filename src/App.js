@@ -96,65 +96,61 @@ const App = ({ ...restProps }) => {
           content='aphex twin, afx, shows, setlist, tracks, performance, electronic, music'
         />
       </Helmet>
-      {/*// render splash screen if no data is apparent yet, otherwise render router*/}
-      <Splash />
 
-      {isTracksDataLocal && isShowsDataLocal && (
-        <Router history={customHistory}>
-          <Header />
-          <DarkenLayer
-            isDesktopFiltersExpanded={isDesktopFiltersExpanded}
-            isMobileMenuOpen={isMobileMenuOpen}
-            cb1={toggleDesktopFilters}
-            cb2={toggleMobMenu}
-          />
+      <Router history={customHistory}>
+        <Header />
+        <DarkenLayer
+          isDesktopFiltersExpanded={isDesktopFiltersExpanded}
+          isMobileMenuOpen={isMobileMenuOpen}
+          cb1={toggleDesktopFilters}
+          cb2={toggleMobMenu}
+        />
 
-          <main className={`${spaPageName}`}>
-            <Switch>
-              <Route path='/about'>
-                <About
-                  name={'about'}
-                  setSpaPageName={setSpaPageName}
-                  history={customHistory}
-                  setMapAsLoaded={setMapAsLoaded}
-                  mapHasLoaded={mapHasLoaded}
-                />
-              </Route>
-              <Route path='/editorial'>
-                <Editorial
-                  name={'editorial'}
-                  setSpaPageName={setSpaPageName}
-                  setPlayerItem={setPlayerItem}
-                  history={customHistory}
-                />
-              </Route>
-              <Route
-                path='/track/:id'
-                component={ExpandedItem}
-                setPlayerItem={setPlayerItem}
+        <main className={`${spaPageName}`}>
+          <Switch>
+            <Route path='/about'>
+              <About
+                name={'about'}
+                setSpaPageName={setSpaPageName}
+                history={customHistory}
+                setMapAsLoaded={setMapAsLoaded}
+                mapHasLoaded={mapHasLoaded}
               />
-              <Route
-                path='/concert/:id'
-                component={ExpandedConcert}
+            </Route>
+            <Route path='/editorial'>
+              <Editorial
+                name={'editorial'}
+                setSpaPageName={setSpaPageName}
                 setPlayerItem={setPlayerItem}
+                history={customHistory}
               />
-              <Route path='/'>
-                <Search />
-                <Main />
-              </Route>
-            </Switch>
-            <div className='push'></div>
-          </main>
+            </Route>
+            <Route
+              path='/track/:id'
+              component={ExpandedItem}
+              setPlayerItem={setPlayerItem}
+            />
+            <Route
+              path='/concert/:id'
+              component={ExpandedConcert}
+              setPlayerItem={setPlayerItem}
+            />
+            <Route path='/'>
+              <Search />
+              <Main />
+            </Route>
+          </Switch>
+          <div className='push'></div>
+        </main>
 
-          <Footer />
+        <Footer />
 
-          <ViewPort setDimensionsCb={setViewportDimensions} viewport={viewport}>
-            <MultiPlayer />
-          </ViewPort>
+        <ViewPort setDimensionsCb={setViewportDimensions} viewport={viewport}>
+          <MultiPlayer />
+        </ViewPort>
 
-          <MessagesModal />
-        </Router>
-      )}
+        <MessagesModal />
+      </Router>
     </div>
   );
 };

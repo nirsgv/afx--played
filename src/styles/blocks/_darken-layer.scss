@@ -1,22 +1,19 @@
 .darken-layer {
+  pointer-events: none;
+  background-color: #444;
+  opacity: 0;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 30;
+  transition: opacity 0.05s ease-in 0s;
+  will-change: opacity;
 
-    pointer-events: none;
-    background-color: #444;
-    opacity: 0;
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    left: 0;
-    top: 0;
-    z-index: 30;
-    transition: opacity 0.05s ease-in 0s;
-    will-change: opacity; 
-    
-    &--active {
-
-        opacity: 0.5;
-        pointer-events: all;
-        //transition: opacity 0.1s ease-in 0s;
-
-    }
+  &--active {
+    opacity: 0.25;
+    pointer-events: all;
+    //transition: opacity 0.1s ease-in 0s;
+  }
 }
