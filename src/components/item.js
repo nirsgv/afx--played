@@ -4,7 +4,10 @@ import { connect } from 'react-redux';
 import Tags from './tags';
 import Img from './img';
 import { filterByTagCb } from '../actions';
+import MoreInfoButton from '../components/moreInfoButton';
+import List from '../components/list';
 
+const localNamespace = 'afx-tracks-data';
 const initialTrackData = {
   ARTIST_NAME: '',
   TRACK_TITLE: '',
@@ -19,7 +22,7 @@ const initialState = {
   trackData: initialTrackData,
   loader: false,
 };
-function reducer(state, action) {
+function itemReducer(state, action) {
   switch (action.type) {
     case 'setTrackData':
       return { ...state, trackData: action.payload };
@@ -31,16 +34,23 @@ function reducer(state, action) {
 }
 
 const isTrackStoredLocal = (trackID) => {
-  !localStorage.getItem('afx-tracks-data') &&
-    localStorage.setItem('afx-tracks-data', '{}');
-  return JSON.parse(localStorage.getItem('afx-tracks-data')).hasOwnProperty(
+  !localStorage.getItem(localNamespace) &&
+    localStorage.setItem(localNamespace, '{}');
+  return JSON.parse(localStorage.getItem(localNamespace)).hasOwnProperty(
     trackID
   );
 };
 
 function Item({ trackID, setPlayerItem, filterByTagCb }) {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const { ARTIST_NAME, TRACK_TITLE, YEAR, GENRES, ALBUM_ID } = state.trackData;
+  const [state, dispatch] = useReducer(itemReducer, initialState);
+  const {
+    ARTIST_NAME,
+    TRACK_TITLE,
+    YEAR,
+    GENRES,
+    ALBUM_ID,
+    ID,
+  } = state.trackData;
 
   useEffect(() => {
     mfasync(trackID);
@@ -56,13 +66,13 @@ function Item({ trackID, setPlayerItem, filterByTagCb }) {
               type: 'setTrackData',
               payload: data[0] ? data[0] : initialTrackData,
             });
-            const curr = JSON.parse(localStorage.getItem('afx-tracks-data'));
+            const curr = JSON.parse(localStorage.getItem(localNamespace));
             curr[trackID] = data[0];
-            localStorage.setItem('afx-tracks-data', JSON.stringify(curr));
+            localStorage.setItem(localNamespace, JSON.stringify(curr));
           })
       : dispatch({
           type: 'setTrackData',
-          payload: JSON.parse(localStorage.getItem('afx-tracks-data'))[trackID],
+          payload: JSON.parse(localStorage.getItem(localNamespace))[trackID],
         });
     dispatch({ type: 'setLoader', payload: false });
   };
@@ -90,6 +100,10 @@ function Item({ trackID, setPlayerItem, filterByTagCb }) {
           tagCb={(tag) => filterByTagCb(tag)}
         />
       </div>
+
+      <List baseClassName={'internal-links'}>
+        <MoreInfoButton ID={ID} />
+      </List>
     </li>
   );
 }

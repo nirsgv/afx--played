@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { Router } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import {
@@ -16,32 +16,77 @@ import { getDurationFromSeconds } from '../helpers/str';
 import Share from '../components/share';
 import { scrollTop } from '../helpers/dom';
 import BackButton from '../components/backButton';
+const initialTrackData = {
+  ARTIST_NAME: '',
+  TRACK_TITLE: '',
+  YEAR: 2000,
+  GENRES: [],
+  LINKS: [],
+  ID: '',
+  ALBUM_ID: '',
+};
+const localNamespace = 'afx-tracks-data';
 
+const initialState = {
+  trackData: initialTrackData,
+  loader: false,
+  entranceClassName: 'faded-in-from-bottom',
+};
+function itemReducer(state, action) {
+  switch (action.type) {
+    case 'setTrackData':
+      return { ...state, trackData: action.payload };
+    case 'setLoader':
+      return { ...state, loader: action.payload };
+    case 'setEntranceClassName':
+      return { ...state, entranceClassName: action.payload };
+    default:
+      throw new Error();
+  }
+}
+const isTrackStoredLocal = (trackID) => {
+  !localStorage.getItem(localNamespace) &&
+    localStorage.setItem(localNamespace, '{}');
+  return JSON.parse(localStorage.getItem(localNamespace)).hasOwnProperty(
+    trackID
+  );
+};
 const ExpandedItem = ({
   match,
   history,
   toggleShareExpansion,
-  setPlayerItem,
   dispatchMessageToModal,
   setSpaPageName,
+  entranceClassName,
 }) => {
   useEffect(() => {
     setSpaPageName && setSpaPageName('expanded-item');
     scrollTop();
-    return () => {};
-  }, []);
+    mfasync(decodeURIComponent(match.params.id));
+  }, [match.params.id]);
 
-  const t = JSON.parse(localStorage.getItem('afx_local_tracks'))
-    ? JSON.parse(localStorage.getItem('afx_local_tracks'))
-    : {};
-  const [entranceClassName, setEntranceClassName] = useState(
-      'faded-in-from-bottom'
-    ),
-    tracks = t.data,
-    expandedTrack = tracks.find(function (track) {
-      return track.ID === decodeURIComponent(match.params.id);
-    });
+  const mfasync = async (trackID) => {
+    await dispatch({ type: 'setLoader', payload: true });
+    (await !isTrackStoredLocal(trackID))
+      ? fetch(window.location.origin + '/api/track/' + trackID)
+          .then((response) => response.json())
+          .then((data) => {
+            dispatch({
+              type: 'setTrackData',
+              payload: data[0] ? data[0] : initialTrackData,
+            });
+            const curr = JSON.parse(localStorage.getItem(localNamespace));
+            curr[trackID] = data[0];
+            localStorage.setItem(localNamespace, JSON.stringify(curr));
+          })
+      : dispatch({
+          type: 'setTrackData',
+          payload: JSON.parse(localStorage.getItem(localNamespace))[trackID],
+        });
+    dispatch({ type: 'setLoader', payload: false });
+  };
 
+  const [state, dispatch] = useReducer(itemReducer, initialState);
   const {
     ARTIST_NAME,
     ALBUM_TITLE,
@@ -55,9 +100,7 @@ const ExpandedItem = ({
     ID,
     ALBUM_ID,
     VENUES,
-  } = expandedTrack;
-
-  console.error(VENUES);
+  } = state.trackData;
   return (
     <>
       <div className='bkg__wrap'>
@@ -71,7 +114,9 @@ const ExpandedItem = ({
 
       <div
         className={`animate-content ${entranceClassName}`}
-        onAnimationEnd={() => setEntranceClassName('')}
+        onAnimationEnd={() =>
+          dispatch({ type: 'setEntranceClassName', payload: '' })
+        }
       >
         <div className={`expanded-item__wrap`}>
           {/*block1*/}

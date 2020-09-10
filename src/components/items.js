@@ -6,7 +6,11 @@ function Items({ trxIds, setPlayerItem }) {
     <>
       {trxIds.map((item, index) => {
         return (
-          <Item key={item.ID} trackID={item.ID} setPlayerItem={setPlayerItem} />
+          <Item
+            key={`${trxIds[index]}-${index}`}
+            trackID={item.ID}
+            setPlayerItem={setPlayerItem}
+          />
         );
       })}
     </>
