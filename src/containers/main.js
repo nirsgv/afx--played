@@ -1,4 +1,10 @@
-import React, { useEffect, useMemo, useState, useReducer } from 'react';
+import React, {
+  useEffect,
+  useMemo,
+  useState,
+  useReducer,
+  forwardRef,
+} from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Items from '../components/items';
@@ -18,9 +24,12 @@ import FilterIndex from './filterIndex';
 import WelcomeMessage from '../components/welcomeMessage';
 import urlConstants from '../data/urlConstants';
 import Splash from '../containers/splash';
+import { FixedSizeGrid as Grid } from 'react-window';
+import AutoSizer from 'react-virtualized-auto-sizer';
 
 const initialState = {
   trx: [],
+  trxIds: [],
   loader: false,
   entranceClassName: 'faded-in-from-bottom',
 };
@@ -29,6 +38,8 @@ function reducer(state, action) {
   switch (action.type) {
     case 'setTrx':
       return { ...state, trx: action.payload };
+    case 'setTrxIds':
+      return { ...state, trxIds: action.payload };
     case 'setLoader':
       return { ...state, loader: action.payload };
     case 'setEntranceClassName':
@@ -54,7 +65,7 @@ const Main = ({
   cancelWelcomeIntro,
 }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { trx, loader, entranceClassName } = state;
+  const { trx, trxIds, loader, entranceClassName } = state;
   useEffect(() => {
     setSpaPageName && setSpaPageName('home');
     checkIntroNecessity('afx-local_intro', cancelWelcomeIntro);
@@ -65,13 +76,13 @@ const Main = ({
 
   const mfasync = async ({ filteredByTags, filteredByPeriods }) => {
     await dispatch({ type: 'setLoader', payload: true });
-    await fetch(window.location.origin + '/api/taggedtracks', {
+    await fetch(window.location.origin + '/api/filteredtrackids', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ filteredByTags, filteredByPeriods }),
     })
       .then((response) => response.json())
-      .then((data) => dispatch({ type: 'setTrx', payload: data }));
+      .then((data) => dispatch({ type: 'setTrxIds', payload: data }));
     dispatch({ type: 'setLoader', payload: false });
   };
   const checkboxActivated = {
@@ -105,10 +116,7 @@ const Main = ({
             <WelcomeMessage cancelWelcomeIntro={cancelWelcomeIntro} />
           )}
           <ul className='track-items track-items--animated'>
-            <Items
-              tracksFiltered={tracksFiltered}
-              setPlayerItem={setPlayerItem}
-            />
+            <Items trxIds={trxIds} setPlayerItem={setPlayerItem} />
           </ul>
         </div>
       ) : (
@@ -117,6 +125,64 @@ const Main = ({
     </>
   );
 };
+
+const chunk = (arr, size) =>
+  arr.reduce(
+    (acc, _, i) => (i % size ? acc : [...acc, arr.slice(i, i + size)]),
+    []
+  );
+
+// const trxChunked = chunk(trx, 3);
+const GUTTER_SIZE = 5;
+const COLUMN_WIDTH = 400;
+const ROW_HEIGHT = 200;
+
+const Cell = ({ columnIndex, rowIndex, style, trackdata }) => (
+  <div
+    className={'GridItem'}
+    style={{
+      ...style,
+      left: style.left + GUTTER_SIZE,
+      top: style.top + GUTTER_SIZE,
+      width: style.width - GUTTER_SIZE,
+      height: style.height - GUTTER_SIZE,
+    }}
+  >
+    {/* {trxChunked[rowIndex][columnIndex]} */}
+    {/* <Item trackdata={trackdata} /> */}r{rowIndex}, c{columnIndex}
+  </div>
+);
+
+const Example = () => (
+  <AutoSizer>
+    {({ height, width }) => (
+      <Grid
+        className='Grid'
+        columnCount={4}
+        columnWidth={COLUMN_WIDTH + GUTTER_SIZE}
+        height={height}
+        innerElementType={innerElementType}
+        rowCount={100}
+        rowHeight={ROW_HEIGHT + GUTTER_SIZE}
+        width={width}
+      >
+        {Cell}
+      </Grid>
+    )}
+  </AutoSizer>
+);
+
+const innerElementType = forwardRef(({ style, ...rest }, ref) => (
+  <div
+    ref={ref}
+    style={{
+      ...style,
+      paddingLeft: GUTTER_SIZE,
+      paddingTop: GUTTER_SIZE,
+    }}
+    {...rest}
+  />
+));
 
 const mapStateToProps = (state) => ({
   filteredByTags: state.appData.filteredByTags,

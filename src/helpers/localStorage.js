@@ -19,25 +19,4 @@ const checkIntroNecessity = (key, cb) => {
   }
 };
 
-const fetchUnstoraged = (url, key, cb) => {
-  if (!_isThereLocalData(key) || !_isDataRecent(key)) {
-    url = window.location.origin + url;
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        localStorage.setItem(
-          key,
-          JSON.stringify({
-            date: Date.now(),
-            data,
-          })
-        );
-        cb(true);
-      })
-      .catch((error) => console.error(error));
-  } else {
-    cb(true);
-  }
-};
-
-export { checkIntroNecessity, fetchUnstoraged };
+export { checkIntroNecessity };

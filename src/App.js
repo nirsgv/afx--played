@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Router, Switch, Route } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { bindActionCreators } from 'redux';
+import { Helmet } from 'react-helmet';
+import ReactGa from 'react-ga';
 import MultiPlayer from './containers/multiPlayer';
 import Main from './containers/main';
 import ExpandedConcert from './containers/expandedConcert';
 import Search from './containers/search';
 import Header from './containers/header';
-import Splash from './containers/splash';
 import ExpandedItem from './containers/expandedItem';
 import Footer from './containers/footer';
 import MessagesModal from './containers/messagesModal';
@@ -17,12 +17,10 @@ import Editorial from './components/editorial';
 import About from './components/about';
 import { isBottomOfPage } from './helpers/dom';
 import { debounce } from './helpers/higherFunctions';
-import { fetchUnstoraged } from './helpers/localStorage';
-import { Helmet } from 'react-helmet';
 import ViewPort from './components/viewport';
-import urlConstants from './data/urlConstants';
 import DarkenLayer from './components/darkenLayer';
 import './styles/main.scss';
+
 import {
   setMapAsLoaded,
   setPlayerItem,
@@ -36,7 +34,6 @@ import {
   setViewportDimensions,
   resetFilters,
 } from './actions';
-import ReactGa from 'react-ga';
 const customHistory = createBrowserHistory();
 
 const App = ({ ...restProps }) => {
@@ -47,12 +44,8 @@ const App = ({ ...restProps }) => {
     setViewportDimensions,
     viewMore,
     viewport,
-    setTracksAsLocal,
-    setShowsAsLocal,
     setSpaPageName,
     isGridView,
-    isTracksDataLocal,
-    isShowsDataLocal,
     isMobileMenuOpen,
     isDesktopFiltersExpanded,
     spaPageName,
@@ -72,12 +65,7 @@ const App = ({ ...restProps }) => {
       action: 'simulated a button click',
     });
     window.addEventListener('scroll', getScrollItems);
-    fetchUnstoraged(
-      urlConstants.TRACKS_URL,
-      'afx_local_tracks',
-      setTracksAsLocal
-    );
-    fetchUnstoraged(urlConstants.SHOWS_URL, 'afx_local_shows', setShowsAsLocal);
+
     return () => {
       window.removeEventListener('scroll', getScrollItems);
     };
@@ -153,17 +141,6 @@ const App = ({ ...restProps }) => {
       </Router>
     </div>
   );
-};
-
-App.propTypes = {
-  isGridView: PropTypes.bool,
-  isTracksDataLocal: PropTypes.bool,
-  isShowsDataLocal: PropTypes.bool,
-  isMobileMenuOpen: PropTypes.bool,
-  expandedFilter: PropTypes.string,
-  isDesktopFiltersExpanded: PropTypes.bool,
-  spaPageName: PropTypes.string,
-  viewport: PropTypes.object,
 };
 
 const mapStateToProps = (state) => ({

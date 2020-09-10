@@ -47,8 +47,9 @@ app.use(express.json());
 console.log({ 'process.env.NODE_ENV': process.env.NODE_ENV, PORT });
 
 app.get('/api/tracks', tracksController.getTracks);
-app.get('/api/track/:id', tracksController.getTrack);
+app.get('/api/track/:id', tracksController.getTrackById);
 app.post('/api/taggedtracks', tracksController.getFilteredTracks);
+app.post('/api/filteredtrackids', tracksController.getFilteredTrackIds);
 
 app.get('/api/shows', showsController.getShows);
 app.get('/api/show:id', showsController.getShow);

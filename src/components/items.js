@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react';
 import Item from './item';
 
-function Items({ tracksFiltered, setPlayerItem }) {
+function Items({ trxIds, setPlayerItem }) {
   return (
     <>
-      {tracksFiltered.map((item, index) => {
+      {trxIds.map((item, index) => {
         return (
-          <Item key={item.ID} trackData={item} setPlayerItem={setPlayerItem} />
+          <Item key={item.ID} trackID={item.ID} setPlayerItem={setPlayerItem} />
         );
       })}
     </>

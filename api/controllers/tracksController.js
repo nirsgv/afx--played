@@ -13,13 +13,12 @@ exports.getTracks = (req, res) => {
   });
 };
 
-exports.getTrack = (req, res) => {
+exports.getTrackById = (req, res) => {
   tracksStore.find({ ID: req.params.id }, function (err, result) {
     if (err) {
       console.log('It was possible to retrieve these TRACKS');
       res.send(err);
     } else {
-      console.log(typeof result, result);
       res.json(result);
     }
   });
@@ -41,8 +40,6 @@ const yearsMap = {
 };
 
 exports.getFilteredTracks = (req, res) => {
-  console.log(Array.isArray(req.body));
-  console.log(req.body);
   const reqBod = req.body;
   const { filteredByTags, filteredByPeriods } = reqBod;
 
@@ -56,7 +53,7 @@ exports.getFilteredTracks = (req, res) => {
               ...combineByObjKeysArr(
                 filteredByPeriods.length
                   ? filteredByPeriods
-                  : ['#60a', '#70a', '#80a', '#90a', '#00a', '#10a', '#20a'],
+                  : Object.keys(yearsMap),
                 yearsMap
               ),
             ],
@@ -70,7 +67,43 @@ exports.getFilteredTracks = (req, res) => {
         console.log('It was possible to retrieve these TRACKS');
         res.send(err);
       } else {
-        //   console.log(typeof result, result);
+        res.json(result);
+      }
+      console.log(req.body);
+    }
+  );
+};
+
+exports.getFilteredTrackIds = (req, res) => {
+  const reqBod = req.body;
+  const { filteredByTags, filteredByPeriods } = reqBod;
+
+  tracksStore.find(
+    {
+      $and: [
+        { GENRES: { $in: [...filteredByTags] } },
+        {
+          YEAR: {
+            $in: [
+              ...combineByObjKeysArr(
+                filteredByPeriods.length
+                  ? filteredByPeriods
+                  : Object.keys(yearsMap),
+                yearsMap
+              ),
+            ],
+          },
+        },
+      ],
+    },
+    { ID: 1, _id: 0 },
+
+    function (err, result) {
+      if (err) {
+        console.log('It was possible to retrieve these TRACKS');
+        res.send(err);
+      } else {
+        console.log(typeof result, result);
         res.json(result);
       }
       console.log(req.body);
