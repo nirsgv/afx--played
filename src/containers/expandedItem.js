@@ -24,6 +24,7 @@ const initialTrackData = {
   LINKS: [],
   ID: '',
   ALBUM_ID: '',
+  VENUES: [],
 };
 const localNamespace = 'afx-tracks-data';
 

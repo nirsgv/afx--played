@@ -23,6 +23,7 @@ function ExternalLinks({ links = {}, blockClassName = '' }) {
               <a
                 href={link}
                 target='blank'
+                rel='noopener noreferrer'
                 className={`${blockClassName}__link ${blockClassName}__link--${
                   link !== 'null' ? 'active' : 'disabled'
                 }`}

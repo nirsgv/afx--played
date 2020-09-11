@@ -8,7 +8,7 @@ function Items({ trxIds, setPlayerItem }) {
         return (
           <Item
             key={`${trxIds[index]}-${index}`}
-            trackID={item.ID}
+            trackID={item.ID ? item.ID : trxIds[index]}
             setPlayerItem={setPlayerItem}
           />
         );
