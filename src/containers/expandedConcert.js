@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
 import { bindActionCreators } from 'redux';
 import {
   toggleShareExpansion,
@@ -12,12 +12,8 @@ import { scrollTop } from '../helpers/dom';
 import BackButton from '../components/backButton';
 import MoreInfoButton from '../components/moreInfoButton';
 
-const ExpandedConcert = ({ match, history }) => {
-  const [entranceClassName, setEntranceClassName] = useState(
-    'faded-in-from-bottom'
-  );
-  //   const concertId = decodeURIComponent(match.params.id);
-  const [concert, setConcert] = useState({
+const initialState = {
+  concert: {
     SHOW_ID: '',
     SHOW_TITLE: '',
     SHOW_DATE: {
@@ -34,41 +30,56 @@ const ExpandedConcert = ({ match, history }) => {
         LNG: 0,
       },
     },
-  });
+  },
+  loader: false,
+  entranceClassName: 'faded-in-from-bottom',
+  associatedTracks: [],
+};
+function concertReducer(state, action) {
+  switch (action.type) {
+    case 'setEntranceClassName':
+      return { ...state, entranceClassName: action.payload };
+    case 'setConcert':
+      return { ...state, concert: action.payload };
+    case 'setAssociatedTracks':
+      return { ...state, associatedTracks: action.payload };
+    case 'setLoader':
+      return { ...state, loader: action.payload };
+    default:
+      throw new Error();
+  }
+}
 
-  const [loader, setLoader] = useState(false);
-  const [associatedTracks, setAssociatedTracks] = useState([]);
+const ExpandedConcert = ({ match, history }) => {
+  //   const concertId = decodeURIComponent(match.params.id);
+  const [state, dispatch] = useReducer(concertReducer, initialState);
+  const { concert, entranceClassName, associatedTracks } = state;
+  const { SHOW_TITLE, SHOW_LOCATION, SHOW_DATE } = concert;
 
   useEffect(() => {
     setSpaPageName('expanded-concert');
     scrollTop();
-
     fetchConcert(match.params.id);
     fetchAssociatedTracks(match.params.id);
   }, [match.params.id]);
 
   const fetchConcert = async (concertId) => {
-    await setLoader(true);
+    await dispatch({ type: 'setLoader', payload: true });
     await fetch(window.location.origin + '/api/show/' + concertId)
       .then((response) => response.json())
       .then((data) => {
-        setConcert(data[0]);
+        dispatch({ type: 'setConcert', payload: data[0] });
       });
-    setLoader(false);
+    dispatch({ type: 'setLoader', payload: false });
   };
-
-  // new call to tracks controller
 
   const fetchAssociatedTracks = async (concertId) => {
     await fetch(
       window.location.origin + '/api/tracksplayedinconcert/' + concertId
     )
       .then((response) => response.json())
-      .then((data) => setAssociatedTracks(data));
+      .then((data) => dispatch({ type: 'setAssociatedTracks', payload: data }));
   };
-  //     tracksCollected = tracks.filter((track) => track.VENUES.includes(id));
-
-  const { SHOW_TITLE, SHOW_LOCATION, SHOW_DATE } = concert;
 
   return (
     <div className={'inner-page__wrap'}>
@@ -77,7 +88,9 @@ const ExpandedConcert = ({ match, history }) => {
       </nav>
       <div
         className={`animate-content ${entranceClassName}`}
-        onAnimationEnd={() => setEntranceClassName('')}
+        onAnimationEnd={() =>
+          dispatch({ type: 'setEntranceClassName', payload: '' })
+        }
       >
         <div className={'inner-page__inner'}>
           <h1 className='expanded-concert__title'>{SHOW_TITLE}</h1>
