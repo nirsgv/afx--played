@@ -50,9 +50,13 @@ app.get('/api/tracks', tracksController.getTracks);
 app.get('/api/track/:id', tracksController.getTrackById);
 app.post('/api/taggedtracks', tracksController.getFilteredTracks);
 app.post('/api/filteredtrackids', tracksController.getFilteredTrackIds);
+app.get(
+  '/api/tracksplayedinconcert/:id',
+  tracksController.getTracksPlayedInConcert
+);
 
 app.get('/api/shows', showsController.getShows);
-app.get('/api/show:id', showsController.getShow);
+app.get('/api/show/:id', showsController.getShowById);
 
 app.get('/about', function (req, res) {
   return res.sendFile(path.resolve(__dirname + '/../build/index.html'));

@@ -111,6 +111,18 @@ exports.getFilteredTrackIds = (req, res) => {
   );
 };
 
+exports.getTracksPlayedInConcert = (req, res) => {
+  const concertId = req.params.id;
+  tracksStore.find({ VENUES: { $in: [concertId] } }, function (err, result) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(result);
+    }
+    console.log(req.body);
+  });
+};
+
 // exports.getTrack =  async (req, res) => {
 //     const track = await tracksStore.findOne({ ID: req.params.id });
 //     return track;

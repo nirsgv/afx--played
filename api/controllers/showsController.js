@@ -4,7 +4,6 @@ const showsStore = require('../models/showsStore');
 exports.getShows = (req, res) => {
   showsStore.find({}, function (err, result) {
     if (err) {
-      console.log('It was possible to retrieve these SHOWS');
       res.send(err);
     } else {
       console.log(typeof result, result);
@@ -16,7 +15,6 @@ exports.getShows = (req, res) => {
 exports.getShow = (req, res) => {
   showsStore.find({ ID: req.params.id }, function (err, result) {
     if (err) {
-      console.log('It was possible to retrieve these TRACKS');
       res.send(err);
     } else {
       console.log(typeof result, result);
@@ -26,9 +24,8 @@ exports.getShow = (req, res) => {
 };
 
 exports.getShowById = (req, res) => {
-  showsStore.find({ ID: req.params.id }, function (err, result) {
+  showsStore.find({ SHOW_ID: req.params.id }, function (err, result) {
     if (err) {
-      console.log('It was possible to retrieve these TRACKS');
       res.send(err);
     } else {
       res.json(result);

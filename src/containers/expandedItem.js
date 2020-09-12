@@ -177,7 +177,7 @@ const ExpandedItem = ({
                 <h2 className='expanded-item__section-title'>
                   Played in shows
                 </h2>
-                <Concerts venues={VENUES}></Concerts>
+                <Concerts concertIds={VENUES}></Concerts>
               </section>
             </div>
 
