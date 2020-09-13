@@ -34,6 +34,7 @@ $gap: 2rem;
 
   .details-and-shows {
     flex-grow: 1;
+
     @include respond-to(hover-device) {
       padding-right: $gap;
     }
@@ -43,13 +44,17 @@ $gap: 2rem;
     flex-basis: 18rem;
   }
 
-  .details-and-shows, .links-and-share {
+  .details-and-shows,
+  .links-and-share {
     display: flex;
     flex-direction: column;
   }
 
 
-  &__details, &__shows, &__external-links, &__share {
+  &__details,
+  &__shows,
+  &__external-links,
+  &__share {
     background-color: white;
     @extend %custom-border;
     margin-bottom: $gap;
@@ -57,24 +62,58 @@ $gap: 2rem;
     padding: 2rem;
   }
 
-  //&__back {
-  //  margin-bottom: $gap;
-  //  border-radius: 6px;
-  //  padding: 2rem 0;
-  //
-  //}
 
   &__details {
+    display: flex;
+    justify-content: space-between;
+
+
+    .text-side {
+      margin-right: 10rem;
+    }
+
+    .image-side {
+      flex-basis: 50%;
+      overflow: hidden;
+      max-width: 40rem;
+
+      .track__image-wrap {
+        height: auto;
+      }
+
+      .track__image {
+        border-radius: 50%;
+
+        &--loading {
+          opacity: 0;
+
+          +img {
+            // alt="placeholder-image"
+            opacity: 0;
+
+          }
+        }
+      }
+    }
+
+    .bkg__layer {
+      position: relative;
+      filter: initial;
+      height: 100%;
+      padding-bottom: 0;
+
+      @include respond-to(hover-device) {
+        height: 0;
+        padding-bottom: 100%;
+      }
+    }
   }
 
-  &__shows {
-  }
+  &__shows {}
 
-  &__external-links {
-  }
+  &__external-links {}
 
-  &__share {
-  }
+  &__share {}
 
   &__section-title {
     font-size: 1.5rem;
@@ -88,6 +127,7 @@ $gap: 2rem;
       top: 10px;
       opacity: 0;
     }
+
     to {
       top: 0;
       opacity: 1;
@@ -98,9 +138,7 @@ $gap: 2rem;
     font-size: 2rem;
   }
 
-  &__album-title {
-
-  }
+  &__album-title {}
 
   .split-hori {
     display: flex;
@@ -110,7 +148,9 @@ $gap: 2rem;
 }
 
 .inner-item {
-  &__term, &__definition {
+
+  &__term,
+  &__definition {
     display: inline-block;
     font-size: 1.2rem;
 

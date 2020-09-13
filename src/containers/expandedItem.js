@@ -10,6 +10,7 @@ import {
 import { connect } from 'react-redux';
 import ExternalLinks from '../components/externalLinks';
 import Concerts from '../components/concerts';
+import Img from '../components/img';
 import DefinitionList from '../components/definitionList';
 import Tags from '../components/tags';
 import { getDurationFromSeconds } from '../helpers/str';
@@ -108,7 +109,7 @@ const ExpandedItem = ({
         <div
           className='bkg__layer'
           style={{
-            backgroundImage: `url(../assets/album_covers/160x160pp/${ALBUM_ID}.jpg)`,
+            backgroundImage: `url(../assets/album_covers/600x600pp/${ALBUM_ID}.jpg)`,
           }}
         />
       </div>
@@ -129,42 +130,60 @@ const ExpandedItem = ({
           <div className='row'>
             <div className='details-and-shows'>
               <section className='expanded-item__details'>
-                <h2 className='expanded-item__section-title'>Track Details</h2>
-                <h3>
-                  <DefinitionList
-                    classNameSpace={'inner-item'}
-                    term={'Artist'}
-                    definition={ARTIST_NAME}
+                <div className='text-side'>
+                  <h2 className='expanded-item__section-title'>
+                    Track Details
+                  </h2>
+                  <h3>
+                    <DefinitionList
+                      classNameSpace={'inner-item'}
+                      term={'Artist'}
+                      definition={ARTIST_NAME}
+                    />
+                  </h3>
+                  <h3>
+                    <DefinitionList
+                      classNameSpace={'inner-item'}
+                      term={'Track'}
+                      definition={`${TRACK_TITLE} (${getDurationFromSeconds(
+                        DURATION
+                      )})`}
+                    />
+                  </h3>
+                  <h3>
+                    <DefinitionList
+                      classNameSpace={'inner-item'}
+                      term={'Album'}
+                      definition={`${ALBUM_TITLE} (${YEAR})`}
+                    />
+                  </h3>
+                  <h3>
+                    <DefinitionList
+                      classNameSpace={'inner-item'}
+                      term={'Label'}
+                      definition={`${RECORD_LABEL} (${CAT})`}
+                    />
+                  </h3>
+                  <h3>
+                    <DefinitionList
+                      classNameSpace={'inner-item'}
+                      term={'Genres'}
+                    >
+                      <Tags className='track__track-tags' tags={GENRES} />
+                    </DefinitionList>
+                  </h3>
+                </div>
+                <div className='image-side'>
+                  {/* <div
+                    className='bkg__layer'
+                    style={{
+                      backgroundImage: `url(../assets/album_covers/600x600pp/${ALBUM_ID}.jpg)`,
+                    }}
+                  /> */}
+                  <Img
+                    src={`../assets/album_covers/600x600pp/${ALBUM_ID}.jpg`}
                   />
-                </h3>
-                <h3>
-                  <DefinitionList
-                    classNameSpace={'inner-item'}
-                    term={'Track'}
-                    definition={`${TRACK_TITLE} (${getDurationFromSeconds(
-                      DURATION
-                    )})`}
-                  />
-                </h3>
-                <h3>
-                  <DefinitionList
-                    classNameSpace={'inner-item'}
-                    term={'Album'}
-                    definition={`${ALBUM_TITLE} (${YEAR})`}
-                  />
-                </h3>
-                <h3>
-                  <DefinitionList
-                    classNameSpace={'inner-item'}
-                    term={'Label'}
-                    definition={`${RECORD_LABEL} (${CAT})`}
-                  />
-                </h3>
-                <h3>
-                  <DefinitionList classNameSpace={'inner-item'} term={'Genres'}>
-                    <Tags className='track__track-tags' tags={GENRES} />
-                  </DefinitionList>
-                </h3>
+                </div>
               </section>
 
               {/*block3*/}
