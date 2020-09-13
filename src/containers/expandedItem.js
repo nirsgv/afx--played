@@ -161,13 +161,9 @@ const ExpandedItem = ({
                   />
                 </h3>
                 <h3>
-                  <DefinitionList
-                    classNameSpace={'inner-item'}
-                    term={'Label'}
-                    definition={
-                      <Tags className='track__track-tags' tags={GENRES} />
-                    }
-                  />
+                  <DefinitionList classNameSpace={'inner-item'} term={'Genres'}>
+                    <Tags className='track__track-tags' tags={GENRES} />
+                  </DefinitionList>
                 </h3>
               </section>
 
