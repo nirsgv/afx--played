@@ -9,6 +9,7 @@ function InputBox({
   children,
   value,
   focusToggleCb,
+  onKeyPress,
 }) {
   const textInputRef = useRef(null);
 
@@ -25,6 +26,7 @@ function InputBox({
         onFocus={() => (focusToggleCb ? focusToggleCb(true) : null)}
         onBlur={() => (focusToggleCb ? focusToggleCb(false) : null)}
         value={value}
+        onKeyPress={onKeyPress}
       />
     </div>
   );

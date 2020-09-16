@@ -45,6 +45,9 @@ function Search(props) {
         cb={setInner}
         focusToggleCb={(val) => setIsFocused(val)}
         value={preSearchText}
+        onKeyPress={(event) =>
+          event.key === 'Enter' && setSearchValue(preSearchText)
+        }
       >
         <SvgSprite className={'search__icon'} name={'SEARCH'} />
       </InputBox>
