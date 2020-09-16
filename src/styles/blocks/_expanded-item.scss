@@ -66,10 +66,18 @@ $gap: 2rem;
   &__details {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
 
+    @include respond-to(hover-device) {
+      flex-direction: row;
+    }
 
     .text-side {
-      margin-right: 10rem;
+      margin-right: 0;
+
+      @include respond-to(hover-device) {
+        margin-right: 10rem;
+      }
     }
 
     .image-side {
@@ -79,6 +87,12 @@ $gap: 2rem;
 
       .track__image-wrap {
         height: auto;
+
+        padding: 3rem;
+
+        @include respond-to(hover-device) {
+          padding: 0;
+        }
       }
 
       .track__image {

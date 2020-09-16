@@ -50,6 +50,8 @@ app.get('/api/tracks', tracksController.getTracks);
 app.get('/api/track/:id', tracksController.getTrackById);
 app.post('/api/taggedtracks', tracksController.getFilteredTracks);
 app.post('/api/filteredtrackids', tracksController.getFilteredTrackIds);
+app.post('/api/searchtracks', tracksController.searchTracks);
+
 app.get(
   '/api/tracksplayedinconcert/:id',
   tracksController.getTracksPlayedInConcert

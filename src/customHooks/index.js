@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useReducer } from 'react';
-import { randomIntFromInterval } from '../helpers/math';
+import { getNumFromRange } from '../helpers/math';
 import { debounce, throttle } from '../helpers/higherFunctions';
 
 const useFetch = (url, initialValue) => {
@@ -41,8 +41,8 @@ const useShadowAnimaStyle = (x = 0, y = 0, moveAmt = 1) => {
 
   useEffect(() => {
     intervalHolder = setInterval(() => {
-      setXCoor(randomIntFromInterval(-moveAmt, moveAmt));
-      setYCoor(randomIntFromInterval(-moveAmt, moveAmt));
+      setXCoor(getNumFromRange(-moveAmt, moveAmt));
+      setYCoor(getNumFromRange(-moveAmt, moveAmt));
     }, 1000);
     return () => clearInterval(intervalHolder);
   }, []);
@@ -70,73 +70,6 @@ const useIsScrolled = () => {
 
   return scrollY > 200;
 };
-
-// const useItemData = () => {
-//   const initialTrackData = {
-//     ARTIST_NAME: '',
-//     TRACK_TITLE: '',
-//     YEAR: 2000,
-//     GENRES: [],
-//     LINKS: [],
-//     ID: '',
-//     ALBUM_ID: '',
-//   };
-//   const localNamespace = 'afx-tracks-data';
-
-//   const initialState = {
-//     trackData: initialTrackData,
-//     loader: false,
-//     entranceClassName: 'faded-in-from-bottom',
-//   };
-//   function itemReducer(state, action) {
-//     switch (action.type) {
-//       case 'setTrackData':
-//         return { ...state, trackData: action.payload };
-//       case 'setLoader':
-//         return { ...state, loader: action.payload };
-//       case 'setEntranceClassName':
-//         return { ...state, entranceClassName: action.payload };
-//       default:
-//         throw new Error();
-//     }
-//   }
-//   const isTrackStoredLocal = (trackID) => {
-//     !localStorage.getItem(localNamespace) &&
-//       localStorage.setItem(localNamespace, '{}');
-//     return JSON.parse(localStorage.getItem(localNamespace)).hasOwnProperty(
-//       trackID
-//     );
-//   };
-
-//   useEffect(() => {
-//     setSpaPageName && setSpaPageName('expanded-item');
-//     scrollTop();
-//     mfasync(decodeURIComponent(match.params.id));
-//   }, [match.params.id]);
-
-//   const mfasync = async (trackID) => {
-//     await dispatch({ type: 'setLoader', payload: true });
-//     (await !isTrackStoredLocal(trackID))
-//       ? fetch(window.location.origin + '/api/track/' + trackID)
-//           .then((response) => response.json())
-//           .then((data) => {
-//             dispatch({
-//               type: 'setTrackData',
-//               payload: data[0] ? data[0] : initialTrackData,
-//             });
-//             const curr = JSON.parse(localStorage.getItem(localNamespace));
-//             curr[trackID] = data[0];
-//             localStorage.setItem(localNamespace, JSON.stringify(curr));
-//           })
-//       : dispatch({
-//           type: 'setTrackData',
-//           payload: JSON.parse(localStorage.getItem(localNamespace))[trackID],
-//         });
-//     dispatch({ type: 'setLoader', payload: false });
-//   };
-
-//   return scrollY > 200;
-// };
 
 const useMedia = (queries, values, defaultValue) => {
   // Array containing a media query list for each query

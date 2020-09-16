@@ -1,10 +1,4 @@
-import React, {
-  useEffect,
-  useMemo,
-  useState,
-  useReducer,
-  forwardRef,
-} from 'react';
+import React, { useEffect, useMemo, useReducer, forwardRef } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Items from '../components/items';
@@ -12,8 +6,6 @@ import { hasMatchingText, inViewRange } from '../helpers/comparitors';
 import { scrollTop } from '../helpers/dom';
 import { checkIntroNecessity } from '../helpers/localStorage';
 import {
-  dispatchMessageToModal,
-  toggleShareExpansion,
   setPlayerItem,
   setSpaPageName,
   resetBatch,
@@ -22,10 +14,7 @@ import {
 } from '../actions';
 import FilterIndex from './filterIndex';
 import WelcomeMessage from '../components/welcomeMessage';
-import urlConstants from '../data/urlConstants';
 import Splash from '../containers/splash';
-import { FixedSizeGrid as Grid } from 'react-window';
-import AutoSizer from 'react-virtualized-auto-sizer';
 
 const initialState = {
   trx: [],
@@ -104,7 +93,7 @@ const Main = ({
 
   return (
     <>
-      <FilterIndex itemsCount={tracksFiltered.length} />
+      <FilterIndex itemsCount={trxIds.length} />
       {!loader ? (
         <div
           className={`animate-content ${entranceClassName}`}
@@ -153,37 +142,6 @@ const Cell = ({ columnIndex, rowIndex, style, trackdata }) => (
   </div>
 );
 
-const Example = () => (
-  <AutoSizer>
-    {({ height, width }) => (
-      <Grid
-        className='Grid'
-        columnCount={4}
-        columnWidth={COLUMN_WIDTH + GUTTER_SIZE}
-        height={height}
-        innerElementType={innerElementType}
-        rowCount={100}
-        rowHeight={ROW_HEIGHT + GUTTER_SIZE}
-        width={width}
-      >
-        {Cell}
-      </Grid>
-    )}
-  </AutoSizer>
-);
-
-const innerElementType = forwardRef(({ style, ...rest }, ref) => (
-  <div
-    ref={ref}
-    style={{
-      ...style,
-      paddingLeft: GUTTER_SIZE,
-      paddingTop: GUTTER_SIZE,
-    }}
-    {...rest}
-  />
-));
-
 const mapStateToProps = (state) => ({
   filteredByTags: state.appData.filteredByTags,
   filteredByPeriods: state.appData.filteredByPeriods,
@@ -199,8 +157,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      toggleShareExpansion,
-      dispatchMessageToModal,
       setPlayerItem,
       setSpaPageName,
       resetBatch,

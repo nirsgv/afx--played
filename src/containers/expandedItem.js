@@ -59,7 +59,6 @@ const ExpandedItem = ({
   toggleShareExpansion,
   dispatchMessageToModal,
   setSpaPageName,
-  entranceClassName,
 }) => {
   useEffect(() => {
     setSpaPageName && setSpaPageName('expanded-item');
@@ -89,6 +88,7 @@ const ExpandedItem = ({
   };
 
   const [state, dispatch] = useReducer(itemReducer, initialState);
+  const { trackData, loader, entranceClassName } = state;
   const {
     ARTIST_NAME,
     ALBUM_TITLE,
@@ -102,7 +102,7 @@ const ExpandedItem = ({
     ID,
     ALBUM_ID,
     VENUES,
-  } = state.trackData;
+  } = trackData;
   return (
     <>
       <div className='bkg__wrap'>
@@ -174,12 +174,6 @@ const ExpandedItem = ({
                   </h3>
                 </div>
                 <div className='image-side'>
-                  {/* <div
-                    className='bkg__layer'
-                    style={{
-                      backgroundImage: `url(../assets/album_covers/600x600pp/${ALBUM_ID}.jpg)`,
-                    }}
-                  /> */}
                   <Img
                     src={`../assets/album_covers/600x600pp/${ALBUM_ID}.jpg`}
                   />
@@ -212,16 +206,13 @@ const ExpandedItem = ({
               <section className='expanded-item__share'>
                 <h2 className='expanded-item__section-title'>Share</h2>
                 <Share
-                  url={'http://localhost:3000/track/fis+patupaiarehe'}
+                  url={window.location.href}
                   onShareWindowClose={toggleShareExpansion}
                   dispatchMessageToModal={dispatchMessageToModal}
                 />
               </section>
             </div>
           </div>
-
-          {/*<h3 className={'concerts__title'}>{'Available streams:'.toUpperCase()}:</h3>*/}
-          {/*<h3 className={'concerts__title'}>{'Played in shows'.toUpperCase()}:</h3>*/}
         </div>
       </div>
     </>

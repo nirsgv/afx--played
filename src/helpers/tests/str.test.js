@@ -1,40 +1,92 @@
-import ReactDOM from "react-dom";
-import App from "../../App";
+import ReactDOM from 'react-dom';
 import React from 'react';
+import App from '../../App';
 
 import Enzyme, { shallow, mount } from 'enzyme';
 import EnzymeAdapter from 'enzyme-adapter-react-16';
 
-Enzyme.configure({adapter: new EnzymeAdapter()});
+Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 import {
-    evaluateKey,
-    getDurationFromSeconds,
-    combineByObjKeysArr,
-    getMonthFromShort
+  evaluateKey,
+  getDurationFromSeconds,
+  gatherObjValuesFromKeysArr,
+  copyToClipboard,
+  getMonthFromShort,
+  expClass,
+  getLeftToComma,
 } from '../str';
 
-
-test('evaluate string helpers correctly', () => {
-    expect(evaluateKey({a : 1}, 'a')).toEqual(1);
-
-    expect(getDurationFromSeconds(undefined)).toBe("0:00");
-    expect(getDurationFromSeconds(60)).toBe("1:00");
-    expect(getDurationFromSeconds(1000)).toBe("16:40");
-
-    expect(getMonthFromShort('Jan')).toBe('January');
-    expect(getMonthFromShort('juL')).toBe('July');
-    expect(getMonthFromShort()).toBe('January');
-
-    expect(combineByObjKeysArr(['a','b'],{
-        'a': [1, 2, 3],
-        'b': [4, 5, 6]
-    })).toEqual([1, 2, 3, 4, 5, 6]);
-
-    expect(combineByObjKeysArr(['#60a','#60z'],{
-        '#60a': [1960, 1961, 1962, 1963, 1964],
-        '#60z': 1,
-        '#70a': [1970, 1971, 1972, 1973, 1974],
-    })).toEqual([1960, 1961, 1962, 1963, 1964, 1]);
+/* evaluateKey */
+test('"evaluateKey" to be a function', () => {
+  expect(typeof evaluateKey).toEqual('function');
 });
 
+test('"evaluateKey" returns value of key from given object', () => {
+  expect(evaluateKey({ a: 1 }, 'a')).toEqual(1);
+  expect(evaluateKey({ b: 2, c: 3, d: 4 }, 'b')).toEqual(2);
+  expect(evaluateKey({ b: 2, c: 3, d: 4 }, 'a')).toEqual(undefined);
+});
+
+/* getDurationFromSeconds */
+test('"getDurationFromSeconds" to be a function', () => {
+  expect(typeof getDurationFromSeconds).toEqual('function');
+});
+
+test('"getDurationFromSeconds" returns value of key from given object', () => {
+  expect(typeof getDurationFromSeconds(1)).toBe('string');
+  expect(getDurationFromSeconds(1)).toBe('0:01');
+  expect(getDurationFromSeconds(120)).toBe('2:00');
+});
+
+test('"getDurationFromSeconds" returns an equal string if given one as argument', () => {
+  expect(typeof getDurationFromSeconds('1')).toBe('string');
+  expect(getDurationFromSeconds('1')).toBe('1');
+});
+
+/* gatherObjValuesFromKeysArr */
+test('"gatherObjValuesFromKeysArr" to be a function', () => {
+  expect(typeof gatherObjValuesFromKeysArr).toEqual('function');
+});
+
+test('"gatherObjValuesFromKeysArr" returns object correctly values mapped to given keys array', () => {
+  const object = { a: 1, b: 2, c: 3, d: 4 };
+  expect(
+    Array.isArray(gatherObjValuesFromKeysArr(['a', 'b', 'c'], object))
+  ).toEqual(true);
+  expect(gatherObjValuesFromKeysArr(['a', 'b', 'c'], object)).toEqual([
+    1,
+    2,
+    3,
+  ]);
+});
+
+/* getMonthFromShort */
+test('"getMonthFromShort" to be a function', () => {
+  expect(typeof getMonthFromShort).toEqual('function');
+});
+
+test('"getMonthFromShort" returns a string, full version of given shorthand', () => {
+  expect(typeof getMonthFromShort('jan')).toBe('string');
+  expect(getMonthFromShort('jan')).toBe('January');
+  expect(getMonthFromShort('Sep')).toBe('September');
+});
+
+/* expClass */
+test('"expClass" to be a function', () => {
+  expect(typeof expClass).toEqual('function');
+});
+
+test('"expClass" returns "--on" if both params are equal', () => {
+  expect(typeof expClass('a', 'a')).toBe('string');
+  expect(expClass('a', 'a')).toBe('--on');
+});
+
+/* getLeftToComma */
+test('"getLeftToComma" to be a function', () => {
+  expect(typeof getLeftToComma).toEqual('function');
+});
+
+test('"getLeftToComma" returns string part prior to "," ', () => {
+  expect(getLeftToComma('abc,def')).toEqual('abc');
+});

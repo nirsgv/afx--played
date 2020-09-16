@@ -24,7 +24,7 @@ exports.getTrackById = (req, res) => {
   });
 };
 
-const combineByObjKeysArr = (objKeys, obj) => {
+const gatherObjValuesFromKeysArr = (objKeys, obj) => {
   return objKeys.reduce(function (prev, item) {
     return prev.concat(obj[item]);
   }, []);
@@ -85,7 +85,7 @@ exports.getFilteredTrackIds = (req, res) => {
         {
           YEAR: {
             $in: [
-              ...combineByObjKeysArr(
+              ...gatherObjValuesFromKeysArr(
                 filteredByPeriods.length
                   ? filteredByPeriods
                   : Object.keys(yearsMap),
@@ -113,6 +113,19 @@ exports.getFilteredTrackIds = (req, res) => {
 
 exports.getTracksPlayedInConcert = (req, res) => {
   const concertId = req.params.id;
+  tracksStore.find({ VENUES: { $in: [concertId] } }, function (err, result) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(result);
+    }
+    console.log(req.body);
+  });
+};
+
+exports.searchTracks = (req, res) => {
+  const reqBod = req.body;
+  const { filteredByTags, filteredByPeriods } = reqBod;
   tracksStore.find({ VENUES: { $in: [concertId] } }, function (err, result) {
     if (err) {
       res.send(err);

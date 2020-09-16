@@ -1,46 +1,48 @@
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { imgData } from "../data/localImgData";
+import { imgData } from '../data/localImgData';
 
-function SvgSprite ({...restProps}) {
-    const {name, classes, path, src = imgData.sprite.src, clickCb, alt=imgData.sprite.description,
-        modifier, text, onMouseLeave, onMouseOver, viewBox = '0 0 24 24',
-        style={}
-    } = restProps;
+function SvgSprite({ ...restProps }) {
+  const {
+    name,
+    className,
+    classes,
+    src = imgData.sprite.src,
+    clickCb,
+    viewBox = '0 0 24 24',
+    style = {},
+  } = restProps;
 
-    const clickHandler = (event) => {
-        event.stopPropagation();
-        clickCb && clickCb(event);
-    };
+  const clickHandler = (event) => {
+    clickCb && clickCb(event);
+  };
 
-    return (
-        <span className={classNames(classes)} // classes can be comma-sepatrate-added
-            onClick={() => clickHandler}
-              style={style}
-            >
-           <svg viewBox={viewBox}>
-                <use xlinkHref={`${src}#${name}`} />
-            </svg>
-        </span>
-    );
+  return (
+    <span
+      className={className || classNames(classes)}
+      onClick={(e) => clickHandler(e)}
+      style={style}
+    >
+      <svg viewBox={viewBox}>
+        <use xlinkHref={`${src}#${name}`} />
+      </svg>
+    </span>
+  );
 }
 
 SvgSprite.propTypes = {
-    viewBox: PropTypes.string,
-    modifier: PropTypes.string,
-    text: PropTypes.string,
-    clickCb: PropTypes.func,
-    onMouseLeave: PropTypes.func,
-    onMouseOver: PropTypes.func,
-    classes: PropTypes.oneOfType([
-        PropTypes.array,
-        PropTypes.string
-    ]),
+  viewBox: PropTypes.string,
+  modifier: PropTypes.string,
+  text: PropTypes.string,
+  clickCb: PropTypes.func,
+  onMouseLeave: PropTypes.func,
+  onMouseOver: PropTypes.func,
+  classes: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
 };
 
 SvgSprite.defaultProps = {
-    throttleTimeoutForMouseOver: 300
+  throttleTimeoutForMouseOver: 300,
 };
 
 export default SvgSprite;
