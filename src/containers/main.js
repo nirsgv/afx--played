@@ -28,6 +28,7 @@ function reducer(state, action) {
     case 'setTrx':
       return { ...state, trx: action.payload };
     case 'setTrxIds':
+      console.log(action);
       return { ...state, trxIds: action.payload };
     case 'setLoader':
       return { ...state, loader: action.payload };
@@ -44,7 +45,6 @@ const Main = ({
   filteredBySearch,
   searchArtistNames,
   searchTrackTitles,
-  searchAlbumTitles,
   itemsBatchAmt,
   batchNum,
   setSpaPageName,
@@ -56,7 +56,7 @@ const Main = ({
   const [state, dispatch] = useReducer(reducer, initialState);
   const { trx, trxIds, loader, entranceClassName } = state;
   useEffect(() => {
-    setSpaPageName && setSpaPageName('home');
+    setSpaPageName('home');
     checkIntroNecessity('afx-local_intro', cancelWelcomeIntro);
     resetBatch();
     scrollTop();
@@ -74,22 +74,41 @@ const Main = ({
       .then((data) => dispatch({ type: 'setTrxIds', payload: data }));
     dispatch({ type: 'setLoader', payload: false });
   };
-  const checkboxActivated = {
-    searchTrackTitles,
-    searchArtistNames,
-    searchAlbumTitles,
-  };
 
+  useEffect(() => {
+    filteredBySearch &&
+      mfasync2({ filteredBySearch, searchArtistNames, searchTrackTitles });
+  }, [filteredBySearch]);
+
+  const mfasync2 = async ({
+    filteredBySearch,
+    searchArtistNames,
+    searchTrackTitles,
+  }) => {
+    await dispatch({ type: 'setLoader', payload: true });
+    await fetch(window.location.origin + '/api/searchtracks', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        filteredBySearch,
+        searchArtistNames,
+        searchTrackTitles,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => dispatch({ type: 'setTrxIds', payload: data }));
+    dispatch({ type: 'setLoader', payload: false });
+  };
   const memoRangeResult = useMemo(() => inViewRange(itemsBatchAmt, batchNum), [
     batchNum,
   ]);
 
-  const tracksFiltered = useMemo(
-    () => trx.filter(hasMatchingText(filteredBySearch, checkboxActivated)),
-    [filteredBySearch, checkboxActivated, batchNum]
-  );
+  // const tracksFiltered = useMemo(
+  //   () => trx.filter(hasMatchingText(filteredBySearch, checkboxActivated)),
+  //   [filteredBySearch, batchNum]
+  // );
 
-  const tracksPaginated = tracksFiltered.filter(memoRangeResult);
+  const tracksPaginated = trx.filter(memoRangeResult);
 
   return (
     <>
@@ -148,7 +167,6 @@ const mapStateToProps = (state) => ({
   filteredBySearch: state.appData.filteredBySearch,
   searchArtistNames: state.appData.searchArtistNames,
   searchTrackTitles: state.appData.searchTrackTitles,
-  searchAlbumTitles: state.appData.searchAlbumTitles,
   itemsBatchAmt: state.appData.itemsBatchAmt,
   batchNum: state.appData.batchNum,
   shouldPresentWelcomeIntro: state.appData.shouldPresentWelcomeIntro,

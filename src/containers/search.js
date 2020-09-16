@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import Checkbox from '../components/checkbox';
 import InputBox from '../components/inputBox';
 import SvgSprite from '../components/svgSprite';
-import { imgData } from '../data/localImgData';
 import List from '../components/list';
 import { setSearchValue } from '../actions/index';
 import { toggleSearchOption } from '../actions/index';
@@ -18,8 +17,12 @@ function Search(props) {
     setSearchValue,
   } = props;
 
-  const [isSelected, setIsSelected] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [preSearchText, setPreSearchText] = useState('');
 
+  const setInner = (e) => {
+    setPreSearchText(e.target.value);
+  };
   const setPlaceholderText = (a, b) => {
     const ARTIST = 'Artist';
     const TRACK = 'Track';
@@ -33,37 +36,40 @@ function Search(props) {
     }
     return `Search ${postfix} ...`;
   };
-
   return (
-    <div className={`search ${isSelected ? 'search--focus' : 'search--blur'}`}>
+    <div className={`search ${isFocused ? 'search--focus' : 'search--blur'}`}>
       <InputBox
         classname={'search'}
         name='noname'
         placeholder={setPlaceholderText(searchArtistNames, searchTrackTitles)}
-        cb={(e) => setSearchValue(e)}
-        focusToggleCb={(val) => setIsSelected(val)}
-        value={searchValue}
+        cb={setInner}
+        focusToggleCb={(val) => setIsFocused(val)}
+        value={preSearchText}
       >
         <SvgSprite className={'search__icon'} name={'SEARCH'} />
       </InputBox>
 
-      <List baseClassName={'checkbox'}>
-        <Checkbox
-          checkboxId={'artist-name-active'}
-          labelText={'Artist'}
-          name={'artist-name'}
-          checked={searchArtistNames}
-          onChangeCb={toggleSearchOption}
-        />
+      {isFocused || preSearchText ? (
+        <button onClick={() => setSearchValue(preSearchText)}>Search!</button>
+      ) : (
+        <List baseClassName={'checkbox'}>
+          <Checkbox
+            checkboxId={'artist-name-active'}
+            labelText={'Artist'}
+            name={'artist-name'}
+            checked={searchArtistNames}
+            onChangeCb={toggleSearchOption}
+          />
 
-        <Checkbox
-          checkboxId={'track-title-active'}
-          labelText={'Track'}
-          name={'track-title'}
-          checked={searchTrackTitles}
-          onChangeCb={toggleSearchOption}
-        />
-      </List>
+          <Checkbox
+            checkboxId={'track-title-active'}
+            labelText={'Track'}
+            name={'track-title'}
+            checked={searchTrackTitles}
+            onChangeCb={toggleSearchOption}
+          />
+        </List>
+      )}
     </div>
   );
 }
