@@ -7,7 +7,7 @@ const SEARCH_FIELDS = {
     album: 'ALBUM_TITLE',
 };
 
-const DEFAULT_LIMIT = 8;
+const DEFAULT_LIMIT = 60;
 const MAX_LIMIT = 100;
 const MAX_QUERY_LENGTH = 100;
 

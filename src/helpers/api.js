@@ -4,7 +4,7 @@ import urlConstants from '../data/urlConstants';
  * Server-side track search: text, genre and year filters plus paging.
  * @returns {Promise<{ total: number, skip: number, limit: number, items: object[] }>}
  */
-const searchTracks = async ({ q = '', fields = [], genres = [], years = [], skip = 0, limit = 8 }) => {
+const searchTracks = async ({ q = '', fields = [], genres = [], years = [], skip = 0, limit = 60 }) => {
     const params = new URLSearchParams();
     if (q) params.set('q', q);
     if (fields.length) params.set('fields', fields.join(','));

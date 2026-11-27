@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import BackButton from "./backButton";
+import ContactForm from "./contactForm";
 import { scrollTop } from '../helpers/dom';
 
 function About({ history, name, setSpaPageName }) {
@@ -42,11 +43,13 @@ function About({ history, name, setSpaPageName }) {
                         I guess you could label it as a fan site.
                     </p>
                     <p className={`${name}__paragraph`}>
-                        Please use <a href="mailto:nirsegevmail@gmail.com" target="_blank" className={`${name}__link`}>this mail</a> for any inquiries,
+                        Please use the form below for any inquiries,
                         reports about wrong or misleading data.<br />
                         This site is non-commercial.
                     </p>
                 </div>
+
+                <ContactForm />
             </div>
 
         </>

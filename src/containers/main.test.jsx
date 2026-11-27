@@ -23,7 +23,7 @@ beforeEach(() => {
     vi.stubGlobal('scrollTo', vi.fn());
     vi.stubGlobal('fetch', vi.fn(async () => ({
         ok: true,
-        json: async () => ({ total: 42, skip: 0, limit: 8, items: tracks.slice(0, 8) }),
+        json: async () => ({ total: 42, skip: 0, limit: 60, items: tracks.slice(0, 42) }),
     })));
 });
 
@@ -37,12 +37,12 @@ test('loads the first page from the server and searches again when the text chan
     const { container } = renderWithStore(<MemoryRouter><Main /></MemoryRouter>, store);
 
     await waitFor(() => expect(container.querySelector('.filter-index__number')).toHaveTextContent('42'));
-    expect(container.querySelectorAll('.track-items > *')).toHaveLength(8);
+    expect(container.querySelectorAll('.track-items > *')).toHaveLength(42);
 
     expect(searchCalls()).toHaveLength(1);
     const first = searchCalls()[0];
     expect(first.searchParams.get('skip')).toBe('0');
-    expect(first.searchParams.get('limit')).toBe('8');
+    expect(first.searchParams.get('limit')).toBe('60');
     expect(first.searchParams.get('q')).toBeNull();
 
     act(() => { store.dispatch({ type: SET_SEARCH_VALUE, payload: 'Aphex' }); });

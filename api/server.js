@@ -8,6 +8,7 @@ const compression = require('compression');
 const morgan = require('morgan');
 const tracksController = require('./controllers/tracksController');
 const showsController = require('./controllers/showsController');
+const { handleContact } = require('./contact');
 
 const PORT = parseInt(process.env.PORT || 8000, 10);
 const BUILD_DIR = path.resolve(__dirname, '../build');
@@ -29,7 +30,7 @@ app.use(compression());
 app.use(morgan(dev ? 'dev' : 'common'));
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(express.json({ limit: '16kb' }));
 app.use(express.static(BUILD_DIR));
 
 app.get('/api/tracks', tracksController.getTracks);
@@ -37,6 +38,15 @@ app.get('/api/tracks/search', tracksController.searchTracks);
 app.get('/api/track/:id', tracksController.getTrack);
 app.get('/api/shows', showsController.getShows);
 app.get('/api/show/:id', showsController.getShow);
+app.post('/api/contact', async (req, res) => {
+    try {
+        const [status, body] = await handleContact(req.body, mongoose.connection.db);
+        res.status(status).json(body);
+    } catch (err) {
+        console.error('Could not save contact message', err);
+        res.status(500).json({ error: 'Internal error' });
+    }
+});
 
 // Client-side routes are served the SPA shell; React Router takes it from there.
 const sendIndex = (req, res) => res.sendFile(path.join(BUILD_DIR, 'index.html'));

@@ -20,7 +20,7 @@ const initialAppState = {
     isSharingExpanded: false,
     isMobileMenuOpen: false,
     isDesktopFiltersExpanded: false,
-    itemsBatchAmt: 8,
+    itemsBatchAmt: 60,
     batchNum: 1,
     isTracksDataLocal: false,
     isShowsDataLocal: false,

@@ -1,7 +1,7 @@
 import { buildTrackSearch, MAX_LIMIT } from '../trackSearch';
 
-test('no parameters: match everything, first page of 8', () => {
-    expect(buildTrackSearch()).toEqual({ filter: {}, skip: 0, limit: 8 });
+test('no parameters: match everything, first page of 60', () => {
+    expect(buildTrackSearch()).toEqual({ filter: {}, skip: 0, limit: 60 });
 });
 
 test('text search is a case-insensitive substring on the chosen fields', () => {
@@ -38,5 +38,5 @@ test('array values (Express repeated params) work like comma lists', () => {
 test('paging is clamped', () => {
     expect(buildTrackSearch({ skip: '-5', limit: '0' })).toMatchObject({ skip: 0, limit: 1 });
     expect(buildTrackSearch({ skip: '16', limit: '9999' })).toMatchObject({ skip: 16, limit: MAX_LIMIT });
-    expect(buildTrackSearch({ skip: 'abc', limit: 'abc' })).toMatchObject({ skip: 0, limit: 8 });
+    expect(buildTrackSearch({ skip: 'abc', limit: 'abc' })).toMatchObject({ skip: 0, limit: 60 });
 });

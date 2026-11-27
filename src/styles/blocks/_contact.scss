@@ -1,0 +1,128 @@
+// Contact form on the About page.
+.contact {
+    max-width: 56rem;
+    margin: 4rem 0 2rem;
+    color: #222;
+
+    &__title {
+        font-size: 1.8rem;
+        margin-bottom: 0.6rem;
+
+        & > strong {
+            border-bottom: 2px solid;
+        }
+    }
+
+    &__note {
+        font-size: 1.4rem;
+        color: #555;
+        margin-bottom: 2rem;
+    }
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2rem;
+    }
+
+    &__label {
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 0.4rem;
+    }
+
+    &__input {
+        font: inherit;
+        font-size: 1.4rem;
+        color: #222;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid rgba(34, 33, 41, 0.25);
+        padding: 0.6rem 0;
+        outline: none;
+        transition: border-color .2s ease-out;
+
+        &:focus {
+            border-bottom-color: map-get($colors, "autobulb-green");
+        }
+
+        &--multiline {
+            resize: vertical;
+            min-height: 10rem;
+            border: 1px solid rgba(34, 33, 41, 0.25);
+            border-radius: 6px;
+            padding: 0.8rem;
+
+            &:focus {
+                border-color: map-get($colors, "autobulb-green");
+            }
+        }
+
+        .contact__field--error & {
+            border-color: #b3261e;
+        }
+    }
+
+    &__error {
+        font-size: 1.2rem;
+        color: #b3261e;
+        margin-top: 0.4rem;
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+    }
+
+    &__submit,
+    &__again {
+        font: inherit;
+        font-size: 1.4rem;
+        cursor: pointer;
+        border-radius: 6px;
+        padding: 0.8rem 1.8rem;
+    }
+
+    &__submit {
+        color: white;
+        background-color: map-get($colors, "autobulb-green");
+        border: 1px solid map-get($colors, "autobulb-green");
+
+        &:hover:not(:disabled) {
+            background-color: darken(#23543C, 6%);
+        }
+
+        &:disabled {
+            opacity: 0.6;
+            cursor: default;
+        }
+    }
+
+    &__again {
+        color: #222;
+        background: transparent;
+        border: 1px solid rgba(34, 33, 41, 0.25);
+    }
+
+    &__privacy {
+        font-size: 1.1rem;
+        color: #888;
+        margin-top: 1.2rem;
+    }
+
+    // Honeypot field: off-screen, not display:none (some bots skip hidden fields).
+    &__trap {
+        position: absolute;
+        left: -10000px;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+    }
+}
+
+// Spinner next to the send button instead of on its own line.
+.spinner--inline {
+    width: auto;
+    padding: 0;
+}
