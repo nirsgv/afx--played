@@ -25,3 +25,7 @@ variables.env
 #credentials.js
 
 #/api/server-junk.js
+# amplify
+.amplify
+amplify_outputs*
+.npm

@@ -36,12 +36,21 @@
     "node": ">=24"
   },
   "devDependencies": {
+    "@aws-amplify/backend": "^1.25.1",
+    "@aws-amplify/backend-cli": "^1.10.1",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^8.0.0",
     "@testing-library/react": "^16.3.3",
+    "@types/aws-lambda": "^8.10.164",
+    "@types/node": "^24.19.4",
     "@vitejs/plugin-react": "^6.3.0",
+    "aws-cdk-lib": "^2.278.0",
+    "constructs": "^10.8.1",
+    "esbuild": "^0.28.2",
     "jsdom": "^31.0.1",
     "sass": "^1.108.2",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
     "vite": "^8.4.0",
     "vitest": "^5.1.2"
   }

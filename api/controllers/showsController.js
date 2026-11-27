@@ -1,8 +1,8 @@
-const showsStore = require('../models/showsStore');
+const { getShows, getShow } = require('../queries');
 
 exports.getShows = async (req, res) => {
     try {
-        res.json(await showsStore.find({}));
+        res.json(await getShows());
     } catch (err) {
         console.error('Could not retrieve shows', err);
         res.status(500).json({ error: 'Could not retrieve shows' });
@@ -11,7 +11,7 @@ exports.getShows = async (req, res) => {
 
 exports.getShow = async (req, res) => {
     try {
-        res.json(await showsStore.find({ ID: req.params.id }));
+        res.json(await getShow(req.params.id));
     } catch (err) {
         console.error('Could not retrieve show', err);
         res.status(500).json({ error: 'Could not retrieve show' });

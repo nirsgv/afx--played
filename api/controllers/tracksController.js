@@ -1,8 +1,8 @@
-const tracksStore = require('../models/tracksStore');
+const { getTracks, getTrack } = require('../queries');
 
 exports.getTracks = async (req, res) => {
     try {
-        res.json(await tracksStore.find({}));
+        res.json(await getTracks());
     } catch (err) {
         console.error('Could not retrieve tracks', err);
         res.status(500).json({ error: 'Could not retrieve tracks' });
@@ -11,7 +11,7 @@ exports.getTracks = async (req, res) => {
 
 exports.getTrack = async (req, res) => {
     try {
-        res.json(await tracksStore.find({ ID: req.params.id }));
+        res.json(await getTrack(req.params.id));
     } catch (err) {
         console.error('Could not retrieve track', err);
         res.status(500).json({ error: 'Could not retrieve track' });
