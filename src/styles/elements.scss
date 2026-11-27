@@ -23,16 +23,14 @@ main {
         padding-top: 2rem;
     }
 
-    &:not(.editorial){
-        @include respond-to(hover-device) {
-            top: 11rem;
-            max-width: 148rem;
-            margin-left: auto;
-            margin-right: auto;
-        }
+    @include respond-to(hover-device) {
+        top: 11rem;
+        max-width: 148rem;
+        margin-left: auto;
+        margin-right: auto;
     }
 
-    &.home, &.editorial, &.expanded-concert, &.about {
+    &.home, &.expanded-concert, &.about {
         @include respond-to(hover-device) {
             padding-top: 2rem;
         }

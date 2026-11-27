@@ -27,7 +27,6 @@ const Footer = (props) => {
                         <SvgSprite classes={''} name={'APHEX'} />
                     </NavLink>
                     <NavLink exact={true} activeClassName="active" to="/">Home</NavLink>
-                    <NavLink activeClassName="active" to="/editorial">Editorial</NavLink>
                     <NavLink activeClassName="active" to="/about">About</NavLink>
                     {/*<AnimativeIndicator animateFooter={animateFooter} setAnimateFooter={setAnimateFooter} />*/}
                 </List>

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import BackButton from "./backButton";
-import ShowGoogleMap from "./showsGoogleMap";
 import { scrollTop } from '../helpers/dom';
 
-function About({ history, name, setSpaPageName, mapHasLoaded, setMapAsLoaded }) {
+function About({ history, name, setSpaPageName }) {
 
     useEffect(() => {
         setSpaPageName(name);
@@ -48,11 +47,6 @@ function About({ history, name, setSpaPageName, mapHasLoaded, setMapAsLoaded }) 
                         This site is non-commercial.
                     </p>
                 </div>
-
-                <h2 className={`${name}__map-header`}>
-                    The <strong>events</strong> are mapped here.<br />
-                </h2>
-                <ShowGoogleMap mapHasLoaded={mapHasLoaded} setMapAsLoaded={setMapAsLoaded}/>
             </div>
 
         </>

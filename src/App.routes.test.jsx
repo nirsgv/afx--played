@@ -13,7 +13,6 @@ const shows = readSeed('shows.json');
 const routes = {
     home: '/',
     about: '/about',
-    editorial: '/editorial',
     track: `/track/${tracks[0].ID}`,
     concert: `/concert/${shows[0].SHOW_ID}`,
 };

@@ -13,7 +13,6 @@ import Splash from './containers/splash';
 import ExpandedItem from './containers/expandedItem';
 import Footer from './containers/footer';
 import MessagesModal from './containers/messagesModal';
-import Editorial from './components/editorial';
 import About from './components/about';
 import { isBottomOfPage } from './helpers/dom';
 import { debounce } from './helpers/higherFunctions';
@@ -23,7 +22,7 @@ import ViewPort from './components/viewport';
 import urlConstants from './data/urlConstants';
 import DarkenLayer from "./components/darkenLayer";
 import './styles/main.scss';
-import { setMapAsLoaded, setPlayerItem, dispatchMessageToModal, viewMore,
+import { setPlayerItem, dispatchMessageToModal, viewMore,
         toggleMobMenu, toggleDesktopFilters, setTracksAsLocal, setShowsAsLocal,
         setSpaPageName, setViewportDimensions, resetFilters } from './actions';
 import { initAnalytics, trackEvent } from './helpers/analytics';
@@ -34,7 +33,7 @@ const App = ({  ...restProps }) => {
 
     const { toggleDesktopFilters, toggleMobMenu, setPlayerItem, setViewportDimensions, viewMore, viewport,
             setTracksAsLocal, setShowsAsLocal, setSpaPageName, isGridView, isTracksDataLocal, isShowsDataLocal,
-            isMobileMenuOpen, isDesktopFiltersExpanded, spaPageName, mapHasLoaded, setMapAsLoaded
+            isMobileMenuOpen, isDesktopFiltersExpanded, spaPageName
     } = restProps;
 
     const getScrollItems = debounce(function(){ isBottomOfPage(this) && viewMore() }, 100);
@@ -75,8 +74,7 @@ const App = ({  ...restProps }) => {
 
                     <main className={`${spaPageName}`}>
                         <Switch>
-                            <Route path="/about"><About name={"about"} setSpaPageName={setSpaPageName} history={customHistory} setMapAsLoaded={setMapAsLoaded} mapHasLoaded={mapHasLoaded} /></Route>
-                            <Route path="/editorial"><Editorial name={"editorial"} setSpaPageName={setSpaPageName} setPlayerItem={setPlayerItem} history={customHistory}/></Route>
+                            <Route path="/about"><About name={"about"} setSpaPageName={setSpaPageName} history={customHistory} /></Route>
                             <Route path="/track/:id" component={ExpandedItem} setPlayerItem={setPlayerItem} />
                             <Route path="/concert/:id" component={ExpandedConcert} setPlayerItem={setPlayerItem} />
                             <Route path="/">
@@ -120,12 +118,11 @@ const mapStateToProps = state => ({
     isDesktopFiltersExpanded: state.appData.isDesktopFiltersExpanded,
     spaPageName: state.appData.spaPageName,
     viewport: state.viewport,
-    mapHasLoaded: state.appData.mapHasLoaded
 
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    setMapAsLoaded, setPlayerItem, dispatchMessageToModal, viewMore, toggleMobMenu, toggleDesktopFilters,
+    setPlayerItem, dispatchMessageToModal, viewMore, toggleMobMenu, toggleDesktopFilters,
     setTracksAsLocal, setShowsAsLocal, setSpaPageName, setViewportDimensions, resetFilters
 }, dispatch);
 

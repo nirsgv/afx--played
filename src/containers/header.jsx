@@ -52,7 +52,6 @@ console.log({toggleDesktopFilters});
                 </div>
                 <List baseClassName="main-nav" printBase={false}>
                     <NavLink exact={true} activeClassName="active" to="/">Tracks</NavLink>
-                    <NavLink activeClassName="active" to="/editorial">Editorial</NavLink>
                     <NavLink activeClassName="active" to="/about">About</NavLink>
                 </List>
                 <Hamburger menuIsClosed={!isMobileMenuOpen} toggleMobMenu={toggleMobMenu} toggleDesktopFilters={toggleDesktopFilters} className={'hamburger'}/>
