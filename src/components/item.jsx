@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 import List from "./list";
 import { filterByTagCb } from "../actions";
 import MoreInfoButton from "./moreInfoButton";
+import { coverUrl } from '../helpers/covers';
 
 function Item({ trackData, setPlayerItem, filterByTagCb }) {
     const {
@@ -29,7 +30,7 @@ function Item({ trackData, setPlayerItem, filterByTagCb }) {
                         <span className="track__album-title">{`${YEAR}`}</span>
                     </p>
 
-                    <Img src={`../assets/album_covers/160x160pp/${ALBUM_ID}.jpg`}
+                    <Img src={coverUrl(ALBUM_ID)}
                          alt={''}
                          transitionSeconds={3}
                          blockClassName={'track'}

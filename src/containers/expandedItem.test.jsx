@@ -57,3 +57,10 @@ test('shows "Track not found" for an unknown id', async () => {
     renderAt('/track/nope');
     await waitFor(() => expect(screen.getByText('Track not found.')).toBeInTheDocument());
 });
+
+test('cover URLs are encoded, so album IDs with # or parentheses still load', async () => {
+    const { coverUrl } = await import('../helpers/covers');
+    expect(coverUrl('aphextwin+selected#ambworks85-92')).toBe('/assets/album_covers/160x160pp/aphextwin+selected%23ambworks85-92.jpg');
+    expect(coverUrl('a+b?c d')).toBe('/assets/album_covers/160x160pp/a+b%3Fc%20d.jpg');
+    expect(coverUrl("johnnyjungle+johnny'94(pascal&kings)")).toBe("/assets/album_covers/160x160pp/johnnyjungle+johnny'94(pascal&kings).jpg");
+});

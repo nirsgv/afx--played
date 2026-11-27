@@ -9,6 +9,7 @@ import Tags from "../components/tags";
 import Spinner from '../components/spinner';
 import {getDurationFromSeconds} from '../helpers/str';
 import {getTrack} from '../helpers/api';
+import {coverUrl} from '../helpers/covers';
 import {useAsync} from '../customHooks';
 import Share from "../components/share";
 import {scrollTop} from '../helpers/dom';
@@ -66,7 +67,7 @@ const ExpandedItem = ({ match, history, toggleShareExpansion, dispatchMessageToM
             {ALBUM_ID && (
                 <div className="bkg__wrap">
                     <div className="bkg__layer"
-                         style={{backgroundImage: `url(../assets/album_covers/160x160pp/${ALBUM_ID}.jpg)`}}/>
+                         style={{backgroundImage: `url("${coverUrl(ALBUM_ID)}")`}}/>
                 </div>
             )}
 
