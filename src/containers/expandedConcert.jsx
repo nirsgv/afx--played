@@ -8,6 +8,9 @@ import {scrollTop} from '../helpers/dom';
 import SvgSprite from "../components/svgSprite";
 import BackButton from "../components/backButton";
 import MoreInfoButton from "../components/moreInfoButton";
+import Spinner from "../components/spinner";
+import {getShow, searchTracks} from '../helpers/api';
+import {useAsync} from '../customHooks';
 
 const ExpandedConcert = ({match, history, setSpaPageName}) => {
 
@@ -21,12 +24,32 @@ const ExpandedConcert = ({match, history, setSpaPageName}) => {
 
     const id = decodeURIComponent(match.params.id);
 
-    const concertsData = JSON.parse(localStorage.getItem("afx_local_shows")).data,
-        tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data,
-        concert = concertsData.find((concert) => concert.SHOW_ID === id),
-        tracksCollected = tracks.filter((track) => track.VENUES.includes(id));
+    // The show and the tracks played at it, both from the API.
+    const {data, error, loading} = useAsync(async () => {
+        const [concert, page] = await Promise.all([
+            getShow(id),
+            searchTracks({venues: [id], limit: 100}),
+        ]);
+        return {concert, tracksCollected: page.items};
+    }, id);
 
-    const {SHOW_TITLE, SHOW_LOCATION, SHOW_DATE} = concert;
+    if (loading) return <Spinner label="Loading show"/>;
+
+    if (error || !data.concert) {
+        return (
+            <div className={"inner-page__wrap"}>
+                <nav className="back-btn__wrap expanded-item__back">
+                    <BackButton history={history} className={"back-btn"}/>
+                </nav>
+                <h2 className="expanded-item__none">
+                    {error ? "Couldn't load this show. Please try again." : 'Show not found.'}
+                </h2>
+            </div>
+        );
+    }
+
+    const {concert, tracksCollected} = data;
+    const {SHOW_TITLE, SHOW_LOCATION = {}, SHOW_DATE = {}} = concert;
 
 
     return (
@@ -50,14 +73,14 @@ const ExpandedConcert = ({match, history, setSpaPageName}) => {
                         {tracksCollected.map((item, index) => {
                             return (
                                 <li key={index} className={"expanded-concert__item"}>
-                                    <Link className={'expanded-concert__link'} to={`/track/${item.ID}`}>
+                                    <Link className={'expanded-concert__link'} to={`/track/${encodeURIComponent(item.ID)}`}>
                                         <h3>
                                             <div className="concert-tracks concert-tracks__row">
                                                 <span className="concert-tracks__artist">{item.ARTIST_NAME}</span>
                                                 <div>
                                                     <span className="concert-tracks__title">{item.TRACK_TITLE}</span>
-                                                    <span
-                                                        className="concert-tracks__duration">, {getDurationFromSeconds(item.DURATION)}</span>
+                                                    {item.DURATION ? <span
+                                                        className="concert-tracks__duration">, {getDurationFromSeconds(item.DURATION)}</span> : null}
                                                 </div>
                                                 <MoreInfoButton/>
 

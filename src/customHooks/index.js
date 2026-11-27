@@ -25,6 +25,25 @@ const useDebouncedValue = (value, delay) => {
     return debounced;
 };
 
+// Runs `load()` when `key` changes. Returns { data, error, loading }.
+// A response for an older key is ignored, so fast navigation can't show stale data.
+const useAsync = (load, key) => {
+    const [ state, setState ] = useState({ data: undefined, error: null, loading: true });
+    useEffect(() => {
+        let current = true;
+        setState({ data: undefined, error: null, loading: true });
+        load()
+            .then((data) => current && setState({ data, error: null, loading: false }))
+            .catch((error) => {
+                if (!current) return;
+                console.error(error);
+                setState({ data: undefined, error, loading: false });
+            });
+        return () => { current = false; };
+    }, [key]);
+    return state;
+};
+
 const useSetPageName = (cb, name) => {
     useEffect(() => {
         cb(name);
@@ -114,4 +133,4 @@ const useMedia = (queries, values, defaultValue) => {
     return value;
 };
 
-export { useDebouncedValue, useSetPageName, useFetch, useMediaQuery, useShadowAnimaStyle, useIsScrolled, useMedia };
+export { useAsync, useDebouncedValue, useSetPageName, useFetch, useMediaQuery, useShadowAnimaStyle, useIsScrolled, useMedia };

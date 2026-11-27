@@ -31,6 +31,10 @@ test('genres and years become $in filters', () => {
     expect(filter.YEAR).toEqual({ $in: [1991, 1992] });
 });
 
+test('venues filter matches tracks played at those shows', () => {
+    expect(buildTrackSearch({ venues: '2Sep2023' }).filter.VENUES).toEqual({ $in: ['2Sep2023'] });
+});
+
 test('array values (Express repeated params) work like comma lists', () => {
     expect(buildTrackSearch({ genres: ['#AMB', '#ACI'] }).filter.GENRES).toEqual({ $in: ['#AMB', '#ACI'] });
 });

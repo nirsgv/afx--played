@@ -6,29 +6,45 @@ import ExternalLinks from '../components/externalLinks';
 import Concerts from '../components/concerts';
 import DefinitionList from '../components/definitionList';
 import Tags from "../components/tags";
+import Spinner from '../components/spinner';
 import {getDurationFromSeconds} from '../helpers/str';
+import {getTrack} from '../helpers/api';
+import {useAsync} from '../customHooks';
 import Share from "../components/share";
-import {Router} from "react-router-dom";
 import {scrollTop} from '../helpers/dom';
 import BackButton from "../components/backButton";
 
-const ExpandedItem = ({ match, history, toggleShareExpansion, setPlayerItem, dispatchMessageToModal, setSpaPageName }) => {
+// "main (extra)", or just whichever part exists; tracks don't all have every field.
+const withExtra = (main, extra) => {
+    if (main && extra) return `${main} (${extra})`;
+    return main || extra || '—';
+};
+
+const ExpandedItem = ({ match, history, toggleShareExpansion, dispatchMessageToModal, setSpaPageName }) => {
 
     useEffect(() => {
         setSpaPageName && setSpaPageName('expanded-item');
         scrollTop();
-        return () => {
-
-        }
     }, []);
 
+    const [entranceClassName, setEntranceClassName] = useState('faded-in-from-bottom');
+    const id = decodeURIComponent(match.params.id);
+    const { data: track, error, loading } = useAsync(() => getTrack(id), id);
 
-    const [entranceClassName, setEntranceClassName] = useState('faded-in-from-bottom'),
-        tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data,
-        expandedTrack = tracks.find(function (track) {
-            return track.ID === decodeURIComponent(match.params.id);
-        });
+    if (loading) return <Spinner label="Loading track" />;
 
+    if (error || !track) {
+        return (
+            <div className="expanded-item__wrap">
+                <nav className="back-btn__wrap expanded-item__back">
+                    <BackButton history={history} className={"back-btn"}/>
+                </nav>
+                <h2 className="expanded-item__none">
+                    {error ? "Couldn't load this track. Please try again." : 'Track not found.'}
+                </h2>
+            </div>
+        );
+    }
 
     const {
         ARTIST_NAME,
@@ -38,30 +54,29 @@ const ExpandedItem = ({ match, history, toggleShareExpansion, setPlayerItem, dis
         CAT,
         DURATION,
         YEAR,
-        GENRES,
-        LINKS,
+        GENRES = [],
+        LINKS = {},
         ID,
         ALBUM_ID,
-        VENUES
-    } = expandedTrack;
+        VENUES = []
+    } = track;
 
-    console.error(VENUES);
     return (
         <>
-            <div className="bkg__wrap">
-                <div className="bkg__layer"
-                     style={{backgroundImage: `url(../assets/album_covers/160x160pp/${ALBUM_ID}.jpg)`}}/>
-            </div>
+            {ALBUM_ID && (
+                <div className="bkg__wrap">
+                    <div className="bkg__layer"
+                         style={{backgroundImage: `url(../assets/album_covers/160x160pp/${ALBUM_ID}.jpg)`}}/>
+                </div>
+            )}
 
             <div className={`animate-content ${entranceClassName}`} onAnimationEnd={() => setEntranceClassName('')}>
                 <div className={`expanded-item__wrap`}>
 
-                    {/*block1*/}
                     <nav className="back-btn__wrap expanded-item__back">
                         <BackButton history={history} className={"back-btn"}/>
                     </nav>
 
-                    {/*block2*/}
                     <div className="row">
                         <div className="details-and-shows">
                             <section className="expanded-item__details">
@@ -69,52 +84,39 @@ const ExpandedItem = ({ match, history, toggleShareExpansion, setPlayerItem, dis
                                 <h3><DefinitionList classNameSpace={'inner-item'} term={'Artist'}
                                                     definition={ARTIST_NAME}/></h3>
                                 <h3><DefinitionList classNameSpace={'inner-item'} term={'Track'}
-                                                    definition={`${TRACK_TITLE} (${getDurationFromSeconds(DURATION)})`}/>
+                                                    definition={withExtra(TRACK_TITLE, DURATION ? getDurationFromSeconds(DURATION) : '')}/>
                                 </h3>
                                 <h3><DefinitionList classNameSpace={'inner-item'} term={'Album'}
-                                                    definition={`${ALBUM_TITLE} (${YEAR})`}/></h3>
+                                                    definition={withExtra(ALBUM_TITLE, YEAR)}/></h3>
                                 <h3><DefinitionList classNameSpace={'inner-item'} term={'Label'}
-                                                    definition={`${RECORD_LABEL} (${CAT})`}/></h3>
-                                <h3><DefinitionList classNameSpace={'inner-item'} term={'Label'}
+                                                    definition={withExtra(RECORD_LABEL, CAT)}/></h3>
+                                <h3><DefinitionList classNameSpace={'inner-item'} term={'Genres'}
                                                     definition={<Tags className="track__track-tags" tags={GENRES}/>}/>
                                 </h3>
-
                             </section>
 
-                            {/*block3*/}
-
-                                <section className="expanded-item__shows">
-                                    <h2 className="expanded-item__section-title">Played in shows</h2>
-                                    <Concerts venues={VENUES}></Concerts>
-                                </section>
+                            <section className="expanded-item__shows">
+                                <h2 className="expanded-item__section-title">Played in shows</h2>
+                                <Concerts venues={VENUES}/>
+                            </section>
                         </div>
 
                         <div className="links-and-share">
-
-                            {/*block4*/}
                             <section className="expanded-item__external-links">
                                 <h2 className="expanded-item__section-title">External Links</h2>
                                 <ExternalLinks className="track__track-links" links={LINKS} ID={ID}
                                                blockClassName={'external-links'}/>
-
                             </section>
 
-                            {/*block5*/}
                             <section className="expanded-item__share">
                                 <h2 className="expanded-item__section-title">Share</h2>
-                                <Share url={'http://localhost:3000/track/fis+patupaiarehe'}
+                                <Share url={window.location.href}
                                        onShareWindowClose={toggleShareExpansion}
                                        dispatchMessageToModal={dispatchMessageToModal}
                                 />
                             </section>
                         </div>
-
-
                     </div>
-
-
-                    {/*<h3 className={'concerts__title'}>{'Available streams:'.toUpperCase()}:</h3>*/}
-                    {/*<h3 className={'concerts__title'}>{'Played in shows'.toUpperCase()}:</h3>*/}
                 </div>
             </div>
         </>

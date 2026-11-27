@@ -7,7 +7,7 @@ const getDurationFromSeconds = (secondsTotal = 0) => {
     if (typeof secondsTotal === 'string') return secondsTotal;
     const mins = Math.floor(secondsTotal / 60),
           secs = Math.floor(secondsTotal % 60),
-          secondsIndented = secs > 10 ? secs : `0${secs}`;
+          secondsIndented = secs >= 10 ? secs : `0${secs}`;
     return `${mins}:${secondsIndented}`;
 };
 

@@ -32,6 +32,7 @@ const escapeRegex = (text) => text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
  * @param {string} [params.fields] - which fields `q` searches: artist,track,album
  * @param {string} [params.genres] - genre keys; a track matches if it has any of them
  * @param {string} [params.years] - years; a track matches if its YEAR is one of them
+ * @param {string} [params.venues] - show IDs; a track matches if it was played at any of them
  * @param {string} [params.skip] - items to skip (paging offset)
  * @param {string} [params.limit] - page size, 1-100
  * @returns {{ filter: object, skip: number, limit: number }}
@@ -51,6 +52,9 @@ const buildTrackSearch = (params = {}) => {
 
     const years = toList(params.years).map(Number).filter(Number.isInteger);
     if (years.length) filter.YEAR = { $in: [...new Set(years)] };
+
+    const venues = toList(params.venues);
+    if (venues.length) filter.VENUES = { $in: venues };
 
     return {
         filter,
