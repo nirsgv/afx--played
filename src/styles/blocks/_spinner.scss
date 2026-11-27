@@ -1,0 +1,35 @@
+// Small centered loading indicator.
+.spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 1.6rem 0;
+
+    &__ring {
+        width: 2.4rem;
+        height: 2.4rem;
+        border-radius: 50%;
+        border: 0.3rem solid map-get($colors, "label-color");
+        border-top-color: map-get($colors, "autobulb-green");
+        animation: spinner-rotate 0.8s linear infinite;
+
+        @media (prefers-reduced-motion: reduce) {
+            animation-duration: 2.4s;
+        }
+    }
+
+    // Read by screen readers only.
+    &__label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+    }
+}
+
+@keyframes spinner-rotate {
+    to { transform: rotate(360deg); }
+}

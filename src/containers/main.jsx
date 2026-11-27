@@ -1,16 +1,21 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import Items from '../components/items';
-import { hasTags, withinPeriod, hasMatchingText, inViewRange } from '../helpers/comparitors';
 import { combineByObjKeysArr } from '../helpers/str';
 import { scrollTop } from '../helpers/dom';
 import { checkIntroNecessity } from '../helpers/localStorage';
+import { searchTracks } from '../helpers/api';
+import { useDebouncedValue } from '../customHooks';
 import { yearsMap } from '../data/periodMap.js';
 import { dispatchMessageToModal, toggleShareExpansion, setPlayerItem, setSpaPageName,
          resetBatch, filterByTagCb, cancelWelcomeIntro } from "../actions";
 import FilterIndex from './filterIndex';
 import WelcomeMessage from '../components/welcomeMessage';
+import Spinner from '../components/spinner';
+
+const SEARCH_DEBOUNCE_MS = 250;
+const emptyResult = { key: null, total: 0, items: [], error: null };
 
 const Main = ({ filteredByTags,
                 filteredByPeriods,
@@ -34,38 +39,77 @@ const Main = ({ filteredByTags,
         scrollTop();
     }, [ filteredByTags, filteredByPeriods ]);
 
-    const tracks = JSON.parse(localStorage.getItem("afx_local_tracks")).data;
     const [ entranceClassName, setEntranceClassName ] = useState('faded-in-from-bottom');
 
+    // Everything the server needs to answer the search. `queryKey` identifies it.
+    const q = useDebouncedValue(filteredBySearch.trim(), SEARCH_DEBOUNCE_MS);
+    const query = useMemo(() => ({
+        q,
+        fields: [
+            searchArtistNames && 'artist',
+            searchTrackTitles && 'track',
+            searchAlbumTitles && 'album',
+        ].filter(Boolean),
+        genres: filteredByTags,
+        years: combineByObjKeysArr(filteredByPeriods, yearsMap),
+    }), [q, searchArtistNames, searchTrackTitles, searchAlbumTitles, filteredByTags, filteredByPeriods]);
+    const queryKey = JSON.stringify(query);
 
-    const checkboxActivated = {
-        searchTrackTitles,
-        searchArtistNames,
-        searchAlbumTitles
-    };
+    // A new search starts again from the first page.
+    useEffect(() => { resetBatch(); }, [queryKey]);
 
-    const memoPeriodResult = useMemo(() => combineByObjKeysArr(filteredByPeriods, yearsMap), [filteredByPeriods]);
-    const memoTagsResult = useMemo(() => hasTags(filteredByTags), [filteredByTags]);
-    const memoRangeResult = useMemo(() => inViewRange(itemsBatchAmt, batchNum), [batchNum]);
+    const [ result, setResult ] = useState(emptyResult);
+    // 'search' while a new search loads, 'more' while the next page loads, else null.
+    const [ loading, setLoading ] = useState(null);
+    const pending = useRef(null);
 
-    const tracksFiltered = useMemo(() => Array.isArray(tracks)
-        ? tracks && tracks
-            .filter(memoTagsResult)
-            .filter(withinPeriod(memoPeriodResult))
-            .filter(hasMatchingText(filteredBySearch, checkboxActivated))
-        : '', [filteredByTags, filteredByPeriods, filteredBySearch, checkboxActivated, batchNum]);
+    // Fetch whatever the current search still needs: its first page, or the next
+    // page after "view more" (batchNum) asks for more than has been loaded.
+    useEffect(() => {
+        const sameQuery = result.key === queryKey;
+        const loaded = sameQuery ? result.items.length : 0;
+        const wanted = sameQuery ? itemsBatchAmt * batchNum : itemsBatchAmt;
+        if (sameQuery && (loaded >= wanted || loaded >= result.total)) return;
 
-    const tracksPaginated = tracksFiltered.filter(memoRangeResult);
+        const request = `${queryKey}|${loaded}`;
+        if (pending.current === request) return;
+        pending.current = request;
+        setLoading(loaded === 0 ? 'search' : 'more');
 
+        searchTracks({ ...query, skip: loaded, limit: wanted - loaded })
+            .then((page) => {
+                if (pending.current !== request) return; // superseded by a newer search
+                pending.current = null;
+                setLoading(null);
+                setResult((prev) => ({
+                    key: queryKey,
+                    total: page.total,
+                    items: (prev.key === queryKey ? prev.items : []).concat(page.items),
+                    error: null,
+                }));
+            })
+            .catch((error) => {
+                if (pending.current !== request) return;
+                pending.current = null;
+                setLoading(null);
+                console.error(error);
+                setResult({ ...emptyResult, key: queryKey, error });
+            });
+    });
+
+    // Until a new search answers, keep showing the previous results (no flicker).
     return (
         <>
-            <FilterIndex itemsCount={tracksFiltered.length}/>
+            <FilterIndex itemsCount={result.total}/>
 
             <div className={`animate-content ${entranceClassName}`} onAnimationEnd={() => setEntranceClassName('')}>
                 {shouldPresentWelcomeIntro && <WelcomeMessage cancelWelcomeIntro={cancelWelcomeIntro}/>}
+                {loading === 'search' && <Spinner label="Searching tracks" />}
+                {result.error && <p className="track-items__error">Couldn't load tracks. Please try again.</p>}
                 <ul className="track-items track-items--animated">
-                    <Items tracksFiltered={tracksPaginated} setPlayerItem={setPlayerItem} />
+                    <Items tracksFiltered={result.items} setPlayerItem={setPlayerItem} />
                 </ul>
+                {loading === 'more' && <Spinner label="Loading more tracks" />}
             </div>
         </>
     )

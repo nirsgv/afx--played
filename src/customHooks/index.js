@@ -15,6 +15,16 @@ const useFetch = (url, initialValue) => {
     return result;
 };
 
+// Returns `value` once it has stopped changing for `delay` ms.
+const useDebouncedValue = (value, delay) => {
+    const [ debounced, setDebounced ] = useState(value);
+    useEffect(() => {
+        const timer = setTimeout(() => setDebounced(value), delay);
+        return () => clearTimeout(timer);
+    }, [value, delay]);
+    return debounced;
+};
+
 const useSetPageName = (cb, name) => {
     useEffect(() => {
         cb(name);
@@ -104,4 +114,4 @@ const useMedia = (queries, values, defaultValue) => {
     return value;
 };
 
-export { useSetPageName, useFetch, useMediaQuery, useShadowAnimaStyle, useIsScrolled, useMedia };
+export { useDebouncedValue, useSetPageName, useFetch, useMediaQuery, useShadowAnimaStyle, useIsScrolled, useMedia };

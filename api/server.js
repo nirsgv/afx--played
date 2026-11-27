@@ -33,13 +33,14 @@ app.use(express.json());
 app.use(express.static(BUILD_DIR));
 
 app.get('/api/tracks', tracksController.getTracks);
+app.get('/api/tracks/search', tracksController.searchTracks);
 app.get('/api/track/:id', tracksController.getTrack);
 app.get('/api/shows', showsController.getShows);
 app.get('/api/show/:id', showsController.getShow);
 
 // Client-side routes are served the SPA shell; React Router takes it from there.
 const sendIndex = (req, res) => res.sendFile(path.join(BUILD_DIR, 'index.html'));
-app.get(['/about', '/editorial', '/track/*splat', '/concert/*splat'], sendIndex);
+app.get(['/about', '/track/*splat', '/concert/*splat'], sendIndex);
 
 const start = async () => {
     await mongoose.connect(process.env.DATABASE);

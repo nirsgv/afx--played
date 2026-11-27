@@ -155,3 +155,30 @@
         overflow: hidden;
     }
 }
+// The whole card links to the track page: the "More Info" link is stretched
+// over the card, and the controls inside the card sit above it.
+.track {
+    position: relative;
+
+    .more-info__link::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+    }
+
+    .tags__item,
+    .internal-links__item button {
+        position: relative;
+        z-index: 2;
+    }
+
+    .more-info__icon {
+        transition: transform .2s ease-out;
+    }
+
+    &:hover .more-info__icon,
+    .more-info__link:focus-visible .more-info__icon {
+        transform: translateX(.4rem);
+    }
+}

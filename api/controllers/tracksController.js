@@ -1,4 +1,13 @@
-const { getTracks, getTrack } = require('../queries');
+const { getTracks, getTrack, searchTracks } = require('../queries');
+
+exports.searchTracks = async (req, res) => {
+    try {
+        res.json(await searchTracks(req.query));
+    } catch (err) {
+        console.error('Could not search tracks', err);
+        res.status(500).json({ error: 'Could not search tracks' });
+    }
+};
 
 exports.getTracks = async (req, res) => {
     try {

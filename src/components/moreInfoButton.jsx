@@ -6,7 +6,7 @@ function MoreInfoButton({ ...restProps }) {
     const { className = 'more-info', ID='' } = restProps;
 
     return (
-        <button className={`${className}__button`}>
+        <div className={`${className}__button`}>
 
             {ID
                 ? <Link to={`track/${encodeURIComponent(ID)}`} className={`${className}__link`}>
@@ -19,7 +19,7 @@ function MoreInfoButton({ ...restProps }) {
                     <SvgSprite classes={`${className}__icon`} name={'LONG_ARROW_RIGHT'} />
                 </div>
             }
-        </button>
+        </div>
     );
 }
 

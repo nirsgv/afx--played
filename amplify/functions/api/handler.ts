@@ -24,7 +24,7 @@ export const handler: LambdaFunctionURLHandler = async (event) => {
     return json(405, { error: 'Method not allowed' }, { allow: 'GET' });
   }
 
-  const run = queries.matchRoute(event.rawPath);
+  const run = queries.matchRoute(event.rawPath, event.queryStringParameters ?? {});
   if (!run) return json(404, { error: 'Not found' });
 
   try {
