@@ -8,8 +8,8 @@ const Img = (props) => {
         src,
         alt,
         transitionSeconds,
-        blockClassName,
-        placeholderImg
+        blockClassName = 'track',
+        placeholderImg = '../assets/aphex-logo.svg'
     } = props;
 
 
@@ -47,10 +47,6 @@ const Img = (props) => {
 
 };
 
-Img.defaultProps = {
-    blockClassName: 'track',
-    placeholderImg: '../assets/aphex-logo.svg'
-};
 
 Img.propTypes = {
     src: PropTypes.string,

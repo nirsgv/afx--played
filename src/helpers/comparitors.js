@@ -49,4 +49,4 @@ const areFiltersApplied = (filteredByTags, filteredByPeriods, filteredBySearch) 
     return filteredByTags.length || filteredByPeriods.length || filteredBySearch.length;
 };
 
-export { hasTags, withinPeriod, hasMatchingText, inViewRange, areFiltersApplied };
+export { hasTags, withinPeriod, hasMatchingText, inViewRange, areFiltersApplied, _matchHelper, _isSearchUnneeded };

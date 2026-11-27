@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 
 
-function InputBox({ cb, classname, name, placeholder, children, value, focusToggleCb }) {
+function InputBox({ cb, classname = 'track', name, placeholder, children, value = '', focusToggleCb }) {
 
     const textInputRef = useRef(null);
 
@@ -26,10 +26,6 @@ function InputBox({ cb, classname, name, placeholder, children, value, focusTogg
     );
 }
 
-InputBox.defaultProps = {
-    classname: 'track',
-    value: '',
-};
 
 InputBox.propTypes = {
     cb: PropTypes.func,

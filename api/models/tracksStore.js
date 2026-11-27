@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
 
 const tracksStore = new mongoose.Schema({
     ARTIST_NAME: {

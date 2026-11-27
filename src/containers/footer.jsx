@@ -37,9 +37,6 @@ const Footer = (props) => {
 
 };
 
-Footer.defaultProps = {
-
-};
 
 Footer.propTypes = {
 

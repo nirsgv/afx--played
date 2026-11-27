@@ -1,32 +1,19 @@
 const tracksStore = require('../models/tracksStore');
-//import all of our models, a singleton is implemented, once this is required it is available throught the app
 
-
-exports.getTracks = (req, res) => {
-    tracksStore.find({}, function(err, result) {
-      if (err) {
-          console.log('It was possible to retrieve these TRACKS');
-          res.send(err);
-      } else {
-          console.log(typeof result, result);
-          res.json(result);
-      }
-  });
+exports.getTracks = async (req, res) => {
+    try {
+        res.json(await tracksStore.find({}));
+    } catch (err) {
+        console.error('Could not retrieve tracks', err);
+        res.status(500).json({ error: 'Could not retrieve tracks' });
+    }
 };
 
-exports.getTrack =  (req, res) => {
-    tracksStore.find({ID:req.params.id}, function(err, result) {
-        if (err) {
-            console.log('It was possible to retrieve these TRACKS');
-            res.send(err);
-        } else {
-            console.log(typeof result, result);
-            res.json(result);
-        }
-    });
+exports.getTrack = async (req, res) => {
+    try {
+        res.json(await tracksStore.find({ ID: req.params.id }));
+    } catch (err) {
+        console.error('Could not retrieve track', err);
+        res.status(500).json({ error: 'Could not retrieve track' });
+    }
 };
-
-// exports.getTrack =  async (req, res) => {
-//     const track = await tracksStore.findOne({ ID: req.params.id });
-//     return track;
-// };

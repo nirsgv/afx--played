@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from "react-helmet";
+import { Helmet } from 'react-helmet-async';
 import QuickSlide from './quickSlide';
 import Items from "./items";
 import { editorialData } from '../data/editorial.js';
 import PropTypes from 'prop-types';
-import ReactGa from 'react-ga'
+import { trackEvent } from '../helpers/analytics';
 import BackButton from "./backButton";
 
 function Editorial( { ...restProps } ) {
@@ -13,7 +13,7 @@ function Editorial( { ...restProps } ) {
 
     useEffect(() => {
         setSpaPageName(name);
-        ReactGa.event({
+        trackEvent({
             category: 'clicked',
             action: 'simulated a Editorial click'
         });

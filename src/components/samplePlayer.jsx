@@ -60,9 +60,6 @@ function SamplePlayer({ sampleUrl }) {
     )
 }
 
-SamplePlayer.defaultProps = {
-
-};
 
 SamplePlayer.propTypes = {
 

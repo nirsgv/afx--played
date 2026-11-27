@@ -40,8 +40,8 @@ function MultiPlayer({ platform, item, width, height, trackId, closePlayer }) {
                 <YouTube
                     videoId={item}
                     opts={opts}
-                    className={'iframe iframe--youtube'}
-                    containerClassName={'player youtube'}
+                    className={'player youtube'}
+                    iframeClassName={'iframe iframe--youtube'}
                 />
                 <nav className="player__expand">
                     <MoreInfoButton ID={trackId} />

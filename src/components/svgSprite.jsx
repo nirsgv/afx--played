@@ -39,8 +39,5 @@ SvgSprite.propTypes = {
     ]),
 };
 
-SvgSprite.defaultProps = {
-    throttleTimeoutForMouseOver: 300
-};
 
 export default SvgSprite;

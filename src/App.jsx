@@ -18,7 +18,7 @@ import About from './components/about';
 import { isBottomOfPage } from './helpers/dom';
 import { debounce } from './helpers/higherFunctions';
 import { fetchUnstoraged } from './helpers/localStorage';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import ViewPort from './components/viewport';
 import urlConstants from './data/urlConstants';
 import DarkenLayer from "./components/darkenLayer";
@@ -26,7 +26,7 @@ import './styles/main.scss';
 import { setMapAsLoaded, setPlayerItem, dispatchMessageToModal, viewMore,
         toggleMobMenu, toggleDesktopFilters, setTracksAsLocal, setShowsAsLocal,
         setSpaPageName, setViewportDimensions, resetFilters } from './actions';
-import ReactGa from 'react-ga'
+import { initAnalytics, trackEvent } from './helpers/analytics';
 const customHistory = createBrowserHistory();
 
 
@@ -40,9 +40,8 @@ const App = ({  ...restProps }) => {
     const getScrollItems = debounce(function(){ isBottomOfPage(this) && viewMore() }, 100);
 
     useEffect(() => {
-        ReactGa.initialize('UA-163593216-1');
-        ReactGa.pageview('/');
-        ReactGa.event({
+        initAnalytics();
+        trackEvent({
             category: 'clicked',
             action: 'simulated a button click'
         });

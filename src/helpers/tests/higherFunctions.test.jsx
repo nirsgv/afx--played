@@ -4,9 +4,7 @@ import {
     memofy,
 } from '../higherFunctions';
 import React from 'react';
-import Enzyme, { shallow, mount } from 'enzyme';
-import EnzymeAdapter from 'enzyme-adapter-react-16';
-Enzyme.configure({adapter: new EnzymeAdapter()});
+import { render, screen, fireEvent } from '@testing-library/react';
 
 test('evaluate comparitors - functions used for filtering, correctly', () => {
     const multiply = (a, b, c, d, e) => a * b * c * d * e;
@@ -20,19 +18,20 @@ test('evaluate comparitors - functions used for filtering, correctly', () => {
 
 describe('Test debounce function', () => {
     test('does something when it is clicked', () => {
-        const mockOnClick = jest.fn();
-        const debouncedMockOnClick = jest.fn(debounce(mockOnClick, 10));
+        const mockOnClick = vi.fn();
+        const debouncedMockOnClick = vi.fn(debounce(mockOnClick, 10));
         const MyButton = ({mockOnClick}) => {
             return (
                 <button onClick={mockOnClick}>click here</button>
             )
         };
-        const wrapper = shallow(<MyButton mockOnClick={debouncedMockOnClick}/>);
+        render(<MyButton mockOnClick={debouncedMockOnClick}/>);
 
-        wrapper.find('button').simulate('click');
-        wrapper.find('button').simulate('click');
-        wrapper.find('button').simulate('click');
-        wrapper.find('button').simulate('click');
+        const button = screen.getByRole('button');
+        fireEvent.click(button);
+        fireEvent.click(button);
+        fireEvent.click(button);
+        fireEvent.click(button);
         expect(debouncedMockOnClick).toHaveBeenCalledTimes(4)
         //expect(mockOnClick.mock.calls.length).toBe(3);
 

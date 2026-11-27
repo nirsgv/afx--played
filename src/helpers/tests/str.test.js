@@ -1,11 +1,3 @@
-import ReactDOM from "react-dom";
-import App from "../../App";
-import React from 'react';
-
-import Enzyme, { shallow, mount } from 'enzyme';
-import EnzymeAdapter from 'enzyme-adapter-react-16';
-
-Enzyme.configure({adapter: new EnzymeAdapter()});
 
 import {
     evaluateKey,

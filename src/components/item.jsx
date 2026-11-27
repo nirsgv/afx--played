@@ -50,10 +50,6 @@ function Item({ trackData, setPlayerItem, filterByTagCb }) {
     )
 }
 
-Item.defaultProps = {
-    classname: 'track',
-    value: '',
-};
 
 Item.propTypes = {
     trackData: PropTypes.object,

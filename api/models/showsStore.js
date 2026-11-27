@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
-
 
 const showsStore = new mongoose.Schema({
     SHOW_ID: {

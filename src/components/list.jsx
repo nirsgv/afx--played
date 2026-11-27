@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-function List({baseClassName, children, printBase = true, ...rest}) {
+function List({baseClassName = 'list', children, printBase = true, ...rest}) {
     const childrenArr = [].concat(children);
     return (
         <section className={`${printBase && baseClassName} ${baseClassName}__wrap`}>
@@ -13,9 +13,6 @@ function List({baseClassName, children, printBase = true, ...rest}) {
     )
 }
 
-List.defaultProps = {
-    baseClassName: 'list',
-};
 
 List.propTypes = {
     baseClassName: PropTypes.string,

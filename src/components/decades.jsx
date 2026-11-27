@@ -26,8 +26,6 @@ function Decades(props) {
     )
 }
 
-Decades.defaultProps = {
-};
 
 Decades.propTypes = {
     periods: PropTypes.array,

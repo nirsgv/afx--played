@@ -99,7 +99,6 @@ console.log({toggleDesktopFilters});
 
 };
 
-Header.defaultProps = {};
 
 Header.propTypes = {};
 

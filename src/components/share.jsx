@@ -1,7 +1,7 @@
 import React from 'react'
 import {
     FacebookShareButton,
-    TwitterShareButton,
+    XShareButton,
     WhatsappShareButton,
     RedditShareButton,
 } from "react-share";
@@ -40,7 +40,7 @@ const Share = ({ url, isExpanded, onShareWindowClose, dispatchMessageToModal }) 
                 <FacebookShareButton url={url} onShareWindowClose={() => cb()}  children={
                     <SvgSprite classes={'share-box__icon'} name={'FACEBOOK'} />
                 }/>
-                <TwitterShareButton url={url} onShareWindowClose={() => cb()}  children={
+                <XShareButton url={url} onShareWindowClose={() => cb()}  children={
                     <SvgSprite classes={'share-box__icon'} name={'TWITTER'}  />
                 }/>
                 <WhatsappShareButton url={url} onShareWindowClose={() => cb()}  children={

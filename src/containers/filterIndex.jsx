@@ -46,9 +46,6 @@ const FilterIndex = (props) => {
 
 };
 
-FilterIndex.defaultProps = {
-
-};
 
 FilterIndex.propTypes = {
 
